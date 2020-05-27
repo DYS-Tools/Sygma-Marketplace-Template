@@ -62,6 +62,16 @@ class SecurityController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/become_author", name="become_author")
+     */
+    public function becomeAuthor()
+    {
+        return $this->render('home.html.twig', [
+            'registrationForm' => $form->createView(),
+        ]);
+        
+    }
 
     /**
      * @Route("/logout", name="app_logout")
