@@ -51,11 +51,11 @@ class UserFixtures extends Fixture
 
         // Create Author
         $author = new User();
-        $author->setEmail('user@gmail.com');
+        $author->setEmail('author@gmail.com');
         $author->setPassword($this->passwordEncoder->encodePassword($author,'dev'));
         $author->setRoles(["ROLE_AUTHOR"]);
         $this->addReference('AUTHOR',$author);
-        $manager->persist($user);
+        $manager->persist($author);
 
         $manager->flush();
 

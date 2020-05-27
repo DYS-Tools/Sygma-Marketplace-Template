@@ -65,6 +65,7 @@ class Product
      */
     private $price;
 
+    /*
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="products")
      */
     private $user;
@@ -190,7 +191,6 @@ class Product
                 $medium->setProduct(null);
             }
         }
-
         return $this;
     }
 
@@ -202,6 +202,8 @@ class Product
     public function setPrice(int $price): self
     {
         $this->price = $price;
+        return $this;
+    }
 
     public function getUser(): ?User
     {
