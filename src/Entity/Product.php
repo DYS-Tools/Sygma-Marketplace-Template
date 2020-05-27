@@ -60,9 +60,14 @@ class Product
     private $media;
 
     /**
+
      * @ORM\Column(type="integer")
      */
     private $price;
+
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="products")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -198,6 +203,14 @@ class Product
     {
         $this->price = $price;
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
         return $this;
     }
 }
