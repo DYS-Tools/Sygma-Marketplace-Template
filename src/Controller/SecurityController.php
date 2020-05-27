@@ -7,9 +7,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
+use App\Form\BecomeAuthorFormType;
 use App\Form\RegistrationFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class SecurityController extends AbstractController
 {
@@ -62,6 +66,37 @@ class SecurityController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/become_author", name="become_author")
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function becomeAuthor(EntityManagerInterface $em, Request $request)
+    {
+        //@IsGranted("ROLE_USER")
+        //@Security("is_granted('ROLE_USER')")
+
+        $form = $this->createForm(BecomeAuthorFormType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $user = $this->getUser();
+            $user->setRoles(['ROLE_AUTHOR']);
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'you are author now, congratulation !'
+            );
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('security/becomeAuthor.html.twig', [
+            'form' => $form->createView(),
+        ]);
+        
+    }
 
     /**
      * @Route("/logout", name="app_logout")
