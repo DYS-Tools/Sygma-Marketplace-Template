@@ -59,6 +59,11 @@ class Product
      */
     private $media;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
     public function __construct()
     {
         $this->media = new ArrayCollection();
@@ -180,6 +185,18 @@ class Product
                 $medium->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
