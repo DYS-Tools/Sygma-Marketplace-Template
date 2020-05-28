@@ -65,7 +65,7 @@ class Product
      */
     private $price;
 
-    /*
+    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="products")
      */
     private $user;
