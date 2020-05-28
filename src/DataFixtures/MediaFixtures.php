@@ -4,12 +4,13 @@ namespace App\DataFixtures;
 
 use App\Entity\Media;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 
 
 
-class MediaFixtures extends Fixture
+class MediaFixtures extends Fixture implements DependentFixtureInterface
 {
     public const ONECATEGORY = 'ONECATEGORY';
 
@@ -21,9 +22,15 @@ class MediaFixtures extends Fixture
         $media->setText("This picture");
         $media->setThumbnail(0);
 
-        //$this->addReference('ONECATEGORY',$media);
+        $media->setProduct( $this->getReference('PRODUCT'));
         $manager->persist($media);
         $manager->flush();
     }
-
+    // DependentFixtureInterface :  Load ProductFixtures before MediaFixture
+    public function getDependencies()
+    {
+        return array(
+            ProductFixtures::class
+        );
+    }
 }

@@ -6,9 +6,6 @@ use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
-
-
 class CategoryFixtures extends Fixture
 {
     public const ONECATEGORY = 'ONECATEGORY';
