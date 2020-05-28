@@ -15,7 +15,6 @@ class UserFixtures extends Fixture
     public const SADMIN = 'SADMIN';
     public const YADMIN = 'YADMIN';
 
-
     private $passwordEncoder;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)

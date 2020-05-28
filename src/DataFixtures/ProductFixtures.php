@@ -11,6 +11,8 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class ProductFixtures extends Fixture implements DependentFixtureInterface
 {
+    public const PRODUCT = 'PRODUCT';
+
     public function load(ObjectManager $manager)
     {
         // Create Order for user
@@ -23,16 +25,17 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setPublished( new \DateTime() );
         $product->setUpdated( new \DateTime() );
 
-        // Todo : ManyToOne -> User_ id , media_id
+        $product->setUser($this->getReference('YADMIN'));
         $product->setCategory( $this->getReference('ONECATEGORY'));
 
-        //$product->setUser($this->getReference('USER') );
+        // add reference for media
+        $this->addReference('PRODUCT',$product);
 
         $manager->persist($product);
         $manager->flush();
     }
 
-    // DependentFixtureInterface :  Load UserFixtures before OrderFixtures
+    // DependentFixtureInterface :  Load UserFixtures before ProductFixture
     public function getDependencies()
     {
         return array(
