@@ -39,3 +39,4 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/author, roles: ROLE_AUTHOR }
+        - { path: ^/product, roles: [ ROLE_ADMIN ,ROLE_AUTHOR ] } #CRUD product
