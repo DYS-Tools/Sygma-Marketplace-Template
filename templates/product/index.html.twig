@@ -3,40 +3,43 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                {% for category in categories %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ category.name }}</a>
+                </li>
+                {% endfor %}
+                </ul>
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
 <div class="container">
     <br/><br/>
     <h1>Our product</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Content</th>
-                <th>File</th>
-                <th>Published</th>
-                <th>Updated</th>
-                <th>Price</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.content }}</td>
-                <td>{{ product.file }}</td>
-                <td>{{ product.published ? product.published|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ product.updated ? product.updated|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ product.price }}</td>
-                <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
+
+        <div class="card">
+            <div class="card-header">
+                {{ product.name }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ product.price }} €</h5>
+                <p class="card-text">{{ product.description }}</p>
+                <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">see more</a>
+            </div>
+        </div>
         {% else %}
             <tr>
                 <td colspan="9">no records found</td>
