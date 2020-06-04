@@ -9,10 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
-/**
- * @Route("/product")
- */
+
 class ProductController extends AbstractController
 {
     /**
@@ -26,10 +26,14 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="product_new", methods={"GET","POST"})
+     * @Route("product/new", name="product_new", methods={"GET","POST"})
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
+     * 
      */
     public function new(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -50,7 +54,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="product_show", methods={"GET"})
+     * @Route("product/{id}", name="product_show", methods={"GET"})
      */
     public function show(Product $product): Response
     {
@@ -60,7 +64,8 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="product_edit", methods={"GET","POST"})
+     * @Route("product/{id}/edit", name="product_edit", methods={"GET","POST"})
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
      */
     public function edit(Request $request, Product $product): Response
     {
@@ -80,7 +85,8 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="product_delete", methods={"DELETE"})
+     * @Route("product/{id}", name="product_delete", methods={"DELETE"})
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
      */
     public function delete(Request $request, Product $product): Response
     {
