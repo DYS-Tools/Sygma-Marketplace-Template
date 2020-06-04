@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/product")
@@ -27,9 +29,13 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/new", name="product_new", methods={"GET","POST"})
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
+     * 
      */
     public function new(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -81,6 +87,7 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/{id}", name="product_delete", methods={"DELETE"})
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
      */
     public function delete(Request $request, Product $product): Response
     {
