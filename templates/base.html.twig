@@ -38,7 +38,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">Boutique <span class="sr-only">(current)</span></a>
                     {% if app.user %}
                         <li class="nav-item">
                                 <a class="nav-link" href="">Mon compte</a>
@@ -62,6 +61,14 @@
                     {% endif %}
 
                     {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Commencer à vendre</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Panier</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                     </li>

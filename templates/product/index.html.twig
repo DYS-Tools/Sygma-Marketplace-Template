@@ -19,7 +19,7 @@
                 </ul>
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
                 </form>
             </div>
         </nav>
@@ -37,7 +37,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ product.price }} €</h5>
                 <p class="card-text">{{ product.description }}</p>
-                <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">see more</a>
+                <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">voir plus</a>
             </div>
         </div>
         {% else %}
@@ -48,6 +48,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('product_new') }}">Create new</a>
+    <a href="{{ path('product_new') }}">Créer un produit</a>
 </div>
 {% endblock %}
