@@ -75,6 +75,16 @@ class Product
      */
     private $orders;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $demo_link;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $number_sale;
+
     public function __construct()
     {
         $this->media = new ArrayCollection();
@@ -246,6 +256,30 @@ class Product
             $this->orders->removeElement($order);
             $order->removeProduct($this);
         }
+
+        return $this;
+    }
+
+    public function getDemoLink(): ?string
+    {
+        return $this->demo_link;
+    }
+
+    public function setDemoLink(?string $demo_link): self
+    {
+        $this->demo_link = $demo_link;
+
+        return $this;
+    }
+
+    public function getNumberSale(): ?int
+    {
+        return $this->number_sale;
+    }
+
+    public function setNumberSale(int $number_sale): self
+    {
+        $this->number_sale = $number_sale;
 
         return $this;
     }

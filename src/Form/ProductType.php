@@ -17,13 +17,13 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'help' => 'Choose a name for your exceptional product!'
+                'help' => 'Nom du produit'
             ])
             ->add('description',TextType::class, [
-                'help' => 'Make a description'
+                'help' => 'Description'
             ])
             ->add('content',TextType::class, [
-                'help' => 'Make a content'
+                'help' => 'Contenu'
             ])
 
             //->add('file', CollectionType::class, [
@@ -37,16 +37,16 @@ class ProductType extends AbstractType
             // ->add('updated')  // Todo : with controller
             ->add('price')
 
+            ->add('demo_link')
+
             ->add('category',EntityType::class, [
                 'class' => Category::class,
-                'help' => 'select a category',
+                'help' => 'Choisir une categorie',
                 'placeholder' => 'different category',
                 'choice_label' => function(Category $category) {
                     return sprintf('%s', $category->getName());
                 },
-
             ])
-
             //->add('orders')  // Todo : with controller
         ;
     }
