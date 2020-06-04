@@ -6,37 +6,19 @@
 <div class="container">
     <br/><br/>
     <h1>Our product</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Content</th>
-                <th>File</th>
-                <th>Published</th>
-                <th>Updated</th>
-                <th>Price</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    
         {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.content }}</td>
-                <td>{{ product.file }}</td>
-                <td>{{ product.published ? product.published|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ product.updated ? product.updated|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ product.price }}</td>
-                <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
+
+        <div class="card">
+            <div class="card-header">
+                {{ product.name }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ product.price }} €</h5>
+                <p class="card-text">{{ product.description }}</p>
+                <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">see more</a>
+            </div>
+        </div>
         {% else %}
             <tr>
                 <td colspan="9">no records found</td>
