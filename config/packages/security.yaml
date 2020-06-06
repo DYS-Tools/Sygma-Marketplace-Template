@@ -11,7 +11,12 @@ security:
                 class: App\Entity\User
                 property: email
 
-    role_hierarchy: [ROLE_ADMIN,ROLE_AUTHOR,ROLE_USER]
+    #role_hierarchy: [ROLE_ADMIN,ROLE_AUTHOR,ROLE_USER]
+    role_hierarchy:
+        ROLE_ADMIN:  [ROLE_ADMIN,ROLE_AUTHOR,ROLE_USER]
+        ROLE_AUTHOR: [ROLE_AUTHOR,ROLE_USER]
+        ROLE_USER:   [ROLE_USER]
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -39,4 +44,4 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/author, roles: ROLE_AUTHOR }
-        - { path: ^/product/new, roles: [ ROLE_ADMIN ,ROLE_AUTHOR ] } #CRUD product
+        - { path: ^/product/new, roles: [ ROLE_AUTHOR ] } #CRUD product
