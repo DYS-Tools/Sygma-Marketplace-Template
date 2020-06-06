@@ -86,7 +86,7 @@ class Product
     private $number_sale;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean" ,options={"default":false})
      */
     private $verified;
 
