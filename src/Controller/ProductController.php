@@ -6,6 +6,8 @@ use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
+use App\Service\Upload;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +34,7 @@ class ProductController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
      * 
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Upload $upload): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
 
@@ -43,6 +45,23 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $product->setUser($this->getUser());
+
+
+            $fileName1 = $upload->upload($form->get('img1')->getData());
+            $product->setImg1($fileName1);
+
+            if($form->get('img2')->getData()){
+                $fileName2 = $upload->upload($form->get('img2')->getData());
+                $product->setImg2($fileName2);
+            }
+            if($form->get('img3')->getData()){
+                $fileName3 = $upload->upload($form->get('img3')->getData());
+                $product->setImg3($fileName3);
+            }
+
+            //upload des images
+            
+            $product->setPublished(new \Datetime('now'));   //2020-06-06 14:52:49
             $entityManager->persist($product);
             $entityManager->flush();
             

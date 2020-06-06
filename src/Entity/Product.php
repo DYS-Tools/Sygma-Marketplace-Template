@@ -6,12 +6,16 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Blog\AppBundle\Entity\Traits\TimestampableTrait;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  */
 class Product
 {
+    //new \Datetime('now')use TimestampableTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -41,6 +45,7 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\File(maxSize = "5M")
      */
     private $file;
 
@@ -48,11 +53,6 @@ class Product
      * @ORM\Column(type="datetime")
      */
     private $published;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updated;
 
     /**
      * @ORM\OneToMany(targetEntity=Media::class, mappedBy="product")
@@ -83,25 +83,28 @@ class Product
     /**
      * @ORM\Column(type="integer")
      */
-    private $number_sale;
+    private $number_sale = 0;
 
     /**
      * @ORM\Column(type="boolean" ,options={"default":false})
      */
-    private $verified;
+    private $verified = false;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\File(maxSize = "5M")
      */
     private $img1;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File(maxSize = "5M")
      */
     private $img2;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File(maxSize = "5M")
      */
     private $img3;
 
@@ -181,21 +184,9 @@ class Product
         return $this->published;
     }
 
-    public function setPublished(\DateTimeInterface $published): self
+    public function setPublished($published): self
     {
         $this->published = $published;
-
-        return $this;
-    }
-
-    public function getUpdated(): ?\DateTimeInterface
-    {
-        return $this->updated;
-    }
-
-    public function setUpdated(\DateTimeInterface $updated): self
-    {
-        $this->updated = $updated;
 
         return $this;
     }

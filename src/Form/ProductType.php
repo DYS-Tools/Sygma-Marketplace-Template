@@ -23,20 +23,32 @@ class ProductType extends AbstractType
             ->add('description',TextType::class, [
                 'help' => 'Description'
             ])
+
+            ->add('file', FileType::class, [
+                'label' => 'Uploader le produit',
+                'data_class'=>null,
+                'required'   => true,
+            ])
+            
             ->add('content',TextType::class, [
                 'help' => 'Contenu'
             ])
 
+            
+
             ->add('img1', FileType::class, [
                 'label' => 'ajouter une image',
+                'data_class'=>null,
                 'required'   => true,
             ])
             ->add('img2', FileType::class, [
                 'label' => 'ajouter une image ( option )',
+                'data_class'=>null,
                 'required'   => false,
             ])
             ->add('img3', FileType::class, [
                 'label' => 'ajouter une image ( option )',
+                'data_class'=>null,
                 'required'   => false,
             ])
 
