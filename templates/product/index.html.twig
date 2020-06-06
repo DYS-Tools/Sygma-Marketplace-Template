@@ -44,6 +44,10 @@
                     <p> Pas de démonstration.</p>
                 {%  endif  %}
                 <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">voir plus</a>
+
+                {% if product.img1 != NULL %}
+                    <img class="card-img-top" src="/img/{{ product.img1 }}" alt="Image miniature"></img>
+                {% endif %}
             </div>
         </div>
             <br/><br/>

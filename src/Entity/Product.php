@@ -45,7 +45,7 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\File(maxSize = "5M")
+     * @Assert\File(maxSize = "2147483648")
      */
     private $file;
 
@@ -92,19 +92,19 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\File(maxSize = "5M")
+     * @Assert\File(maxSize = "2147483648")
      */
     private $img1;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File(maxSize = "5M")
+     * @Assert\File(maxSize = "2147483648")
      */
     private $img2;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File(maxSize = "5M")
+     * @Assert\File(maxSize = "2147483648")
      */
     private $img3;
 
