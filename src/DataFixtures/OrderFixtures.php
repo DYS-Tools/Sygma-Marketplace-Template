@@ -17,8 +17,23 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
         $order->setStatus("In progress");
         $order->setCreated( new \DateTime() );
         $order->setUser($this->getReference('YADMIN'));
-
         $manager->persist($order);
+
+        $order1 = new Order();
+        $order1->setAmount(48);
+        $order1->setStatus("finish");
+        $order1->setCreated( new \DateTime() );
+        $order1->setUser($this->getReference('SADMIN'));
+        $manager->persist($order1);
+
+        // Create Order for user
+        $order2 = new Order();
+        $order2->setAmount(12);
+        $order2->setStatus("waiting for payment");
+        $order2->setCreated( new \DateTime() );
+        $order2->setUser($this->getReference('AUTHOR'));
+        $manager->persist($order2);
+
         $manager->flush();
     }
 

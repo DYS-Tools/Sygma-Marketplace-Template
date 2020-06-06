@@ -27,9 +27,9 @@
 <div class="container">
     <br/><br/>
     <h1>Our product</h1>
+    <br/><br/>
 
         {% for product in products %}
-
         <div class="card">
             <div class="card-header">
                 {{ product.name }}
@@ -40,11 +40,13 @@
                 <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">voir plus</a>
             </div>
         </div>
+            <br/><br/>
         {% else %}
             <tr>
                 <td colspan="9">no records found</td>
             </tr>
         {% endfor %}
+    <br/><br/>
         </tbody>
     </table>
 

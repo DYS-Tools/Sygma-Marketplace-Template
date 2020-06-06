@@ -9,6 +9,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 class CategoryFixtures extends Fixture
 {
     public const ONECATEGORY = 'ONECATEGORY';
+    public const TWOCATEGORY = 'ONECATEGORY';
+    public const THREECATEGORY = 'ONECATEGORY';
 
     public function load(ObjectManager $manager)
     {
