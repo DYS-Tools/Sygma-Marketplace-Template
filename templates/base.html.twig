@@ -54,13 +54,13 @@
                 <div class="navbar-nav">
                 {% if app.user %}
                     <li class="nav-item">
-                            <a class="nav-link" href="">Mon compte</a>
+                        <a class="nav-link" href="">Mon compte</a>
                     </li>
                 {% elseif is_granted('ROLE_ADMIN') %}
 
                 {% elseif is_granted('ROLE_USER') %}
                     <li class="nav-item">
-                            <a class="nav-link" href="">Mes produits</a>
+                        <a class="nav-link" href="">Mes produits</a>
                     </li>
 
                 {% else %}
