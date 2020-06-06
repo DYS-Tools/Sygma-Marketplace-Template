@@ -28,6 +28,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setPrice(50);
         $product->setUser($this->getReference('YADMIN'));
         $product->setCategory( $this->getReference('ONECATEGORY'));
+        $product->setVerified(0);
         // add reference for media
         $this->addReference('PRODUCT',$product);
         $manager->persist($product);
@@ -45,6 +46,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product1->setPrice(1);
         $product1->setUser($this->getReference('SADMIN'));
         $product1->setCategory( $this->getReference('TWOCATEGORY'));
+        $product1->setVerified(0);
         // add reference for media
         $this->addReference('PRODUCT1',$product1);
         $manager->persist($product1);

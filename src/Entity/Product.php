@@ -85,6 +85,11 @@ class Product
      */
     private $number_sale;
 
+    /**
+     * @ORM\Column(type="boolean" ,options={"default":false})
+     */
+    private $verified;
+
     public function __construct()
     {
         $this->media = new ArrayCollection();
@@ -280,6 +285,18 @@ class Product
     public function setNumberSale(int $number_sale): self
     {
         $this->number_sale = $number_sale;
+
+        return $this;
+    }
+
+    public function getVerified(): ?bool
+    {
+        return $this->verified;
+    }
+
+    public function setVerified(bool $verified): self
+    {
+        $this->verified = $verified;
 
         return $this;
     }
