@@ -6,12 +6,16 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Blog\AppBundle\Entity\Traits\TimestampableTrait;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
  */
 class Product
 {
+    //new \Datetime('now')use TimestampableTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -41,6 +45,7 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\File(maxSize = "2147483648")
      */
     private $file;
 
@@ -48,11 +53,6 @@ class Product
      * @ORM\Column(type="datetime")
      */
     private $published;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updated;
 
     /**
      * @ORM\OneToMany(targetEntity=Media::class, mappedBy="product")
@@ -83,12 +83,30 @@ class Product
     /**
      * @ORM\Column(type="integer")
      */
-    private $number_sale;
+    private $number_sale = 0;
 
     /**
      * @ORM\Column(type="boolean" ,options={"default":false})
      */
-    private $verified;
+    private $verified = false;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\File(maxSize = "2147483648")
+     */
+    private $img1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File(maxSize = "2147483648")
+     */
+    private $img2;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File(maxSize = "2147483648")
+     */
+    private $img3;
 
     public function __construct()
     {
@@ -166,21 +184,9 @@ class Product
         return $this->published;
     }
 
-    public function setPublished(\DateTimeInterface $published): self
+    public function setPublished($published): self
     {
         $this->published = $published;
-
-        return $this;
-    }
-
-    public function getUpdated(): ?\DateTimeInterface
-    {
-        return $this->updated;
-    }
-
-    public function setUpdated(\DateTimeInterface $updated): self
-    {
-        $this->updated = $updated;
 
         return $this;
     }
@@ -297,6 +303,42 @@ class Product
     public function setVerified(bool $verified): self
     {
         $this->verified = $verified;
+
+        return $this;
+    }
+
+    public function getImg1(): ?string
+    {
+        return $this->img1;
+    }
+
+    public function setImg1(string $img1): self
+    {
+        $this->img1 = $img1;
+
+        return $this;
+    }
+
+    public function getImg2(): ?string
+    {
+        return $this->img2;
+    }
+
+    public function setImg2(?string $img2): self
+    {
+        $this->img2 = $img2;
+
+        return $this;
+    }
+
+    public function getImg3(): ?string
+    {
+        return $this->img3;
+    }
+
+    public function setImg3(?string $img3): self
+    {
+        $this->img3 = $img3;
 
         return $this;
     }
