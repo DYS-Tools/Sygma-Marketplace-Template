@@ -17,6 +17,24 @@ h1,h2,h3,h4,h5{
     margin: 0 auto;
     width:65% /* value of your choice which suits your alignment */
 }
+/************** NAVBAR ********************************/
+
+.category-link-nav{
+    padding:10;
+    width: 14vw;
+    text-align: center;
+    color:yellowgreen;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+.category-link-nav:hover{
+    background-color: yellowgreen;
+    border-radius: 15px;
+    color: black;
+}
+
 /* ==========================================================================================================
 										SECTIONS
    ========================================================================================================== */
