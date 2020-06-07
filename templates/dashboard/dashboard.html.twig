@@ -3,21 +3,54 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block body %}
-    <p> Hello Dashboard </p>
-    {% if is_granted('ROLE_ADMIN') %}
-        <p> Stats page <!-- Todo --> </p>
-    {% endif %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
 
-    {% if is_granted('ROLE_AUTHOR') %}
-        <a href="{{ path('product_new') }}">Créer un produit</a>
-        <p> Mes Produits <!-- Todo --> </p>
-        <p> Mes Vente <!-- Todo --> </p>
-        <p> Mon portefeuille <!-- Todo --> </p>
-    {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Stats page</a>
+                    </li>
+                {% endif %}
 
-    {% if is_granted('ROLE_USER') %}
-        <p> Mes Commandes <!-- Todo --> </p>
-    {% endif %}
+                {% if is_granted('ROLE_AUTHOR') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('product_new') }}">Créer un produit</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mes Produits</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mes Vente</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mon portefeuille</a>
+                    </li>
+
+                {% endif %}
+
+                {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Mes commandes</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <br/>
+    <br/>
+
+    <div class="container">
+        <h2> Dashboard {{ user.email }} </h2>
+    </div>
 
 
 
