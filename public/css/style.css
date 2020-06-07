@@ -5,11 +5,51 @@
 body{
     margin: 0;
     padding: 0;
+    /*background-image:url(images/image_de_fond.png);*/
+    background-color:rgba(240,240,240,0.6);
 }
 
 h1,h2,h3,h4,h5{
     font-family: "Comic Sans MS";
     font-weight: bold;
+}
+.center_div{
+    margin: 0 auto;
+    width:65% /* value of your choice which suits your alignment */
+}
+/************** NAVBAR ********************************/
+
+.category-link-nav{
+    padding:10;
+    width: 14vw;
+    text-align: center;
+    color:yellowgreen;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+.category-link-nav:hover{
+    background-color: yellowgreen;
+    border-radius: 15px;
+    color: black;
+}
+
+/* ==========================================================================================================
+										SECTIONS
+   ========================================================================================================== */
+.intro-section{
+    width: 100vw;
+    padding-top: 5%;
+    padding-bottom: 4%;
+    background-color: crimson;
+}
+.search-section{
+    width: 100vw;
+    padding-top: 2%;
+}
+.search-section form{
+    width: 20vw;
 }
 /* ==========================================================================================================
 										SUB FOOTER
