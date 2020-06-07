@@ -3,9 +3,11 @@
 {% block title %}Nouveau produit{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau produit</h1>
+    <div class="container">
+        <h1>Créer un nouveau produit</h1>
 
-    {{ include('product/_form.html.twig') }}
+        {{ include('product/_form.html.twig') }}
 
-    <a href="{{ path('product_index') }}">Retour à la liste</a>
+        <a href="{{ path('product_index') }}">Retour à la liste</a>
+        </div>
 {% endblock %}

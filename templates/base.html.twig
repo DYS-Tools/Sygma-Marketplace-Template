@@ -76,7 +76,7 @@
 
                 {% if app.user %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">Commencer à vendre</a>
+                    <a class="nav-link" href="{{ path('become_author') }}">Commencer à vendre</a>
                 </li>
 
                 <li class="nav-item">
@@ -108,6 +108,8 @@
                                 <a href="#"><li>Avis client</li></a>
                                 <a href="{{ path('app_logout') }}"><li>Mentions Légales</li></a>
                                 <a href="{{ path('app_logout') }}"><li>FAQ</li></a>
+                                <a href="{{ path('become_author') }}"><li>Devenir Vendeur</li></a>
+                                
                             </ul>
                         </nav>
                     </div>
