@@ -22,13 +22,13 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setContent("Formulaire de contact, UX Design ..");
         $product->setFile("name_product.zip");
         $product->setPublished( new \DateTime() );
-        $product->setUpdated( new \DateTime() );
         $product->setDemoLink("https://demo.projet.com" );
         $product->setNumberSale(47 );
         $product->setPrice(50);
         $product->setUser($this->getReference('YADMIN'));
         $product->setCategory( $this->getReference('ONECATEGORY'));
         $product->setVerified(0);
+        $product->setImg1("firstImage.png");
         // add reference for media
         $this->addReference('PRODUCT',$product);
         $manager->persist($product);
@@ -40,13 +40,13 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product1->setContent("Footer idéal.........");
         $product1->setFile("name_footer.zip");
         $product1->setPublished( new \DateTime() );
-        $product1->setUpdated( new \DateTime() );
         $product1->setDemoLink("https://demo.projet1.com" );
         $product1->setNumberSale(2 );
         $product1->setPrice(1);
         $product1->setUser($this->getReference('SADMIN'));
         $product1->setCategory( $this->getReference('TWOCATEGORY'));
         $product1->setVerified(0);
+        $product1->setImg1("secondImage.png");
         // add reference for media
         $this->addReference('PRODUCT1',$product1);
         $manager->persist($product1);
