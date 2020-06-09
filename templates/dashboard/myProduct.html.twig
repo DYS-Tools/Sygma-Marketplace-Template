@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <h2> Dashboard {{ user.email }} </h2>
+        <br/>
+
+
+        <h2> Mes produits </h2>
+        <br/>
+        {% if products > 0  %}
+            {% for product in products %}
+            <div class="card">
+                <div class="card-header">
+                    {{ product.name }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.price }} €</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text">Vente : {{ product.numberSale }}</p>
+                    {%   if product.demoLink != NULL %}
+                        <a href="{{ product.demoLink }}" class="btn btn-info">Demo</a>
+                    {% else %}
+                        <p> Pas de démonstration.</p>
+                    {%  endif  %}
+                    <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">voir plus</a>
+
+                    {% if product.img1 != NULL %}
+                        <img class="card-img-top" src="img/{{ product.img1 }}" alt="{{ product.name }}"
+                            style=" width: 50%; height: 500px;">
+                    {% endif %}
+                </div>
+            </div>
+                <br/><br/>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+        {% endfor %}
+        {% else %}
+            <p> vous n'avez pas encore de produit en vente </p>
+        {% endif %}
+
+
+    </div>
+
+
+
+{% endblock %}
