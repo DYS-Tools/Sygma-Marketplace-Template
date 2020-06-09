@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <h2> Dashboard {{ user.email }} </h2>
+        <br/>
+
+
+        <h2> Produits à vérifier : </h2>
+        <p> {% dump noVerifiedProduct %}   </p>
+
+        {% if noVerifiedProduct > 0  %}
+            <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Télécharger</th>
+                    <th scope="col">Voir plus</th>
+                    <th scope="col">Vérifier</th>
+                </tr>
+                </thead>
+                {% for noVerifiedProduct in noVerifiedProduct %}
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{ noVerifiedProduct.name }}</td>
+                        <td>{{ noVerifiedProduct.description }}</td>
+                        <td>{{ noVerifiedProduct.price}}</td>
+                        <td><a href="#{#  path('product_show', {'id': product.id}) #}" class="btn btn-info">Télécharger</a></td><!-- Todo -->
+                        <td><a href="#{#  path('product_show', {'id': product.id}) #}" class="btn btn-primary">voir plus</a></td><!-- Todo -->
+                        <td><a href="#{#  path('product_show', {'id': product.id}) #}" class="btn btn-info">Vérifier</a></td><!-- Todo -->
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+    </div>
+
+
+
+{% endblock %}

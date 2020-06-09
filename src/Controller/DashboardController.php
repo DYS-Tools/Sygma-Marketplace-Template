@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,20 @@ class DashboardController extends AbstractController
         $user = $this->getUser() ;
 
         return $this->render('dashboard/dashboard.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/ProductVerified", name="product_verified")
+     */
+    public function productVerified()
+    {
+        // get current user
+        $user = $this->getUser() ;
+
+        return $this->render('dashboard/productVerified.html.twig', [
+            'noVerifiedProduct' => $this->getDoctrine()->getRepository(Product::class)->findAllTProductNoVerified(),
             'user' => $user,
         ]);
     }
