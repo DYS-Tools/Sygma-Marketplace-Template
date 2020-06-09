@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,6 +37,22 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard/productVerified.html.twig', [
             'noVerifiedProduct' => $this->getDoctrine()->getRepository(Product::class)->findAllTProductNoVerified(),
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/MySell", name="my_sell")
+     */
+    public function mySell()
+    {
+        // get current user
+        $user = $this->getUser();
+        $orderRepository = $this->getDoctrine()->getRepository(Order::class);
+        $ordered = $orderRepository->findBy(['user' => $user]);
+
+        return $this->render('dashboard/mysell.html.twig', [
+            'order' => $ordered,
             'user' => $user,
         ]);
     }
