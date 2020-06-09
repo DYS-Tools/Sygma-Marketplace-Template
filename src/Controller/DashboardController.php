@@ -72,4 +72,20 @@ class DashboardController extends AbstractController
             'user' => $user,
         ]);
     }
+
+    /**
+     * @Route("/dashboard/MyWallet", name="my_wallet")
+     */
+    public function myWallet()
+    {
+        // get current user
+        $user = $this->getUser();
+        //$productRepository = $this->getDoctrine()->getRepository(Product::class);
+        //$products = $productRepository->findBy(['user' => $user]);
+
+        return $this->render('dashboard/myWallet.html.twig', [
+            //'products' => $products,
+            'user' => $user,
+        ]);
+    }
 }
