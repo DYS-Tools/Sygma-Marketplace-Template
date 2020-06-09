@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit Single{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block body %}
 <div class="container">
@@ -47,7 +47,7 @@
 
     <h3> Image 1 : </h3>
     {% if product.img1 != NULL %}
-        <img class="card-img-top" src="img/{{ product.img1 }}" alt="{{ product.name }}"
+        <img class="card-img-top" src="../img/{{ product.img1 }}" alt="{{ product.name }}"
              style=" width: 50%; height: 500px;">
         <p><!-- Todo --> {{ product.img1 }}</p>
     {% endif %}
