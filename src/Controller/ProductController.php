@@ -30,6 +30,21 @@ class ProductController extends AbstractController
     }
 
     /**
+     * @Route("/category/{id}", name="product_with_category", methods={"GET"})
+     */
+    public function productWithCategory(ProductRepository $productRepository, CategoryRepository $categoryRepository, $id): Response
+    {
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+        //dd($name);
+        $products = $productRepository->findBy(['category' => $id]);
+
+        return $this->render('product/index.html.twig', [
+            'products' => $products,
+            'categories' => $categoryRepository->findAll()
+        ]);
+    }
+
+    /**
      * @Route("product/new", name="product_new", methods={"GET","POST"})
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
      * 
