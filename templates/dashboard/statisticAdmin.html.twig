@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <div class="centered">
+            <h1> Dashboard </h1>
+            <br/>
+        </div>
+            <h2> Statistique sur la place de marché </h2>
+            <br/>
+            <h3> Nombre de produits sur le marché </h3>
+            <br/>
+            <h3> Commande effectué : </h3>
+            <br/>
+            <h3> Croissance des commandes depuis le mois précédent </h3>
+            <br/>
+            <h3> Nombre d'auteur </h3>
+            <br/>
+            <h3> % des utilisateurs auteurs  </h3>
+            <br/>
+    </div>
+
+{% endblock %}

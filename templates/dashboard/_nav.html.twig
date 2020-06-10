@@ -8,7 +8,7 @@
 
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="red">Stats page</span></a>
+                    <a class="nav-link" href="{{ path('statistic_admin') }}"><span class="red">Stats page</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('product_verified') }}"><span class="red">Verifier les produits</span></a>

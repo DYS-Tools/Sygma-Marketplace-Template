@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Require ROLE_USER for *every* controller method in this class.
@@ -30,7 +31,8 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/product/verified", name="product_verified")
+     * @Route("/dashboard/ProductVerified", name="product_verified")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function productVerifiedPage()
     {
@@ -40,6 +42,19 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/productVerified.html.twig', [
             'noVerifiedProduct' => $this->getDoctrine()->getRepository(Product::class)->findAllTProductNoVerified(),
             'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/statistic", name="statistic_admin")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function statisticAdmin()
+    {
+        $user = $this->getUser() ;
+
+        return $this->render('dashboard/statisticAdmin.html.twig', [
+            
         ]);
     }
 
@@ -56,6 +71,7 @@ class DashboardController extends AbstractController
 
         return $this->redirectToRoute('product_verified');
     }
+
     /**
      * @Route("/dashboard/MySell", name="my_sell")
      */
