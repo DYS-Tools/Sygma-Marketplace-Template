@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Entity\User;
 use App\Form\ProductType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -54,7 +55,13 @@ class DashboardController extends AbstractController
         $user = $this->getUser() ;
 
         return $this->render('dashboard/statisticAdmin.html.twig', [
-            
+            'ProductForSell' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForSell(),
+            'ProductForVerified' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForVerified(),
+            'countOrder' => $this->getDoctrine()->getRepository(Order::class)->countAllOrder(),
+            'countUser' => $this->getDoctrine()->getRepository(User::class)->countAllUser(),
+            'countMember' => $this->getDoctrine()->getRepository(User::class)->countAllMember(),
+            'countAdmin' => $this->getDoctrine()->getRepository(User::class)->countAllAdmin(),
+            'countAuthor' => $this->getDoctrine()->getRepository(User::class)->countAllAuthor(),
         ]);
     }
 

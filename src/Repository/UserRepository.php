@@ -30,38 +30,45 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
         }
-
         $user->setPassword($newEncodedPassword);
         $this->_em->persist($user);
         $this->_em->flush();
     }
 
-    // /**
-    //  * @return User[] Returns an array of User objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    // ADMIN
+    public function countAllMember()
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('e');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?User
+    public function countAllUser()
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.roles LIKE :roles')
+            ->setParameter('roles', '%"ROLE_USER"%');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
     }
-    */
+
+    public function countAllAuthor()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.roles LIKE :roles')
+            ->setParameter('roles', '%"ROLE_AUTHOR"%');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function countAllAdmin()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.roles LIKE :roles')
+            ->setParameter('roles', '%"ROLE_ADMIN"%');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
+    //USER
 }
