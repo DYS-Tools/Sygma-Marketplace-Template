@@ -36,7 +36,11 @@
                         <td>{{ noVerifiedProduct.price}}</td>
                         <td><a href="#{#  path('product_show', {'id': product.id}) #}" class="btn btn-info">Télécharger</a></td><!-- Todo -->
                         <td><a href="#{#  path('product_show', {'id': product.id}) #}" class="btn btn-primary">voir plus</a></td><!-- Todo -->
-                        <td><a href="#{#  path('product_show', {'id': product.id}) #}" class="btn btn-info">Vérifier</a></td><!-- Todo -->
+                        <td>
+                            <a href="{{ path('app_dashboard_product_verified', { 'id' : noVerifiedProduct.id } ) }}">
+                                <button type="button" class="btn btn-info">Vérifier</button><br/>
+                            </a>
+                        </td>
                     </tr>
                     </tbody>
                 {% endfor %}

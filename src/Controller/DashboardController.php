@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Form\ProductType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -32,7 +34,7 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/ProductVerified", name="product_verified")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function productVerified()
+    public function productVerifiedPage()
     {
         // get current user
         $user = $this->getUser() ;
@@ -54,6 +56,20 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/statisticAdmin.html.twig', [
             
         ]);
+    }
+
+    /**
+     * @Route("/dashboard/product/verified/{id}", name="app_dashboard_product_verified")
+     */
+    public function productVerifiedAction(Request $request, $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $ProductNoVerified = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        $ProductNoVerified->setVerified(1);
+        $entityManager->persist($ProductNoVerified);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('product_verified');
     }
 
     /**
