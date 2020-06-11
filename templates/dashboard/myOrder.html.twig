@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <h2> Dashboard {{ user.email }} </h2>
+        <br/>
+
+
+        <h2> Mon commandes </h2>
+        <br/>
+        <h3> Commande </h3>
+        <h3> status </h3>
+        <h3> Montant </h3>
+
+    </div>
+
+{% endblock %}
