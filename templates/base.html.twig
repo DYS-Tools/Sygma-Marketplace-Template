@@ -45,7 +45,9 @@
 
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{ path('product_index') }}">Web Item Market</a>
+            <!--logo start-->
+            <a href="{{ path('product_index') }}" class="logo"><b>Web Item<span>Market</span></b></a>
+            <!--logo end-->
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -97,19 +99,21 @@
         {% endblock %}
         <br/>
         <br/>
-        <footer class="footer-outer">
+        <footer class="footer-outer navbar-dark bg-dark">
             <div class="container footer-inner">
                 <div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
                     <div class="column-1-3">
-                        <a href="{{ path('product_index') }}"><h1>Web Item Market</h1></a>
+                        <a href="{{ path('product_index') }}">
+                                <h1><span class="yellowgreen">Web Item Market</span></h1>
+                        </a>
                     </div>
                     <div class="column-2-3">
                         <nav class="footer-nav">
                             <ul>
-                                <a href="{{ path('review_client') }}"><li>Avis client</li></a>
-                                <a href="{{ path('app_legal') }}"><li>Mentions Légales</li></a>
-                                <a href="{{ path('app_faq') }}"><li>FAQ</li></a>
-                                <a href="{{ path('become_author') }}"><li>Devenir Vendeur</li></a>
+                                <a href="{{ path('review_client') }}"><li><span class="yellowgreen">Avis client</span></li></a>
+                                <a href="{{ path('app_legal') }}"><li><span class="yellowgreen">Mentions Légales</span></li></a>
+                                <a href="{{ path('app_faq') }}"><li><span class="yellowgreen">FAQ</span></li></a>
+                                <a href="{{ path('become_author') }}"><li><span class="yellowgreen">Devenir Vendeur</span></li></a>
                                 
                             </ul>
                         </nav>

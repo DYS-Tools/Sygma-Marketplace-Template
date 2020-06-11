@@ -947,7 +947,7 @@ legend {
 
 .s003 form .inner-form .input-field.first-wrap .choices__list--dropdown .choices__item--selectable.is-highlighted {
   background: #fff;
-  color: #63c76a;
+  color: yellowgreen;
 }
 
 .s003 form .inner-form .input-field.first-wrap .choices__list--dropdown .choices__item {
@@ -971,7 +971,7 @@ legend {
   color: #fff;
   border: 0;
   cursor: pointer;
-  background: #63c76a;
+  background: yellowgreen;
   transition: all .2s ease-out, color .2s ease-out;
 }
 
@@ -980,7 +980,7 @@ legend {
 }
 
 .s003 form .inner-form .input-field.third-wrap .btn-search:hover {
-  background: #50c058;
+  background: yellowgreen;
 }
 
 .s003 form .inner-form .input-field.third-wrap .btn-search:focus {
