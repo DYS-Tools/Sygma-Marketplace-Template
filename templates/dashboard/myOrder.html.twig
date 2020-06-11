@@ -7,15 +7,28 @@
     {{ include('dashboard/_nav.html.twig') }}
 
     <div class="container">
-        <h2> Dashboard {{ user.email }} </h2>
         <br/>
-
-
         <h2> Mon commandes </h2>
         <br/>
-        <h3> Commande </h3>
-        <h3> status </h3>
-        <h3> Montant </h3>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Commande</th>
+                <th scope="col">Status</th>
+                <th scope="col">Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>15894752515</td>
+                    <td>En attente</td>
+                    <td>52</td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 
