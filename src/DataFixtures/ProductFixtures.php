@@ -15,7 +15,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        // Create Product
+        // Create Product no verified
         $product = new Product();
         $product->setName("Formulaire de contact");
         $product->setDescription("Formulaire de contact...");
@@ -33,7 +33,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference('PRODUCT',$product);
         $manager->persist($product);
 
-        // Create Order for user
+        // Create Product no verified
         $product1 = new Product();
         $product1->setName("Footer");
         $product1->setDescription("Footer avec images");
@@ -50,6 +50,26 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         // add reference for media
         $this->addReference('PRODUCT1',$product1);
         $manager->persist($product1);
+
+        // Create Product Verified
+        $product2 = new Product();
+        $product2->setName("Theme WordPress");
+        $product2->setDescription("WordPress Simple et facile");
+        $product2->setContent("Theme pour entreprise");
+        $product2->setFile("WordPress-theme.zip");
+        $product2->setPublished( new \DateTime() );
+        $product2->setDemoLink("https://demo.projet2.com" );
+        $product2->setNumberSale(19 );
+        $product2->setPrice(67);
+        $product2->setUser($this->getReference('SADMIN'));
+        $product2->setCategory( $this->getReference('TWOCATEGORY'));
+        $product2->setVerified(1);
+        $product2->setImg1("WPimg1.png");
+        $product2->setImg2("WPimg2.png");
+        $product2->setImg3("WPimg3.png");
+        // add reference for media
+        $this->addReference('PRODUCT2',$product2);
+        $manager->persist($product2);
 
 
 

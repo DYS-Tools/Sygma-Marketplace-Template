@@ -28,6 +28,28 @@ class ProductRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
+    public function countAllProductForSell()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.verified = 1');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function countAllProductForVerified()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.verified = 0');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
 
     // USER
+    public function findAllTProductVerified()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.verified = 1');
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
 }
