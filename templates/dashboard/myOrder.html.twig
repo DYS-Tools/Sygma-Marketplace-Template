@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <br/>
+        <h2> Mon commandes </h2>
+        <br/>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Commande</th>
+                <th scope="col">Status</th>
+                <th scope="col">Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>15894752515</td>
+                    <td>En attente</td>
+                    <td>52</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

@@ -89,6 +89,22 @@ class DashboardController extends AbstractController
     }
 
     /**
+     * @Route("/dashboard/MyOrder", name="my_order")
+     */
+    public function myOrder()
+    {
+        // get current user
+        $user = $this->getUser();
+        $orderRepository = $this->getDoctrine()->getRepository(Order::class);
+        $ordered = $orderRepository->findBy(['user' => $user]);
+
+        return $this->render('dashboard/myOrder.html.twig', [
+            'order' => $ordered,
+            'user' => $user,
+        ]);
+    }
+
+    /**
      * @Route("/dashboard/MyProduct", name="my_product")
      */
     public function myProduct()
