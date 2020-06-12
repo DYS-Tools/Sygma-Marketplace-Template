@@ -71,6 +71,26 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference('PRODUCT2',$product2);
         $manager->persist($product2);
 
+        // Create Product Verified
+        $product3 = new Product();
+        $product3->setName("Template HTML");
+        $product3->setDescription("Boostrap & CSS");
+        $product3->setContent("Le template HTML/CSS avec boostrap..");
+        $product3->setFile("template-theme.zip");
+        $product3->setPublished( new \DateTime() );
+        $product3->setDemoLink("https://demo.projet3.com" );
+        $product3->setNumberSale(3 );
+        $product3->setPrice(42);
+        $product3->setUser($this->getReference('SADMIN'));
+        $product3->setCategory( $this->getReference('TWOCATEGORY'));
+        $product3->setVerified(1);
+        $product3->setImg1("WPimg2.png");
+        $product3->setImg2("WPimg1.png");
+        $product3->setImg3("WPimg3.png");
+        // add reference for media
+        $this->addReference('PRODUCT3',$product3);
+        $manager->persist($product3);
+
 
 
 
