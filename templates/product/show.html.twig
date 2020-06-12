@@ -30,6 +30,16 @@
     <p> {{ product.content }} </p>
     <br/>
 
+    <a id="paybutton" href="{{path('order', { 'product': product.id }  ) }}" class="bottom">
+        <div class="product-button">
+            <button type="button">
+                Acheter
+            </button>
+        </div>
+    </a>
+    <!--<a id="paybutton" href="{ {path('order', { 'offer': offer }  ) }}" class="bottom"><p class="cart">-->
+    <br/>
+    <br/>
 
 
     <div class="product-button">

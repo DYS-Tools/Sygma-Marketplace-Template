@@ -31,3 +31,8 @@ services:
     App\Service\Upload:
         arguments:
             $targetImgDirectory: '%img_directory%'
+
+    App\Service\payment:
+        arguments:
+            $secretStripeKeyTest: '%env(resolve:STRIPE_SECRET_TEST)%'
+            $publicStripeKeyTest: '%env(resolve:STRIPE_PUBLIC_TEST)%'
