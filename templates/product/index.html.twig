@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}Nos produits{% endblock %}
 
 {% block body %}
 
@@ -55,11 +55,11 @@
     <script src="{{ asset('js/choices.js') }}"></script>
     <script src="{{ asset('js/search.js') }}"></script>
     <script>
-      const choices = new Choices('[data-trigger]',
-      {
-        searchEnabled: false,
-        itemSelectText: '',
-      });
+        const choices = new Choices('[data-trigger]',
+            {
+                searchEnabled: false,
+                itemSelectText: '',
+            });
 
     </script>
 <!-- End SEARCH bar -->
@@ -69,36 +69,51 @@
     <h1 class="text-center">Our product</h1>
     <br/><br/>
 
-        {% for product in products %}
-        <div class="card">
-            <div class="card-header">
-                {{ product.name }}
+    <!-- new product -->
+    {% for product in products %}
+    <div class="wrapper">
+        {% if product.img1 != NULL %}
+            <div class="product-img">
+                <img src="img/{{ product.img1 }}"  alt="{{ product.name }}" height="420" width="100%">
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ product.price }} €</h5>
-                <p class="card-text">{{ product.description }}</p>
-                <p class="card-text">Vente : {{ product.numberSale }}</p>
-                {%   if product.demoLink != NULL %}
-                    <a href="{{ product.demoLink }}" class="btn btn-info">Demo</a>
-                {% else %}
-                    <p> Pas de démonstration.</p>
-                {%  endif  %}
-                <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">voir plus</a>
+        {% endif %}
 
-                {% if product.img1 != NULL %}
-                    <img class="card-img-top" src="img/{{ product.img1 }}" alt="{{ product.name }}"
-                         style=" width: 50%; height: 500px;">
-                {% endif %}
+        <div class="product-info">
+            <div class="product-text">
+                <h1> {{ product.name }}</h1>
+                <h2><strong>Vente : </strong>  <span class="yellowgreen"> {{ product.numberSale }} </span></h2>
+                <p>{{ product.description }}</p>
             </div>
+
+            <div class="product-price-btn">
+                <p><span>{{ product.price }}</span>$</p>
+            </div>
+
+            <div class="product-button">
+                    <button type="button">
+                        Acheter
+                    </button>
+
+                    <button type="button">
+                        <a href="{{ path('product_show', {'id': product.id}) }}"> voir plus</a>
+                    </button>
+
+                    <button type="button">
+                        {%   if product.demoLink != NULL %}
+                            <a href="{{ product.demoLink }}">Demo</a>
+                        {% else %}
+                            <p> Pas de démonstration.</p>
+                        {%  endif  %}
+                    </button>
+            </div>
+
         </div>
-            <br/><br/>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-    <br/><br/>
-        </tbody>
-    </table>
+    </div>
+    {% else %}
+        <tr>
+            <td colspan="9">Pas de résultat actuellement.</td>
+        </tr>
+    {% endfor %}
+
 </div>
 {% endblock %}
