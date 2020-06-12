@@ -75,7 +75,8 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product3 = new Product();
         $product3->setName("Template HTML");
         $product3->setDescription("Boostrap & CSS");
-        $product3->setContent("Le template HTML/CSS avec boostrap..");
+        // Todo : add more word
+        $product3->setContent("Lorem ipsum dolor sit amiscing elit pellentesque habitant. Temprtor vitae ptique sur ridiculus mus mauris.");
         $product3->setFile("template-theme.zip");
         $product3->setPublished( new \DateTime() );
         $product3->setDemoLink("https://demo.projet3.com" );
