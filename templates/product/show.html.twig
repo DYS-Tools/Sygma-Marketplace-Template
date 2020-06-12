@@ -6,64 +6,47 @@
 <div class="container">
     <h1>Produit : {{ product.name }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.description }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ product.content }}</td>
-            </tr>
-            <tr>
-                <th>File</th>
-                <td>{{ product.file }}</td>
-            </tr>
-            <tr>
-                <th>Published</th>
-                <td>{{ product.published ? product.published|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated</th>
-                <td><!-- { { product.updated ? product.updated|date('Y-m-d H:i:s') : '' }} --> 0</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.price }}</td>
-            </tr>
-
-            <tr>
-                <th>Lien de demonstration</th>
-                <td>{{ product.demoLink }}</td>
-            </tr>
-
-            <tr>
-                <th>Nombre de vente</th>
-                <td>{{ product.numberSale}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h3> Image 1 : </h3>
     {% if product.img1 != NULL %}
         <img class="card-img-top" src="../img/{{ product.img1 }}" alt="{{ product.name }}"
              style=" width: 50%; height: 500px;">
-        <p><!-- Todo --> {{ product.img1 }}</p>
     {% endif %}
-    </br>
-    </br>
-    </br>
 
+    {% if product.img2 != NULL %}
+        <img class="card-img-top" src="../img/{{ product.img2 }}" alt="{{ product.name }}"
+             style=" width: 50%; height: 500px;">
+    {% endif %}
 
-
-    <a href="{{ path('product_index') }}">Retour à la liste</a>
+    {% if product.img3 != NULL %}
+        <img class="card-img-top" src="../img/{{ product.img3 }}" alt="{{ product.name }}"
+             style=" width: 50%; height: 500px;">
+    {% endif %}
+    <br/>
+    <h2>Prix : {{ product.price }} euros. </h2>
+    <br/>
+    <h3>Mise en ligne : {{ product.published ? product.published|date('Y-m-d H:i:s') : '' }} </h3>
+    <br/>
+    <h3>Nombres de ventes : {{ product.numberSale}}</h3>
+    <br/>
+    <p> {{ product.content }} </p>
     <br/>
 
-    <a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
+
+
+    <div class="product-button">
+        <button type="button">
+            {%   if product.demoLink != NULL %}
+                <a href="{{ product.demoLink }}">Démo</a>
+            {% else %}
+                <p> Pas de démonstration.</p>
+            {%  endif  %}
+        </button>
+
+        <button type="button">
+            <a href="{{ path('product_index') }}">Retour à la liste</a>
+        </button>
+    </div>
+
     <br/>
 
-    {{ include('product/_delete_form.html.twig') }}
-    <br/>
 </div>
 {% endblock %}

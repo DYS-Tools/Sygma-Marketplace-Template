@@ -95,12 +95,12 @@
                     </button>
 
                     <button type="button">
-                        <a href="{{ path('product_show', {'id': product.id}) }}"> voir plus</a>
+                        <a href="{{ path('product_show', {'id': product.id}) }}"> Détails</a>
                     </button>
 
                     <button type="button">
                         {%   if product.demoLink != NULL %}
-                            <a href="{{ product.demoLink }}">Demo</a>
+                            <a href="{{ product.demoLink }}">Démo</a>
                         {% else %}
                             <p> Pas de démonstration.</p>
                         {%  endif  %}
