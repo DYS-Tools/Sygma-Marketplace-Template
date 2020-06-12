@@ -147,6 +147,9 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "stripe/stripe-php": {
+        "version": "v7.37.1"
+    },
     "symfony/apache-pack": {
         "version": "1.0",
         "recipe": {

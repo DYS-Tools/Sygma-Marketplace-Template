@@ -4,7 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    img_directory: '%kernel.project_dir%/public/img'
+    img_directory: '%kernel.project_dir%/public/product/img'
+    product_directory: '%kernel.project_dir%/public/product'
 
 services:
     # default configuration for services in *this* file
@@ -29,4 +30,9 @@ services:
 
     App\Service\Upload:
         arguments:
-            $targetDirectory: '%img_directory%'
+            $targetImgDirectory: '%img_directory%'
+
+    App\Service\payment:
+        arguments:
+            $secretStripeKeyTest: '%env(resolve:STRIPE_SECRET_TEST)%'
+            $publicStripeKeyTest: '%env(resolve:STRIPE_PUBLIC_TEST)%'
