@@ -1,25 +1,94 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Log in{% endblock %}
+<link rel="stylesheet" href="{{ asset('css/login.css') }}" />
 
 {% block body %}
+
+
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: {{ asset('img/bg-01-login.jpg') }};">
+					<span class="login100-form-title-1">
+						Connexion
+					</span>
+				</div>
+
+				<form method="post" class="login100-form validate-form">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Email requis">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="text" name="email" id="inputEmail" placeholder="Votre email">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Mot de passe requis">
+						<span class="label-input100">Mot de passe</span>
+						<input class="input100" type="password" id="inputPassword" name="password" placeholder="Votre mot de passe">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-b-30">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="Se souvenir de moi">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+						</div>
+
+						<div>
+							<a href="#" class="txt1">
+								Mot de passe oublié ? 
+							</a>
+						</div>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn type="submit"">
+							Se connecter
+						</button>
+					</div>
+
+                    <input type="hidden" name="_csrf_token"
+                        value="{{ csrf_token('authenticate') }}">
+				</form>
+			</div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+    <!--
 <div class="container">
     <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+        { % if error %}
+            <div class="alert alert-danger">{ { error.messageKey|trans(error.messageData, 'security') }}</div>
+        { % endif %}
 
-        {% if app.user %}
+        { % if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                You are logged in as { { app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
-        {% endif %}
+        { % endif %}
 
         <br/><br/>
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
         <br/><br/>
         <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+        <input type="email" value="{ { last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
         <label for="inputPassword">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" required>
 
@@ -46,4 +115,5 @@
         </button>
     </form>
 </div>
+-->
 {% endblock %}
