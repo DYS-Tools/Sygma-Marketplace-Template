@@ -23,6 +23,9 @@
         <label for="inputPassword">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" required>
 
+        <input type="checkbox" id="remember_me" name="_remember_me" checked/>
+        <label for="remember_me">Keep me logged in</label>
+
         <input type="hidden" name="_csrf_token"
             value="{{ csrf_token('authenticate') }}"
         >
