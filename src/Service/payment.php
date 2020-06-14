@@ -10,6 +10,7 @@ namespace App\Service;
 
 
 use App\Entity\Email;
+use App\Entity\Product;
 use App\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -64,27 +65,27 @@ class payment
     }
     */
 
-    public function makePayment($price,$article)
+    public function makePayment(Product $product)
     {
         //dump($this->secretStripeKeyTest);
         Stripe::setApiKey($this->secretStripeKeyTest);
         
         //Convert euro in centim
-        $price = $price * 100 ;
-
+        $price = $product->getPrice() * 100 ;
+        
         //TODO: Create success and cancel URL and redirect payment
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
-              'name' => $article,
-              'description' => 'Comfortable cotton t-shirt',
-              'images' => ['https://example.com/t-shirt.png'],
+              'name' => $product->getName(),
+              'description' => $product->getDescription(),
+              //'images' => ['./' . $product->getImg1()],
               'amount' => $price,
               'currency' => 'eur',
               'quantity' => 1,
             ]],
-            'success_url' => 'https://SpeedMailer/sucessURL',
-            'cancel_url' => 'https://SpeedMailer/cancelURL',
+            'success_url' => 'https://WebItemMarket/sucessURL',
+            'cancel_url' => 'https://WebItemMarket/cancelURL',
           ]);
 
         return $session;

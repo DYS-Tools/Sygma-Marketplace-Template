@@ -14,11 +14,13 @@ class OrderController extends AbstractController
      */
     public function initOrder(payment $payment, $product)
     {
-        $session = $payment->makePayment(9, $product);
-        //dd($product);
-
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $product = $productRepository->findOneBy(['id' => $product]);
+        
+        $session = $payment->makePayment($product);
+        //dd($product);
+
+        
 
         return $this->render('order/order.html.twig', [
             'stripe_public_key' => $payment->getStripePublicCredentials(),
@@ -32,12 +34,12 @@ class OrderController extends AbstractController
      */
     public function redirectStripe(payment $payment, $product)
     {
-        $session = $payment->makePayment(9, $product);
+        $session = $payment->makePayment($product);
         //dd($product);
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $product = $productRepository->findOneBy(['id' => $product]);
 
-        dd('redirection Stripe Here');
+        //dd('redirection Stripe Here');
         return $this->render('order/order.html.twig', [
             'stripe_public_key' => $payment->getStripePublicCredentials(),
             'CHECKOUT_SESSION_ID' => $session['id'],
