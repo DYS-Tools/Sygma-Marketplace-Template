@@ -115,7 +115,7 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/MyProduct", name="my_product")
      */
     public function myProduct()
-    {
+    {   // my product for client
         // get current user
         $user = $this->getUser();
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
@@ -126,6 +126,40 @@ class DashboardController extends AbstractController
             'user' => $user,
         ]);
     }
+
+    /**
+     * @Route("/dashboard/authorProduct", name="author_product")
+     */
+    public function authorProduct()
+    {   // product galery for author
+        // get current user
+        $user = $this->getUser();
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $productRepository->findBy(['user' => $user]);
+
+        return $this->render('dashboard/authorProduct.html.twig', [
+            'products' => $products,
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/payout_author", name="payout_author")
+     */
+    public function payoutAuthor()
+    {   // payout function
+
+        // get current user
+        $user = $this->getUser();
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $productRepository->findBy(['user' => $user]);
+
+        return $this->render('dashboard/authorPayout.html.twig', [
+            'products' => $products,
+            'user' => $user,
+        ]);
+    }
+
 
     /**
      * @Route("/dashboard/MyWallet", name="my_wallet")
