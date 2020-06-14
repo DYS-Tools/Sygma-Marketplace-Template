@@ -7,17 +7,11 @@
     <div class="padding container">
           </br></br>
 
-          <h2> Votre produit </h2>
-            <ul>
-                <li> Nom : {{ product.name }}</li>
-                <li> Prix :{{ product.price }}</li>
-                <li> Description :{{ product.description }}</li>
-            </ul>
+          <h2> Paiement annulé </h2>
+          <p> pour une raison ou pour une autre, le paiement du produit a été annulé. Si vous souhaitez acheter un produit, 
+          veuillez effectuer une nouvelle commande.
+          </p>
 
-
-        <a id="paybutton" href="{{ path('redirectStripe', { 'product': product.id } ) }}" class="bottom"><p class="cart">
-        <button class="btn btn-info">Payer avec Stripe </button></p>
-        </a>
         <br/>
           <br/>
         <hr>
@@ -39,22 +33,13 @@
                 // Make the id field from the Checkout Session creation API response
                 // available to this file, so you can provide it as parameter here
                 // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-
-                // id: cs_test_M07MtvAhxVT9zraohsSTnZKMCRUZnooh6m5IUELox1o3PEVTKOIDbgRj
-                // payment_intent: "pi_1Gu2j2KDC0w6oO18KMyI53f9"
                 
               }).then(function (result) {
+                alert('then function result');
                 // If `redirectToCheckout` fails due to a browser or network
                 // error, display the localized error message to your customer
                 // using `result.error.message`.
               });
-
-              if (result.paymentIntent.status === 'succeeded'){
-                alert('paiement reussi');
-              }
-
-
-
           });
         });
 </script>

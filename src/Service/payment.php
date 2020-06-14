@@ -10,6 +10,8 @@ namespace App\Service;
 
 
 use App\Entity\Email;
+use App\Entity\Order;
+use App\Entity\Product;
 use App\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,6 +20,9 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Stripe\Stripe;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpClient\ScopingHttpClient;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class payment
 {
@@ -26,11 +31,12 @@ class payment
     private $secretStripeKeyTest;
     private $publicStripeKeyTest;
     private $mailer;
+    private $user;
 
 
-    public function __construct(EntityManagerInterface $entityManager, $secretStripeKeyTest, $publicStripeKeyTest /* \Swift_Mailer $mailer*/)
+    public function __construct(EntityManagerInterface $em, $secretStripeKeyTest, $publicStripeKeyTest /* \Swift_Mailer $mailer*/)
     {
-        $this->entityManager = $entityManager;
+        $this->em = $em;
         $this->secretStripeKeyTest = $secretStripeKeyTest;
         $this->publicStripeKeyTest = $publicStripeKeyTest;
         /*$this->mailer = $mailer;*/
@@ -64,36 +70,50 @@ class payment
     }
     */
 
-    public function makePayment($price,$article)
+    public function makePayment(Product $product, User $user )
     {
+
         //dump($this->secretStripeKeyTest);
+        // Set your secret key. Remember to switch to your live secret key in production!
         Stripe::setApiKey($this->secretStripeKeyTest);
+        //$response = file_get_contents('https://api.stripe.com/v1/checkout/sessions/cs_test_M07MtvAhxVT9zraohsSTnZKMCRUZnooh6m5IUELox1o3PEVTKOIDbgRj');
+        //$response = json_decode($response);
         
+        //create Order
+        $order = new Order;
+        $order->setUser($user);
+        $order->setAmount($product->getPrice());
+        $order->setStatus('waiting for payment');
+        $order->setCreated(new \DateTime(date('Y-m-d H:i:s')));
+
+        $this->em->persist($order);
+        $this->em->flush();
+
         //Convert euro in centim
-        $price = $price * 100 ;
+        $price = $product->getPrice() * 100 ;
+        
+        $path = rtrim(__DIR__, 'src\Service'); $path = $path . '\public\\'; $success = $path . '/sucesspayment'; $cancel = $path . '/cancelURL';
 
         //TODO: Create success and cancel URL and redirect payment
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
-              'name' => $article,
-              'description' => 'Comfortable cotton t-shirt',
-              'images' => ['https://example.com/t-shirt.png'],
+              'name' => $product->getName(),
+              'description' => $product->getDescription(),
+              //'images' => ['./' . $product->getImg1()],
               'amount' => $price,
               'currency' => 'eur',
               'quantity' => 1,
             ]],
-            'success_url' => 'https://SpeedMailer/sucessURL',
-            'cancel_url' => 'https://SpeedMailer/cancelURL',
+            'success_url' => 'https://sucessURL/'. $order->getId(),
+            'cancel_url' => 'https://CancelURL',
           ]);
+          //dd($session);
 
+            //$endpoint = 'whsec_8PVGe96UgcQBcS0lWUnfZKnJtalr1Fnx';
+
+          // $order->setStatus('Finished');
         return $session;
-
-
-    }
-
-    public function redirectToPayment(){
-        dd('redirect to payment');
     }
 
 
