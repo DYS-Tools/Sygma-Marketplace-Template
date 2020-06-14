@@ -176,4 +176,17 @@ class DashboardController extends AbstractController
             'user' => $user,
         ]);
     }
+
+    /**
+     * @Route("/dashboard/basket", name="app_basket")
+     */
+    public function basket()
+    {
+        // get current user
+        $user = $this->getUser();
+
+        return $this->render('dashboard/basket.html.twig', [
+            'user' => $user,
+        ]);
+    }
 }
