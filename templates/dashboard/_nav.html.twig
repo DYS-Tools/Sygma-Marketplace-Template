@@ -1,27 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="nav-dash">
+<nav class="navbar navbar-expand-lg  ">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
 
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('statistic_admin') }}"><span class="red">Stats page</span></a>
+                    <a class="nav-link" href="{{ path('statistic_admin') }}"><span class="red">Statistique</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('product_verified') }}"><span class="red">Verifier les produits</span></a>
+                    <a class="nav-link" href="{{ path('product_verified') }}"><span class="red">Administration produits</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="red">Le blog</span></a>
                 </li>
             {% endif %}
 
             {% if is_granted('ROLE_AUTHOR') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('product_new') }}"><span class="yellowgreen">Créer un produit</span></a>
+                    <a class="nav-link" href="{{ path('product_new') }}"><span class="yellowgreen">Ajouter un produit</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('my_product') }}"><span class="yellowgreen">Mes Produits</span></a>
+                    <a class="nav-link" href="{{ path('author_product') }}"><span class="yellowgreen">Produit en vente</span></a>
                 </li>
 
                 <li class="nav-item">
@@ -32,16 +36,22 @@
                     <a class="nav-link" href="{{ path('my_wallet') }}"><span class="yellowgreen">Mon portefeuille</span></a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('payout_author') }}"><span class="yellowgreen">Retirer des fonds</span></a>
+                </li>
+
             {% endif %}
 
             {% if is_granted('ROLE_USER') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('my_order') }}">Mes commandes</a>
+                    <a class="nav-link blank-link" href="{{ path('my_order') }}">Mes commandes</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link blank-link" href="{{ path('my_product') }}"><span class="">Téléchargement</span></a>
                 </li>
             {% endif %}
         </ul>
     </div>
 </nav>
-
-<br/>
-<br/>
+</div>

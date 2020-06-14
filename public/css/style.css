@@ -70,6 +70,7 @@ a.logo span {
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
+    /*background-color: yellowgreen;*/
 
 }
 .category-link-nav:hover{
@@ -77,6 +78,17 @@ a.logo span {
     border-radius: 15px;
     color: black;
 }
+
+.nav-dash{
+    background-color: #434769;
+}
+.blank-link{
+    color:white;
+}
+.blank-link:hover{
+    color:white;
+}
+
 
 /* ==========================================================================================================
 										SECTIONS
