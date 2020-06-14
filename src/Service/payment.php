@@ -10,6 +10,7 @@ namespace App\Service;
 
 
 use App\Entity\Email;
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
 use Doctrine\ORM\EntityManager;
@@ -19,6 +20,7 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Stripe\Stripe;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class payment
 {
@@ -27,11 +29,12 @@ class payment
     private $secretStripeKeyTest;
     private $publicStripeKeyTest;
     private $mailer;
+    private $user;
 
 
-    public function __construct(EntityManagerInterface $entityManager, $secretStripeKeyTest, $publicStripeKeyTest /* \Swift_Mailer $mailer*/)
+    public function __construct(EntityManagerInterface $em, $secretStripeKeyTest, $publicStripeKeyTest /* \Swift_Mailer $mailer*/)
     {
-        $this->entityManager = $entityManager;
+        $this->em = $em;
         $this->secretStripeKeyTest = $secretStripeKeyTest;
         $this->publicStripeKeyTest = $publicStripeKeyTest;
         /*$this->mailer = $mailer;*/
@@ -65,11 +68,22 @@ class payment
     }
     */
 
-    public function makePayment(Product $product)
+    public function makePayment(Product $product, User $user )
     {
+
         //dump($this->secretStripeKeyTest);
         Stripe::setApiKey($this->secretStripeKeyTest);
         
+        //create Order
+        $order = new Order;
+        $order->setUser($user);
+        $order->setAmount($product->getPrice());
+        $order->setStatus('waiting for payment');
+        $order->setCreated(new \DateTime(date('Y-m-d H:i:s')));
+
+        $this->em->persist($order);
+        $this->em->flush();
+
         //Convert euro in centim
         $price = $product->getPrice() * 100 ;
         
@@ -84,7 +98,7 @@ class payment
               'currency' => 'eur',
               'quantity' => 1,
             ]],
-            'success_url' => 'https://WebItemMarket/sucessURL',
+            'success_url' => 'https://WebItemMarket.com/sucesspayment',
             'cancel_url' => 'https://WebItemMarket/cancelURL',
           ]);
 

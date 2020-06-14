@@ -16,8 +16,8 @@ class OrderController extends AbstractController
     {
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $product = $productRepository->findOneBy(['id' => $product]);
-        
-        $session = $payment->makePayment($product);
+
+        $session = $payment->makePayment($product, $this->getUser());
         //dd($product);
 
         
@@ -34,7 +34,7 @@ class OrderController extends AbstractController
      */
     public function redirectStripe(payment $payment, $product)
     {
-        $session = $payment->makePayment($product);
+        $session = $payment->makePayment($product, $this->getUser());
         //dd($product);
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $product = $productRepository->findOneBy(['id' => $product]);
@@ -44,6 +44,26 @@ class OrderController extends AbstractController
             'stripe_public_key' => $payment->getStripePublicCredentials(),
             'CHECKOUT_SESSION_ID' => $session['id'],
             'product' => $product
+        ]);
+    }
+
+    /**
+     * @Route("/successPayment", name="successPayment")
+     */
+    public function successPayment(payment $payment, $product)
+    {
+        //dd('redirection Stripe Here');
+        return $this->render('order/success.html.twig', [
+        ]);
+    }
+
+    /**
+     * @Route("/cancelPayment", name="cancelPayment")
+     */
+    public function cancelPayment(payment $payment, $product)
+    {
+        //dd('redirection Stripe Here');
+        return $this->render('order/cancel.html.twig', [
         ]);
     }
 }
