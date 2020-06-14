@@ -20,6 +20,8 @@ use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Stripe\Stripe;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpClient\ScopingHttpClient;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class payment
@@ -72,7 +74,10 @@ class payment
     {
 
         //dump($this->secretStripeKeyTest);
+        // Set your secret key. Remember to switch to your live secret key in production!
         Stripe::setApiKey($this->secretStripeKeyTest);
+        //$response = file_get_contents('https://api.stripe.com/v1/checkout/sessions/cs_test_M07MtvAhxVT9zraohsSTnZKMCRUZnooh6m5IUELox1o3PEVTKOIDbgRj');
+        //$response = json_decode($response);
         
         //create Order
         $order = new Order;
@@ -87,6 +92,8 @@ class payment
         //Convert euro in centim
         $price = $product->getPrice() * 100 ;
         
+        $path = rtrim(__DIR__, 'src\Service'); $path = $path . '\public\\'; $success = $path . '/sucesspayment'; $cancel = $path . '/cancelURL';
+
         //TODO: Create success and cancel URL and redirect payment
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
@@ -98,17 +105,15 @@ class payment
               'currency' => 'eur',
               'quantity' => 1,
             ]],
-            'success_url' => 'https://WebItemMarket.com/sucesspayment',
-            'cancel_url' => 'https://WebItemMarket/cancelURL',
+            'success_url' => 'https://sucessURL/'. $order->getId(),
+            'cancel_url' => 'https://CancelURL',
           ]);
+          //dd($session);
 
+            //$endpoint = 'whsec_8PVGe96UgcQBcS0lWUnfZKnJtalr1Fnx';
+
+          // $order->setStatus('Finished');
         return $session;
-
-
-    }
-
-    public function redirectToPayment(){
-        dd('redirect to payment');
     }
 
 
