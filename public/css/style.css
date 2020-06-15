@@ -1,0 +1,375 @@
+/**
+ * Author : DYS-Tools
+*/
+
+body{
+    margin: 0;
+    padding: 0;
+    /*background-image:url(images/image_de_fond.png);*/
+    background-color:rgba(240,240,240,0.6);
+
+}
+
+h1,h2,h3,h4,h5{
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+}
+.center_div{
+    margin: 0 auto;
+    width:65% /* value of your choice which suits your alignment */
+}
+
+/* nav admin */
+
+.blue {
+    color : blue ;
+}
+
+.red {
+    color : red ;
+}
+
+.yellowgreen {
+    color :yellowgreen;
+}
+
+
+.green {
+    color : green;
+}
+
+/* Logo */
+a.logo {
+    font-size: 24px;
+    color: #f2f2f2;
+    float: left;
+    margin-top: 0px;
+    text-transform: uppercase;
+}
+
+a.logo b {
+    font-weight: 900;
+}
+
+a.logo:hover, a.logo:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+a.logo span {
+    color: yellowgreen;
+}
+
+/************** NAVBAR ********************************/
+
+.category-link-nav{
+    padding:10px;
+    width: 14vw;
+    text-align: center;
+    color:yellowgreen;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    /*background-color: yellowgreen;*/
+
+}
+.category-link-nav:hover{
+    background-color: yellowgreen;
+    border-radius: 15px;
+    color: black;
+}
+
+.nav-dash{
+    background-color: #434769;
+}
+.blank-link{
+    color:white;
+}
+.blank-link:hover{
+    color:white;
+}
+
+
+/* ==========================================================================================================
+										SECTIONS
+   ========================================================================================================== */
+.intro-section{
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 4%;
+    background-color: yellowgreen;
+}
+.search-section{
+    width: 100vw;
+    padding-top: 2%;
+}
+.search-section form{
+    width: 20vw;
+}
+/* ==========================================================================================================
+										SUB FOOTER
+   ========================================================================================================== */
+.img-float-left {
+    float: left;
+}
+
+.img-float-right {
+    float: right;
+}
+
+.footer-outer {
+    width: 100%;
+    padding: 50px;
+    height: 250px;
+    background: #2e3149;
+    overflow: hidden;
+}
+.footer-outer .footer-inner {
+    width: 100%;
+    height: inherit;
+}
+.footer-outer .social-icons-footer i {
+    margin: 15px;
+    font-size: 20px;
+}
+.footer-outer .social-icons-footer a:hover i {
+    opacity: .6;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    transition: all .2s ease;
+}
+.footer-outer .footer-three-grid {
+    width: 1140px;
+    margin: 0 auto;
+    height: 50px;
+    text-align: center;
+}
+.footer-outer .column-1-3 {
+    width: 20%;
+    float: left;
+    height: 50px;
+}
+.footer-outer .column-1-3 h1 {
+    font-size: 38px;
+    letter-spacing: 3px;
+    position: relative;
+    top: -5px;
+    font-weight: 600;
+    color: #fff;
+}
+.footer-outer .column-2-3 {
+    width: 60%;
+    float: left;
+    height: 50px;
+}
+.footer-outer .column-3-3 {
+    width: 20%;
+    float: left;
+    height: 50px;
+}
+.footer-outer .column-3-3 a {
+    color: #b5b5c8;
+}
+.footer-outer .column-3-3 .social-icons-header a:hover {
+    color: #fff;
+    opacity: 1;
+    -webkit-transition: color .2s ease;
+    -o-transition: color .2s ease;
+    transition: color .2s ease;
+}
+.footer-outer .footer-nav ul {
+    list-style: none;
+    text-align: center;
+}
+
+.footer-outer .footer-nav ul li {
+    display: inline-block;
+    line-height: 50px;
+    color: #b5b5c8;
+    margin: 0 30px;
+    font-size: 14px;
+}
+.footer-outer .footer-nav ul li:hover {
+    color: #fff;
+    -webkit-transition: color .2s ease-in-out;
+    -o-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
+}
+.footer-outer .footer-nav ul .active {
+    color: #fff;
+}
+.footer-outer .footer-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+.footer-outer .border-bottom-footer {
+    height: 1px;
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid #434769;
+    display: block;
+    margin-top: 50px;
+}
+.footer-outer .copyright {
+    color: #565b87;
+    text-align: center;
+    font-size: 13px;
+    padding: 40px 0;
+}
+
+.google-play-btn {
+    margin-left: 10px;
+}
+/**********************************/
+
+/* modal become author */
+
+.modal-util {
+    overflow: scroll;
+    width: 100%;
+    height: 500px;
+}
+
+/* product card */
+.wrapper {
+    height: 420px;
+    width: 100%;
+    margin: 50px auto;
+    border-radius: 7px 7px 7px 7px;
+    /* VIA CSS MATIC https://goo.gl/cIbnS */
+    -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.30);
+}
+
+.product-img {
+    float: left;
+    height: 420px;
+    width: 50%;
+}
+
+.product-img img {
+    border-radius: 7px 0 0 7px;
+}
+
+.product-info {
+    float: left;
+    height: 420px;
+    width: 50%;
+    border-radius: 0 7px 10px 7px;
+    background-color: #ffffff;
+}
+
+.product-text {
+    height: 250px;
+    width: 100%;
+}
+
+
+.product-text h1 {
+    margin: 0 0 0 38px;
+    padding-top: 52px;
+    font-size: 34px;
+    color: #474747;
+}
+
+.product-text h1,
+.product-price-btn p {
+    font-family: 'Bentham', serif;
+}
+
+.product-text h2 {
+    margin: 0 0 47px 38px;
+    font-size: 13px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #d2d2d2;
+    letter-spacing: 0.2em;
+}
+
+.product-text p {
+    height: 125px;
+    margin: 0 0 0 38px;
+    font-family: 'Playfair Display', serif;
+    color: #8d8d8d;
+    line-height: 1.7em;
+    font-size: 15px;
+    font-weight: lighter;
+    overflow: hidden;
+}
+
+.product-price-btn {
+    height: 103px;
+    width: 327px;
+
+    position: relative;
+}
+
+.product-price-btn p {
+    display: inline-block;
+    position: absolute;
+
+    height: 50px;
+    font-family: 'Trocchi', serif;
+    margin: 0 0 0 38px;
+    font-size: 28px;
+    font-weight: lighter;
+    color: #474747;
+
+}
+
+.product-button button {
+    background-color: yellowgreen;
+    color : white;
+    border : white;
+    height: 50px;
+    width: 150px;
+    cursor: pointer;
+    border-radius: 60px;
+    font-family: 'Raleway', sans-serif;
+
+}
+.product-button  {
+    margin-left : 15px ;
+}
+
+.product-button button a {
+    color : white;
+}
+
+
+
+.product-price-btn button {
+    float: right;
+    display: inline-block;
+    height: 50px;
+    width: 176px;
+    margin: 0 40px 0 16px;
+    box-sizing: border-box;
+    border: transparent;
+    border-radius: 60px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #ffffff;
+    background-color: yellowgreen;
+    cursor: pointer;
+    outline: none;
+}
+
+.product-price-btn button:hover {
+    background-color: #79b0a1;
+}
+
+/*************   Color *********************/
+.orange{
+    color:orangered;
+}
+.green{
+    color:green;
+}

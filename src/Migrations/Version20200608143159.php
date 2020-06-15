@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200527132906 extends AbstractMigration
+final class Version20200608143159 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,7 @@ final class Version20200527132906 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE product ADD content VARCHAR(255) NOT NULL, ADD file VARCHAR(255) NOT NULL, ADD published DATETIME NOT NULL, ADD updated DATETIME NOT NULL');
+        $this->addSql('ALTER TABLE product DROP updated');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +30,6 @@ final class Version20200527132906 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE product DROP content, DROP file, DROP published, DROP updated');
+        $this->addSql('ALTER TABLE product ADD updated DATETIME NOT NULL');
     }
 }

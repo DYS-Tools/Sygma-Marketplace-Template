@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau produit{% endblock %}
+
+{% block body %}
+    {{ include('dashboard/_nav.html.twig') }}
+    <div class="container">
+        <h1>Créer un nouveau produit</h1>
+
+        {{ include('product/_form.html.twig') }}
+
+        <a href="{{ path('product_index') }}">Retour à la liste</a>
+        </div>
+{% endblock %}

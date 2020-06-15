@@ -2,11 +2,147 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="Web Item Market" />
+        <meta name="keywords" content="Web Item Market" />
+
+        <!-- Facebook and Twitter integration -->
+        <meta property="og:title" content=""/>
+        <meta property="og:image" content=""/>
+        <meta property="og:url" content=""/>
+        <meta property="og:site_name" content=""/>
+        <meta property="og:description" content=""/>
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:image" content="" />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:card" content="" />
+
+        <title>{% block title %}Web Item Market {% endblock %}</title>
+
+        {% block stylesheets %}
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+                  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+                  crossorigin="anonymous">
+
+            <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+                  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+                  crossorigin="anonymous">
+
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+                  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+                  crossorigin="anonymous">
+
+            <!-- Favicons -->
+            <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}" />
+            <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
+
+        {% endblock %}
+
     </head>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!--logo start-->
+            <a href="{{ path('product_index') }}" class="logo"><b>Web Item<span>Market</span></b></a>
+            <!--logo end-->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('dashboard') }}">Mon compte</a>
+                    </li>
+                {% elseif is_granted('ROLE_ADMIN') %}
+
+                {% elseif is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Mes produits</a>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">Connection</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                    </li>
+
+                {% endif %}
+
+                {% if app.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('become_author') }}">Commencer à vendre</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_basket') }}">Panier</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                </li>
+                {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        {% block body %}
+            <!-- Content page -->
+        {% endblock %}
+        <br/>
+        <br/>
+        <footer class="footer-outer navbar-dark bg-dark">
+            <div class="container footer-inner">
+                <div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
+                    <div class="column-1-3">
+                        <a href="{{ path('product_index') }}">
+                                <h1><span class="yellowgreen">Web Item Market</span></h1>
+                        </a>
+                    </div>
+                    <div class="column-2-3">
+                        <nav class="footer-nav">
+                            <ul>
+                                <a href="{{ path('review_client') }}"><li><span class="yellowgreen">Avis client</span></li></a>
+                                <a href="{# path('blog') #}"><li><span class="yellowgreen">Le blog</span></li></a>
+                                <a href="{{ path('app_faq') }}"><li><span class="yellowgreen">FAQ</span></li></a>
+                                <a href="{{ path('become_author') }}"><li><span class="yellowgreen">Devenir Vendeur</span></li></a>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="column-3-3">
+                        <div class="social-icons-footer">
+                            <a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <span class="border-bottom-footer"></span>
+                <p class="copyright">&copy; 2020 App. All rights reserved. Design by <a href="https://freehtml5.co" target="_blank">DYS-Tools</a>.</p>
+
+            </div>
+        </footer>
+
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                    crossorigin="anonymous"></script>
+
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+                    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+                    crossorigin="anonymous"></script>
+
+            <script src="https://js.stripe.com/v3/"></script>
+            
+        {% endblock %}
     </body>
 </html>

@@ -19,32 +19,37 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    // /**
-    //  * @return Product[] Returns an array of Product objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    // ADMIN
+    public function findAllTProductNoVerified()
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.verified = 0');
+        $query = $qb->getQuery();
+        return $query->execute();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Product
+    public function countAllProductForSell()
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.verified = 1');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
     }
-    */
+
+    public function countAllProductForVerified()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.verified = 0');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
+    // USER
+    public function findAllTProductVerified()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.verified = 1');
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
 }

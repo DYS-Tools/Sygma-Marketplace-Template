@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Produit : {{ product.name }}</h1>
+
+    {% if product.img1 != NULL %}
+        <img class="card-img-top" src="../product/img/{{ product.img1 }}" alt="{{ product.name }}"
+             style=" width: 50%; height: 500px;">
+    {% endif %}
+
+    {% if product.img2 != NULL %}
+        <img class="card-img-top" src="../product/img/{{ product.img2 }}" alt="{{ product.name }}"
+             style=" width: 50%; height: 500px;">
+    {% endif %}
+
+    {% if product.img3 != NULL %}
+        <img class="card-img-top" src="../product/img/{{ product.img3 }}" alt="{{ product.name }}"
+             style=" width: 50%; height: 500px;">
+    {% endif %}
+    <br/>
+    <h2>Prix : {{ product.price }} euros. </h2>
+    <br/>
+    <h3>Mise en ligne : {{ product.published ? product.published|date('Y-m-d H:i:s') : '' }} </h3>
+    <br/>
+    <h3>Nombres de ventes : {{ product.numberSale}}</h3>
+    <br/>
+    <p> {{ product.content }} </p>
+    <br/>
+
+    <a id="paybutton" href="{{path('order', { 'product': product.id }  ) }}" class="bottom">
+        <div class="product-button">
+            <button type="button">
+                Acheter
+            </button>
+        </div>
+    </a>
+    <!--<a id="paybutton" href="{ {path('order', { 'offer': offer }  ) }}" class="bottom"><p class="cart">-->
+    <br/>
+    <br/>
+
+
+    <div class="product-button">
+        <button type="button">
+            {%   if product.demoLink != NULL %}
+                <a href="{{ product.demoLink }}">Démo</a>
+            {% else %}
+                <p> Pas de démonstration.</p>
+            {%  endif  %}
+        </button>
+
+        <button type="button">
+            <a href="{{ path('product_index') }}">Retour à la liste</a>
+        </button>
+    </div>
+
+    <br/>
+
+</div>
+{% endblock %}

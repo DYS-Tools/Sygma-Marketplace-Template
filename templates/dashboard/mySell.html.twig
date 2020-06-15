@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <h2> Dashboard {{ user.email }} </h2>
+        <br/>
+
+
+        <h2> Mes ventes: </h2>
+        {% if order > 0  %}
+            <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Commande</th>
+                    <th scope="col">status</th>
+                    <th scope="col">prix</th>
+                    <th scope="col">date</th>
+                </tr>
+                </thead>
+                {% for order in order %}
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.amount }}</td>
+                        <td>{{ order.created|date("m/d/Y") }}</td>
+                    
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+    </div>
+
+
+
+{% endblock %}
