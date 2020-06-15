@@ -106,7 +106,7 @@ class DashboardController extends AbstractController
         $ordered = $orderRepository->findBy(['user' => $user]);
 
         return $this->render('dashboard/myOrder.html.twig', [
-            'order' => $ordered,
+            'orders' => $ordered,
             'user' => $user,
         ]);
     }

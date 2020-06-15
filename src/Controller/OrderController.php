@@ -6,18 +6,22 @@ use App\Entity\Product;
 use App\Service\payment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class OrderController extends AbstractController
 {
     /**
      * @Route("/order/{product}", name="order")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function initOrder(payment $payment, $product)
     {
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $product = $productRepository->findOneBy(['id' => $product]);
-
-        $session = $payment->makePayment($product, $this->getUser());
+        $user = $this->getUser();
+        //dd($user);
+        $session = $payment->makePayment($product, $user);
         //dd($product);
         dump($session);
         
@@ -31,10 +35,12 @@ class OrderController extends AbstractController
 
     /**
      * @Route("/redirectStripe/{product}", name="redirectStripe")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function redirectStripe(payment $payment, $product)
     {
-        $session = $payment->makePayment($product, $this->getUser());
+        $user = $this->getUser();
+        $session = $payment->makePayment($product, $user);
         dd($session);
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $product = $productRepository->findOneBy(['id' => $product]);
@@ -49,6 +55,7 @@ class OrderController extends AbstractController
 
     /**
      * @Route("/successPayment/{orderId}", name="successPayment")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function successPayment(payment $payment, $orderId)
     {

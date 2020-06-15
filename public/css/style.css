@@ -365,3 +365,11 @@ a.logo span {
 .product-price-btn button:hover {
     background-color: #79b0a1;
 }
+
+/*************   Color *********************/
+.orange{
+    color:orangered;
+}
+.green{
+    color:green;
+}
