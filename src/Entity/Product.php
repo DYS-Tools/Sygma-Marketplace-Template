@@ -60,11 +60,6 @@ class Product
     private $published;
 
     /**
-     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="product")
-     */
-    private $media;
-
-    /**
 
      * @ORM\Column(type="integer")
      */
@@ -226,36 +221,6 @@ class Product
     {
         $this->published = $published;
 
-        return $this;
-    }
-
-    /**
-     * @return Collection|Media[]
-     */
-    public function getMedia(): Collection
-    {
-        return $this->media;
-    }
-
-    public function addMedium(Media $medium): self
-    {
-        if (!$this->media->contains($medium)) {
-            $this->media[] = $medium;
-            $medium->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMedium(Media $medium): self
-    {
-        if ($this->media->contains($medium)) {
-            $this->media->removeElement($medium);
-            // set the owning side to null (unless already changed)
-            if ($medium->getProduct() === $this) {
-                $medium->setProduct(null);
-            }
-        }
         return $this;
     }
 

@@ -3,6 +3,15 @@
 } */
 
 
+/**** ADD **************/
+.form-group input{
+  color:rgb(87, 184, 70);
+  font-size: 20px;
+  padding-top: 2%;
+  padding-bottom: 1.5%;
+  font-family:cursive ;
+}
+
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/

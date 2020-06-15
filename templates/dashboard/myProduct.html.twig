@@ -42,6 +42,14 @@
                             style=" width: 50%; height: 500px;">
                     {% endif %}
                 </div>
+
+                <div class="product-button">
+                    
+
+                    <button type="button">
+                        <a href="{{ path('downloadProduct', {'fichier': product.file }) }}"> Télécharger</a>
+                    </button>
+                </div>
             </div>
                 <br/><br/>
             {% else %}

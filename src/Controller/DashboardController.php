@@ -106,7 +106,7 @@ class DashboardController extends AbstractController
         $ordered = $orderRepository->findBy(['user' => $user]);
 
         return $this->render('dashboard/myOrder.html.twig', [
-            'order' => $ordered,
+            'orders' => $ordered,
             'user' => $user,
         ]);
     }
@@ -188,5 +188,27 @@ class DashboardController extends AbstractController
         return $this->render('dashboard/basket.html.twig', [
             'user' => $user,
         ]);
+    }
+
+    /**
+     * @Route("/dashboard/download/{fichier}", name="downloadProduct")
+     */
+    public function download($fichier)
+    {
+        // get current user
+        header('Content-Type: application/octet-stream');
+        //header('Content-Length: '. $poids);
+        header('Content-disposition: attachment; filename='. $fichier);
+        header('Pragma: no-cache');
+        header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+        header('Expires: 0');
+        //readfile($situation);
+        exit();
+
+        /*
+        return $this->render('dashboard/basket.html.twig', [
+            'user' => $user,
+        ]);
+        */
     }
 }
