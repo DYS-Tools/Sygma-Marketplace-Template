@@ -74,6 +74,11 @@ class ProductController extends AbstractController
                 $product->setImg3($fileName3);
             }
 
+            if($form->get('file')->getData()){
+                $fileName3 = $upload->uploadFile($form->get('file')->getData());
+                $product->setFile($fileName3);
+            }
+            //
             //upload des images
             
             $product->setPublished(new \Datetime('now'));   //2020-06-06 14:52:49
