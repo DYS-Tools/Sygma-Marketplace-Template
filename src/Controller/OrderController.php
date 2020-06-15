@@ -64,7 +64,9 @@ class OrderController extends AbstractController
         $order->setStatus('Finished');
 
 
-        //dd('Validation de la commande');
+        // TODO: Validation de la commande 
+        // Incrementer la vente dans l'objet product
+
         return $this->render('order/success.html.twig', [
         ]);
     }
