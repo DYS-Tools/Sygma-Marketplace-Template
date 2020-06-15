@@ -1,17 +1,69 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
-
+<link rel="stylesheet" href="{{ asset('css/login.css') }}" />
 {% block body %}
-<div class="container">
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-</div>
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: {{ asset('img/bg-01-login.jpg') }};">
+					<span class="login100-form-title-1">
+						Inscription
+					</span>
+				</div>
+
+                <div class="login100-form validate-form">
+                    {{ form_start(registrationForm) }}
+                    <div class="wrap-input100 validate-input m-b-26">
+                        <span class="label-input100">Email</span>
+                        <div id="inputEmail" class="input100" type="text" name="email" placeholder="Votre email"> {{ form_row(registrationForm.email) }}</div>
+                        <span class="focus-input100"></span>
+                        <br/>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18">
+                        <span class="label-input100">Mots de passe </span>
+                        <div id="inputPassword" class="input100" type="password" name="password"> {{ form_row(registrationForm.plainPassword) }}</div>
+                        <span class="focus-input100"></span>
+                        <br/>
+                    </div>
+                        {# form_row(registrationForm.agreeTerms) #}
+
+                        
+
+                        <input type="hidden" name="_csrf_token"
+                            value="{{ csrf_token('authenticate') }}">
+
+                        <br/>
+
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn type="submit"">
+                                Inscription
+                            </button>
+                        </div>
+
+                        {{ form_end(registrationForm) }}
+                    </div>
+				
+			</div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
 {% endblock %}
