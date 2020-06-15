@@ -39,13 +39,18 @@ class Product
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", length=255)
      */
     private $content;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\File(maxSize = "2147483648")
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     maxSizeMessage="Le fichier excède 1024k.",
+     *     mimeTypes = {"application/zip"},
+     *     mimeTypesMessage = "formats autorisés: ZIP uniquement"
+     * )
      */
     private $file;
 
@@ -92,19 +97,52 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\File(maxSize = "2147483648")
+     * @Assert\File(
+     * maxSize="1000k",
+     * maxSizeMessage="Le fichier excède 1000Ko.",
+     * mimeTypes={"image/png", "image/jpeg", "image/jpg"},
+     * mimeTypesMessage= "formats autorisés: png, jpeg, jpg"
+     * )
+     * @Assert\Image(
+     *     minWidth = 200,
+     *     maxWidth = 400,
+     *     minHeight = 200,
+     *     maxHeight = 400
+     * )
      */
     private $img1;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File(maxSize = "2147483648")
+     * @Assert\File(
+     * maxSize="1000k",
+     * maxSizeMessage="Le fichier excède 1000Ko.",
+     * mimeTypes={"image/png", "image/jpeg", "image/jpg"},
+     * mimeTypesMessage= "formats autorisés: png, jpeg, jpg"
+     * )
+     * @Assert\Image(
+     *     minWidth = 200,
+     *     maxWidth = 400,
+     *     minHeight = 200,
+     *     maxHeight = 400
+     * )
      */
     private $img2;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File(maxSize = "2147483648")
+     * @Assert\File(
+     * maxSize="1000k",
+     * maxSizeMessage="Le fichier excède 1000Ko.",
+     * mimeTypes={"image/png", "image/jpeg", "image/jpg"},
+     * mimeTypesMessage= "formats autorisés: png, jpeg, jpg"
+     * )
+     * @Assert\Image(
+     *     minWidth = 200,
+     *     maxWidth = 400,
+     *     minHeight = 200,
+     *     maxHeight = 400
+     * )
      */
     private $img3;
 
