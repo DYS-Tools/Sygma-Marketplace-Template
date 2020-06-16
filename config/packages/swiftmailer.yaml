@@ -1,7 +1,3 @@
-framework:
-    mailer:
-        dsn: '%env(MAILER_DSN)%'
-
 swiftmailer:
     transport: gmail
     username:  sacha6623@gmail.com

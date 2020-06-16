@@ -65,7 +65,7 @@ class OrderController extends AbstractController
 
         // TODO: Validation de la commande 
         // Incrementer la vente dans l'objet product
-        // incrementer 80 % a availablePayout
+        // incrementer $order->getAmount() * 0.80;      // 80 % a availablePayout
 
         return $this->render('order/success.html.twig', [
         ]);
