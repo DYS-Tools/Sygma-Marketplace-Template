@@ -63,9 +63,9 @@ class OrderController extends AbstractController
         $order = $orderRepository->findOneBy(['id' => $orderId]);
         $order->setStatus('Finished');
 
-
         // TODO: Validation de la commande 
         // Incrementer la vente dans l'objet product
+        // incrementer 80 % a availablePayout
 
         return $this->render('order/success.html.twig', [
         ]);

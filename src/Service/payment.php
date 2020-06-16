@@ -115,6 +115,9 @@ class payment
           // $order->setStatus('Finished');
         return $session;
     }
+    public function payout(User $user , $amount){
+        
+    }
 
 
 
