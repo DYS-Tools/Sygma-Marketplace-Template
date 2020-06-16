@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\Product;
 use App\Service\payment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
