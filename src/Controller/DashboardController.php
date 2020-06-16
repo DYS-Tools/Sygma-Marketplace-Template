@@ -81,6 +81,7 @@ class DashboardController extends AbstractController
 
     /**
      * @Route("/dashboard/MySell", name="my_sell")
+     * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function mySell()
     {
@@ -129,6 +130,7 @@ class DashboardController extends AbstractController
 
     /**
      * @Route("/dashboard/authorProduct", name="author_product")
+     * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function authorProduct()
     {   // product galery for author
@@ -145,6 +147,7 @@ class DashboardController extends AbstractController
 
     /**
      * @Route("/dashboard/payout_author", name="payout_author")
+     * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function payoutAuthor()
     {   // payout function
@@ -153,10 +156,13 @@ class DashboardController extends AbstractController
         $user = $this->getUser();
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['user' => $user]);
+        
+        // if payout : déduire la somme sur available_payout
 
         return $this->render('dashboard/authorPayout.html.twig', [
             'products' => $products,
             'user' => $user,
+            'userPayout' => $user->getAvailablePayout(),
         ]);
     }
 

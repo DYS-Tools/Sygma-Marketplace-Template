@@ -51,6 +51,11 @@ class User implements UserInterface
      */
     private $orders;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $available_payout = 0;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -193,6 +198,18 @@ class User implements UserInterface
                 $order->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvailablePayout(): ?float
+    {
+        return $this->available_payout;
+    }
+
+    public function setAvailablePayout(float $available_payout): self
+    {
+        $this->available_payout = $available_payout;
 
         return $this;
     }
