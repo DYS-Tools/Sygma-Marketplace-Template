@@ -6,6 +6,7 @@ use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Form\ProductType;
+use App\Repository\ArticleRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,6 +43,21 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard/productVerified.html.twig', [
             'noVerifiedProduct' => $this->getDoctrine()->getRepository(Product::class)->findAllTProductNoVerified(),
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/Blog", name="article_index_admin")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function BlogAdminPage(ArticleRepository $articleRepository)
+    {
+        // get current user
+        $user = $this->getUser() ;
+
+        return $this->render('dashboard/blog.html.twig', [
+            'articles' => $articleRepository->findAll(),
             'user' => $user,
         ]);
     }

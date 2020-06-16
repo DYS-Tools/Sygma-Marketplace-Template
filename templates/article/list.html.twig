@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Blog{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+    <h1>Nos articles</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
+                <th>Titre</th>
                 <th>Description</th>
-                <th>Content</th>
-                <th>Img1</th>
-                <th>Created_at</th>
-                <th>actions</th>
+                <th>Contenu</th>
+                <th>Image ( lien ) </th>
+                <th>Créer le </th>
+                <th>Action </th>
             </tr>
         </thead>
         <tbody>
@@ -27,17 +27,14 @@
                 <td>{{ article.img1 }}</td>
                 <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                    <a href="{{ path('article_show', {'id': article.id}) }}"> Détails </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">pas de résultats</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('article_new') }}">Create new</a>
 {% endblock %}

@@ -23,7 +23,7 @@ class ProductController extends AbstractController
      */
     public function index(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
     {
-        return $this->render('product/index.html.twig', [
+        return $this->render('product/list.html.twig', [
             'products' => $productRepository->findAllTProductVerified(),
             'categories' => $categoryRepository->findAll()
         ]);
@@ -38,7 +38,7 @@ class ProductController extends AbstractController
         //dd($name);
         $products = $productRepository->findBy(['category' => $id]);
 
-        return $this->render('product/index.html.twig', [
+        return $this->render('product/list.html.twig', [
             'products' => $products,
             'categories' => $categoryRepository->findAll()
         ]);
