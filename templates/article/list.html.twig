@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+    <h1>Nos articles</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Contenu</th>
+                <th>Image ( lien ) </th>
+                <th>Créer le </th>
+                <th>Action </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.description }}</td>
+                <td>{{ article.content }}</td>
+                <td>{{ article.img1 }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('article_show', {'id': article.id}) }}"> Détails </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">pas de résultats</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
