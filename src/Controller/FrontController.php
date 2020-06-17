@@ -28,8 +28,6 @@ class FrontController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$form->get('img1')->getData());
-
-            
             $message = (new \Swift_Message('Web-Item-Market'))
                 ->setFrom($form->get('Email')->getData())
                 ->setTo('sacha6623@gmail.com')

@@ -45,8 +45,7 @@ class OrderController extends AbstractController
         dd($session);
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $product = $productRepository->findOneBy(['id' => $product]);
-
-        //dd('redirection Stripe Here');
+        
         return $this->render('order/order.html.twig', [
             'stripe_public_key' => $payment->getStripePublicCredentials(),
             'CHECKOUT_SESSION_ID' => $session['id'],
