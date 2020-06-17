@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article{% endblock %}
+{% block title %}Article Show{% endblock %}
 
 {% block body %}
     <h1>Article</h1>
+
+    <img class="card-img-top" src="../article/img/{{ article.img1 }}" alt="{{ article.title }}"
+         style=" width: 50%; height: 500px;">
 
     <table class="table">
         <tbody>

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Service\Upload;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/blog", name="article_index", methods={"GET"})
+     * @Route("/", name="article_index", methods={"GET"})
      */
     public function index(ArticleRepository $articleRepository): Response
     {
@@ -27,10 +28,10 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/blog/new", name="article_new", methods={"GET","POST"})
+     * @Route("/new", name="article_new", methods={"GET","POST"})
      * @Security("is_granted('ROLE_USER')")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Upload $upload): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -38,6 +39,11 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $fileName1 = $upload->uploadImgArticle($form->get('img1')->getData());
+            $article->setImg1($fileName1);
+
+
             $entityManager->persist($article);
             $entityManager->flush();
 
@@ -51,7 +57,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/blog/{id}", name="article_show", methods={"GET"})
+     * @Route("/{id}", name="article_show", methods={"GET"})
      */
     public function show(Article $article): Response
     {
@@ -61,7 +67,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/blog/{id}/edit", name="article_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="article_edit", methods={"GET","POST"})
      * @Security("is_granted('ROLE_USER')")
      */
     public function edit(Request $request, Article $article): Response
@@ -82,7 +88,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("blog/{id}", name="article_delete", methods={"DELETE"})
+     * @Route("/{id}", name="article_delete", methods={"DELETE"})
      * @Security("is_granted('ROLE_USER')")
      */
     public function delete(Request $request, Article $article): Response

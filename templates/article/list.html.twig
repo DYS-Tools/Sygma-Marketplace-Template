@@ -19,6 +19,9 @@
         </thead>
         <tbody>
         {% for article in articles %}
+
+            <img class="card-img-top" src="../article/img/{{ article.img1 }}" alt="{{ article.title }}"
+                 style=" width: 50%; height: 500px;">
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.title }}</td>
@@ -30,6 +33,7 @@
                     <a href="{{ path('article_show', {'id': article.id}) }}"> Détails </a>
                 </td>
             </tr>
+            <hr/>
         {% else %}
             <tr>
                 <td colspan="7">pas de résultats</td>
