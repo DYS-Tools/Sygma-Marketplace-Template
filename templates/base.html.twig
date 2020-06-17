@@ -58,7 +58,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('dashboard') }}">Mon compte</a>
                     </li>
-                {% elseif is_granted('ROLE_ADMIN') %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('become_author') }}">Commencer à vendre</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                    </li>
 
                 {% elseif is_granted('ROLE_USER') %}
                     <li class="nav-item">
@@ -73,21 +80,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
                     </li>
-
-                {% endif %}
-
-                {% if app.user %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('become_author') }}">Commencer à vendre</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_basket') }}">Panier</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-                </li>
                 {% endif %}
                 </div>
             </div>

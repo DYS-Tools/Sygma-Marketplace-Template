@@ -200,19 +200,6 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/basket", name="app_basket")
-     */
-    public function basket()
-    {
-        // get current user
-        $user = $this->getUser();
-
-        return $this->render('dashboard/basket.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
-    /**
      * @Route("/dashboard/download/{fichier}", name="downloadProduct")
      */
     public function download($fichier)
