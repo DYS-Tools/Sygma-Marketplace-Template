@@ -4,8 +4,11 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    # product
     img_directory: '%kernel.project_dir%/public/product/img'
     product_directory: '%kernel.project_dir%/public/product'
+    # article
+    img_article_directory: '%kernel.project_dir%/public/article/img'
 
 services:
     # default configuration for services in *this* file
@@ -30,8 +33,11 @@ services:
 
     App\Service\Upload:
         arguments:
+            # product
             $targetImgDirectory: '%img_directory%'
             $targetFileDirectory: '%product_directory%'
+            # article
+            $targetImgArticle: '%img_article_directory%'
 
     App\Service\payment:
         arguments:

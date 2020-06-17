@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,11 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('content')
-            ->add('img1')
+            ->add('img1', FileType::class, [
+                'label' => 'ajouter une image',
+                'data_class'=>null,
+                'required'   => true,
+            ])
             ->add('created_at')
         ;
     }
