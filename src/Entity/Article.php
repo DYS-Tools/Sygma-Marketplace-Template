@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -34,6 +35,18 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\File(
+     * maxSize="1000k",
+     * maxSizeMessage="Le fichier excède 1000Ko.",
+     * mimeTypes={"image/png", "image/jpeg", "image/jpg"},
+     * mimeTypesMessage= "formats autorisés: png, jpeg, jpg"
+     * )
+     * @Assert\Image(
+     *     minWidth = 200,
+     *     maxWidth = 400,
+     *     minHeight = 200,
+     *     maxHeight = 400
+     * )
      */
     private $img1;
 
