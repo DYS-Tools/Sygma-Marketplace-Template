@@ -42,10 +42,10 @@ class Article
      * mimeTypesMessage= "formats autorisés: png, jpeg, jpg"
      * )
      * @Assert\Image(
-     *     minWidth = 200,
-     *     maxWidth = 400,
-     *     minHeight = 200,
-     *     maxHeight = 400
+     *     minWidth = 382,
+     *     maxWidth = 382,
+     *     minHeight = 180,
+     *     maxHeight = 180
      * )
      */
     private $img1;
