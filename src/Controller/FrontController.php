@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Ticket;
 use App\Form\ContactFormType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,13 +23,24 @@ class FrontController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function ContacteMe(Request $request, \Swift_Mailer $mailer)
+    public function ContacteMe(Request $request, \Swift_Mailer $mailer, EntityManagerInterface $em)
     {
         $form = $this->createForm(ContactFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$form->get('img1')->getData());
+
+            $ticket = new Ticket;
+            $ticket->setName($form->get('Name')->getData());
+            $ticket->setSubject($form->get('Subject')->getData());
+            $ticket->setEmail($form->get('Email')->getData());
+            $ticket->setMessage($form->get('Message')->getData());
+            $ticket->setStatus(0);
+            $em->persist($ticket);
+            $em->flush();
+
+            /*
             $message = (new \Swift_Message('Web-Item-Market'))
                 ->setFrom($form->get('Email')->getData())
                 ->setTo('sacha6623@gmail.com')
@@ -43,6 +56,7 @@ class FrontController extends AbstractController
             $mailer->send($message);
 
             $this->addFlash('success', "Email has been send");
+            */
             $this->redirectToRoute('contact');
         }
         return $this->render('front/contact.html.twig', [

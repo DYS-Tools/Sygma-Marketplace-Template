@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Entity\Ticket;
 use App\Entity\User;
 use App\Form\ProductType;
 use App\Repository\ArticleRepository;
@@ -46,6 +47,25 @@ class DashboardController extends AbstractController
             'user' => $user,
         ]);
     }
+
+    /**
+     * @Route("/dashboard/ticketHandler", name="ticket_handler")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function ticketHandlet()
+    {
+        // get current user
+        $user = $this->getUser() ;
+
+        $ticketInProgressRepo = $this->getDoctrine()->getRepository(Ticket::class);
+        $ticketInProgress = $ticketInProgressRepo->findBy(['status' => 0]);
+
+        return $this->render('dashboard/ticketHandler.html.twig', [
+            'ticketInProgress' => $ticketInProgress,
+            'user' => $user,
+        ]);
+    }
+
 
     /**
      * @Route("/dashboard/Blog", name="article_index_admin")
