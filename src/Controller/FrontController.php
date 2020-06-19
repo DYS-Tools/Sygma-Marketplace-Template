@@ -21,7 +21,7 @@ class FrontController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function ContacteMe(Request $request, \Swift_Mailer $mailer )
+    public function ContacteMe(Request $request, \Swift_Mailer $mailer)
     {
         $form = $this->createForm(ContactFormType::class);
         $form->handleRequest($request);
