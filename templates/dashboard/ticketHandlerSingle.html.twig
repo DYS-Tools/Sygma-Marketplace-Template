@@ -14,15 +14,16 @@
         <br/>
 
 
-        <h2> Les tickets ouvert </h2>
+        <h2> Le ticket n°{{ ticket.id }} </h2>
         <br/>
-        {% if ticketInProgress > 0  %}
-            {% for ticket in ticketInProgress %}
-                <li> {{ ticket.id }} : {{ ticket.message }} : 
-                <a href="{{ path('ticket_handler_Single', {'id': ticket.id}) }}">Voir le ticket</a></li>
-            {% endfor %}
-        {% else %}
-            <p> Il n'y a pas de ticket en cours </p>
+        <hr>
+        {{ ticket.name }}<br/>
+        {{ticket.subject }} </br>
+        {{ ticket.message }}</br>
+        {{ticket.status }}</br>
+
+        {% if ticket.status == 0 %}
+         répondre a ce ticket :
         {% endif %}
 
 

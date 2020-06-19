@@ -52,7 +52,7 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/ticketHandler", name="ticket_handler")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function ticketHandlet()
+    public function ticketHandler()
     {
         // get current user
         $user = $this->getUser() ;
@@ -62,6 +62,24 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard/ticketHandler.html.twig', [
             'ticketInProgress' => $ticketInProgress,
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/ticketHandler/{id}", name="ticket_handler_Single")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function ticketHandlerSingle($id)
+    {
+        // get current user
+        $user = $this->getUser() ;
+
+        $ticketInProgressRepo = $this->getDoctrine()->getRepository(Ticket::class);
+        $ticket = $ticketInProgressRepo->findOneBy(['id' => $id]);
+
+        return $this->render('dashboard/ticketHandlerSingle.html.twig', [
+            'ticket' => $ticket,
             'user' => $user,
         ]);
     }
