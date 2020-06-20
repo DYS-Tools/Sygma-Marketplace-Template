@@ -41,6 +41,7 @@ class FrontController extends AbstractController
             $em->flush();
 
             /*
+            // \Swift_Mailer $mailer
             $message = (new \Swift_Message('Web-Item-Market'))
                 ->setFrom($form->get('Email')->getData())
                 ->setTo('sacha6623@gmail.com')
