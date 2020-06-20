@@ -7,7 +7,9 @@ use App\Entity\Product;
 use App\Entity\Ticket;
 use App\Entity\User;
 use App\Form\ProductType;
+use App\Form\ResolveTicketType;
 use App\Repository\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,7 +72,7 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/ticketHandler/{id}", name="ticket_handler_Single")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function ticketHandlerSingle($id)
+    public function ticketHandlerSingle($id, Request $request, \Swift_Mailer $mailer, EntityManagerInterface $em)
     {
         // get current user
         $user = $this->getUser() ;
@@ -78,9 +80,32 @@ class DashboardController extends AbstractController
         $ticketInProgressRepo = $this->getDoctrine()->getRepository(Ticket::class);
         $ticket = $ticketInProgressRepo->findOneBy(['id' => $id]);
 
+        $mail = $ticket->getEmail();
+
+
+        $form = $this->createForm(ResolveTicketType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $reponse = $form->get('Reponse')->getData();
+
+            $message = (new \Swift_Message('Web-Item-Market'))
+                ->setFrom('sacha6623@gmail.com')
+                ->setTo($mail)
+                ->setBody(
+                    $this->renderView(
+                        'Emails/contact.html.twig',
+                        [ 'message' => $reponse, ]), 'text/html');
+            $mailer->send($message);
+            $ticket->setStatus(1);
+            $em->persist($ticket);
+            $em->flush();
+            $this->redirectToRoute('ticket_handler');
+
+        }
         return $this->render('dashboard/ticketHandlerSingle.html.twig', [
             'ticket' => $ticket,
             'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 
