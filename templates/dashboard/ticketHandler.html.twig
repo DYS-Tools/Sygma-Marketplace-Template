@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <!-- display products that customers have purchased, available for download -->
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <br/><br/>
+        <h2> Dashboard {{ user.email }} </h2>
+        <br/>
+
+
+        <h2> Les tickets ouvert </h2>
+        <br/>
+        {% if ticketInProgress > 0  %}
+            {% for ticket in ticketInProgress %}
+                <li> {{ ticket.id }} : {{ ticket.message }} : 
+                <a href="{{ path('ticket_handler_Single', {'id': ticket.id}) }}">Voir le ticket</a></li>
+            {% endfor %}
+        {% else %}
+            <p> Il n'y a pas de ticket en cours </p>
+        {% endif %}
+
+
+    </div>
+
+
+
+{% endblock %}
