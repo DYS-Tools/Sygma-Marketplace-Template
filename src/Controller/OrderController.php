@@ -57,11 +57,28 @@ class OrderController extends AbstractController
      * @Route("/successPayment/{orderId}", name="successPayment")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function successPayment(payment $payment, $orderId)
+    public function successPayment(payment $payment, $orderId, \Swift_Mailer $mailer)
     {
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
         $order = $orderRepository->findOneBy(['id' => $orderId]);
         $order->setStatus('Finished');
+        
+
+
+        
+            // \Swift_Mailer $mailer
+            $message = (new \Swift_Message('Web-Item-Market'))
+                ->setFrom('sacha6623@gmail.com')
+                ->setTo($this->getUser()->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'Emails/successPayment.html.twig',
+                        []),
+                 'text/html');
+            $mailer->send($message);
+
+            $this->addFlash('success', "Email has been send");
+            
 
         // TODO: Validation de la commande 
         // Incrementer la vente dans l'objet product

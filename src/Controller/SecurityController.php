@@ -37,7 +37,7 @@ class SecurityController extends AbstractController
      /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -54,6 +54,17 @@ class SecurityController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
+            // \Swift_Mailer $mailer
+            $message = (new \Swift_Message('Web-Item-Market'))
+                ->setFrom('sacha6623@gmail.com')
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'Emails/register.html.twig',
+                        []),
+                 'text/html');
+            $mailer->send($message);
 
             return $this->redirectToRoute('product_index');
         }

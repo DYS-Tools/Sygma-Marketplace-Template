@@ -49,7 +49,7 @@ class ProductController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
      * 
      */
-    public function new(Request $request, Upload $upload): Response
+    public function new(Request $request, Upload $upload, \Swift_Mailer $mailer): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
 
@@ -83,6 +83,19 @@ class ProductController extends AbstractController
             $product->setPublished(new \Datetime('now'));   //2020-06-06 14:52:49
             $entityManager->persist($product);
             $entityManager->flush();
+
+             // \Swift_Mailer $mailer
+             $message = (new \Swift_Message('Web-Item-Market'))
+             ->setFrom('sacha6623@gmail.com')
+             ->setTo($this->getUser()->getEmail())
+             ->setBody(
+                 $this->renderView(
+                     'Emails/upload.html.twig',
+                     []),
+              'text/html');
+            $mailer->send($message);
+
+         $this->addFlash('success', "Email has been send");
             
             return $this->redirectToRoute('product_index');
         }
