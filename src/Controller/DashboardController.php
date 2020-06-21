@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Ticket;
@@ -141,6 +142,7 @@ class DashboardController extends AbstractController
             'countMember' => $this->getDoctrine()->getRepository(User::class)->countAllMember(),
             'countAdmin' => $this->getDoctrine()->getRepository(User::class)->countAllAdmin(),
             'countAuthor' => $this->getDoctrine()->getRepository(User::class)->countAllAuthor(),
+            'countArticle' => $this->getDoctrine()->getRepository(Article::class)->countArticle(),
         ]);
     }
 
