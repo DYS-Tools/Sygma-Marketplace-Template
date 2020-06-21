@@ -21,8 +21,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Télécharger</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Téléchargement</th>
                     <th scope="col">Voir plus</th>
                     <th scope="col">Vérifier</th>
                 </tr>
@@ -30,11 +30,17 @@
                 {% for noVerifiedProduct in noVerifiedProduct %}
                     <tbody>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">#</th>
                         <td>{{ noVerifiedProduct.name }}</td>
                         <td>{{ noVerifiedProduct.description }}</td>
-                        <td>{{ noVerifiedProduct.price}}</td>
-                        <td><a href="{{ path('downloadProduct', {'fichier': noVerifiedProduct.file }) }} " class="btn btn-info">Télécharger</a></td><!-- Todo -->
+                        <td>{{ noVerifiedProduct.price}}</td> 
+                        {% dump "product/" ~ noVerifiedProduct.file %}
+                        <td>
+                            <a href="{{ asset("product/" ~ noVerifiedProduct.file)  }}" 
+                            download>
+                            <button type="button" class="btn btn-success">Download product ({{ noVerifiedProduct.file }})</button>
+                            </a>
+                        </td><!-- Todo -->
                         <td><a href="#{#  path('product_show', {'id': product.id}) #}" class="btn btn-primary">voir plus</a></td><!-- Todo -->
                         <td>
                             <a href="{{ path('app_dashboard_product_verified', { 'id' : noVerifiedProduct.id } ) }}">

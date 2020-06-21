@@ -47,7 +47,10 @@
                     
 
                     <button type="button">
-                        <a href="{{ path('downloadProduct', {'fichier': product.file }) }}"> Télécharger</a>
+                        <a href="{{ asset("product/" ~ product.file)  }}" 
+                            download>
+                            <button type="button" class="btn btn-success">Download product</button>
+                            </a>
                     </button>
                 </div>
             </div>
