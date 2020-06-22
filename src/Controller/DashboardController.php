@@ -83,7 +83,6 @@ class DashboardController extends AbstractController
 
         $mail = $ticket->getEmail();
 
-
         $form = $this->createForm(ResolveTicketType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -109,7 +108,6 @@ class DashboardController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
 
     /**
      * @Route("/dashboard/Blog", name="article_index_admin")
@@ -156,6 +154,18 @@ class DashboardController extends AbstractController
         $ProductNoVerified->setVerified(1);
         $entityManager->persist($ProductNoVerified);
         $entityManager->flush();
+
+        return $this->redirectToRoute('product_verified');
+    }
+
+    /**
+     * @Route("/dashboard/ProductRejected", name="app_dashboard_product_rejected")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function productRejeted()
+    {
+        // get current user
+        $user = $this->getUser() ;
 
         return $this->redirectToRoute('product_verified');
     }
@@ -214,8 +224,8 @@ class DashboardController extends AbstractController
      * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function authorProduct()
-    {   // product galery for author
-        // get current user
+    {
+
         $user = $this->getUser();
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['user' => $user]);
@@ -238,7 +248,7 @@ class DashboardController extends AbstractController
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['user' => $user]);
         
-        // if payout : déduire la somme sur available_payout
+        // TODO : if payout : remove number in available payout variable
 
         return $this->render('dashboard/authorPayout.html.twig', [
             'products' => $products,
@@ -253,36 +263,11 @@ class DashboardController extends AbstractController
      */
     public function myWallet()
     {
-        // get current user
         $user = $this->getUser();
-        //$productRepository = $this->getDoctrine()->getRepository(Product::class);
-        //$products = $productRepository->findBy(['user' => $user]);
 
         return $this->render('dashboard/myWallet.html.twig', [
             //'products' => $products,
             'user' => $user,
         ]);
-    }
-
-    /**
-     * @Route("/dashboard/download/{fichier}", name="downloadProduct")
-     */
-    public function download($fichier)
-    {
-        // get current user
-        header('Content-Type: application/octet-stream');
-        //header('Content-Length: '. $poids);
-        header('Content-disposition: attachment; filename='. $fichier);
-        header('Pragma: no-cache');
-        header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-        header('Expires: 0');
-        //readfile($situation);
-        exit();
-
-        /*
-        return $this->render('dashboard/basket.html.twig', [
-            'user' => $user,
-        ]);
-        */
     }
 }
