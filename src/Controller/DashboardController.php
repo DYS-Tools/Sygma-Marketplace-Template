@@ -8,6 +8,7 @@ use App\Entity\Product;
 use App\Entity\Ticket;
 use App\Entity\User;
 use App\Form\ProductType;
+use App\Form\RejectProductFormType;
 use App\Form\ResolveTicketType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,7 +41,7 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/ProductVerified", name="product_verified")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function productVerifiedPage()
+    public function productVerifiedPage(Request $request)
     {
         // get current user
         $user = $this->getUser() ;
@@ -147,7 +148,7 @@ class DashboardController extends AbstractController
     /**
      * @Route("/dashboard/product/verified/{id}", name="app_dashboard_product_verified")
      */
-    public function productVerifiedAction(Request $request, $id)
+    public function productVerifiedAction(Request $request,\Swift_Mailer $mailer, $id)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $ProductNoVerified = $this->getDoctrine()->getRepository(Product::class)->find($id);
@@ -155,19 +156,61 @@ class DashboardController extends AbstractController
         $entityManager->persist($ProductNoVerified);
         $entityManager->flush();
 
+        $uploaderUser = $ProductNoVerified->getUser();
+
+        $message = (new \Swift_Message('Web-Item-Market'))
+                ->setFrom('sacha6623@gmail.com')
+                ->setTo($uploaderUser->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'Emails/acceptedProduct.html.twig',[
+                        ]),
+                 'text/html');
+            $mailer->send($message);
+
         return $this->redirectToRoute('product_verified');
     }
 
     /**
-     * @Route("/dashboard/ProductRejected", name="app_dashboard_product_rejected")
+     * @Route("/dashboard/Product/rejected/{id}", name="app_dashboard_product_rejected")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function productRejeted()
+    public function productRejeted(Request $request, \Swift_Mailer $mailer, $id)
     {
         // get current user
         $user = $this->getUser() ;
 
-        return $this->redirectToRoute('product_verified');
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        $uploaderUser = $product->getUser();
+
+        $form = $this->createForm(RejectProductFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // \Swift_Mailer $mailer
+            $message = (new \Swift_Message('Web-Item-Market'))
+                ->setFrom('sacha6623@gmail.com')
+                ->setTo($uploaderUser->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'Emails/rejectedProduct.html.twig',[
+                            'motif' => $form->get('Motif')->getData(),
+                            'message_generique' => 'Votre produit ne correspond pas a nos attente sur la place de marché',
+                        ]),
+                 'text/html');
+            $mailer->send($message);
+
+            $entityManager->remove($product);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('product_verified');
+        }
+
+        return $this->render('dashboard/productRejected.html.twig', [
+            'product' => $product,
+            'form' => $form->createView(),
+            
+        ]);
     }
 
     /**
