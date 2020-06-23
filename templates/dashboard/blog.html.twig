@@ -6,9 +6,16 @@
 
     {{ include('dashboard/_nav.html.twig') }}
 
-    <div class="container">
+
         <h2> Gestion des articles </h2>
         <br/>
+
+    <div class="product-button">
+        <button type="button">
+            <a href="{{ path('article_new') }}">Créer un article</a>
+        </button>
+    </div>
+    <br/>
 
         <table class="table">
             <thead>
@@ -19,7 +26,9 @@
                 <th>Contenu</th>
                 <th>Image ( lien ) </th>
                 <th>Créer le</th>
-                <th>actions</th>
+                <th>voir plus</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
             </tr>
             </thead>
             <tbody>
@@ -30,10 +39,24 @@
                     <td>{{ article.description }}</td>
                     <td>{{ article.content }}</td>
                     <td>{{ article.img1 }}</td>
-                    <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</td>
                     <td>
-                        <a href="{{ path('article_show', {'id': article.id}) }}">Voir sur le site</a>
-                        <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                        <div class="product-button">
+                            <button type="button">
+                                <a href="{{ path('article_show', {'id': article.id}) }}">Voir sur le site</a>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="product-button">
+                            <button type="button">
+                                <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+
+
                         {{ include('article/_delete_form.html.twig') }}
                     </td>
                 </tr>
@@ -44,8 +67,4 @@
             {% endfor %}
             </tbody>
         </table>
-
-        <a href="{{ path('article_new') }}">Créer un article</a>
-    </div>
-
 {% endblock %}
