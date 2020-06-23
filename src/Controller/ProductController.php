@@ -109,8 +109,10 @@ class ProductController extends AbstractController
     /**
      * @Route("product/{id}", name="product_show", methods={"GET"})
      */
-    public function show(Product $product): Response
+    public function show(Product $product, $id): Response
     {
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $productRepository->findBy(['id' => $id]);
         return $this->render('product/show.html.twig', [
             'product' => $product,
         ]);
