@@ -1,41 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article Show{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <div class="container">
+        <h1>{{ article.title }}</h1>
 
-    <img class="card-img-top" src="../article/img/{{ article.img1 }}" alt="{{ article.title }}"
-         style=" width: 50%; height: 500px;">
+        <img class="card-img-top" src="../article/img/{{ article.img1 }}" alt="{{ article.title }}">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ article.description }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article.content }}</td>
-            </tr>
-            <tr>
-                <th>Img1</th>
-                <td>{{ article.img1 }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="container">
+            <p> {{ article.content }}</p>
 
-    <a href="{{ path('article_index') }}">Retour à la liste</a>
+            <p> le {{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</p>
+        </div>
+
+        <div class="product-button">
+            <button type="button">
+                <a href="{{ path('article_index') }}">Retour à la liste</a>
+            </button>
+        </div>
+
+    </div>
 {% endblock %}

@@ -15,7 +15,12 @@
                     <h5 class="card-title">{{ article.title }}</h5>
                     <p class="card-text">{{ article.description }}</p>
                     <p class="card-text"><small class="text-muted">publié le {{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</small></p>
-                    <a href="{{ path('article_show', {'id': article.id}) }}"> Détails </a>
+
+                    <div class="product-button">
+                        <button type="button">
+                            <a href="{{ path('article_show', {'id': article.id}) }}"> Détails </a>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
