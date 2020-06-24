@@ -39,7 +39,7 @@ class Product
     private $category;
 
     /**
-     * @ORM\Column(type="text", length=255)
+     * @ORM\Column(type="text")
      */
     private $content;
 
