@@ -32,8 +32,12 @@ class ProductController extends AbstractController
 
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
             $keyword = $searchForm->get('search')->getData();
-            dd($keyword);
-            // $product = result recherche
+            $product = $productRepository->findLike($keyword);
+
+            if (empty($searchForm->get('search')->getData()))
+            {
+                $productRepository->findAllTProductVerified();
+            }
         }
 
         $pagination = $paginator->paginate(

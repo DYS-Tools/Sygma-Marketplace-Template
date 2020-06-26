@@ -14,6 +14,7 @@ class SearchProductFormType extends AbstractType
         $builder
         ->add('search', TextType::class, [
             'data' => '',
+            'required' => false,
         ]);
         ;
     }
