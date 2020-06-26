@@ -256,13 +256,9 @@ class DashboardController extends AbstractController
 
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
         $orders = $orderRepository->findBy(['user' => $user, 'status' => 'finish']);
-        // TODO: GET All product assigned to this orders 
-
-        $productRepository = $this->getDoctrine()->getRepository(Product::class);
-        $products = $productRepository->findBy(['user' => $user]);
 
         return $this->render('dashboard/myProduct.html.twig', [
-            'products' => $products,
+            'orders' => $orders,
             'user' => $user,
         ]);
     }

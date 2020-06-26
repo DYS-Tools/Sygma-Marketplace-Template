@@ -103,10 +103,8 @@ class Order
         return $this;
     }
 
-    /**
-     * @return Collection|Product[]
-     */
-    public function getProduct(): Collection
+    
+    public function getProduct()
     {
         return $this->product;
     }
