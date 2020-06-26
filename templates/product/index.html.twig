@@ -70,7 +70,7 @@
     <br/><br/>
 
     <!-- new product -->
-    {% for product in products %}
+    {% for product in pagination %}
     <div class="wrapper">
         {% if product.img1 != NULL %}
             <div class="product-img">
@@ -112,6 +112,18 @@
             <td colspan="9">Pas de résultat actuellement.</td>
         </tr>
     {% endfor %}
+
+        {# total items count #}
+
+    <!-- <div class="count">
+        { { pagination.getTotalItemCount }}
+    </div>
+    -->
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
 </div>
 {% endblock %}
