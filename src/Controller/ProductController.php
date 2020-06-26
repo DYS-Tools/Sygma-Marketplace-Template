@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Form\SearchProductFormType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Service\Upload;
@@ -20,11 +21,21 @@ use Knp\Component\Pager\PaginatorInterface;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/", name="product_index", methods={"GET"})
+     * @Route("/", name="product_index")
      */
     public function index(ProductRepository $productRepository, PaginatorInterface $paginator, CategoryRepository $categoryRepository, Request $request): Response
     {
         $product = $productRepository->findAllTProductVerified();
+
+        $searchForm = $this->createForm(SearchProductFormType::class);
+        $searchForm->handleRequest($request);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $keyword = $searchForm->get('search')->getData();
+            dd($keyword);
+            // $product = result recherche
+        }
+
         $pagination = $paginator->paginate(
             $product, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
@@ -34,8 +45,11 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAllTProductVerified(),
             'categories' => $categoryRepository->findAll(),
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'searchForm' => $searchForm->createView()
         ]);
+
+        
     }
 
     /**
@@ -44,7 +58,6 @@ class ProductController extends AbstractController
     public function productWithCategory(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepository, $id): Response
     {
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
-        //dd($name);
         $products = $productRepository->findBy(['category' => $id]);
 
         $pagination = $paginator->paginate(
