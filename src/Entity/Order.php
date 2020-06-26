@@ -41,7 +41,7 @@ class Order
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity=Product::class, inversedBy="orders")
      */
     private $product;
 
@@ -125,6 +125,13 @@ class Order
         if ($this->product->contains($product)) {
             $this->product->removeElement($product);
         }
+
+        return $this;
+    }
+
+    public function setProduct(?Product $product): self
+    {
+        $this->product = $product;
 
         return $this;
     }

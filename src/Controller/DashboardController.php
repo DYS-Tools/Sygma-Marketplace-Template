@@ -253,6 +253,11 @@ class DashboardController extends AbstractController
     {   // my product for client
         // get current user
         $user = $this->getUser();
+
+        $orderRepository = $this->getDoctrine()->getRepository(Order::class);
+        $orders = $orderRepository->findBy(['user' => $user, 'status' => 'finish']);
+        // TODO: GET All product assigned to this orders 
+
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['user' => $user]);
 
