@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Form\SearchProductFormType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Service\Upload;
@@ -14,33 +15,65 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Knp\Component\Pager\PaginatorInterface;
 
 
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/", name="product_index", methods={"GET"})
+     * @Route("/", name="product_index")
      */
-    public function index(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
+    public function index(ProductRepository $productRepository, PaginatorInterface $paginator, CategoryRepository $categoryRepository, Request $request): Response
     {
+        $product = $productRepository->findAllTProductVerified();
+
+        $searchForm = $this->createForm(SearchProductFormType::class);
+        $searchForm->handleRequest($request);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $keyword = $searchForm->get('search')->getData();
+            $product = $productRepository->findLike($keyword);
+
+            if (empty($searchForm->get('search')->getData()))
+            {
+                $productRepository->findAllTProductVerified();
+            }
+        }
+
+        $pagination = $paginator->paginate(
+            $product, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAllTProductVerified(),
-            'categories' => $categoryRepository->findAll()
+            'categories' => $categoryRepository->findAll(),
+            'pagination' => $pagination,
+            'searchForm' => $searchForm->createView()
         ]);
+
+        
     }
 
     /**
      * @Route("/category/{id}", name="product_with_category", methods={"GET"})
      */
-    public function productWithCategory(ProductRepository $productRepository, CategoryRepository $categoryRepository, $id): Response
+    public function productWithCategory(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepository, $id): Response
     {
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
-        //dd($name);
         $products = $productRepository->findBy(['category' => $id]);
+
+        $pagination = $paginator->paginate(
+            $products, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
-            'categories' => $categoryRepository->findAll()
+            'categories' => $categoryRepository->findAll(),
+            'pagination' => $pagination
         ]);
     }
 

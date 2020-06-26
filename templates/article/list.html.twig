@@ -7,7 +7,7 @@
     <div class="container">
         <h1>Nos articles</h1>
 
-        {% for article in articles %}
+        {% for article in pagination %}
         <div class="card-group">
             <div class="card">
                 <img class="card-img-top" src="../article/img/{{ article.img1 }}" alt="Card image cap">
@@ -26,8 +26,13 @@
         </div>
             <br/>
             <hr/>
+
         {% else %}
             <h2> Pas d'article pour le moment.</h2>
         {% endfor %}
+
+        <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 {% endblock %}

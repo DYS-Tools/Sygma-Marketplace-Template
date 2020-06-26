@@ -17,6 +17,7 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
         $order->setStatus("In progress");
         $order->setCreated( new \DateTime() );
         $order->setUser($this->getReference('YADMIN'));
+        $order->setProduct($this->getReference('FPRODUCT'));
         $manager->persist($order);
 
         $order1 = new Order();
@@ -24,6 +25,7 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
         $order1->setStatus("finish");
         $order1->setCreated( new \DateTime() );
         $order1->setUser($this->getReference('SADMIN'));
+        $order1->setProduct($this->getReference('FPRODUCT'));
         $manager->persist($order1);
 
         // Create Order for user
@@ -32,6 +34,7 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
         $order2->setStatus("waiting for payment");
         $order2->setCreated( new \DateTime() );
         $order2->setUser($this->getReference('AUTHOR'));
+        $order2->setProduct($this->getReference('FPRODUCT'));  
         $manager->persist($order2);
 
         $manager->flush();
@@ -41,7 +44,7 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return array(
-            UserFixtures::class
+            ProductFixtures::class
         );
     }
 

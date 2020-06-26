@@ -16,29 +16,29 @@
 
         <h2> Produits disponible aux téléchargements </h2>
         <br/>
-        {% if products > 0  %}
-            {% for product in products %}
+        {% if orders > 0  %}
+            {% for order in orders %}
             <div class="card">
                 <div class="card-header">
-                    {{ product.name }}
+                    {{ order.product.name }}
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ product.price }} €</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <p class="card-text">Vente : {{ product.numberSale }}</p>
-                    {%   if product.demoLink != NULL %}
-                        <a href="{{ product.demoLink }}" class="btn btn-info">Demo</a>
+                    <h5 class="card-title">{{ order.product.price }} €</h5>
+                    <p class="card-text">{{ order.product.description }}</p>
+                    <p class="card-text">Vente : {{ order.product.numberSale }}</p>
+                    {%   if order.product.demoLink != NULL %}
+                        <a href="{{ order.product.demoLink }}" class="btn btn-info">Demo</a>
                     {% else %}
                         <p> Pas de démonstration.</p>
                     {%  endif  %}
-                    <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">voir plus</a>
+                    <a href="{{ path('product_show', {'id': order.product.id}) }}" class="btn btn-primary">voir plus</a>
 
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a> <!-- Todo -->
+                    <a href="{{ path('product_edit', {'id': order.product.id}) }}">Modifier</a> <!-- Todo -->
 
                     {{ include('product/_delete_form.html.twig') }} <!-- Todo -->
 
-                    {% if product.img1 != NULL %}
-                        <img class="card-img-top" src="../product/img/{{ product.img1 }}" alt="{{ product.name }}"
+                    {% if order.product.img1 != NULL %}
+                        <img class="card-img-top" src="../product/img/{{ order.product.img1 }}" alt="{{ order.product.name }}"
                             style=" width: 50%; height: 500px;">
                     {% endif %}
                 </div>
@@ -47,7 +47,7 @@
                     
 
                     <button type="button">
-                        <a href="{{ asset("product/" ~ product.file)  }}" 
+                        <a href="{{ asset("product/" ~ order.product.file)  }}" 
                             download>
                             <button type="button" class="btn btn-success">Download product</button>
                             </a>
@@ -64,9 +64,6 @@
             <p> vous n'avez pas encore de produit en vente </p>
         {% endif %}
 
-
     </div>
-
-
 
 {% endblock %}

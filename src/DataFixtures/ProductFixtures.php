@@ -11,7 +11,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class ProductFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const PRODUCT = 'PRODUCT';
+    public const PRODUCT = 'FPRODUCT';
 
     public function load(ObjectManager $manager)
     {
@@ -19,9 +19,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product = new Product();
         $product->setName("Formulaire de contact");
         $product->setDescription("Formulaire de contact...");
-        $product->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim enim sit amet venenatis urna cursus. Scelerisque in dictum non consectetur a erat. Accumsan lacus vel facilisis volutpat est. Eget nulla facilisi etiam dignissim diam quis enim. Turpis cursus in hac habitasse platea. Enim nulla aliquet porttitor lacus. Augue lacus viverra vitae congue. Mi proin sed libero enim sed faucibus turpis in eu. Neque laoreet suspendisse interdum consectetur libero id faucibus. Orci nulla pellentesque dignissim enim. Odio ut enim blandit volutpat maecenas volutpat blandit.
-                                       Pharetra magna ac placerat vestibulum. Risus sed vulputate odio ut enim blandit volutpat maecenas. Velit scelerisque in dictum non consectetur. Etiam sit amet nisl purus in mollis. Nunc mattis enim ut tellus elementum. Urna duis convallis convallis tellus id. Ultrices sagittis orci a scelerisque purus semper eget duis at. Ac tincidunt vitae semper quis lectus nulla at volutpat. Cras fermentum odio eu feugiat pretium. Facilisis volutpat est velit egestas. Sed blandit libero volutpat sed cras. Sed sed risus pretium quam vulputate dignissim suspendisse. Lacus vel facilisis volutpat est velit. Morbi tempus iaculis urna id volutpat. Ultricies mi quis hendrerit dolor magna eget est lorem.
-                                       Id diam vel quam elementum pulvinar. Id consectetur purus ut faucibus pulvinar elementum integer enim neque. Ipsum suspendisse ultrices gravida dictum fusce ut. Odio ut enim blandit volutpat maecenas volutpat blandit aliquam. Quis blandit turpis cursus in hac habitasse platea. Consectetur a erat nam at lectus urna. Etiam sit amet nisl purus in mollis nunc. Laoreet id donec ultrices tincidunt arcu. Eget aliquet nibh praesent tristique. Nunc consequat interdum varius sit amet mattis. Quisque egestas diam in arcu. Tempor orci dapibus ultrices in.
+        $product->setContent("Lorem ipsum dolor Quisque egestas diam in arcu. Tempor orci dapibus ultrices in.
                                        ");
         $product->setFile("name_product.zip");
         $product->setPublished( new \DateTime() );
@@ -33,16 +31,14 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setVerified(0);
         $product->setImg1("firstImage.png");
         // add reference for media
-        $this->addReference('PRODUCT',$product);
+        $this->addReference('FPRODUCT',$product);
         $manager->persist($product);
 
         // Create Product no verified
         $product1 = new Product();
         $product1->setName("Footer");
         $product1->setDescription("Footer avec images");
-        $product1->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim enim sit amet venenatis urna cursus. Scelerisque in dictum non consectetur a erat. Accumsan lacus vel facilisis volutpat est. Eget nulla facilisi etiam dignissim diam quis enim. Turpis cursus in hac habitasse platea. Enim nulla aliquet porttitor lacus. Augue lacus viverra vitae congue. Mi proin sed libero enim sed faucibus turpis in eu. Neque laoreet suspendisse interdum consectetur libero id faucibus. Orci nulla pellentesque dignissim enim. Odio ut enim blandit volutpat maecenas volutpat blandit.
-                                       Pharetra magna ac placerat vestibulum. Risus sed vulputate odio ut enim blandit volutpat maecenas. Velit scelerisque in dictum non consectetur. Etiam sit amet nisl purus in mollis. Nunc mattis enim ut tellus elementum. Urna duis convallis convallis tellus id. Ultrices sagittis orci a scelerisque purus semper eget duis at. Ac tincidunt vitae semper quis lectus nulla at volutpat. Cras fermentum odio eu feugiat pretium. Facilisis volutpat est velit egestas. Sed blandit libero volutpat sed cras. Sed sed risus pretium quam vulputate dignissim suspendisse. Lacus vel facilisis volutpat est velit. Morbi tempus iaculis urna id volutpat. Ultricies mi quis hendrerit dolor magna eget est lorem.
-                                       Id diam vel quam elementum pulvinar. Id consectetur purus ut faucibus pulvinar elementum integer enim neque. Ipsum suspendisse ultrices gravida dictum fusce ut. Odio ut enim blandit volutpat maecenas volutpat blandit aliquam. Quis blandit turpis cursus in hac habitasse platea. Consectetur a erat nam at lectus urna. Etiam sit amet nisl purus in mollis nunc. Laoreet id donec ultrices tincidunt arcu. Eget aliquet nibh praesent tristique. Nunc consequat interdum varius sit amet mattis. Quisque egestas diam in arcu. Tempor orci dapibus ultrices in.
+        $product1->setContent("Lorem ipsumhatesque dignissim enim. Odio ut enim blandit volutpat maecenas volutpat blandit.
                                        ");
         $product1->setFile("name_footer.zip");
         $product1->setPublished( new \DateTime() );
@@ -61,10 +57,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product2 = new Product();
         $product2->setName("Theme WordPress");
         $product2->setDescription("WordPress Simple et facile");
-        $product2->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim enim sit amet venenatis urna cursus. Scelerisque in dictum non consectetur a erat. Accumsan lacus vel facilisis volutpat est. Eget nulla facilisi etiam dignissim diam quis enim. Turpis cursus in hac habitasse platea. Enim nulla aliquet porttitor lacus. Augue lacus viverra vitae congue. Mi proin sed libero enim sed faucibus turpis in eu. Neque laoreet suspendisse interdum consectetur libero id faucibus. Orci nulla pellentesque dignissim enim. Odio ut enim blandit volutpat maecenas volutpat blandit.
-                                       Pharetra magna ac placerat vestibulum. Risus sed vulputate odio ut enim blandit volutpat maecenas. Velit scelerisque in dictum non consectetur. Etiam sit amet nisl purus in mollis. Nunc mattis enim ut tellus elementum. Urna duis convallis convallis tellus id. Ultrices sagittis orci a scelerisque purus semper eget duis at. Ac tincidunt vitae semper quis lectus nulla at volutpat. Cras fermentum odio eu feugiat pretium. Facilisis volutpat est velit egestas. Sed blandit libero volutpat sed cras. Sed sed risus pretium quam vulputate dignissim suspendisse. Lacus vel facilisis volutpat est velit. Morbi tempus iaculis urna id volutpat. Ultricies mi quis hendrerit dolor magna eget est lorem.
-                                       Id diam vel quam elementum pulvinar. Id consectetur purus ut faucibus pulvinar elementum integer enim neque. Ipsum suspendisse ultrices gravida dictum fusce ut. Odio ut enim blandit volutpat maecenas volutpat blandit aliquam. Quis blandit turpis cursus in hac habitasse platea. Consectetur a erat nam at lectus urna. Etiam sit amet nisl purus in mollis nunc. Laoreet id donec ultrices tincidunt arcu. Eget aliquet nibh praesent tristique. Nunc consequat interdum varius sit amet mattis. Quisque egestas diam in arcu. Tempor orci dapibus ultrices in.
-                                       ");
+        $product2->setContent("Lorem ipsum dolor sit amollis nunc Quisque egestas diam in arcu. Tempor orci dapibus ultrices in.");
         $product2->setFile("WordPress-theme.zip");
         $product2->setPublished( new \DateTime() );
         $product2->setDemoLink("https://demo.projet2.com" );
@@ -85,10 +78,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product3->setName("Template HTML");
         $product3->setDescription("Boostrap & CSS");
         // Todo : add more word
-        $product3->setContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim enim sit amet venenatis urna cursus. Scelerisque in dictum non consectetur a erat. Accumsan lacus vel facilisis volutpat est. Eget nulla facilisi etiam dignissim diam quis enim. Turpis cursus in hac habitasse platea. Enim nulla aliquet porttitor lacus. Augue lacus viverra vitae congue. Mi proin sed libero enim sed faucibus turpis in eu. Neque laoreet suspendisse interdum consectetur libero id faucibus. Orci nulla pellentesque dignissim enim. Odio ut enim blandit volutpat maecenas volutpat blandit.
-                                       Pharetra magna ac placerat vestibulum. Risus sed vulputate odio ut enim blandit volutpat maecenas. Velit scelerisque in dictum non consectetur. Etiam sit amet nisl purus in mollis. Nunc mattis enim ut tellus elementum. Urna duis convallis convallis tellus id. Ultrices sagittis orci a scelerisque purus semper eget duis at. Ac tincidunt vitae semper quis lectus nulla at volutpat. Cras fermentum odio eu feugiat pretium. Facilisis volutpat est velit egestas. Sed blandit libero volutpat sed cras. Sed sed risus pretium quam vulputate dignissim suspendisse. Lacus vel facilisis volutpat est velit. Morbi tempus iaculis urna id volutpat. Ultricies mi quis hendrerit dolor magna eget est lorem.
-                                       Id diam vel quam elementum pulvinar. Id consectetur purus ut faucibus pulvinar elementum integer enim neque. Ipsum suspendisse ultrices gravida dictum fusce ut. Odio ut enim blandit volutpat maecenas volutpat blandit aliquam. Quis blandit turpis cursus in hac habitasse platea. Consectetur a erat nam at lectus urna. Etiam sit amet nisl purus in mollis nunc. Laoreet id donec ultrices tincidunt arcu. Eget aliquet nibh praesent tristique. Nunc consequat interdum varius sit amet mattis. Quisque egestas diam in arcu. Tempor orci dapibus ultrices in.
-                                       ");
+        $product3->setContent("Lorem ipsum  en mollis nunc.  sit amet mattis. Quisque egestas diam in arcu. ultrices in.");
         $product3->setFile("template-theme.zip");
         $product3->setPublished( new \DateTime() );
         $product3->setDemoLink("https://demo.projet3.com" );
@@ -103,9 +93,6 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         // add reference for media
         $this->addReference('PRODUCT3',$product3);
         $manager->persist($product3);
-
-
-
 
         $manager->flush();
     }

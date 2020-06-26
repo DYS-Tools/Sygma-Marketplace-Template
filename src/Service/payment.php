@@ -85,6 +85,7 @@ class payment
         $order->setAmount($product->getPrice());
         $order->setStatus('waiting for payment');
         $order->setCreated(new \DateTime(date('Y-m-d H:i:s')));
+        $order->setProduct($product);
 
         $this->em->persist($order);
         $this->em->flush();
