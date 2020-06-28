@@ -97,7 +97,7 @@ class SecurityController extends AbstractController
                 'you are author now, congratulation !'
             );
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('product_index');
         }
 
         return $this->render('security/becomeAuthor.html.twig', [

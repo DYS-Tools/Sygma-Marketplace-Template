@@ -328,6 +328,9 @@ a.logo span {
     float: left;
     height: 50px;
 }
+.become-author-span{
+    font-weight: bold;
+}
 .footer-outer .column-1-3 h1 {
     font-size: 38px;
     letter-spacing: 3px;
