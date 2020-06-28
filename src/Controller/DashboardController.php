@@ -7,6 +7,7 @@ use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Ticket;
 use App\Entity\User;
+use App\Form\PayoutFormType;
 use App\Form\ProductType;
 use App\Form\RejectProductFormType;
 use App\Form\ResolveTicketType;
@@ -284,13 +285,29 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/payout_author", name="payout_author")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
-    public function payoutAuthor()
+    public function payoutAuthor(Request $request)
     {   // payout function
 
         // get current user
         $user = $this->getUser();
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['user' => $user]);
+
+        $form = $this->createForm(PayoutFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if($form->get('amount')->getData() <= $user->getAvailablePayout()){
+                //TODO: stripe payment
+
+                // remove amount in database User
+                $user->setAvailablePayout($user->getAvailablePayout() - $form->get('amount')->getData());
+            }
+            else{
+                $this->redirectToRoute('payout_author');
+                //TODO: FlashMessage
+            }
+        }
         
         // TODO : if payout : remove number in available payout variable
 
@@ -298,6 +315,7 @@ class DashboardController extends AbstractController
             'products' => $products,
             'user' => $user,
             'userPayout' => $user->getAvailablePayout(),
+            'form' => $form->createView(),
         ]);
     }
 
