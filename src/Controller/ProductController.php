@@ -64,6 +64,19 @@ class ProductController extends AbstractController
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['category' => $id]);
 
+        $searchForm = $this->createForm(SearchProductFormType::class);
+        $searchForm->handleRequest($request);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $keyword = $searchForm->get('search')->getData();
+            $products = $productRepository->findLike($keyword);
+
+            if (empty($searchForm->get('search')->getData()))
+            {
+                $productRepository->findAllTProductVerified();
+            }
+        }
+
         $pagination = $paginator->paginate(
             $products, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
@@ -73,7 +86,8 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
             'products' => $products,
             'categories' => $categoryRepository->findAll(),
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'searchForm' => $searchForm->createView()
         ]);
     }
 
