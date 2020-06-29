@@ -1,0 +1,21 @@
+/* ==========================================================================================================
+										Statistique card page
+   ========================================================================================================== */
+
+.container-card {
+
+    background-color: white ;
+    margin: 15px ;
+    height: 300px ;
+
+}
+
+.card-title {
+    background-color: yellowgreen;
+    color : black;
+    padding : 10px ;
+}
+
+.card-content {
+    padding: 10px ;
+}
