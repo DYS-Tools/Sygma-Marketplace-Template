@@ -9,16 +9,16 @@
 
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('statistic_admin') }}"><span class="red">Statistique</span></a>
+                    <a class="nav-link" href="{{ path('statistic_admin') }}"><span class="red"><i class="fa fa-line-chart" aria-hidden="true"></i>   Statistique </span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('product_verified') }}"><span class="red">Administration produits</span></a>
+                    <a class="nav-link" href="{{ path('product_verified') }}"><span class="red"> <i class="fa fa-tags" aria-hidden="true"></i>  Administration produits</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('ticket_handler') }}"><span class="red">Gestion des tickets</span></a>
+                    <a class="nav-link" href="{{ path('ticket_handler') }}"><span class="red"> <i class="fa fa-sticky-note" aria-hidden="true"></i>   Gestion des tickets</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('article_index_admin') }}"><span class="red">Le blog</span></a>
+                    <a class="nav-link" href="{{ path('article_index_admin') }}"><span class="red"><i class="fa fa-file-text" aria-hidden="true"></i>   Le blog</span></a>
                 </li>
             {% endif %}
 
@@ -47,11 +47,11 @@
 
             {% if is_granted('ROLE_USER') %}
                 <li class="nav-item">
-                    <a class="nav-link blank-link" href="{{ path('my_order') }}">Mes commandes</a>
+                    <a class="nav-link blank-link" href="{{ path('my_order') }}"><i class="fa fa-archive" aria-hidden="true"></i>  Mes commandes</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link blank-link" href="{{ path('my_product') }}"><span class="">Téléchargement</span></a>
+                    <a class="nav-link blank-link" href="{{ path('my_product') }}"><span class=""><i class="fa fa-download" aria-hidden="true"></i>    Téléchargement</span></a>
                 </li>
             {% endif %}
         </ul>
