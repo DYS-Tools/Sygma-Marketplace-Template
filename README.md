@@ -1,18 +1,20 @@
 # Web-Item-Market project
 
-Web element gallery
+Welcome to SWeb-Item-Market !
 
-Application developped by DYS-Tools
+Web element gallery.
+
+Application developped by DYS-Tools ( Sacha & Yohann Durand)
 
 ## Technology 
 
-Working with symfony
-- Webpack Encore
-- React.js
-- Symfony
+This architecture proposes a reutilisable code and easy to maintain. It also provides good practice like MVC layout and object oriented
+
+- Symfony ( 5.0.8 )
+- CircleCI
 - Docker ( configure your environment)
 - Ansible ( deploy with ansible folder)
-- CircleCI
+
 
 ## Use this project 
 How to use this project on your environment ? 
@@ -26,9 +28,34 @@ How to use this project on your environment ?
 -  run `php bin/console d:m:m`
 -  You can run this project with docker containers (docker-compose included in this repository )
 
+
+##### For Docker run :
+run this project with docker containers (docker-compose included in this repository )
+```
+docker-compose up -d
+```
+## Deployment
+
+##### For Ansible, create your ansible/hosts.ini and ansible/templates/.env and run:
+```
+ansible-playbook ansible/playbook.yml -i ansible/hosts.ini --ask-vault-pass
+```
+
+##### This website is available in "..." 
+
+## Testing 
+For generate a coverage-html
+```
+php bin/phpunit --coverage-html public/data 
+```
+Testing Symfony Website
+```
+php bin/phpunit
+```
+
 ## Other information 
 Visit our website for more informations
 
-## Deployment
-Several solutions to deploy this project : 
-1. You can use Ansible with Ansible folder for deploy
+Standard :
+1. PSR2 ( https://www.php-fig.org/psr/psr-2/ )
+
