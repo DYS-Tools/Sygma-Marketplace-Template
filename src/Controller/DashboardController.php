@@ -298,6 +298,7 @@ class DashboardController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if($form->get('amount')->getData() <= $user->getAvailablePayout()){
+                dd($form->get('iban')->getData());
                 //TODO: stripe payment
 
                 // remove amount in database User
