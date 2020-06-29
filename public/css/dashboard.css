@@ -1,18 +1,19 @@
 /* ==========================================================================================================
-										Statistique card page
+										Statistic card page
    ========================================================================================================== */
-
 .container-card {
-
     background-color: white ;
     margin: 15px ;
     height: 300px ;
-
+    border-left : 4px yellowgreen solid ;
+    border-right : 4px yellowgreen solid ;
+    border-bottom : 5px yellowgreen dashed ;
+    border-radius: 10px;
 }
 
 .card-title {
     background-color: yellowgreen;
-    color : black;
+    color : white;
     padding : 10px ;
 }
 

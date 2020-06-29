@@ -18,44 +18,86 @@
 
             <div class="col-lg-6">
                 <div class="container-card">
-                    <div class="card-title">  <h2> Produits </h2> </div>
+                    <div class="card-title">  <h2> <i class="fa fa-tags" aria-hidden="true"></i>    Produits </h2> </div>
 
                     <div class="card-content">
-                        <p> Produits en vente : {{ ProductForSell }}</p>
-                        <p> Produits en attente de vérification : {{ ProductForVerified }}</p>
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i>  Produits en vente :</th>
+                                <td>{{ ProductForSell }}</td>
+                            <tr>
+                                <th scope="row"><i class="fa fa-caret-right" aria-hidden="true"></i>  Produits en attente de vérification</th>
+                                <td>{{ ProductForVerified }}</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
                 <div class="container-card">
-                    <div class="card-title">  <h2> Commandes </h2> </div>
+                    <div class="card-title">  <h2> <i class="fa fa-archive" aria-hidden="true"></i>    Commandes  </h2> </div>
 
                     <div class="card-content">
-                        <p> Commande effectué : {{ countOrder }}</p>
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i>  Commande effectué :</th>
+                                <td>{{ countOrder }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-lg-6">
+                <div class="container-card">
+                    <div class="card-title">  <h2>  <i class="fa fa-user" aria-hidden="true"></i>    Utilisateurs</h2> </div>
+
+                    <div class="card-content">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i>  Total d'utilisateurs inscrits :</th>
+                                <td>{{ countMember }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i>  Administrateurs : </th>
+                                <td>{{ countAdmin }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i>  Utilisateurs :</th>
+                                <td>{{ countUser }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i>  Auteurs :</th>
+                                <td>{{ countAuthor }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
                 <div class="container-card">
-                    <div class="card-title">  <h2> Utilisateurs </h2> </div>
+                    <div class="card-title">  <h2>  <i class="fa fa-file-text" aria-hidden="true"></i>     Blog </h2> </div>
 
                     <div class="card-content">
-                        <p> Total d'utilisateurs inscrits : {{ countMember }}</p>
-                        <p> Administrateurs : {{ countAdmin }}</p>
-                        <p> Utilisateurs : {{ countUser }}</p>
-                        <p> Auteurs : {{ countAuthor }} </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="container-card">
-                    <div class="card-title">  <h2> Blog </h2> </div>
-
-                    <div class="card-content">
-                        <p> Article de blog : {{ countArticle }} </p>
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i>  Article de blog : </th>
+                                <td>{{ countArticle }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
