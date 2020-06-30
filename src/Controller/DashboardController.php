@@ -12,6 +12,7 @@ use App\Form\ProductType;
 use App\Form\RejectProductFormType;
 use App\Form\ResolveTicketType;
 use App\Repository\ArticleRepository;
+use App\Service\payment;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -285,7 +286,7 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/payout_author", name="payout_author")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
-    public function payoutAuthor(Request $request)
+    public function payoutAuthor(Request $request, payment $payment)
     {   // payout function
 
         // get current user
@@ -298,8 +299,25 @@ class DashboardController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if($form->get('amount')->getData() <= $user->getAvailablePayout()){
-                dd($form->get('iban')->getData());
-                //TODO: stripe payment
+
+                // Generate payout
+                $stripe = new \Stripe\StripeClient(
+                    $payment->getStripeSecretCredentials()
+                  );
+                $stripe->setupIntents->create([
+                'payment_method_types' => ['card'],
+                ]);
+
+                $destination = $form->get('iban')->getData();
+
+                $virement = $stripe->payouts->create([
+                    'amount' => $form->get('amount')->getData() * 100,
+                    'currency' => 'eur',
+                    'destination' => $destination
+                  ]);
+
+                dd($virement);
+                dd($stripe->payouts->retrieve( $virement['id'],[]));
 
                 // remove amount in database User
                 $user->setAvailablePayout($user->getAvailablePayout() - $form->get('amount')->getData());

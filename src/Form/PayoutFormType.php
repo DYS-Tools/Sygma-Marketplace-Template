@@ -21,7 +21,7 @@ class PayoutFormType extends AbstractType
             ])
             ->add('iban', TextType::class, [
                 'attr' => ['class' => 'tinymce'],
-                'label' => 'IBAN ( XXXX XXXX XXXX XXXX )'
+                'label' => 'IBAN ( FRXX XXXX XXXX XXXX XXXX XXXX XXX )'
             ]);
         ;
     }
