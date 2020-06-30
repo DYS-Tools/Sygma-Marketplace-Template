@@ -298,9 +298,11 @@ class DashboardController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
             if($form->get('amount')->getData() <= $user->getAvailablePayout()){
 
-                // Generate payout
+                // Try to generate payout via Paypal
+                // Generate payout   
                 $stripe = new \Stripe\StripeClient(
                     $payment->getStripeSecretCredentials()
                   );
@@ -309,6 +311,12 @@ class DashboardController extends AbstractController
                 ]);
 
                 $destination = $form->get('iban')->getData();
+                $destination = $stripe->accounts->createExternalAccount(
+                    $form->get('iban')->getData(),
+                    [
+                      'external_account' => $form->get('iban')->getData(),
+                    ]
+                  );
 
                 $virement = $stripe->payouts->create([
                     'amount' => $form->get('amount')->getData() * 100,
