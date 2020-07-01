@@ -70,6 +70,9 @@ class payment
     }
     */
 
+    public function makePaypalPayment(Product $product, User $user){
+
+    }
     public function makePayment(Product $product, User $user )
     {
 
