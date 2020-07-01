@@ -12,14 +12,25 @@
             <br/>
         </div>
 
-        <h2> Retirer vos fonds  </h2>
-        <a href="https://connect.stripe.com/express/oauth/authorize?
-        client_id=ca_HYxhtqNA8QfeeDMrU0lvmTIvBbDap4y9
-        &stripe_landing=connect
-        &state={STATE_VALUE}
-        &suggested_capabilities[]=transfers
-        &stripe_user[email]={{ user.email }}">Se connecter a Stripe  </a>
+         <div class="container">
+        <br/><br/>
+
+    </div>
+
+        <h2> Mon portefeuille  <i class="fa fa-money" aria-hidden="true"></i></h2>
+        <br/>
+        <h3> solde Actuel :  <i class="fa fa-eur" aria-hidden="true"></i> </h3>
+        <h3> solde en attente :  <i class="fa fa-eur" aria-hidden="true"></i> </h3>
+        <br/><br/>
         <hr/>
+        <br/>
+        <h2> Retirer vos fonds  </h2>
+        <br/>
+        <a href="https://connect.stripe.com/oauth/authorize?
+        client_id=ca_HYxhtqNA8QfeeDMrU0lvmTIvBbDap4y9
+        &state=test-aaaaaaaaaaaaaaaaaaaa
+        &stripe_user[email]={{ user.email }}">Se connecter a Stripe  </a>
+        
         <br/>
 
 
