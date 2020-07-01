@@ -82,4 +82,18 @@ class FrontController extends AbstractController
         return $this->render('front/faq.html.twig', [
         ]);
     }
+
+
+    /**
+     * @Route("/helpAuthor", name="help_author")
+     */
+    public function help_author()
+    {
+        return $this->render('front/helpAuthor.html.twig', [
+        ]);
+    }
+
+
+
+
 }
