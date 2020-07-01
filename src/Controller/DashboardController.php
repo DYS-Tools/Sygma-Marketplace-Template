@@ -283,7 +283,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/payout_author", name="payout_author")
+     * @Route("/dashboard/money_managment", name="money_managment")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function payoutAuthor(Request $request, payment $payment)
@@ -331,32 +331,18 @@ class DashboardController extends AbstractController
                 $user->setAvailablePayout($user->getAvailablePayout() - $form->get('amount')->getData());
             }
             else{
-                $this->redirectToRoute('payout_author');
+                $this->redirectToRoute('money_managment');
                 //TODO: FlashMessage
             }
         }
         
         // TODO : if payout : remove number in available payout variable
 
-        return $this->render('dashboard/authorPayout.html.twig', [
+        return $this->render('dashboard/money_managment.html.twig', [
             'products' => $products,
             'user' => $user,
             'userPayout' => $user->getAvailablePayout(),
             'form' => $form->createView(),
-        ]);
-    }
-
-
-    /**
-     * @Route("/dashboard/MyWallet", name="my_wallet")
-     */
-    public function myWallet()
-    {
-        $user = $this->getUser();
-
-        return $this->render('dashboard/myWallet.html.twig', [
-            //'products' => $products,
-            'user' => $user,
         ]);
     }
 }
