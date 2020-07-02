@@ -271,7 +271,7 @@ class DashboardController extends AbstractController
      */
     public function payoutAuthor(Request $request, payment $payment)
     {   // payout function
-
+        dd($payment->getConnectAccount($this->getUser()));
         // get current user
         $user = $this->getUser();
         $productRepository = $this->getDoctrine()->getRepository(Product::class);

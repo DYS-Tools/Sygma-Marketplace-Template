@@ -24,19 +24,16 @@
         <br/>
         <h2> Retirer vos fonds  </h2>
         <br/>
-        <a href="https://connect.stripe.com/oauth/authorize?
-        client_id=ca_HYxhtqNA8QfeeDMrU0lvmTIvBbDap4y9
-        &state=test-aaaaaaaaaaaaaaaaaaaa
-        &stripe_user[email]={{ user.email }}">Se connecter a Stripe  </a>
         
-        <br/>
-
-
+        <a href="https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_HYxhtqNA8QfeeDMrU0lvmTIvBbDap4y9&scope=read_write">
+            <img src="{{ asset('../public/img/stripe-connect.png') }}" alt="Se connecter a stripe" width="20%"/> 
+        </a>
+        <br/><br/>
 
         <h4> Fonds disponible : {{ userPayout }} € </h4>
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button class="btn">{{ button_label|default('Confirmer') }}</button>
+            <button class="btn">{{ button_label|default('Retirer les fonds') }}</button>
         {{ form_end(form) }}
     </div>
 

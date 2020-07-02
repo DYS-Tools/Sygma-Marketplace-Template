@@ -24,6 +24,7 @@ use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\ScopingHttpClient;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 class payment
 {
 
@@ -70,9 +71,6 @@ class payment
     }
     */
 
-    public function makePaypalPayment(Product $product, User $user){
-
-    }
     public function makePayment(Product $product, User $user )
     {
 
@@ -119,8 +117,20 @@ class payment
           // $order->setStatus('Finished');
         return $session;
     }
-    public function payout(User $user , $amount){
+
+    public function getConnectAccount(User $user ){
+        // for register a acct_XXXXX ( stripe_user_id variable ) in database
+
+        $client = HttpClient::create();
+        $response = $client->request('GET', 'https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_HYxhtqNA8QfeeDMrU0lvmTIvBbDap4y9&scope=read_write');
         
+        $this->em->flush();
+        return $response ;
+    
+    }
+
+    public function payout(){
+        dd();
     }
 
 
