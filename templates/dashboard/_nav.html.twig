@@ -23,12 +23,9 @@
             {% endif %}
 
             {% if is_granted('ROLE_AUTHOR') %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('product_new') }}"><span class="yellowgreen">Ajouter un produit</span></a>
-                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('author_product') }}"><span class="yellowgreen">Produit en vente</span></a>
+                    <a class="nav-link" href="{{ path('author_product') }}"><span class="yellowgreen">Gestionnaire de produit</span></a>
                 </li>
 
                 <li class="nav-item">
