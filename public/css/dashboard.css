@@ -20,10 +20,10 @@
 .card-content {
     padding: 10px ;
 }
-<<<<<<< HEAD
+
 .container-card-product{
     display: column;
-=======
+}
 
 /* ==========================================================================================================
 										Product Verified page // Template card for tab
@@ -44,5 +44,4 @@
     height: 50px;
     width: 20%;
     border-radius: 8px ;
->>>>>>> 2c5ed98caaee524a8e801dc8bddbc7c0d11a1df5
 }
