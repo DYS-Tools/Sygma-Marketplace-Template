@@ -17,6 +17,7 @@
                 <th scope="col">Date</th>
                 <th scope="col">Commande</th>
                 <th scope="col">Status</th>
+                <th scope="col">Téléchargement</th>
                 <th scope="col">Prix</th>
                 </tr>
             </thead>
@@ -30,6 +31,14 @@
                     {% elseif order.status == 'finish' %}
                         <td class='green'> {{ order.status }}</td>
                     {% endif %}
+
+                        <td>
+                                    <a href="{{ asset("product/" ~ order.product.file)  }}" 
+                                        download>
+                                        <button type="button" class="btn btn-success">Download product</button>
+                                        </a>
+                        </td>
+                    
                     
                     <td>{{ order.amount }}</td>
                 </tr>
