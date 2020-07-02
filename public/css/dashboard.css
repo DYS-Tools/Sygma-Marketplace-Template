@@ -20,6 +20,29 @@
 .card-content {
     padding: 10px ;
 }
+<<<<<<< HEAD
 .container-card-product{
     display: column;
+=======
+
+/* ==========================================================================================================
+										Product Verified page // Template card for tab
+   ========================================================================================================== */
+
+.container-card-tab {
+    border-left : 4px yellowgreen solid ;
+    border-right : 4px yellowgreen solid ;
+    border-top : 4px yellowgreen solid ;
+    border-bottom : 5px yellowgreen dashed ;
+    padding: 15px ;
+}
+
+.container-card-tab-title {
+    background-color: yellowgreen;
+    color : white;
+    padding : 10px ;
+    height: 50px;
+    width: 20%;
+    border-radius: 8px ;
+>>>>>>> 2c5ed98caaee524a8e801dc8bddbc7c0d11a1df5
 }
