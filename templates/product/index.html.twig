@@ -35,50 +35,29 @@
     <br/><br/>
     <h1 class="text-center"><i class="fa fa-file-text" aria-hidden="true"></i>  Nos produits  </h1>
     <br/><br/>
+</div>
 
     <!-- new product -->
-    {% for product in pagination %}
-    <div class="wrapper">
-        {% if product.img1 != NULL %}
-            <div class="product-img">
-                <img src="product/img/{{ product.img1 }}"  alt="{{ product.name }}" height="420" width="100%">
+    <div class="container">
+        <div class="box-card">
+            <div class="row">    
+                {% for product in pagination %}
+                    <div class="container-card-product col-lg-3">
+                        <div class="img-card ">
+                            <img class="card-img-top" src="product/img/{{ product.img1 }}"  alt="{ { product.name }}" height="200" width="200">
+                        </div>
+                        <div class="card-title">
+                            <p> <strong>{{ product.name }}</strong></p>
+                            <h3> {{ product.price }} €</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>{{ product.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        {% endif %}
-
-        <div class="product-info">
-            <div class="product-text">
-                <h1> {{ product.name }}</h1>
-                <h2><strong>Vente : </strong>  <span class="yellowgreen"> {{ product.numberSale }} </span></h2>
-                <p>{{ product.description }}</p>
-            </div>
-
-            <div class="product-price-btn">
-                <p><span>{{ product.price }}</span>$</p>
-            </div>
-
-            <div class="product-button">
-                    
-
-                    <button type="button">
-                        <a href="{{ path('product_show', {'id': product.id}) }}"> Détails</a>
-                    </button>
-
-                    <button type="button">
-                        {%   if product.demoLink != NULL %}
-                            <a href="{{ product.demoLink }}">Démo</a>
-                        {% else %}
-                            <p> Pas de démonstration.</p>
-                        {%  endif  %}
-                    </button>
-            </div>
-
         </div>
     </div>
-    {% else %}
-        <tr>
-            <td colspan="9">Pas de résultat actuellement.</td>
-        </tr>
-    {% endfor %}
 
         {# total items count #}
 
@@ -88,7 +67,7 @@
     -->
 
     {# display navigation #}
-    <div class="navigation">
+    <div class="navigation navigation-block">
         {{ knp_pagination_render(pagination) }}
     </div>
 
