@@ -30,34 +30,130 @@
 {{ form_end(searchForm) }}
 </div>
 
-
-<div class="container">
-    <br/><br/>
-    <h1 class="text-center"><i class="fa fa-file-text" aria-hidden="true"></i>  Nos produits  </h1>
-    <br/><br/>
-</div>
-
-    <!-- new product -->
-    <div class="container">
+    <!-- -------------------------------------------
+                container-best-sell
+    -------------------------------------------  -->
+    <div class="container-best-sell col-lg-12">
         <div class="box-card">
+            <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Nos meilleurs produits  </h1>
             <div class="row">    
                 {% for product in pagination %}
-                    <div class="container-card-product col-lg-3">
-                        <div class="img-card ">
-                            <img class="card-img-top" src="product/img/{{ product.img1 }}"  alt="{ { product.name }}" height="200" width="200">
+                    <div class="col-lg-3">
+                        <!-- product card -->
+                        <div class="card" style="width: 26rem;">
+                            <img class="card-img-top" src="product/img/{{ product.img1 }}"  alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title-product">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description }}</p>
+
+                                <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="card-text"> {{ product.numberSale}}  Vente </p>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <a href="#" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></i>  </a>
+                                        <a href="#" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-title">
-                            <p> <strong>{{ product.name }}</strong></p>
-                            <h3> {{ product.price }} €</h3>
-                        </div>
-                        <div class="card-content">
-                            <p>{{ product.description }}</p>
-                        </div>
+                        <!-- end product card -->
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
+    <!-- end container-best-sell -->
+
+
+    <!-- -------------------------------------------
+            container-product-new
+    -------------------------------------------  -->
+    <div class="container-product-new col-lg-12">
+        <div class="box-card">
+            <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Nouveau produits  </h1>
+            <div class="row">
+                {% for product in pagination %}
+                    <div class="col-lg-3">
+                        <!-- product card -->
+                        <div class="card" style="width: 26rem;">
+                            <img class="card-img-top" src="product/img/{{ product.img1 }}"  alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title-product">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description }}</p>
+
+                                <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="card-text"> {{ product.numberSale}}  Vente </p>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <a href="#" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></i>  </a>
+                                        <a href="#" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end product card -->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- -------------------------------------------
+                Free Template
+    -------------------------------------------  -->
+    <div class="container-free col-lg-12">
+        <div class="box-card">
+            <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Template gratuit  </h1>
+            <div class="row">
+                {% for product in pagination %}
+                    <div class="col-lg-3">
+                        <!-- product card -->
+                        <div class="card" style="width: 26rem;">
+                            <img class="card-img-top" src="product/img/{{ product.img1 }}"  alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title-product">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description }}</p>
+
+                                <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="card-text"> {{ product.numberSale}}  Vente </p>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <a href="#" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></i>  </a>
+                                        <a href="#" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end product card -->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- container-free -->
+
+
+
+
+
+
+
+
+    <!-- container-product-new -->
 
         {# total items count #}
 
