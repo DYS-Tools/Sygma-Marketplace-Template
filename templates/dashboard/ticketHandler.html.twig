@@ -11,47 +11,52 @@
     <div class="container">
         <br/><br/>
 
-        <h2> Les tickets ouvert </h2>
-        <br/>
+        <div class="centered">
+            <h1> Ticket ouvert </h1>
+            <br/>
+        </div>
+        <hr/>
 
+        <div class="container-card-tab-title">  <h2> <i class="fa fa-sticky-note" aria-hidden="true"></i>  Ticket </h2> </div>
 
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col"><i class="fa fa-sticky-note" aria-hidden="true"></i></th>
-                <th scope="col">id</th>
-                <th scope="col">nom</th>
-                <th scope="col">sujet</th>
-                <th scope="col">email</th>
-                <th scope="col">Details</th>
-                <th scope="col">status</th>
-            </tr>
-            </thead>
+        <div class="container-card-tab">
 
-            {% if ticketInProgress > 0  %}
-                {% for ticket in ticketInProgress %}
-                    <tbody>
-                    <tr>
-                        <th scope="row"><i class="fa fa-info" aria-hidden="true"></i></th>
-                        <td>{{ ticket.id }}</td>
-                        <td>{{ ticket.name }}</td>
-                        <td>{{ ticket.subject }}</td>
-                        <td>{{ ticket.email }}</td>
-                        <td><a href="{{ path('ticket_handler_Single', {'id': ticket.id}) }}"> <i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                        <td>{{ ticket.status }}</td>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col"><i class="fa fa-sticky-note" aria-hidden="true"></i></th>
+                    <th scope="col">id</th>
+                    <th scope="col">nom</th>
+                    <th scope="col">sujet</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">status</th>
+                </tr>
+                </thead>
 
-                    </tr>
-                    </tbody>
-                {% endfor %}
-        </table>
+                {% if ticketInProgress > 0  %}
+                    {% for ticket in ticketInProgress %}
+                        <tbody>
+                        <tr>
+                            <th scope="row"><i class="fa fa-info" aria-hidden="true"></i></th>
+                            <td>{{ ticket.id }}</td>
+                            <td>{{ ticket.name }}</td>
+                            <td>{{ ticket.subject }}</td>
+                            <td>{{ ticket.email }}</td>
+                            <td><a href="{{ path('ticket_handler_Single', {'id': ticket.id}) }}"> <i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                            <td>{{ ticket.status }}</td>
 
-            {% else %}
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+            </table>
 
-            <p> <i class="fa fa-list" aria-hidden="true"></i>  Il n'y a pas de ticket en cours </p>
-        {% endif %}
+                {% else %}
 
-
-    </div>
+                <p> <i class="fa fa-list" aria-hidden="true"></i>  Il n'y a pas de ticket en cours </p>
+            {% endif %}
+        </div> <!-- container-card-tab -->
+    </div> <!-- end container -->
 
 
 
