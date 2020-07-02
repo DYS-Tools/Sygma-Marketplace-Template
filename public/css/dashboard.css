@@ -21,6 +21,10 @@
     padding: 10px ;
 }
 
+.container-card-product{
+    display: column;
+}
+
 .container-card-product {
     display: column;
 }
