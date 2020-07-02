@@ -18,21 +18,26 @@
     </div>
     
         {% if products > 0  %}
-        
-            <div class=" container container-card-product border row box-card">
+        <div class="container">
+            <div class="box-card">
+                <div class="row">
                 {% for product in products %}
-                    <div class="img-card col-lg-4 ">
+                <div class="container-card-product col-lg-3">
+                    <div class="img-card ">
                         <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{ { product.name }}" height="200" width="200">
                     </div>
                     <div class="card-title">
-                        <p> ddddd</p>
+                        <p> <strong>{{ product.name }}</strong></p>
+                        <h3> {{ product.price }} €</h3>
                     </div>
                     <div class="card-content">
-                    <p>fffffffff</p>
+                    <p>{{ product.description }}</p>
                     </div>
-
+                </div>
                 {% endfor %}
+                </div>
             </div>
+        </div>
 
         {% else %}
             <!-- <img class="card-img-top" src="product/img/{ { product.img1 }}"  alt="{ { product.name }}" height="420" width="100%">-->
