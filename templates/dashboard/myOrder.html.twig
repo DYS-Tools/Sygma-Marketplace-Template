@@ -31,15 +31,12 @@
                     {% elseif order.status == 'finish' %}
                         <td class='green'> {{ order.status }}</td>
                     {% endif %}
-
                         <td>
-                                    <a href="{{ asset("product/" ~ order.product.file)  }}" 
-                                        download>
-                                        <button type="button" class="btn btn-success">Download product</button>
-                                        </a>
+                            <a href="{{ asset("product/" ~ order.product.file)  }}" 
+                                download>
+                                <button type="button" class="btn btn-success">Download product</button>
+                            </a>
                         </td>
-                    
-                    
                     <td>{{ order.amount }} €</td>
                 </tr>
             {% endfor %}
