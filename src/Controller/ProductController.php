@@ -37,7 +37,12 @@ class ProductController extends AbstractController
             if (empty($searchForm->get('search')->getData()))
             {
                 $productRepository->findAllTProductVerified();
+
             }
+
+            return $this->redirectToRoute('product_with_search', array(
+                'keyword' => $keyword,
+            ));
         }
 
         $pagination = $paginator->paginate(
@@ -55,6 +60,31 @@ class ProductController extends AbstractController
 
         
     }
+    
+    /**
+     * @Route("/search/{keyword}", name="product_with_search", methods={"GET"})
+     */
+    public function productWithSearch(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepository , $keyword): Response
+    {
+        $products = $productRepository->findLike($keyword);
+
+        $searchForm = $this->createForm(SearchProductFormType::class);
+        $searchForm->handleRequest($request);
+
+
+        $pagination = $paginator->paginate(
+            $products, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            10 /*limit per page*/
+        );
+
+        return $this->render('product/searchProduct.html.twig', [
+            'products' => $products,
+            'pagination' => $pagination,
+            'searchForm' => $searchForm->createView()
+        ]);
+    }
+
 
     /**
      * @Route("/category/{id}", name="product_with_category", methods={"GET"})
@@ -83,9 +113,11 @@ class ProductController extends AbstractController
             10 /*limit per page*/
         );
 
-        return $this->render('product/index.html.twig', [
+        $category = $categoryRepository->find($id);
+
+        return $this->render('product/categoryProduct.html.twig', [
             'products' => $products,
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $category,
             'pagination' => $pagination,
             'searchForm' => $searchForm->createView()
         ]);
