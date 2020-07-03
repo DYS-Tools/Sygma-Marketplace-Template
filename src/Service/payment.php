@@ -53,32 +53,11 @@ class payment
         return $this->publicStripeKeyTest;
     }
 
-    /*
-    public function sendMailAfterOrder($order,$user){
-        
-        $message = (new \Swift_Message('Votre commande SpeedMailer'))
-                ->setFrom('sacha6623@gmail.com')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView(
-                        'emails/order.html.twig',
-                        ['order' => $order,
-                         'user' => $user ])
-                    , 'text/html'
-                )
-            ;
-            $this->mailer->send($message);
-    }
-    */
-
     public function makePayment(Product $product, User $user )
     {
-
-        //dump($this->secretStripeKeyTest);
         // Set your secret key. Remember to switch to your live secret key in production!
         Stripe::setApiKey($this->secretStripeKeyTest);
-        //$response = file_get_contents('https://api.stripe.com/v1/checkout/sessions/cs_test_M07MtvAhxVT9zraohsSTnZKMCRUZnooh6m5IUELox1o3PEVTKOIDbgRj');
-        //$response = json_decode($response);
+
         
         //create Order
         $order = new Order;
@@ -91,7 +70,6 @@ class payment
         $this->em->persist($order);
         $this->em->flush();
 
-        //Convert euro in centim
         $price = $product->getPrice() * 100 ;
         
         $path = rtrim(__DIR__, 'src\Service'); $path = $path . '\public\\'; $success = $path . '/sucesspayment'; $cancel = $path . '/cancelURL';
@@ -110,7 +88,6 @@ class payment
             'success_url' => 'https://sucessURL/'. $order->getId(),
             'cancel_url' => 'https://CancelURL',
           ]);
-          //dd($session);
 
             //$endpoint = 'whsec_8PVGe96UgcQBcS0lWUnfZKnJtalr1Fnx';
 
@@ -130,6 +107,7 @@ class payment
     }
 
     public function payout(){
+        // transfet funds in acct_XXXXX account
         dd();
     }
 

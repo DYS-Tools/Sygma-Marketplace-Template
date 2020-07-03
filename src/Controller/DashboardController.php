@@ -270,9 +270,8 @@ class DashboardController extends AbstractController
      * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function payoutAuthor(Request $request, payment $payment)
-    {   // payout function
-        dd($payment->getConnectAccount($this->getUser()));
-        // get current user
+    {   
+        //dd($payment->getConnectAccount($this->getUser()));
         $user = $this->getUser();
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['user' => $user]);

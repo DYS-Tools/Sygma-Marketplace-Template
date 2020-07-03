@@ -423,7 +423,15 @@ a.logo span {
     margin-left: 10px;
 }
 
+/*********PAGINATION *******************/
+
 .navigation-block{
     text-align: center;
     margin-left: 40%;
+}
+
+/********* FORM  *******************/
+
+.custom-file-input{
+    opacity: 1;
 }
