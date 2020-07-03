@@ -429,3 +429,9 @@ a.logo span {
     text-align: center;
     margin-left: 40%;
 }
+
+/********* FORM  *******************/
+
+.custom-file-input{
+    opacity: 1;
+}

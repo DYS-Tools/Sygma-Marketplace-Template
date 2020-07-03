@@ -107,6 +107,7 @@ class payment
     }
 
     public function payout(){
+        // transfet funds in acct_XXXXX account
         dd();
     }
 
