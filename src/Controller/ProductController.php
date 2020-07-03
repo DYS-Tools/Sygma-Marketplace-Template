@@ -83,9 +83,11 @@ class ProductController extends AbstractController
             10 /*limit per page*/
         );
 
-        return $this->render('product/index.html.twig', [
+        $category = $categoryRepository->find($id);
+
+        return $this->render('product/requestProduct.html.twig', [
             'products' => $products,
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $category,
             'pagination' => $pagination,
             'searchForm' => $searchForm->createView()
         ]);
