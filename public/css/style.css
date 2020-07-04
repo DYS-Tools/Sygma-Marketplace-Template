@@ -435,3 +435,33 @@ a.logo span {
 .custom-file-input{
     opacity: 1;
 }
+
+/********* FAQ  *******************/
+.faq .logo h3{
+    font-size: 24px;
+    color: black;
+    font-weight: 950;
+    text-transform: uppercase;
+    box-sizing: border-box
+}
+.faq .logo{
+    display: inline;
+}
+.yellowgreen{
+    color: yellowgreen;
+}
+.inline{
+    display: flex;
+    flex-direction: inline;
+    vertical-align: bottom;
+}
+.text-faq-logo{
+    vertical-align: bottom;
+    margin: 0;
+    padding : 0;
+    margin-left: 5%;
+    margin-top: 0.3%;
+    font-size: 1.1em;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    font-weight: 700;
+}
