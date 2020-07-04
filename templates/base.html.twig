@@ -65,9 +65,7 @@
                         <a class="nav-link" href="{{ path('become_author') }}">Commencer à vendre</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-                    </li>
+                    
 
                 {% elseif is_granted('ROLE_USER') %}
                     <li class="nav-item">
@@ -84,7 +82,13 @@
                     </li>
                 {% endif %}
                 </div>
+                
             </div>
+            {% if app.user %}
+                <span class="navbar-text">
+                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+                </span>
+            {% endif %}
         </nav>
 
         {% block body %}
