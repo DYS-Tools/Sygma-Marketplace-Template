@@ -57,10 +57,8 @@ class ProductController extends AbstractController
             'pagination' => $pagination,
             'searchForm' => $searchForm->createView()
         ]);
-
-        
     }
-    
+
     /**
      * @Route("/search/{keyword}", name="product_with_search", methods={"GET"})
      */
