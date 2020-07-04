@@ -479,3 +479,31 @@ a.logo span {
     font-family: 'Arial Narrow Bold', sans-serif;
     font-weight: 700;
 }
+
+
+/*********** SHOW PRODUCT *************/
+
+.content-bar{
+    margin-top: 2%;
+    box-shadow: 1px 1px 4px grey;
+}
+
+
+.side-bar{
+    margin-top: 2%;
+    box-shadow: 1px 1px 4px grey;
+}
+
+.side-bar h2, .side-bar p, .side-bar h3{
+    margin-left: 4%;
+}
+.side-bar h2{
+    font-size: 20px;
+}
+.title-product-show{
+    padding-top: 2%;
+    text-align: center;
+    /*text-transform: uppercase;*/
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
