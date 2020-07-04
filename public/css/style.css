@@ -78,31 +78,45 @@ a.logo span {
 										NAVBAR
    ========================================================================================================== */
 
+.category-nav{
+    background-color:rgb(48, 54, 60); /* rgb(52, 58, 64) */
+    padding-bottom: 0.7%;
+    padding-top: 0.2%;
+}
 .category-link-nav{
     padding:10px;
     width: 14vw;
     text-align: center;
-    color:yellowgreen;
+    letter-spacing: 0.1px;
+    color:rgba(240,240,240,0.7);
     text-decoration: none;
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 18.5px;
     /*background-color: yellowgreen;*/
 
 }
 .category-link-nav:hover{
-    background-color: yellowgreen;
-    border-radius: 15px;
-    color: black;
+    color:yellowgreen;
 }
 
 .nav-dash{
-    background-color: #434769;
+    background-color: rgb(48, 54, 60);
 }
 .blank-link{
     color:white;
 }
 .blank-link:hover{
     color:white;
+}
+
+.admin-link{
+    color: wheat;
+}
+.author-link{
+    color: rgba(240,240,240,0.7); /* rgb(32, 133, 2) */
+}
+.user-link{
+    color: rgba(240,240,240,0.7);
 }
 
 
@@ -434,4 +448,62 @@ a.logo span {
 
 .custom-file-input{
     opacity: 1;
+}
+
+/********* FAQ  *******************/
+.faq .logo h3{
+    font-size: 24px;
+    color: black;
+    font-weight: 950;
+    text-transform: uppercase;
+    box-sizing: border-box
+}
+.faq .logo{
+    display: inline;
+}
+.yellowgreen{
+    color: yellowgreen;
+}
+.inline{
+    display: flex;
+    flex-direction: inline;
+    vertical-align: bottom;
+}
+.text-faq-logo{
+    vertical-align: bottom;
+    margin: 0;
+    padding : 0;
+    margin-left: 5%;
+    margin-top: 0.3%;
+    font-size: 1.1em;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    font-weight: 700;
+}
+
+
+/*********** SHOW PRODUCT *************/
+
+.content-bar{
+    margin-top: 2%;
+    box-shadow: 1px 1px 4px grey;
+}
+
+
+.side-bar{
+    margin-top: 2%;
+    box-shadow: 1px 1px 4px grey;
+}
+
+.side-bar h2, .side-bar p, .side-bar h3{
+    margin-left: 4%;
+}
+.side-bar h2{
+    font-size: 20px;
+}
+.title-product-show{
+    padding-top: 2%;
+    text-align: center;
+    /*text-transform: uppercase;*/
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

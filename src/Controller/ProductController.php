@@ -79,7 +79,8 @@ class ProductController extends AbstractController
         return $this->render('product/searchProduct.html.twig', [
             'products' => $products,
             'pagination' => $pagination,
-            'searchForm' => $searchForm->createView()
+            'searchForm' => $searchForm->createView(),
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 
@@ -111,11 +112,12 @@ class ProductController extends AbstractController
             10 /*limit per page*/
         );
 
-        $category = $categoryRepository->find($id);
+        $categoryCurrent = $categoryRepository->find($id);
 
         return $this->render('product/categoryProduct.html.twig', [
             'products' => $products,
-            'categories' => $category,
+            'categories' => $categoryRepository->findAll(),
+            'categoryCurrent' => $categoryCurrent,
             'pagination' => $pagination,
             'searchForm' => $searchForm->createView()
         ]);
@@ -186,12 +188,13 @@ class ProductController extends AbstractController
     /**
      * @Route("product/{id}", name="product_show", methods={"GET"})
      */
-    public function show(Product $product, $id): Response
+    public function show(Product $product,CategoryRepository $categoryRepository,  $id): Response
     {
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['id' => $id]);
         return $this->render('product/show.html.twig', [
             'product' => $product,
+            'categories' => $categoryRepository->findAll(),
         ]);
     }
 

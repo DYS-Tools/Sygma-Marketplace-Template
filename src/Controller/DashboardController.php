@@ -271,6 +271,11 @@ class DashboardController extends AbstractController
      */
     public function payoutAuthor(Request $request, payment $payment)
     {   
+        if(!empty($request)){
+            // regarder + query #parameters 'code' = ac_HaOpXENdmpt0lf8IwoTrh10TaXEF2pWq
+            dump($request);
+            dump($request->getContent() );
+        }
         //dd($payment->getConnectAccount($this->getUser()));
         $user = $this->getUser();
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
@@ -278,7 +283,7 @@ class DashboardController extends AbstractController
 
         $form = $this->createForm(PayoutFormType::class);
         $form->handleRequest($request);
-
+        // if acct_XXX is defined 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
             if($form->get('amount')->getData() <= $user->getAvailablePayout()){
@@ -317,6 +322,7 @@ class DashboardController extends AbstractController
                 //TODO: FlashMessage
             }
         }
+        // else : Vous devez vous connecter a un compte stripe
         
         // TODO : if payout : remove number in available payout variable
 

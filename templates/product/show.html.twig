@@ -4,68 +4,95 @@
 
 {% block body %}
 
-    <div class="container">
-        <h1>Produit : {{ product.name }}</h1>
-    </div>
+<ul class="nav nav-pills justify-content-center category-nav">
+        {% for category in categories %}
+        <li class="nav-item">
+            <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <div class="row">
+        <div class="col-lg-6 offset-lg-1 content-bar">
+            <div class="container">
+                <h1 class="title-product-show"> {{ product.name }}</h1>
+            </div>
 
-    <div class="img-center">
-        {% if product.img1 != NULL %}
-            <img class="card-img-top" src="../product/img/{{ product.img1 }}" alt="{{ product.name }}"
-                 style=" width: 32%; height: 500px;">
-        {% endif %}
+            <div class="image-center container">
+                {% if product.img1 != NULL %}
+                    <img class="card-img-top" src="../product/img/{{ product.img1 }}" alt="{{ product.name }}"
+                        style=" width: 32%; height: 20%;">
+                {% endif %}
+            </div>
 
-        {% if product.img2 != NULL %}
-            <img class="card-img-top" src="../product/img/{{ product.img2 }}" alt="{{ product.name }}"
-                 style=" width: 32%; height: 500px;">
-        {% endif %}
+            <div class="container">
+                <br/>
+                <h2>Prix : {{ product.price }} euros</h2>
+                <br/>
+                <p> {{ product.content }} </p>
+                <br/>
+                <p>Création le {{ product.published ? product.published|date('d/m/Y') : '' }} </p>
+                <br/>
+                <br/>
 
-        {% if product.img3 != NULL %}
-            <img class="card-img-top" src="../product/img/{{ product.img3 }}" alt="{{ product.name }}"
-                 style=" width: 32%; height: 500px;">
-        {% endif %}
-    </div>
+                <br/>
 
-    <div class="container">
-        <br/>
-        <h2>Prix : {{ product.price }} euros | Vente effectué : {{ product.numberSale}}</h2>
-        <br/>
-        <p> {{ product.content }} </p>
-        <br/>
-        <p>Création le {{ product.published ? product.published|date('d/m/Y') : '' }} </p>
-        <br/>
-        <br/>
+                <div class="image-center container">
+                {% if product.img2 != NULL %}
+                    <img class="card-img-top" src="../product/img/{{ product.img2 }}" alt="{{ product.name }}"
+                        style=" width: 32%; height: 20%;">
+                {% endif %}
 
-        <br/>
+                {% if product.img3 != NULL %}
+                    <img class="card-img-top" src="../product/img/{{ product.img3 }}" alt="{{ product.name }}"
+                        style=" width: 32%; height: 20%;">
+                {% endif %}
+                </div>
+                <br/>
 
-        <!-- payout button -->
-        <a id="paybutton" href="{{path('order', { 'product': product.id }  ) }}" class="bottom">
+                
+
+                <br/>
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 offset-lg-1 side-bar">
+        <br/>
+        <h2> Caractéristique technique </h2>
+        <br/>
+        <p> mail de support : {{ product.user.email }}</p>
+        <p> catégorie du produit : {{ product.category.name }}</p>
+        <p> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
+        <br/><br/>
+
+         <button type="button">
+            {%   if product.demoLink != NULL %}
+                <a href="{{ product.demoLink }}">Démo</a>
+            {% else %}
+                <p> Pas de démonstration.</p>
+            {%  endif  %}
+        </button>
+
+        <button type="button">
+            <a href="{{ path('product_index') }}">Retour à la liste</a>
+        </button>
+        <br/>
+        <hr>
+        <h6> Vente pour ce produit: {{ product.numberSale}} </h6>
+        <br/>
+         <a id="paybutton" href="{{path('order', { 'product': product.id }  ) }}" class="bottom">
             <div class="product-button">
                 <button type="button">
                     Acheter
                 </button>
             </div>
         </a>
-        <!--<a id="paybutton" href="{ {path('order', { 'offer': offer }  ) }}" class="bottom"><p class="cart">-->
 
+        <br/><br/><br/><br/>
+        <a href="{{ path('product_index') }}">Retour à la liste</a>
 
-        <br/>
-
-        <div class="product-button">
-
-            <button type="button">
-                {%   if product.demoLink != NULL %}
-                    <a href="{{ product.demoLink }}">Démo</a>
-                {% else %}
-                    <p> Pas de démonstration.</p>
-                {%  endif  %}
-            </button>
-
-            <button type="button">
-                <a href="{{ path('product_index') }}">Retour à la liste</a>
-            </button>
         </div>
-
-        <br/>
-    </div>
+</div>
 
 {% endblock %}
