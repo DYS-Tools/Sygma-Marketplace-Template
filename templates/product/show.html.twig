@@ -11,7 +11,7 @@
         </li>
         {% endfor %}
     </ul>
-    
+
     <div class="row">
         <div class="col-lg-6 offset-lg-1 content-bar">
             <div class="container">
@@ -61,9 +61,10 @@
         <br/>
         <h2> Caractéristique technique </h2>
         <br/>
-        <p> mail de support : {{ product.user.email }}</p>
         <p> catégorie du produit : {{ product.category.name }}</p>
         <p> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
+
+        <a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a>
         <br/><br/>
 
          <button type="button">
@@ -81,7 +82,7 @@
         <hr>
         <h6> Vente pour ce produit: {{ product.numberSale}} </h6>
         <br/>
-         <a id="paybutton" href="{{path('order', { 'product': product.id }  ) }}" class="bottom">
+         <a id="paybutton" href="{{ path('order', { 'product': product.id }  ) }}" class="bottom">
             <div class="product-button">
                 <button type="button">
                     Acheter

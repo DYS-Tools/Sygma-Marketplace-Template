@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+
+<ul class="nav nav-pills justify-content-center category-nav">
+        {% for category in categories %}
+        <li class="nav-item">
+            <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
+        </li>
+        {% endfor %}
+</ul>
+
+<div class="container">
+    <h1> contacter le vendeur a propos du produit : {{ product.name }} </h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('envoyer une question') }}</button>
+    {{ form_end(form) }}
+</div>
+
+    
+
+{% endblock %}

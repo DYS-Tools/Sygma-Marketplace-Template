@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\User;
+use App\Form\ContactSellerFormType;
 use App\Form\ProductType;
 use App\Form\SearchProductFormType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
+use App\Repository\UserRepository;
 use App\Service\Upload;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -195,6 +198,48 @@ class ProductController extends AbstractController
         return $this->render('product/show.html.twig', [
             'product' => $product,
             'categories' => $categoryRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("product/{id}/contact/{idUser}", name="contact_seller")
+     */
+    public function contact_seller(\Swift_Mailer $mailer, Request $request, Product $product,CategoryRepository $categoryRepository, UserRepository $userRepository, $id, $idUser): Response
+    {
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+        $product = $productRepository->findOneBy(['id' => $id]);
+
+        $userRepository = $this->getDoctrine()->getRepository(User::class);
+        $EmailSeller = $userRepository->findOneBy(['id' => $idUser])->getEmail();
+        // chercher mail de user a l'aide de l'id
+
+        $form = $this->createForm(ContactSellerFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // Mail $form->get('img2')->getData()
+            $message = (new \Swift_Message('Web-Item-Market'))
+             ->setFrom('sacha6623@gmail.com')
+             ->setTo($this->getUser()->getEmail())
+             ->setBody(
+                 $this->renderView(
+                     'Emails/contactSeller.html.twig',[
+                         'product' => $product,
+                         'client' => $form->get('Email')->getData(),
+                         'Subject' => $form->get('Subject')->getData(),
+                         'Message' => $form->get('Message')->getData()
+                     ]),
+              'text/html');
+            $mailer->send($message);
+
+         $this->addFlash('success', "Email has been send");
+        }
+        
+
+        return $this->render('product/contactSeller.html.twig', [
+            'product' => $product,
+            'categories' => $categoryRepository->findAll(),
+            'form' => $form->createView(),
         ]);
     }
 
