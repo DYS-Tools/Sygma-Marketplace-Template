@@ -10,22 +10,23 @@
             <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
         </li>
         {% endfor %}
-    </ul>
+</ul>
 
-    <div class="row">
+
+    <div class="row content-page">
         <div class="col-lg-6 offset-lg-1 content-bar">
             <div class="container">
                 <h1 class="title-product-show"> {{ product.name }}</h1>
             </div>
 
-            <div class="image-center container">
+            <div class="image-center container center block image-center">
                 {% if product.img1 != NULL %}
                     <img class="card-img-top" src="../product/img/{{ product.img1 }}" alt="{{ product.name }}"
-                        style=" width: 32%; height: 20%;">
+                        style=" width: 42%; height: 31%;">
                 {% endif %}
             </div>
 
-            <div class="container">
+            <div class="container content-info">
                 <br/>
                 <h2>Prix : {{ product.price }} euros</h2>
                 <br/>
@@ -34,66 +35,79 @@
                 <p>Création le {{ product.published ? product.published|date('d/m/Y') : '' }} </p>
                 <br/>
                 <br/>
+            </div>
 
+            <div class="container">
                 <br/>
 
-                <div class="image-center container">
-                {% if product.img2 != NULL %}
-                    <img class="card-img-top" src="../product/img/{{ product.img2 }}" alt="{{ product.name }}"
-                        style=" width: 32%; height: 20%;">
-                {% endif %}
+                <div class="container content-info">
+                    {% if product.img2 != NULL %}
+                        <img class="card-img-top" src="../product/img/{{ product.img2 }}" alt="{{ product.name }}"
+                            style=" width: 32%; height: 20%;">
+                    {% endif %}
 
-                {% if product.img3 != NULL %}
-                    <img class="card-img-top" src="../product/img/{{ product.img3 }}" alt="{{ product.name }}"
-                        style=" width: 32%; height: 20%;">
-                {% endif %}
+                    {% if product.img3 != NULL %}
+                        <img class="card-img-top" src="../product/img/{{ product.img3 }}" alt="{{ product.name }}"
+                            style=" width: 32%; height: 20%;">
+                    {% endif %}
                 </div>
                 <br/>
 
-                
-
+        
                 <br/>
             </div>
 
         </div>
 
         <div class="col-lg-3 offset-lg-1 side-bar">
-        <br/>
-        <h2> Caractéristique technique </h2>
-        <br/>
-        <p> catégorie du produit : {{ product.category.name }}</p>
-        <p> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
+            <br/>
+            <h2> Caractéristique technique </h2>
+            <br/>
+            <p> catégorie du produit : {{ product.category.name }}</p>
+            <p> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
 
-        <a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a>
-        <br/><br/>
+            <p><a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a></p>
+            <br/>
 
-         <button type="button">
-            {%   if product.demoLink != NULL %}
-                <a href="{{ product.demoLink }}">Démo</a>
-            {% else %}
-                <p> Pas de démonstration.</p>
-            {%  endif  %}
-        </button>
+            <div class="row">
+                <div class="product-button col-lg-4">
+                    <button type="button">
+                        {%   if product.demoLink != NULL %}
+                            <a href="{{ product.demoLink }}">Démonstration</a>
+                        {% else %}
+                            <p> Pas de démonstration.</p>
+                        {%  endif  %}
+                    </button>
+                </div>
+                <br/><br/>
 
-        <button type="button">
-            <a href="{{ path('product_index') }}">Retour à la liste</a>
-        </button>
-        <br/>
-        <hr>
-        <h6> Vente pour ce produit: {{ product.numberSale}} </h6>
-        <br/>
-         <a id="paybutton" href="{{ path('order', { 'product': product.id }  ) }}" class="bottom">
-            <div class="product-button">
-                <button type="button">
-                    Acheter
-                </button>
+                <div class="product-button col-lg-4">
+                    <button type="button">
+                        <a href="{{ path('product_index') }}">Retour à la liste</a>
+                    </button>
+                </div>
             </div>
-        </a>
 
-        <br/><br/><br/><br/>
-        <a href="{{ path('product_index') }}">Retour à la liste</a>
+
+
+
+            <br/>
+            <br/>
+            <hr>
+            <h6> Vente pour ce produit: {{ product.numberSale}} </h6>
+            <br/>
+            <a id="paybutton" href="{{ path('order', { 'product': product.id }  ) }}" class="bottom">
+                <div class="product-button">
+                    <button type="button">
+                        Acheter
+                    </button>
+                </div>
+            </a>
+
+            <br/><br/><br/>
+            <a href="{{ path('product_index') }}">Retour à la liste</a>
 
         </div>
-</div>
+    </div>
 
 {% endblock %}
