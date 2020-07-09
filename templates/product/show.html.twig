@@ -12,11 +12,13 @@
         {% endfor %}
 </ul>
 
+<div class="show-page">
 
     <div class="row content-page">
         <div class="col-lg-6 offset-lg-1 content-bar">
             <div class="container">
                 <h1 class="title-product-show"> {{ product.name }}</h1>
+                <br/>
             </div>
 
             <div class="image-center container center block image-center">
@@ -28,7 +30,9 @@
 
             <div class="container content-info">
                 <br/>
-                <h2>Prix : {{ product.price }} euros</h2>
+                <br/>
+                <h2 class="eur-text">{{ product.price }}<i class="fa fa-eur" aria-hidden="true"></i> <span class="eur-text-min">TTC </span></h2>
+                <br/>
                 <br/>
                 <p> {{ product.content }} </p>
                 <br/>
@@ -61,12 +65,12 @@
 
         <div class="col-lg-3 offset-lg-1 side-bar">
             <br/>
-            <h2> Caractéristique technique </h2>
+            <h2 class="font3"> Caractéristique technique </h2>
             <br/>
-            <p> catégorie du produit : {{ product.category.name }}</p>
-            <p> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
+            <p class="font6"> catégorie du produit : {{ product.category.name }}</p>
+            <p class="font6"> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
 
-            <p><a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a></p>
+            <p class="font6"><a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a></p>
             <br/>
 
             <div class="row">
@@ -90,24 +94,26 @@
 
 
 
+            <div>
+                <br/>
+                <br/>
+                <hr>
+                <p> Vente pour ce produit: {{ product.numberSale}} </p>
+                <br/>
+                <a id="paybutton" href="{{ path('order', { 'product': product.id }  ) }}" class="bottom">
+                    <div class="product-button">
+                        <button type="button">
+                            Acheter
+                        </button>
+                    </div>
+                </a>
 
-            <br/>
-            <br/>
-            <hr>
-            <h6> Vente pour ce produit: {{ product.numberSale}} </h6>
-            <br/>
-            <a id="paybutton" href="{{ path('order', { 'product': product.id }  ) }}" class="bottom">
-                <div class="product-button">
-                    <button type="button">
-                        Acheter
-                    </button>
-                </div>
-            </a>
-
-            <br/><br/><br/>
-            <a href="{{ path('product_index') }}">Retour à la liste</a>
+                <br/><br/><br/>
+                <a href="{{ path('product_index') }}">Retour à la liste</a>
+            </div>
 
         </div>
     </div>
 
+</div> <!-- End DIV show-page-->
 {% endblock %}
