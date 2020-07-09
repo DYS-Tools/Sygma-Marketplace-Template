@@ -13,10 +13,42 @@ body{
 /* ==========================================================================================================
 										POLICE
    ========================================================================================================== */
-h1,h2,h3,h4,h5{
+h1{
     font-family: "Comic Sans MS";
     font-weight: bold;
 }
+
+h2 {
+    font-family: Trebuchet MS;
+    font-weight: bold;
+}
+
+h3 {
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+}
+
+h4 {
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+}
+
+h5 {
+    font-family: Trebuchet MS;
+    font-weight: bold;
+}
+
+h6 {
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+}
+
+p {
+    font-family: Times New Roman;
+
+}
+
+
 .center_div{
     margin: 0 auto;
     width:65% /* value of your choice which suits your alignment */
@@ -506,4 +538,10 @@ a.logo span {
     /*text-transform: uppercase;*/
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.search-container {
+    margin-bottom: 100px ;
+    margin-top: 100px ;
 }

@@ -18,7 +18,7 @@
 
 <!-- nEW SEARCH BAR --> 
 
-<div class="container">
+<div class="container search-container">
 {{ form_start(searchForm) }}
     {{ form_widget(searchForm) }}
     <button class="btn-success">{{ button_label|default('Rechercher') }}</button>
@@ -30,7 +30,7 @@
     -------------------------------------------  -->
     <div class="container-best-sell col-lg-12">
         <div class="box-card">
-            <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Nos meilleurs produits  </h1>
+            <h2 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Nos meilleurs produits  </h2>
             <div class="row">    
                 {% for product in pagination %}
                     <div class="col-lg-3">
@@ -69,7 +69,7 @@
     -------------------------------------------  -->
     <div class="container-product-new col-lg-12">
         <div class="box-card">
-            <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Nouveau produits  </h1>
+            <h2 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Nouveau produits  </h2>
             <div class="row">
                 {% for product in pagination %}
                     <div class="col-lg-3">
@@ -108,7 +108,7 @@
     -------------------------------------------  -->
     <div class="container-free col-lg-12">
         <div class="box-card">
-            <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Template gratuit  </h1>
+            <h2 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Template gratuit  </h2>
             <div class="row">
                 {% for product in pagination %}
                     <div class="col-lg-3">
@@ -140,13 +140,6 @@
         </div>
     </div>
     <!-- container-free -->
-
-
-
-
-
-
-
 
     <!-- container-product-new -->
 
