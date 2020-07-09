@@ -76,10 +76,9 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         // Create Product Verified
         $product3 = new Product();
         $product3->setName("Template HTML");
-        $product3->setDescription("Boostrap & CSS");
-        // Todo : add more word
-        $product3->setContent("Lorem ipsum  en mollis nunc.  sit amet mattis. Quisque egestas diam in arcu. ultrices in.");
-        $product3->setFile("template-theme.zip");
+        $product3->setDescription("Boostrap & CSddddddddddS");
+        $product3->setContent("Lorem ipsum  en mollis nunc. ddd sit amet mattis. Quisque egestas diam in arcu. ultrices in.");
+        $product3->setFile("template-theeme.zip");
         $product3->setPublished( new \DateTime() );
         $product3->setDemoLink("https://demo.projet3.com" );
         $product3->setNumberSale(3 );
@@ -93,6 +92,51 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         // add reference for media
         $this->addReference('PRODUCT3',$product3);
         $manager->persist($product3);
+
+
+        // Create Product Verified / Free
+        $product4 = new Product();
+        $product4->setName("Free Template HTML");
+        $product4->setDescription("Boostrap & CSS");
+        // Todo : add more word
+        $product4->setContent("Lorem ipsum  en mollis nunc.  sit amet mattis. Quisque egestas diam in arcu. ultrices in.");
+        $product4->setFile("templatee-theme.zip");
+        $product4->setPublished( new \DateTime() );
+        $product4->setDemoLink("https://demo.projet3.com" );
+        $product4->setNumberSale(3 );
+        $product4->setPrice(0);
+        $product4->setUser($this->getReference('SADMIN'));
+        $product4->setCategory( $this->getReference('TWOCATEGORY'));
+        $product4->setVerified(1);
+        $product4->setImg1("WPimg2.png");
+        $product4->setImg2("WPimg1.png");
+        $product4->setImg3("WPimg3.png");
+        // add reference for media
+        $this->addReference('PRODUCT4',$product4);
+        $manager->persist($product4);
+
+
+        // Create Product Verified
+        $product5 = new Product();
+        $product5->setName("Plugin WP");
+        $product5->setDescription("Boostrap & CSS");
+        // Todo : add more word
+        $product5->setContent("Lorem ipsum  en mollis nunc.  sit amet mattis. Quisque egestas diam in arcu. ultrices in.");
+        $product5->setFile("templatee-theme.zip");
+        $product5->setPublished( new \DateTime() );
+        $product5->setDemoLink("https://demo.projet3.com" );
+        $product5->setNumberSale(128);
+        $product5->setPrice(11);
+        $product5->setUser($this->getReference('SADMIN'));
+        $product5->setCategory( $this->getReference('THREECATEGORY'));
+        $product5->setVerified(1);
+        $product5->setImg1("WPimg2.png");
+        $product5->setImg2("WPimg1.png");
+        $product5->setImg3("WPimg3.png");
+        // add reference for media
+        $this->addReference('PRODUCT5',$product5);
+        $manager->persist($product5);
+
 
         $manager->flush();
     }

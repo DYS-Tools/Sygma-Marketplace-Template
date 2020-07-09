@@ -51,11 +51,19 @@ class ProductController extends AbstractController
             10 /*limit per page*/
         );
 
+        // request for product homepage
+        $BestSell = $productRepository->findAllTProductVerifiedAndBestSell() ;
+        $newProduct = $productRepository->findAllTProductVerifiedAndNewProduct() ;
+        $FreeProduct = $productRepository->findAllTProductVerifiedAndFreeProduct() ;
+
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAllTProductVerified(),
             'categories' => $categoryRepository->findAll(),
             'pagination' => $pagination,
-            'searchForm' => $searchForm->createView()
+            'searchForm' => $searchForm->createView(),
+            'bestSell' => $BestSell,
+            'newProduct' => $newProduct,
+            'FreeProduct' => $FreeProduct,
         ]);
     }
 
