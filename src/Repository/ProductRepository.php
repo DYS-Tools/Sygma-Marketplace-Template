@@ -55,7 +55,8 @@ class ProductRepository extends ServiceEntityRepository
 
     public function findLike($name)
     {
-        return $this
+        if($name =! ''){
+            return $this
             ->createQueryBuilder('a')
             ->where('a.name LIKE :name')
             ->setParameter( 'name', "%$name%")
@@ -64,5 +65,7 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->execute()
             ;
+        }
+        
     }
 }

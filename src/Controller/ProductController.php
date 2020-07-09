@@ -37,9 +37,10 @@ class ProductController extends AbstractController
             $keyword = $searchForm->get('search')->getData();
             $product = $productRepository->findLike($keyword);
 
-            if (empty($searchForm->get('search')->getData()))
+            if (empty($searchForm->get('search')->getData()) || $searchForm->get('search')->getData() == '' || $searchForm->get('search')->getData() == null)
             {
                 $productRepository->findAllTProductVerified();
+                $keyword = '';
 
             }
 
@@ -67,7 +68,13 @@ class ProductController extends AbstractController
      */
     public function productWithSearch(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepository , $keyword): Response
     {
-        $products = $productRepository->findLike($keyword);
+        if(!empty($keyword)){
+            $keyword='Web';
+            $products = $productRepository->findLike($keyword);
+        }
+        else{
+            $products = $productRepository->findAllTProductVerified();
+        }
 
         $searchForm = $this->createForm(SearchProductFormType::class);
         $searchForm->handleRequest($request);
@@ -103,7 +110,7 @@ class ProductController extends AbstractController
             $keyword = $searchForm->get('search')->getData();
             $products = $productRepository->findLike($keyword);
 
-            if (empty($searchForm->get('search')->getData()))
+            if (empty($searchForm->get('search')->getData()) || $searchForm->get('search')->getData() == '')
             {
                 $productRepository->findAllTProductVerified();
             }
