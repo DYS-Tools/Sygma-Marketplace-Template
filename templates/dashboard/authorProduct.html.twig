@@ -39,16 +39,17 @@
 
                                 <div class="col-lg-4">
                                     <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-edit" aria-hidden="true"></i>  </a>
+                                    <!-- Todo : product edit path -->
+                                    <a href="{{ path('product_edit', { 'id': product.id }  ) }}" class="btn btn-info"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-8">
                                     {% if product.verified == 0  %}
-                                        <p class="card-text"> Produits est en attente de vérification </p>
+                                        <p class="card-text"> Status: en attente de vérification </p>
                                     {% else %}
-                                        <p class="card-text">  Produit est vérifié !</p>
+                                        <p class="card-text"> Status: est vérifié !</p>
                                     {% endif %}
                                 </div>
                             </div>

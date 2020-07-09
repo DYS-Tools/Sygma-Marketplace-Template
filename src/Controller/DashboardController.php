@@ -144,6 +144,8 @@ class DashboardController extends AbstractController
             'countAdmin' => $this->getDoctrine()->getRepository(User::class)->countAllAdmin(),
             'countAuthor' => $this->getDoctrine()->getRepository(User::class)->countAllAuthor(),
             'countArticle' => $this->getDoctrine()->getRepository(Article::class)->countArticle(),
+            'countTicketOpen' => $this->getDoctrine()->getRepository(Ticket::class)->countTicketOpen(),
+            'countTicketClose' => $this->getDoctrine()->getRepository(Ticket::class)->countTicketClose(),
         ]);
     }
 

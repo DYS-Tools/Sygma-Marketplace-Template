@@ -19,32 +19,24 @@ class TicketRepository extends ServiceEntityRepository
         parent::__construct($registry, Ticket::class);
     }
 
-    // /**
-    //  * @return Ticket[] Returns an array of Ticket objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    // ADMIN
 
-    /*
-    public function findOneBySomeField($value): ?Ticket
+    public function countTicketOpen()
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.status = 0');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
     }
-    */
+
+    public function countTicketClose()
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->where('e.status = 1');
+        $qb ->select($qb->expr()->count('e'));
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
+
+    // USER
 }
