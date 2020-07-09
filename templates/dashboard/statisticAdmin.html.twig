@@ -15,7 +15,9 @@
         <hr/>
 
         <div class="row">
-
+            <!-- -------------------
+                    Product
+            -------------------- -->
             <div class="col-lg-6">
                 <div class="container-card">
                     <div class="card-title">  <h2> <i class="fa fa-tags" aria-hidden="true"></i>    Produits </h2> </div>
@@ -37,6 +39,10 @@
                 </div>
             </div>
 
+
+            <!-- -------------------
+                   Order
+            -------------------- -->
             <div class="col-lg-6">
                 <div class="container-card">
                     <div class="card-title">  <h2> <i class="fa fa-archive" aria-hidden="true"></i>    Commandes  </h2> </div>
@@ -54,8 +60,9 @@
                 </div>
             </div>
 
-
-
+            <!-- -------------------
+                      User
+            -------------------- -->
             <div class="col-lg-6">
                 <div class="container-card">
                     <div class="card-title">  <h2>  <i class="fa fa-user" aria-hidden="true"></i>    Utilisateurs</h2> </div>
@@ -85,6 +92,10 @@
                 </div>
             </div>
 
+
+            <!-- -------------------
+                      Blog
+            -------------------- -->
             <div class="col-lg-6">
                 <div class="container-card">
                     <div class="card-title">  <h2>  <i class="fa fa-file-text" aria-hidden="true"></i>     Blog </h2> </div>
@@ -101,17 +112,54 @@
                     </div>
                 </div>
             </div>
+
+
+
+            <!-- -------------------
+                     Ticket
+            -------------------- -->
+            <div class="col-lg-6">
+                <div class="container-card">
+                    <div class="card-title">  <h2>  <i class="fa fa-file-text" aria-hidden="true"></i>     Ticket </h2> </div>
+
+                    <div class="card-content">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i>  Ticket Ouvert : </th>
+                                <td>{{ countTicketOpen }}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i>  Ticket Fermé : </th>
+                                <td>{{ countTicketClose }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
-    </div>
+
+        <div class="centered">
+            <h1> <i class="fa fa-caret-right" aria-hidden="true"></i>  Gestion du Cash Flow </h1>
+            <br/>
+        </div>
+        <hr/>
+        <!--
+        Todo :
+
+         % des utilisateurs auteurs
+         Croissance des commandes depuis le mois précédent
+         Derniére sauv
+
+         -->
+    </div> <!-- end container -->
 
 
-    <!--
-    Todo :
 
-     % des utilisateurs auteurs
-     Croissance des commandes depuis le mois précédent
-     Derniére sauv
-     
-     -->
+
 {% endblock %}
