@@ -12,7 +12,7 @@
 
         <a href="{{ path('product_new') }}" class="btn btn-primary">Ajouter un produit</a><br/>
         <hr>
-        <h2> Produit actuellement en vente </h2>
+        <h2> Produit actuellement en vente : </h2>
         <br/>
 
     </div>
@@ -22,17 +22,39 @@
             <div class="box-card">
                 <div class="row">
                 {% for product in products %}
-                <div class="container-card-product col-lg-3">
-                    <div class="img-card ">
-                        <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{ { product.name }}" height="200" width="200">
+                <div class="col-lg-3">
+                    <!-- product card -->
+                    <div class="card" style="width: 26rem;">
+                        <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title-product">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description }}</p>
+
+                            <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <p class="card-text"> {{ product.numberSale}}  Vente </p>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-edit" aria-hidden="true"></i>  </a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    {% if product.verified == 0  %}
+                                        <p class="card-text"> Produits est en attente de vérification </p>
+                                    {% else %}
+                                        <p class="card-text">  Produit est vérifié !</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-title">
-                        <p> <strong>{{ product.name }}</strong></p>
-                        <h3> {{ product.price }} €</h3>
-                    </div>
-                    <div class="card-content">
-                    <p>{{ product.description }}</p>
-                    </div>
+                    <!-- end product card -->
                 </div>
                 {% endfor %}
                 </div>
