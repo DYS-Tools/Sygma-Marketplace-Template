@@ -22,7 +22,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">nom</th>
-                    <th scope="col">article dans la catégorie</th>
                     <th scope="col">Supprimer la catégorie</th>
                 </tr>
                 </thead>
@@ -31,8 +30,11 @@
                     <tr>
                         <th scope="row">{{ category.id }}</th>
                         <td>{{ category.name }}</td>
-                        <td> article dans la catégorie</td>
-                        <td> Supprimer la catégorie</td>
+                        <td> 
+                            <a href="{{ path('category_delete', {'id': category.id}) }}">
+                                <button type="button" class="btn btn-danger">Supprimer la catégorie</button>
+                            </a>  
+                        </td>
                     
                     </tr>
                     </tbody>
