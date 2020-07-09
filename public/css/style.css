@@ -152,6 +152,30 @@ a.logo span {
 }
 
 
+
+i.fa-user-circle {
+    color : yellowgreen;
+    font-size: 35px ;
+}
+
+i.fa-sort-down {
+    color : yellowgreen;
+    font-size: 16px ;
+}
+
+ul.dropdown-menu.show {
+    background-color: #343a40 ;
+    color : yellowgreen;
+    margin-top : 20px;
+    position: relative;
+    top: 20px; left: -130px;
+    padding-left: 20px ;
+}
+
+
+ul.dropdown-menu.show li a  {
+    color : yellowgreen;
+}
 /* ==========================================================================================================
 										SECTIONS
    ========================================================================================================== */
