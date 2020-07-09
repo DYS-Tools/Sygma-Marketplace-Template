@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+
+        <h2> Les catégories </h2>
+        <br/>
+             <div class="product-button">
+                <button type="button">
+                    <a href="{{ path('category_new') }}">Ajouter une categorie  <i class="fa fa-file-text" aria-hidden="true"></i></a>
+                </button>
+                </div>
+        <br/>
+        {% if categories > 0  %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">nom</th>
+                    <th scope="col">article dans la catégorie</th>
+                    <th scope="col">Supprimer la catégorie</th>
+                </tr>
+                </thead>
+                {% for category in categories %}
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{ category.id }}</th>
+                        <td>{{ category.name }}</td>
+                        <td> article dans la catégorie</td>
+                        <td> Supprimer la catégorie</td>
+                    
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+
+        <p> vous souhaiteriez mieux vendre ?
+            <a href="{{ path('help_author') }}"><span class="yellowgreen"><i class="fa fa-question-circle" aria-hidden="true"></i> Aide pour auteurs</span></a>
+        </p>
+    </div>
+
+
+
+{% endblock %}
