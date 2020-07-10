@@ -31,14 +31,46 @@ class payment
     private $entityManager;
     private $mailer;
     private $user;
+    private $sandbox_account_test;
+    private $paypal_client_id_test;
+    private $paypal_secret_test;
+    private $client;
 
-    public function __construct(EntityManagerInterface $em )
+
+    public function __construct(EntityManagerInterface $em,$sandbox_account_test, $paypal_client_id_test , $paypal_secret_test, $client )
     {
         $this->em = $em;
+        $this->client = $client;
+        $this->sandbox_account_test = $sandbox_account_test;
+        $this->paypal_client_id_test = $paypal_client_id_test;
+        $this->paypal_secret_test = $paypal_secret_test;
     }
+
+    /* get env var Paypal*/
+
+    public function getPaypalSandbox()
+    {
+        return $this->sandbox_account_test;
+    }
+
+    public function getPaypalClientIdTest()
+    {
+        return $this->paypal_client_id_test;
+    }
+
+    public function getPaypalSecretTest()
+    {
+        return $this->paypal_secret_test;
+    }
+
+    /* end get env var Paypal */
+
 
     public function makePayment(Product $product, User $user )
     {
+        // Todo : render token API ( with function connect Paypal )
+        dd ( $this->connectPaypal() );
+
         //create Order
         $order = new Order;
         $order->setUser($user);
@@ -50,19 +82,40 @@ class payment
         $this->em->persist($order);
         $this->em->flush();
 
-        
-
           // TODO: $order->setStatus('Finished');
         return ;
     }
-
-    
 
     public function payout(){
         // transfet funds in acct_XXXXX account
         dd();
     }
 
+    // Paypal
+    public function connectPaypal() {
+
+        dump( $this->getPaypalSandbox()) ;
+        dump( $this->getPaypalClientIdTest()) ;
+        dump( $this->getPaypalSecretTest()) ;
+
+        // Todo : request curl with httpClient  // https://developer.paypal.com/docs/platforms/get-started/#step-1-get-api-credentials
+
+        $response = $this->client->request('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', [
+            'headers' => [
+                'Content-Type' => 'text/plain',
+            ],
+        ]);
+
+        return "a" ;
+
+        /*
+        curl -v POST https://api.sandbox.paypal.com/v1/oauth2/token \
+        -H "Accept: application/json" \
+        -H "Accept-Language: en_US" \
+        -u "CLIENT_ID:SECRET" \
+        -d "grant_type=client_credentials"
+        */
+    }
 
 
 }
