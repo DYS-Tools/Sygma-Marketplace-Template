@@ -6,11 +6,9 @@
 {{ include('dashboard/_nav.html.twig') }}
 <div class="container">
     <h1>Modifier le Produit</h1>
+    <p class="size3"> Attention, en validant ce formulaire, les anciens éléments uploadés seront supprimé, gardez donc les images associé a votre produit.</p>
 
     {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
-
     <a href="{{ path('product_index') }}">Retour à la liste</a>
-
-    {{ include('product/_delete_form.html.twig') }}
 </div>
 {% endblock %}

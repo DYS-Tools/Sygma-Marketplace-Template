@@ -268,6 +268,12 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if($product->getImg1() != null){unlink('../product/img/' . $product->getImg1());};
+            if($product->getImg2() != null){unlink('../product/img/' . $product->getImg2());};
+            if($product->getImg3() != null){unlink('../product/img/' . $product->getImg3());};
+            
+            $path1 = $product->getImg1();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('product_index');
