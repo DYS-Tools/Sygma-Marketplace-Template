@@ -62,7 +62,7 @@ class ProductController extends AbstractController
 
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAllTProductVerified(),
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $categoryRepository->findBy(['active' => 1]),
             'pagination' => $pagination,
             'searchForm' => $searchForm->createView(),
             'bestSell' => $BestSell,
@@ -98,7 +98,7 @@ class ProductController extends AbstractController
             'products' => $products,
             'pagination' => $pagination,
             'searchForm' => $searchForm->createView(),
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
 
@@ -134,7 +134,7 @@ class ProductController extends AbstractController
 
         return $this->render('product/categoryProduct.html.twig', [
             'products' => $products,
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $categoryRepository->findBy(['active' => 1]),
             'categoryCurrent' => $categoryCurrent,
             'pagination' => $pagination,
             'searchForm' => $searchForm->createView()
@@ -212,7 +212,7 @@ class ProductController extends AbstractController
         $products = $productRepository->findBy(['id' => $id]);
         return $this->render('product/show.html.twig', [
             'product' => $product,
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
 
@@ -253,7 +253,7 @@ class ProductController extends AbstractController
 
         return $this->render('product/contactSeller.html.twig', [
             'product' => $product,
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $categoryRepository->findBy(['active' => 1]),
             'form' => $form->createView(),
         ]);
     }
