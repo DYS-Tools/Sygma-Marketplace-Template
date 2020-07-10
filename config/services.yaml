@@ -41,5 +41,10 @@ services:
 
     App\Service\payment:
         arguments:
+            # for Paypal
+            $sandbox_account_test: '%env(resolve:SANDBOX_ACCOUNT_TEST)%'
+            $paypal_client_id_test: '%env(resolve:PAYPAL_CLIENT_ID_TEST)%'
+            $paypal_secret_test : '%env(resolve:PAYPAL_SECRET_TEST)%'
+            # for Stripe
             #$secretStripeKeyTest: '%env(resolve:STRIPE_SECRET_TEST)%'
             #$publicStripeKeyTest: '%env(resolve:STRIPE_PUBLIC_TEST)%'
