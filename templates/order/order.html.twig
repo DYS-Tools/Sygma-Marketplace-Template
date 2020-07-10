@@ -8,8 +8,8 @@
           <div class="container">
 
             <div class="#">
-              <a id="paybutton" href="{{ path('redirectStripe', { 'product': product.id } ) }}" class="bottom"><p class="cart">
-              <button class="big-button-pay">Payer avec Stripe </button></p>
+              <a id="paybutton" href="{{ path('redirectPayment', { 'product': product.id } ) }}" class="bottom"><p class="cart">
+              <button class="big-button-pay">Payer </button></p>
               </a>
 
             </div>
@@ -53,37 +53,4 @@
 {% block javascripts %}
 
 {{ parent() }}
-
-<script>
-      var stripe = Stripe('{{ stripe_public_key }}');
-      //CODE A EXECUTER SI APPUI SUR BOUTON DE PAIEMENT 
-      jQuery(document).ready(function() {
-          $("#paybutton").click(function() {
-              stripe.redirectToCheckout({
-                sessionId: '{{ CHECKOUT_SESSION_ID }}'
-                // Make the id field from the Checkout Session creation API response
-                // available to this file, so you can provide it as parameter here
-                // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-
-                // id: cs_test_M07MtvAhxVT9zraohsSTnZKMCRUZnooh6m5IUELox1o3PEVTKOIDbgRj
-                // payment_intent: "pi_1Gu2j2KDC0w6oO18KMyI53f9"
-                
-              }).then(function (result) {
-                // If `redirectToCheckout` fails due to a browser or network
-                // error, display the localized error message to your customer
-                // using `result.error.message`.
-              });
-
-              if (result.paymentIntent.status === 'succeeded'){
-                alert('paiement reussi');
-              }
-
-
-
-          });
-        });
-</script>
-     
-  
-
 {% endblock %}
