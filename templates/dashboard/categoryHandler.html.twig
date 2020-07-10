@@ -14,7 +14,7 @@
                 <button type="button">
                     <a href="{{ path('category_new') }}">Ajouter une categorie  <i class="fa fa-file-text" aria-hidden="true"></i></a>
                 </button>
-                </div>
+            </div>
         <br/>
         {% if categories > 0  %}
             <table class="table">
@@ -30,10 +30,19 @@
                     <tr>
                         <th scope="row">{{ category.id }}</th>
                         <td>{{ category.name }}</td>
-                        <td> 
-                            <a href="{{ path('category_delete', {'id': category.id}) }}">
-                                <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                            </a>  
+                        <td>   
+                            {% if category.active == 0 %}
+                                <a href="{{ path('category_swap', {'id': category.id}) }}">
+                                    <button type="button" class="btn btn-info">Activer</button>
+                                </a>
+                            {% endif %}
+
+                            {% if category.active == 1 %}
+                                <a href="{{ path('category_swap', {'id': category.id}) }}">
+                                    <button type="button" class="btn btn-info">Désactiver</button>
+                                </a>
+                            {% endif %} 
+                            </button>
                         </td>
                     
                     </tr>
@@ -42,10 +51,12 @@
             </table>
         {% endif %}
 
-
-        <p><span class="yellowgreen"><i class="fas fa-exclamation-triangle"></i> Attention avec la suppression de catégorie</span>
+        <p><span class="yellowgreen"><i class="fas fa-exclamation-triangle"></i> Attention avec l'activation des catégories</span>
         </p>
     </div>
+
+
+    
 
 
 

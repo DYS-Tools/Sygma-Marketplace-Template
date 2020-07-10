@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\NewCategoryFormType;
 use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,16 +62,30 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("dashboard/category/delete/{id}", name="category_delete")
+     * @Route("dashboard/category/swap/{id}", name="category_swap")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function delete_category(Request $request, Category $category, CategoryRepository $categoryRepo, $id)
+    public function swap_category(Request $request, Category $category, CategoryRepository $categoryRepo, $id, ProductRepository $productRepo)
     {
-            $category = $categoryRepo->find($id);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($category);
-            $entityManager->flush();
+        $entityManager = $this->getDoctrine()->getManager();
 
-            return $this->redirectToRoute('category_handler');
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $productRepository->findAll();
+
+        $category = $categoryRepo->find($id);
+
+        // swap the category
+        if($category->getActive() == 1){
+            $category->setActive(0);
+        }
+        elseif($category->getActive() == 0){
+            $category->setActive(1);
+        }
+        
+        //$entityManager->remove($category);
+        $entityManager->persist($category);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('category_handler');
     }
 }
