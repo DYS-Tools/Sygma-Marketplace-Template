@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+
+        <h2> Les catégories </h2>
+        <br/>
+             <div class="product-button">
+                <button type="button">
+                    <a href="{{ path('category_new') }}">Ajouter une categorie  <i class="fa fa-file-text" aria-hidden="true"></i></a>
+                </button>
+                </div>
+        <br/>
+        {% if categories > 0  %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">nom</th>
+                    <th scope="col">Supprimer la catégorie</th>
+                </tr>
+                </thead>
+                {% for category in categories %}
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{ category.id }}</th>
+                        <td>{{ category.name }}</td>
+                        <td> 
+                            <a href="{{ path('category_delete', {'id': category.id}) }}">
+                                <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                            </a>  
+                        </td>
+                    
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+
+        <p><span class="yellowgreen"><i class="fas fa-exclamation-triangle"></i> Attention avec la suppression de catégorie</span>
+        </p>
+    </div>
+
+
+
+{% endblock %}

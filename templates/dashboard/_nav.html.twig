@@ -9,16 +9,20 @@
 
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('statistic_admin') }}"><span class="admin-link"><i class="fa fa-line-chart" aria-hidden="true"></i>   Statistique </span></a>
+                    <a class="nav-link" href="{{ path('statistic_admin') }}"><span class="admin-link"><i class="fa fa-line-chart" aria-hidden="true"></i>Statistique </span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('product_verified') }}"><span class="admin-link"> <i class="fa fa-tags" aria-hidden="true"></i>  Administration produits</span></a>
+                    <a class="nav-link" href="{{ path('product_verified') }}"><span class="admin-link"> <i class="fa fa-tags" aria-hidden="true"></i>Administration produits</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('ticket_handler') }}"><span class="admin-link"> <i class="fa fa-sticky-note" aria-hidden="true"></i>   Gestion des tickets</span></a>
+                    <a class="nav-link" href="{{ path('ticket_handler') }}"><span class="admin-link"> <i class="fa fa-sticky-note" aria-hidden="true"></i>Gestion des tickets</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('article_index_admin') }}"><span class="admin-link"><i class="fa fa-file-text" aria-hidden="true"></i>   Le blog</span></a>
+                    <a class="nav-link" href="{{ path('article_index_admin') }}"><span class="admin-link"><i class="fa fa-file-text" aria-hidden="true"></i>Le blog</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('category_handler') }}"><span class="admin-link"><i class="fa fa-file-text" aria-hidden="true"></i>Gestion des catégories</span></a>
                 </li>
             {% endif %}
 

@@ -49,6 +49,55 @@ p {
 }
 
 
+/******** A RULES FOR Typography *****************/
+.white{
+    color: white;
+}
+.black{
+    color: black;
+}
+.bold{
+    font-weight: bold;
+}
+
+.size1{
+    font-size: 32px;
+}
+.size2{
+    font-size: 27px;
+}
+.size3{
+    font-size: 24px;
+}
+.size4{
+    font-size: 19px;
+}
+.size5{
+    font-size: px;
+}
+.size6{
+    font-size: 27px;
+}
+.font1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.font2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.font3{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.font4{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.font5{
+    font-family: 'Times New Roman', Times, serif;
+}
+.font6{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
 .center_div{
     margin: 0 auto;
     width:65% /* value of your choice which suits your alignment */
@@ -298,7 +347,8 @@ ul.dropdown-menu.show li a  {
 
 .product-button button {
     background-color: yellowgreen;
-    color : white;
+    color : black;
+    font-weight: 700;
     border : white;
     height: 50px;
     width: 150px;
@@ -312,7 +362,8 @@ ul.dropdown-menu.show li a  {
 }
 
 .product-button button a {
-    color : white;
+    color : black;
+    font-weight: 700;
 }
 
 
@@ -538,9 +589,19 @@ ul.dropdown-menu.show li a  {
 
 
 /*********** SHOW PRODUCT *************/
+.show-page{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    max-width: 100vw;
+    overflow: hidden;
+}
 .content-page{
     background-color: rgba(210,210,210,0.8);
+    background: linear-gradient(rgba(230,230,230,0.8), rgba(240,240,240,0.8) );
     padding-bottom: 4%;
+    margin-bottom: 0;
+}
+.content-page .row{
     margin-bottom: 0;
 }
 
@@ -551,22 +612,29 @@ ul.dropdown-menu.show li a  {
 .content-bar{
     margin-top: 2%;
     /*box-shadow: 1px 1px 4px grey;*/
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 12px;
+    background-color: rgba(225,225,225,1);
+    border-radius: 3px;
     padding-bottom: 4%;
     margin-bottom: 0;
+    box-shadow: 1px 1px 4px rgba(120,120,120,0.1);
+    border: 1px solid rgba(175,175,175,1);
 }
 .content-info{
     margin-left: 10%;
 }
 
-
-
 .side-bar{
-    margin-top: 2%;
-    box-shadow: 1px 1px 4px grey;
-    background-color: rgba(80,80,80,0.1);
-    border-radius: 12px;
+   margin-top :2%; 
+    
+}
+.side-bar-info{
+    border: 1px solid rgba(175,175,175,1);
+    margin-top: 1%;
+    box-shadow: 1px 1px 4px rgba(120,120,120,0.1);
+    background-color: rgba(225,225,225,1);
+    border-radius: 3px;
+    margin-bottom: 6%;
+    padding: 5%;
 }
 
 .side-bar h2, .side-bar p, .side-bar h3{
@@ -580,11 +648,60 @@ ul.dropdown-menu.show li a  {
     text-align: center;
     /*text-transform: uppercase;*/
     font-weight: bold;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
+}
+.eur-text{
+    font-size: 70px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+.fa-eur{
+    font-size: 50px;
+}
+.eur-text-min{
+    font-size: 17px;
 }
 
 
 .search-container {
     margin-bottom: 100px ;
     margin-top: 100px ;
+}
+.pay-product{
+    background-color: limegreen;
+    transition-duration: 0.4s;
+}
+.pay-product:hover{
+    background-color: grey;
+    transition-duration: 0.4s;
+}
+.pay-product a:hover{
+    text-decoration: none;
+}
+#paybutton:hover{
+    text-decoration: none;
+}
+.margin-block{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.pay-product h2{
+    text-align: center;
+    margin-left: 0;
+    padding: 7%;
+    color: linen;
+    font-size: 25px;
+}
+
+/********* ORDER PAGE DESIGN ***********************/
+
+.big-button-pay {
+    margin-top: 8%;
+    padding: 45px;
+    background-color: greenyellow;
+    color: black;
+    font-weight: bold;
+    border: none;
 }
