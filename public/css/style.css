@@ -2,6 +2,8 @@
  * Author : DYS-Tools
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Source+Sans+Pro&display=swap');
+
 body{
     margin: 0;
     padding: 0;
@@ -78,14 +80,18 @@ p {
 .size6{
     font-size: 27px;
 }
+/*
+font-family: 'Raleway', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+*/
 .font1{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 .font2{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .font3{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 .font4{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -360,7 +366,6 @@ ul.dropdown-menu.show li a  {
 .product-button  {
     margin-left : 15px ;
 }
-
 .product-button button a {
     color : black;
     font-weight: 700;
@@ -621,6 +626,7 @@ ul.dropdown-menu.show li a  {
 }
 .content-info{
     margin-left: 10%;
+    padding-right: 8%;
 }
 
 .side-bar{
@@ -648,7 +654,7 @@ ul.dropdown-menu.show li a  {
     text-align: center;
     /*text-transform: uppercase;*/
     font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 .eur-text{
     font-size: 70px;
@@ -661,6 +667,22 @@ ul.dropdown-menu.show li a  {
 .eur-text-min{
     font-size: 17px;
 }
+.number-sales{
+    font-size: 55px;
+    color:yellowgreen;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0em;
+}
+.sale-text{
+    font-size: 27px;
+    color: grey;
+    margin:0;
+    padding:0;
+}
+.fa-cart-arrow-down{
+    color: grey;
+}
 
 
 .search-container {
@@ -668,11 +690,20 @@ ul.dropdown-menu.show li a  {
     margin-top: 100px ;
 }
 .pay-product{
-    background-color: limegreen;
+    background-color: rgb(60,140,60);
     transition-duration: 0.4s;
+    padding-bottom: 0%;
+    border-bottom: 10px solid rgb(50,130,50);
+    border-radius: 4px;
+}
+.pay-product i{
+    color: whitesmoke;
+    font-size: 45px;
 }
 .pay-product:hover{
     background-color: grey;
+    transition-duration: 0.4s;
+    border-bottom: 0px solid grey;
     transition-duration: 0.4s;
 }
 .pay-product a:hover{
@@ -685,7 +716,7 @@ ul.dropdown-menu.show li a  {
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 0.5%;
 }
 .pay-product h2{
     text-align: center;
