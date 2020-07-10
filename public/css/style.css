@@ -45,7 +45,13 @@ h6 {
 
 p {
     font-family: Times New Roman;
+    text-decoration: none;
 
+}
+
+a:link
+{
+    text-decoration:none;
 }
 
 
@@ -55,6 +61,14 @@ p {
 }
 .black{
     color: black;
+}
+
+.grey {
+    color : grey;
+}
+
+.hover-yellowgreen:hover {
+    color: yellowgreen;
 }
 .bold{
     font-weight: bold;
@@ -73,7 +87,7 @@ p {
     font-size: 19px;
 }
 .size5{
-    font-size: px;
+    font-size: 17px;
 }
 .size6{
     font-size: 27px;
@@ -158,7 +172,7 @@ a.logo span {
 /* ==========================================================================================================
 										NAVBAR
    ========================================================================================================== */
-
+/* for category nav */
 .category-nav{
     background-color:rgba(48, 54, 60,1); /* rgb(52, 58, 64) */
     padding-bottom: 0.7%;
@@ -190,6 +204,7 @@ a.logo span {
     color:white;
 }
 
+/* for dashboard nav */
 .admin-link{
     color: wheat;
 }
@@ -223,6 +238,11 @@ ul.dropdown-menu.show {
 
 
 ul.dropdown-menu.show li a  {
+    color : yellowgreen;
+}
+
+/* for main nav */
+.navbar-dark .navbar-nav .nav-link:hover {
     color : yellowgreen;
 }
 /* ==========================================================================================================
@@ -393,19 +413,23 @@ ul.dropdown-menu.show li a  {
 }
 
 /* ==========================================================================================================
-										PRODUCT CARD HOME
+										PRODUCT CARD HOME CONTAINER
    ========================================================================================================== */
-
+/* body : background-color:rgba(240,240,240,0.5); */
 .container-best-sell {
-    background-color:rgba(240,240,240,0.6);
-}
-
-.container-free {
-    background-color:rgba(240,240,240,0.6);
+    /* background-color: rgba(240,240,240,0.5); */
+    background : linear-gradient(rgba(240,240,240,0.5), rgba(220,220,220,0.5));
+    padding: 50px ;
 }
 
 .container-product-new {
-    background-color: rgb(225,225,225);
+    background : linear-gradient(rgba(200,200,200,0.5) , rgba(220,220,220,0.5));
+    padding: 50px ;
+}
+
+.container-free {
+    background : linear-gradient(rgba(240,240,240,0.5), rgba(220,220,220,0.5));
+    padding: 50px ;
 }
 
 .card {
@@ -413,6 +437,20 @@ ul.dropdown-menu.show li a  {
     box-shadow: 4px 4px 4px rgb(200,200,200);
 }
 
+
+/* search */
+
+.search-container {
+    padding: 50px;
+    width: 100%;
+    background: linear-gradient(0.90turn, rgb(38,116,152), #ebf8e1, yellowgreen);
+    /* border: 2px red solid ; */
+}
+
+i.fa-search {
+    font-size: 150px ;
+    color : rgb(38,116,152) ;
+}
 
 /* ==========================================================================================================
 										SINGLE PAGE PRODUCT
@@ -662,11 +700,6 @@ ul.dropdown-menu.show li a  {
     font-size: 17px;
 }
 
-
-.search-container {
-    margin-bottom: 100px ;
-    margin-top: 100px ;
-}
 .pay-product{
     background-color: limegreen;
     transition-duration: 0.4s;
