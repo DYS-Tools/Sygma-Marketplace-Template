@@ -21,44 +21,87 @@
                 <br/>
             </div>
 
-            <div class="image-center container center block image-center">
-                {% if product.img1 != NULL %}
-                    <img class="card-img-top" src="../product/img/{{ product.img1 }}" alt="{{ product.name }}"
-                        style=" width: 42%; height: 31%;">
-                {% endif %}
+            <div class="container">
+
+            <!--- TEST SLIDE SHOW -->
+
+
+                <!-- Container for the image gallery -->
+                    <div class="container">
+
+                        <!-- Full-width images with number text -->
+                        {% if product.img1 != NULL %}
+                            <div class="mySlides">
+                                <div class="numbertext">1 / 6</div>
+                                <img src="../product/img/{{ product.img1 }}" style="width:100%">
+                            </div>
+                        {% endif %}
+
+                        {% if product.img2 != NULL %}
+                            <div class="mySlides">
+                                <div class="numbertext">2 / 6</div>
+                                <img src="../product/img/{{ product.img2 }}" style="width:100%">
+                            </div>
+                        {% endif %}
+
+                        {% if product.img3 != NULL %}
+                            <div class="mySlides">
+                                <div class="numbertext">2 / 6</div>
+                                <img src="../product/img/{{ product.img3 }}" style="width:100%">
+                            </div>
+                        {% endif %}
+
+                        <!-- Next and previous buttons -->
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <!-- Image text -->
+                        <div class="caption-container">
+                            <p id="caption"></p>
+                        </div>
+                        <hr>
+
+                        <!-- Thumbnail images -->
+                        <div class="row justify-content-center">
+                            
+                                {% if product.img2 != NULL %}
+                                    <div class="column col-lg-3">
+                                        <img class="demo cursor" src="../product/img/{{ product.img1 }}" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+                                    </div>
+                                {% endif %}
+                                {% if product.img2 != NULL %}
+                                    <div class="column col-lg-3">
+                                        <img class="demo cursor" src="../product/img/{{ product.img2 }}" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+                                    </div>
+                                {% endif %}
+
+                                {% if product.img3 != NULL %}
+                                    <div class="column col-lg-3">
+                                        <img class="demo cursor" src="../product/img/{{ product.img3 }}" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+                                    </div>
+                                {% endif %}
+                            
+                            
+                        </div>
+                    </div>
+            </div>
+
+            <div class="content-info">
+                <br/>
+                <br/>
+                <br/>
+                <p class="font3 size3"> {{ product.content }} </p>
+                <br/>
+                <p class="font3 size3">Création le {{ product.published ? product.published|date('d/m/Y') : '' }} </p>
+                <br/>
+                <br/>
             </div>
 
             <div class="container content-info">
                 <br/>
                 <br/>
-                <h2 class="eur-text">{{ product.price }}<i class="fa fa-eur" aria-hidden="true"></i> <span class="eur-text-min">TTC </span></h2>
-                <br/>
-                <br/>
-                <p> {{ product.content }} </p>
-                <br/>
-                <p>Création le {{ product.published ? product.published|date('d/m/Y') : '' }} </p>
-                <br/>
-                <br/>
-            </div>
-
-            <div class="container">
-                <br/>
-
-                <div class="container content-info">
-                    {% if product.img2 != NULL %}
-                        <img class="card-img-top" src="../product/img/{{ product.img2 }}" alt="{{ product.name }}"
-                            style=" width: 32%; height: 20%;">
-                    {% endif %}
-
-                    {% if product.img3 != NULL %}
-                        <img class="card-img-top" src="../product/img/{{ product.img3 }}" alt="{{ product.name }}"
-                            style=" width: 32%; height: 20%;">
-                    {% endif %}
-                </div>
-                <br/>
-
-        
-                <br/>
+                <p> Notez que des frais supplémentaire peuvent être facturé par l'auteur en cas d'utilisation a but lucratif du produit final.<br/>
+                Veuillez contacter l'auteur si vous êtes dans ce cas.</p>
             </div>
 
         </div>
@@ -69,30 +112,35 @@
             <h2 class="font3"> Caractéristique technique </h2>
             <br/>
             
-                <p class="font6"> catégorie du produit : {{ product.category.name }}</p>
-                <p class="font6"> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
+                <p class="font3"> catégorie du produit : {{ product.category.name }}</p>
+                <p class="font3"> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
 
-                <p class="font6"><a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a></p>
-                <br/>
+                <p class="font3"><a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a></p>
+                
+                <p class="eur-text">{{ product.price }}<i class="fa fa-eur" aria-hidden="true"></i> <span class="eur-text-min">TTC </span></p>
             </div>
 
             <div class="side-bar-info">
                 <div class="row">
-                    <div class="product-button col-lg-4">
-                        <button type="button" class="padding-button">
+                    <div class=" col-lg-4">
+    
                             {%   if product.demoLink != NULL %}
-                                <a href="{{ product.demoLink }}">Démonstration</a>
+                                <a href="{{ product.demoLink }}">
+                                <button type="button" class="btn btn-success">Démonstration</button>
+                                </a>
                             {% else %}
-                                <p> Pas de démonstration.</p>
+                                <p class="font3"> Pas de démonstration.</p>
                             {%  endif  %}
-                        </button>
+                        
                     </div>
                     <br/><br/>
 
-                    <div class="product-button col-lg-4">
-                        <button type="button" class="padding-button">
-                            <a href="{{ path('product_index') }}">Retour à la liste</a>
-                        </button>
+                    <div class=" col-lg-4">
+                        
+                            <a href="{{ path('product_index') }}" class="font3">
+                            <button type="button" class="btn btn-success">Retour</button>
+                            </a>
+                        
                     </div>
                 </div>
             </div>
@@ -100,28 +148,66 @@
 
 
             <div class="side-bar-info">
-                
-                <p> Vente pour ce produit: {{ product.numberSale}} </p>
-                
+                <p class="font1 sale-text"><i class="fas fa-cart-arrow-down"></i> <span class="number-sales">  {{ product.numberSale}}</span> Vente </p>
             </div>
 
             <div class="side-bar-info ">
                 <p> Ajouter maintenant ce produit a votre collection, et créer de meilleurs choses</p>
                 <a id="paybutton" href="{{ path('order', { 'product': product.id }  ) }}" class="bottom">
                     <div class="margin-block pay-product">
-                        <h2 class="center"> Payer maintenant</h2>
+                        <h2 class="center"> Payer maintenant<br/>
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-stripe"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        </h2>
                     </div>
                 </a>
             </div>
             
 
-                
+            <!--    
             <div class="side-bar-info">
-                <a href="{{ path('product_index') }}">Retour à la liste</a>
+                <a href="{ { path('product_index') }}">Retour à la liste</a>
             </div>
+            -->
 
         </div>
     </div>
 
 </div> <!-- End DIV show-page-->
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+        //captionText.innerHTML = dots[slideIndex-1].alt;
+        }
+    </script>
 {% endblock %}
