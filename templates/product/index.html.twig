@@ -4,13 +4,6 @@
 
 {% block body %}
 
-<div class="intro-section">
-    <h1 class="text-center"> Decouvrez nos produits web </h1>
-    <p class="text-center"> Librairie CSS, template, Plugin, theme wordpress,... </p>
-</div>
-
-<br/>
-
 <ul class="nav nav-pills justify-content-center category-nav">
     {% for category in categories %}
     <li class="nav-item">
@@ -18,100 +11,147 @@
     </li>
     {% endfor %}
 </ul>
+
+    <img src="img/head.jpg" alt="Web-Item-Market" style="width: 100%">
+<br/>
 <br/>
 
-<!-- search Bar -->
- <div class="s003">
-      <form>
-        <div class="inner-form">
-          <div class="input-field first-wrap ">
-            <div class="input-select">
-              <select data-trigger="" name="choices-single-defaul">
-                <option placeholder="">Category</option>
-                {% for category in categories %}
-                <li class="nav-item ">
-                    <a class="nav-link " href="#">{{ category.name }}</a>
-                    <option>{{ category.name }}</option>
-                </li>
+<!-- nEW SEARCH BAR --> 
+
+<div class="container search-container">
+{{ form_start(searchForm) }}
+    {{ form_widget(searchForm) }}
+    <button class="btn-success product-button">{{ button_label|default('Rechercher') }}</button>
+{{ form_end(searchForm) }}
+</div>
+
+
+    <!-- -------------------------------------------
+            container-best-sell
+    -------------------------------------------  -->
+    <div class="container-best-sell col-lg-12">
+        <div class="box-card">
+            <h2 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Nos meilleurs produits  </h2>
+            <div class="row">
+                {% for bestSell in bestSell %}
+                    <div class="col-lg-3">
+                        <!-- product card -->
+                        <div class="card" style="width: 26rem;">
+                            <img class="card-img-top" src="product/img/{{ bestSell.img1 }}"  alt="{{ bestSell.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title-product">{{ bestSell.name }}</h5>
+                                <p class="card-text">{{ bestSell.description }}</p>
+
+                                <p class="yellowgreen"> <strong> {{ bestSell.price }} € </strong>  </p>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="card-text"> {{ bestSell.numberSale}}  Vente </p>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <a href="{{ path('product_show', {'id': bestSell.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="{{path('order', { 'product': bestSell.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end product card -->
+                    </div>
                 {% endfor %}
-              </select>
             </div>
-          </div>
-          <div class="input-field second-wrap">
-            <input id="search" type="text" placeholder="Chercher un produit" />
-          </div>
-          <div class="input-field third-wrap">
-            <button class="btn-search" type="button">
-              <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <script src="{{ asset('js/animate.js') }}"></script>
-    <script src="{{ asset('js/flatpickr.js') }}"></script>
-    <script src="{{ asset('js/choices.js') }}"></script>
-    <script src="{{ asset('js/search.js') }}"></script>
-    <script>
-        const choices = new Choices('[data-trigger]',
-            {
-                searchEnabled: false,
-                itemSelectText: '',
-            });
-
-    </script>
-<!-- End SEARCH bar -->
-
-<div class="container">
-    <br/><br/>
-    <h1 class="text-center">Our product</h1>
-    <br/><br/>
-
-    <!-- new product -->
-    {% for product in products %}
-    <div class="wrapper">
-        {% if product.img1 != NULL %}
-            <div class="product-img">
-                <img src="product/img/{{ product.img1 }}"  alt="{{ product.name }}" height="420" width="100%">
-            </div>
-        {% endif %}
-
-        <div class="product-info">
-            <div class="product-text">
-                <h1> {{ product.name }}</h1>
-                <h2><strong>Vente : </strong>  <span class="yellowgreen"> {{ product.numberSale }} </span></h2>
-                <p>{{ product.description }}</p>
-            </div>
-
-            <div class="product-price-btn">
-                <p><span>{{ product.price }}</span>$</p>
-            </div>
-
-            <div class="product-button">
-                    
-
-                    <button type="button">
-                        <a href="{{ path('product_show', {'id': product.id}) }}"> Détails</a>
-                    </button>
-
-                    <button type="button">
-                        {%   if product.demoLink != NULL %}
-                            <a href="{{ product.demoLink }}">Démo</a>
-                        {% else %}
-                            <p> Pas de démonstration.</p>
-                        {%  endif  %}
-                    </button>
-            </div>
-
         </div>
     </div>
-    {% else %}
-        <tr>
-            <td colspan="9">Pas de résultat actuellement.</td>
-        </tr>
-    {% endfor %}
+    <!-- end container-best-sell -->
+
+
+    <!-- -------------------------------------------
+            container-product-new
+    -------------------------------------------  -->
+    <div class="container-product-new col-lg-12">
+        <div class="box-card">
+            <h2 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Nouveau produits  </h2>
+            <div class="row">
+                {% for newProduct in newProduct %}
+                    <div class="col-lg-3">
+                        <!-- product card -->
+                        <div class="card" style="width: 26rem;">
+                            <img class="card-img-top" src="product/img/{{ newProduct.img1 }}"  alt="{{ newProduct.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title-product">{{ newProduct.name }}</h5>
+                                <p class="card-text">{{ newProduct.description }}</p>
+
+                                <p class="yellowgreen"> <strong> {{ newProduct.price }} € </strong>  </p>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="card-text"> {{ newProduct.numberSale}}  Vente </p>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="{{path('order', { 'product': newProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end product card -->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- end container-product-new -->
+
+    <!-- -------------------------------------------
+                container Free Template
+    -------------------------------------------  -->
+    <div class="container-free col-lg-12">
+        <div class="box-card">
+            <h2 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Template gratuit  </h2>
+            <div class="row">
+                {% for FreeProduct in FreeProduct %}
+                    <div class="col-lg-3">
+                        <!-- product card -->
+                        <div class="card" style="width: 26rem;">
+                            <img class="card-img-top" src="product/img/{{ FreeProduct.img1 }}"  alt="{{ FreeProduct.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title-product">{{ FreeProduct.name }}</h5>
+                                <p class="card-text">{{ FreeProduct.description }}</p>
+
+                                <p class="yellowgreen"> <strong> {{ FreeProduct.price }} € </strong>  </p>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="card-text"> {{ FreeProduct.numberSale}}  Vente </p>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <a href="{{ path('product_show', {'id': FreeProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> </a>
+                                        <a href="{{path('order', { 'product': FreeProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end product card -->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- end Container Free Template -->
+
+        {# total items count #}
+
+    <!-- <div class="count">
+        { { pagination.getTotalItemCount }}
+    </div>
+    -->
+
+    {# display navigation #}
+    <div class="navigation navigation-block">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
 </div>
 {% endblock %}

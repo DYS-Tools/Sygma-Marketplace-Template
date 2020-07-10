@@ -6,21 +6,64 @@ body{
     margin: 0;
     padding: 0;
     /*background-image:url(images/image_de_fond.png);*/
-    background-color:rgba(240,240,240,0.6);
+    background-color:rgba(240,240,240,0.5);
 
 }
 
-h1,h2,h3,h4,h5{
+/* ==========================================================================================================
+										POLICE
+   ========================================================================================================== */
+h1{
     font-family: "Comic Sans MS";
     font-weight: bold;
 }
+
+h2 {
+    font-family: Trebuchet MS;
+    font-weight: bold;
+}
+
+h3 {
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+}
+
+h4 {
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+}
+
+h5 {
+    font-family: Trebuchet MS;
+    font-weight: bold;
+}
+
+h6 {
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+}
+
+p {
+    font-family: Times New Roman;
+
+}
+
+
 .center_div{
     margin: 0 auto;
     width:65% /* value of your choice which suits your alignment */
 }
 
-/* nav admin */
 
+/* ==========================================================================================================
+										Color
+   ========================================================================================================== */
+.orange{
+    color:orangered;
+}
+.green{
+    color:green;
+}
 .blue {
     color : blue ;
 }
@@ -38,7 +81,10 @@ h1,h2,h3,h4,h5{
     color : green;
 }
 
-/* Logo */
+/* ==========================================================================================================
+										LOGO
+   ========================================================================================================== */
+
 a.logo {
     font-size: 24px;
     color: #f2f2f2;
@@ -60,27 +106,33 @@ a.logo span {
     color: yellowgreen;
 }
 
-/************** NAVBAR ********************************/
+/* ==========================================================================================================
+										NAVBAR
+   ========================================================================================================== */
 
+.category-nav{
+    background-color:rgba(48, 54, 60,1); /* rgb(52, 58, 64) */
+    padding-bottom: 0.7%;
+    padding-top: 0.2%;
+}
 .category-link-nav{
     padding:10px;
     width: 14vw;
     text-align: center;
-    color:yellowgreen;
+    letter-spacing: 0.1px;
+    color:rgba(240,240,240,0.7);
     text-decoration: none;
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 400;
+    font-size: 18.5px;
     /*background-color: yellowgreen;*/
 
 }
 .category-link-nav:hover{
-    background-color: yellowgreen;
-    border-radius: 15px;
-    color: black;
+    color:yellowgreen;
 }
 
 .nav-dash{
-    background-color: #434769;
+    background-color: rgb(48, 54, 60);
 }
 .blank-link{
     color:white;
@@ -89,7 +141,41 @@ a.logo span {
     color:white;
 }
 
+.admin-link{
+    color: wheat;
+}
+.author-link{
+    color: rgba(240,240,240,0.7); /* rgb(32, 133, 2) */
+}
+.user-link{
+    color: rgba(240,240,240,0.7);
+}
 
+
+
+i.fa-user-circle {
+    color : yellowgreen;
+    font-size: 35px ;
+}
+
+i.fa-sort-down {
+    color : yellowgreen;
+    font-size: 16px ;
+}
+
+ul.dropdown-menu.show {
+    background-color: #343a40 ;
+    color : yellowgreen;
+    margin-top : 20px;
+    position: relative;
+    top: 20px; left: -130px;
+    padding-left: 20px ;
+}
+
+
+ul.dropdown-menu.show li a  {
+    color : yellowgreen;
+}
 /* ==========================================================================================================
 										SECTIONS
    ========================================================================================================== */
@@ -106,125 +192,12 @@ a.logo span {
 .search-section form{
     width: 20vw;
 }
+
+
+
 /* ==========================================================================================================
-										SUB FOOTER
+										MODALE BECOME AUTHOR
    ========================================================================================================== */
-.img-float-left {
-    float: left;
-}
-
-.img-float-right {
-    float: right;
-}
-
-.footer-outer {
-    width: 100%;
-    padding: 50px;
-    height: 250px;
-    background: #2e3149;
-    overflow: hidden;
-}
-.footer-outer .footer-inner {
-    width: 100%;
-    height: inherit;
-}
-.footer-outer .social-icons-footer i {
-    margin: 15px;
-    font-size: 20px;
-}
-.footer-outer .social-icons-footer a:hover i {
-    opacity: .6;
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    -ms-transition: all .2s ease;
-    transition: all .2s ease;
-}
-.footer-outer .footer-three-grid {
-    width: 1140px;
-    margin: 0 auto;
-    height: 50px;
-    text-align: center;
-}
-.footer-outer .column-1-3 {
-    width: 20%;
-    float: left;
-    height: 50px;
-}
-.footer-outer .column-1-3 h1 {
-    font-size: 38px;
-    letter-spacing: 3px;
-    position: relative;
-    top: -5px;
-    font-weight: 600;
-    color: #fff;
-}
-.footer-outer .column-2-3 {
-    width: 60%;
-    float: left;
-    height: 50px;
-}
-.footer-outer .column-3-3 {
-    width: 20%;
-    float: left;
-    height: 50px;
-}
-.footer-outer .column-3-3 a {
-    color: #b5b5c8;
-}
-.footer-outer .column-3-3 .social-icons-header a:hover {
-    color: #fff;
-    opacity: 1;
-    -webkit-transition: color .2s ease;
-    -o-transition: color .2s ease;
-    transition: color .2s ease;
-}
-.footer-outer .footer-nav ul {
-    list-style: none;
-    text-align: center;
-}
-
-.footer-outer .footer-nav ul li {
-    display: inline-block;
-    line-height: 50px;
-    color: #b5b5c8;
-    margin: 0 30px;
-    font-size: 14px;
-}
-.footer-outer .footer-nav ul li:hover {
-    color: #fff;
-    -webkit-transition: color .2s ease-in-out;
-    -o-transition: color .2s ease-in-out;
-    transition: color .2s ease-in-out;
-}
-.footer-outer .footer-nav ul .active {
-    color: #fff;
-}
-.footer-outer .footer-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-.footer-outer .border-bottom-footer {
-    height: 1px;
-    width: 60%;
-    margin: 0 auto;
-    border: 1px solid #434769;
-    display: block;
-    margin-top: 50px;
-}
-.footer-outer .copyright {
-    color: #565b87;
-    text-align: center;
-    font-size: 13px;
-    padding: 40px 0;
-}
-
-.google-play-btn {
-    margin-left: 10px;
-}
-/**********************************/
-
-/* modal become author */
 
 .modal-util {
     overflow: scroll;
@@ -232,7 +205,9 @@ a.logo span {
     height: 500px;
 }
 
-/* product card */
+/* ==========================================================================================================
+										PRODUCT CARD
+   ========================================================================================================== */
 .wrapper {
     height: 420px;
     width: 100%;
@@ -366,10 +341,250 @@ a.logo span {
     background-color: #79b0a1;
 }
 
-/*************   Color *********************/
-.orange{
-    color:orangered;
+/* ==========================================================================================================
+										PRODUCT CARD HOME
+   ========================================================================================================== */
+
+.container-best-sell {
+    background-color:rgba(240,240,240,0.6);
 }
-.green{
-    color:green;
+
+.container-free {
+    background-color:rgba(240,240,240,0.6);
+}
+
+.container-product-new {
+    background-color: rgb(225,225,225);
+}
+
+.card {
+    margin-top: 15px ;
+    box-shadow: 4px 4px 4px rgb(200,200,200);
+}
+
+
+/* ==========================================================================================================
+										SINGLE PAGE PRODUCT
+   ========================================================================================================== */
+.img-center {
+    margin : auto ;
+    padding: auto;
+    text-align: center ;
+}
+
+
+/* ==========================================================================================================
+										SUB FOOTER
+   ========================================================================================================== */
+.img-float-left {
+    float: left;
+}
+
+.img-float-right {
+    float: right;
+}
+
+.footer-outer {
+    width: 100%;
+    padding: 50px;
+    height: 250px;
+    background: #2e3149;
+    overflow: hidden;
+}
+.footer-outer .footer-inner {
+    width: 100%;
+    height: inherit;
+}
+.footer-outer .social-icons-footer i {
+    margin: 15px;
+    font-size: 20px;
+}
+.footer-outer .social-icons-footer a:hover i {
+    opacity: .6;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    transition: all .2s ease;
+}
+.footer-outer .footer-three-grid {
+    width: 1140px;
+    margin: 0 auto;
+    height: 50px;
+    text-align: center;
+}
+.footer-outer .column-1-3 {
+    width: 20%;
+    float: left;
+    height: 50px;
+}
+.become-author-span{
+    font-weight: bold;
+}
+.footer-outer .column-1-3 h1 {
+    font-size: 38px;
+    letter-spacing: 3px;
+    position: relative;
+    top: -5px;
+    font-weight: 600;
+    color: #fff;
+}
+.footer-outer .column-2-3 {
+    width: 60%;
+    float: left;
+    height: 50px;
+}
+.footer-outer .column-3-3 {
+    width: 20%;
+    float: left;
+    height: 50px;
+}
+.footer-outer .column-3-3 a {
+    color: #b5b5c8;
+}
+.footer-outer .column-3-3 .social-icons-header a:hover {
+    color: #fff;
+    opacity: 1;
+    -webkit-transition: color .2s ease;
+    -o-transition: color .2s ease;
+    transition: color .2s ease;
+}
+.footer-outer .footer-nav ul {
+    list-style: none;
+    text-align: center;
+}
+
+.footer-outer .footer-nav ul li {
+    display: inline-block;
+    line-height: 50px;
+    color: #b5b5c8;
+    margin: 0 30px;
+    font-size: 14px;
+}
+.footer-outer .footer-nav ul li:hover {
+    color: #fff;
+    -webkit-transition: color .2s ease-in-out;
+    -o-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
+}
+.footer-outer .footer-nav ul .active {
+    color: #fff;
+}
+.footer-outer .footer-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+.footer-outer .border-bottom-footer {
+    height: 1px;
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid #434769;
+    display: block;
+    margin-top: 50px;
+}
+.footer-outer .copyright {
+    color: #565b87;
+    text-align: center;
+    font-size: 13px;
+    padding: 40px 0;
+}
+
+.google-play-btn {
+    margin-left: 10px;
+}
+
+/*********PAGINATION *******************/
+
+.navigation-block{
+    text-align: center;
+    margin-left: 40%;
+}
+
+/********* FORM  *******************/
+
+.custom-file-input{
+    opacity: 1;
+}
+
+/********* FAQ  *******************/
+.faq .logo h3{
+    font-size: 24px;
+    color: black;
+    font-weight: 950;
+    text-transform: uppercase;
+    box-sizing: border-box
+}
+.faq .logo{
+    display: inline;
+}
+.yellowgreen{
+    color: yellowgreen;
+}
+.inline{
+    display: flex;
+    flex-direction: inline;
+    vertical-align: bottom;
+}
+.text-faq-logo{
+    vertical-align: bottom;
+    margin: 0;
+    padding : 0;
+    margin-left: 5%;
+    margin-top: 0.3%;
+    font-size: 1.1em;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    font-weight: 700;
+}
+
+
+/*********** SHOW PRODUCT *************/
+.content-page{
+    background-color: rgba(210,210,210,0.8);
+    padding-bottom: 4%;
+    margin-bottom: 0;
+}
+
+.image-center{
+    margin-left: 29%;
+}
+
+.content-bar{
+    margin-top: 2%;
+    /*box-shadow: 1px 1px 4px grey;*/
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 12px;
+    padding-bottom: 4%;
+    margin-bottom: 0;
+}
+.content-info{
+    margin-left: 10%;
+}
+
+
+
+.side-bar{
+    margin-top: 2%;
+    box-shadow: 1px 1px 4px grey;
+    background-color: rgba(80,80,80,0.1);
+    border-radius: 12px;
+}
+
+.side-bar h2, .side-bar p, .side-bar h3{
+    margin-left: 4%;
+}
+.side-bar h2{
+    font-size: 20px;
+}
+.title-product-show{
+    padding-top: 3%;
+    text-align: center;
+    /*text-transform: uppercase;*/
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.search-container {
+    margin-bottom: 100px ;
+    margin-top: 100px ;
 }

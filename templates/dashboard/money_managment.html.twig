@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <div class="centered">
+            <h1> Gestion des finances </h1>
+            <br/>
+        </div>
+
+        <div class="container">
+            <br/><br/>
+        </div>
+        
+        <h3> <i class="fa fa-money" aria-hidden="true"></i> Argent disponible :   {{ userPayout }} <i class="fa fa-eur" aria-hidden="true"></i></h3>
+        <h6> solde en attente :  <i class="fa fa-eur" aria-hidden="true"></i> </h6>
+        <br/><br/><hr/><br/>
+        <h2> Retirer vos fonds  </h2>
+        <br/>
+        
+        <a href="https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_HYxhtqNA8QfeeDMrU0lvmTIvBbDap4y9&scope=read_write">
+            <img src="{{ asset('../public/img/stripe-connect.png') }}" alt="Se connecter a stripe" width="20%"/> 
+        </a>
+        <br/><br/>
+
+        <h4> Fonds disponible : {{ userPayout }} € </h4>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('Retirer les fonds') }}</button>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

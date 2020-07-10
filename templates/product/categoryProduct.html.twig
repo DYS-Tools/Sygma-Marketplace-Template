@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie{% endblock %}
+
+{% block body %}
+
+    <ul class="nav nav-pills justify-content-center category-nav">
+        {% for category in categories %}
+        <li class="nav-item">
+            <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <br/>
+
+    <!-- add form search -->
+
+    <!-- -------------------------------------------
+            container-best-sell
+    -------------------------------------------  -->
+    <div class="container-best-sell col-lg-12">
+        <div class="box-card">
+            {%   if categories is not null  %}
+            <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  {{ categoryCurrent.name  }}  </h1>
+            {%  endif  %}
+            <div class="row">
+                {% for product in pagination %}
+                    <div class="col-lg-3">
+                        <!-- product card -->
+                        <div class="card" style="width: 26rem;">
+                            <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title-product">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description }}</p>
+
+                                <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="card-text"> {{ product.numberSale}}  Vente </p>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                    </div>
+
+                                    <p> test category :</p>{{ product.category.name  }}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end product card -->
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- end container-best-sell -->
+
+
+
+    <!-- Todo : Display category or search product -->
+
+    {# total items count #}
+
+    <!-- <div class="count">
+        { { pagination.getTotalItemCount }}
+    </div>
+    -->
+
+    {# display navigation #}
+    <div class="navigation navigation-block">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+    </div>
+{% endblock %}

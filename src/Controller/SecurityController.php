@@ -37,14 +37,13 @@ class SecurityController extends AbstractController
      /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -56,7 +55,16 @@ class SecurityController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // do anything else you need here, like send an email
+            // \Swift_Mailer $mailer
+            $message = (new \Swift_Message('Web-Item-Market'))
+                ->setFrom('sacha6623@gmail.com')
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'Emails/register.html.twig',
+                        []),
+                 'text/html');
+            $mailer->send($message);
 
             return $this->redirectToRoute('product_index');
         }
@@ -89,7 +97,7 @@ class SecurityController extends AbstractController
                 'you are author now, congratulation !'
             );
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('product_index');
         }
 
         return $this->render('security/becomeAuthor.html.twig', [

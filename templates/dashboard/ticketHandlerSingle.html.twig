@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <!-- display products that customers have purchased, available for download -->
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <br/><br/>
+
+        <h2> Le ticket n°{{ ticket.id }} </h2>
+        <br/>
+        <hr>
+        <h5>
+            <i class="fa fa-caret-right" aria-hidden="true"></i> ( nom ) : {{ ticket.name }}<br/>
+            <i class="fa fa-caret-right" aria-hidden="true"></i> ( object ) : {{ticket.subject }} </br>
+            <i class="fa fa-caret-right" aria-hidden="true"></i> ( status ) : {{ticket.status }}</br>
+            <i class="fa fa-comments" aria-hidden="true"></i> ( message )  : {{ ticket.message }}</br>
+        </h5>
+        {% if ticket.status == 0 %}
+         <p> Ce ticket ne possède pas encore de réponse </p>
+
+         {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <a type="submit"><button class="btn">Envoyer  <i class="fa fa-paper-plane" aria-hidden="true"></i></button></a>
+        {{ form_end(form) }}
+
+        {% endif %}
+
+    </div>
+
+{% endblock %}

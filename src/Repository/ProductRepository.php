@@ -52,4 +52,63 @@ class ProductRepository extends ServiceEntityRepository
         $query = $qb->getQuery();
         return $query->execute();
     }
+
+
+    // USER
+
+    // For HomePage -  Best Sell
+    public function findAllTProductVerifiedAndBestSell()
+    {
+        return $this
+            ->createQueryBuilder('a')
+            ->where('a.verified = 1')
+            ->orderBy('a.number_sale' , 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
+    // For HomePage - New Product
+    public function findAllTProductVerifiedAndNewProduct()
+    {
+        return $this
+            ->createQueryBuilder('a')
+            ->where('a.verified = 1')
+            ->orderBy('a.published' , 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
+    // For HomePage - Free Product
+    public function findAllTProductVerifiedAndFreeProduct()
+    {
+        return $this
+            ->createQueryBuilder('a')
+            ->where('a.verified = 1 and a.price = 0')
+            ->orderBy('a.number_sale' , 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
+
+    public function findLike($name)
+    {
+        if($name =! ''){
+            return $this
+            ->createQueryBuilder('a')
+            ->where('a.name LIKE :name')
+            ->setParameter( 'name', "%$name%")
+            ->orderBy('a.name')
+            ->setMaxResults(20)
+            ->getQuery()
+            ->execute()
+            ;
+        }
+        
+    }
 }

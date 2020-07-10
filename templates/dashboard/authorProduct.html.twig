@@ -9,52 +9,67 @@
     {{ include('dashboard/_nav.html.twig') }}
 
     <div class="container">
-        <br/><br/>
-        <h2> Dashboard {{ user.email }} </h2>
+
+        <a href="{{ path('product_new') }}" class="btn btn-primary">Ajouter un produit</a><br/>
+        <hr>
+        <h2> Produit actuellement en vente : </h2>
         <br/>
-
-
-        <h2> Produit actuellement en vente </h2>
-        <br/>
-        {% if products > 0  %}
-            {% for product in products %}
-            <div class="card">
-                <div class="card-header">
-                    {{ product.name }}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.price }} €</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <p class="card-text">Vente : {{ product.numberSale }}</p>
-                    {%   if product.demoLink != NULL %}
-                        <a href="{{ product.demoLink }}" class="btn btn-info">Demo</a>
-                    {% else %}
-                        <p> Pas de démonstration.</p>
-                    {%  endif  %}
-                    <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">voir plus</a>
-
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a> <!-- Todo -->
-
-                    {{ include('product/_delete_form.html.twig') }} <!-- Todo -->
-
-                    {% if product.img1 != NULL %}
-                        <img class="card-img-top" src="../product/img/{{ product.img1 }}" alt="{{ product.name }}"
-                            style=" width: 50%; height: 500px;">
-                    {% endif %}
-                </div>
-            </div>
-                <br/><br/>
-            {% else %}
-                <tr>
-                    <td colspan="9">no records found</td>
-                </tr>
-        {% endfor %}
-        {% else %}
-            <p> vous n'avez pas encore de produit en vente </p>
-        {% endif %}
-
 
     </div>
+    
+        {% if products > 0  %}
+        <div class="container">
+            <div class="box-card">
+                <div class="row">
+                {% for product in products %}
+                <div class="col-lg-3">
+                    <!-- product card -->
+                    <div class="card" style="width: 26rem;">
+                        <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title-product">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description }}</p>
+
+                            <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <p class="card-text"> {{ product.numberSale}}  Vente </p>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <!-- Todo : product edit path -->
+                                    <a href="{{ path('product_edit', { 'id': product.id }  ) }}" class="btn btn-info"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    {% if product.verified == 0  %}
+                                        <p class="card-text"> Status: en attente de vérification </p>
+                                    {% else %}
+                                        <p class="card-text"> Status: est vérifié !</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end product card -->
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+            <!-- <img class="card-img-top" src="product/img/{ { product.img1 }}"  alt="{ { product.name }}" height="420" width="100%">-->
+                <tr>
+                    <td colspan="9">Pas d'article en vente</td>
+                </tr>
+            
+        {% endif %}
+
 
 
 

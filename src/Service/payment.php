@@ -24,6 +24,7 @@ use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\ScopingHttpClient;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 class payment
 {
 
@@ -52,32 +53,11 @@ class payment
         return $this->publicStripeKeyTest;
     }
 
-    /*
-    public function sendMailAfterOrder($order,$user){
-        
-        $message = (new \Swift_Message('Votre commande SpeedMailer'))
-                ->setFrom('sacha6623@gmail.com')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView(
-                        'emails/order.html.twig',
-                        ['order' => $order,
-                         'user' => $user ])
-                    , 'text/html'
-                )
-            ;
-            $this->mailer->send($message);
-    }
-    */
-
     public function makePayment(Product $product, User $user )
     {
-
-        //dump($this->secretStripeKeyTest);
         // Set your secret key. Remember to switch to your live secret key in production!
         Stripe::setApiKey($this->secretStripeKeyTest);
-        //$response = file_get_contents('https://api.stripe.com/v1/checkout/sessions/cs_test_M07MtvAhxVT9zraohsSTnZKMCRUZnooh6m5IUELox1o3PEVTKOIDbgRj');
-        //$response = json_decode($response);
+
         
         //create Order
         $order = new Order;
@@ -85,11 +65,11 @@ class payment
         $order->setAmount($product->getPrice());
         $order->setStatus('waiting for payment');
         $order->setCreated(new \DateTime(date('Y-m-d H:i:s')));
+        $order->setProduct($product);
 
         $this->em->persist($order);
         $this->em->flush();
 
-        //Convert euro in centim
         $price = $product->getPrice() * 100 ;
         
         $path = rtrim(__DIR__, 'src\Service'); $path = $path . '\public\\'; $success = $path . '/sucesspayment'; $cancel = $path . '/cancelURL';
@@ -108,12 +88,27 @@ class payment
             'success_url' => 'https://sucessURL/'. $order->getId(),
             'cancel_url' => 'https://CancelURL',
           ]);
-          //dd($session);
 
             //$endpoint = 'whsec_8PVGe96UgcQBcS0lWUnfZKnJtalr1Fnx';
 
           // $order->setStatus('Finished');
         return $session;
+    }
+
+    public function getConnectAccount(User $user ){
+        // for register a acct_XXXXX ( stripe_user_id variable ) in database
+
+        $client = HttpClient::create();
+        $response = $client->request('GET', 'https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_HYxhtqNA8QfeeDMrU0lvmTIvBbDap4y9&scope=read_write');
+        
+        $this->em->flush();
+        return $response ;
+    
+    }
+
+    public function payout(){
+        // transfet funds in acct_XXXXX account
+        dd();
     }
 
 

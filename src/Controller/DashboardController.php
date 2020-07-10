@@ -2,10 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Entity\Ticket;
 use App\Entity\User;
+use App\Form\PayoutFormType;
 use App\Form\ProductType;
+use App\Form\RejectProductFormType;
+use App\Form\ResolveTicketType;
+use App\Repository\ArticleRepository;
+use App\Service\payment;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,13 +43,86 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/ProductVerified", name="product_verified")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function productVerifiedPage()
+    public function productVerifiedPage(Request $request)
     {
         // get current user
         $user = $this->getUser() ;
 
         return $this->render('dashboard/productVerified.html.twig', [
             'noVerifiedProduct' => $this->getDoctrine()->getRepository(Product::class)->findAllTProductNoVerified(),
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/ticketHandler", name="ticket_handler")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function ticketHandler()
+    {
+        // get current user
+        $user = $this->getUser() ;
+
+        $ticketInProgressRepo = $this->getDoctrine()->getRepository(Ticket::class);
+        $ticketInProgress = $ticketInProgressRepo->findBy(['status' => 0]);
+
+        return $this->render('dashboard/ticketHandler.html.twig', [
+            'ticketInProgress' => $ticketInProgress,
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/ticketHandler/{id}", name="ticket_handler_Single")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function ticketHandlerSingle($id, Request $request, \Swift_Mailer $mailer, EntityManagerInterface $em)
+    {
+        // get current user
+        $user = $this->getUser() ;
+
+        $ticketInProgressRepo = $this->getDoctrine()->getRepository(Ticket::class);
+        $ticket = $ticketInProgressRepo->findOneBy(['id' => $id]);
+
+        $mail = $ticket->getEmail();
+
+        $form = $this->createForm(ResolveTicketType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $reponse = $form->get('Reponse')->getData();
+
+            $message = (new \Swift_Message('Web-Item-Market'))
+                ->setFrom('sacha6623@gmail.com')
+                ->setTo($mail)
+                ->setBody(
+                    $this->renderView(
+                        'Emails/contact.html.twig',
+                        [ 'message' => $reponse, ]), 'text/html');
+            $mailer->send($message);
+            $ticket->setStatus(1);
+            $em->persist($ticket);
+            $em->flush();
+            $this->redirectToRoute('ticket_handler');
+
+        }
+        return $this->render('dashboard/ticketHandlerSingle.html.twig', [
+            'ticket' => $ticket,
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/Blog", name="article_index_admin")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function BlogAdminPage(ArticleRepository $articleRepository)
+    {
+        // get current user
+        $user = $this->getUser() ;
+
+        return $this->render('dashboard/blog.html.twig', [
+            'articles' => $articleRepository->findAll(),
             'user' => $user,
         ]);
     }
@@ -62,13 +143,16 @@ class DashboardController extends AbstractController
             'countMember' => $this->getDoctrine()->getRepository(User::class)->countAllMember(),
             'countAdmin' => $this->getDoctrine()->getRepository(User::class)->countAllAdmin(),
             'countAuthor' => $this->getDoctrine()->getRepository(User::class)->countAllAuthor(),
+            'countArticle' => $this->getDoctrine()->getRepository(Article::class)->countArticle(),
+            'countTicketOpen' => $this->getDoctrine()->getRepository(Ticket::class)->countTicketOpen(),
+            'countTicketClose' => $this->getDoctrine()->getRepository(Ticket::class)->countTicketClose(),
         ]);
     }
 
     /**
      * @Route("/dashboard/product/verified/{id}", name="app_dashboard_product_verified")
      */
-    public function productVerifiedAction(Request $request, $id)
+    public function productVerifiedAction(Request $request,\Swift_Mailer $mailer, $id)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $ProductNoVerified = $this->getDoctrine()->getRepository(Product::class)->find($id);
@@ -76,11 +160,66 @@ class DashboardController extends AbstractController
         $entityManager->persist($ProductNoVerified);
         $entityManager->flush();
 
+        $uploaderUser = $ProductNoVerified->getUser();
+
+        $message = (new \Swift_Message('Web-Item-Market'))
+                ->setFrom('sacha6623@gmail.com')
+                ->setTo($uploaderUser->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'Emails/acceptedProduct.html.twig',[
+                        ]),
+                 'text/html');
+            $mailer->send($message);
+
         return $this->redirectToRoute('product_verified');
     }
 
     /**
+     * @Route("/dashboard/Product/rejected/{id}", name="app_dashboard_product_rejected")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function productRejeted(Request $request, \Swift_Mailer $mailer, $id)
+    {
+        // get current user
+        $user = $this->getUser() ;
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        $uploaderUser = $product->getUser();
+
+        $form = $this->createForm(RejectProductFormType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // \Swift_Mailer $mailer
+            $message = (new \Swift_Message('Web-Item-Market'))
+                ->setFrom('sacha6623@gmail.com')
+                ->setTo($uploaderUser->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'Emails/rejectedProduct.html.twig',[
+                            'motif' => $form->get('Motif')->getData(),
+                            'message_generique' => 'Votre produit ne correspond pas a nos attente sur la place de marché',
+                        ]),
+                 'text/html');
+            $mailer->send($message);
+
+            $entityManager->remove($product);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('product_verified');
+        }
+
+        return $this->render('dashboard/productRejected.html.twig', [
+            'product' => $product,
+            'form' => $form->createView(),
+            
+        ]);
+    }
+
+    /**
      * @Route("/dashboard/MySell", name="my_sell")
+     * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function mySell()
     {
@@ -112,27 +251,12 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/MyProduct", name="my_product")
-     */
-    public function myProduct()
-    {   // my product for client
-        // get current user
-        $user = $this->getUser();
-        $productRepository = $this->getDoctrine()->getRepository(Product::class);
-        $products = $productRepository->findBy(['user' => $user]);
-
-        return $this->render('dashboard/myProduct.html.twig', [
-            'products' => $products,
-            'user' => $user,
-        ]);
-    }
-
-    /**
      * @Route("/dashboard/authorProduct", name="author_product")
+     * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function authorProduct()
-    {   // product galery for author
-        // get current user
+    {
+
         $user = $this->getUser();
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['user' => $user]);
@@ -144,71 +268,71 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/payout_author", name="payout_author")
+     * @Route("/dashboard/money_managment", name="money_managment")
+     * @Security("is_granted('ROLE_AUTHOR')")
      */
-    public function payoutAuthor()
-    {   // payout function
-
-        // get current user
+    public function payoutAuthor(Request $request, payment $payment)
+    {   
+        if(!empty($request)){
+            // regarder + query #parameters 'code' = ac_HaOpXENdmpt0lf8IwoTrh10TaXEF2pWq
+            dump($request);
+            dump($request->getContent() );
+        }
+        //dd($payment->getConnectAccount($this->getUser()));
         $user = $this->getUser();
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['user' => $user]);
 
-        return $this->render('dashboard/authorPayout.html.twig', [
+        $form = $this->createForm(PayoutFormType::class);
+        $form->handleRequest($request);
+        // if acct_XXX is defined 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            if($form->get('amount')->getData() <= $user->getAvailablePayout()){
+
+                // Try to generate payout via Paypal
+                // Generate payout   
+                $stripe = new \Stripe\StripeClient(
+                    $payment->getStripeSecretCredentials()
+                  );
+                $stripe->setupIntents->create([
+                'payment_method_types' => ['card'],
+                ]);
+
+                $destination = $form->get('iban')->getData();
+                $destination = $stripe->accounts->createExternalAccount(
+                    $form->get('iban')->getData(),
+                    [
+                      'external_account' => $form->get('iban')->getData(),
+                    ]
+                  );
+
+                $virement = $stripe->payouts->create([
+                    'amount' => $form->get('amount')->getData() * 100,
+                    'currency' => 'eur',
+                    'destination' => $destination
+                  ]);
+
+                dd($virement);
+                dd($stripe->payouts->retrieve( $virement['id'],[]));
+
+                // remove amount in database User
+                $user->setAvailablePayout($user->getAvailablePayout() - $form->get('amount')->getData());
+            }
+            else{
+                $this->redirectToRoute('money_managment');
+                //TODO: FlashMessage
+            }
+        }
+        // else : Vous devez vous connecter a un compte stripe
+        
+        // TODO : if payout : remove number in available payout variable
+
+        return $this->render('dashboard/money_managment.html.twig', [
             'products' => $products,
             'user' => $user,
+            'userPayout' => $user->getAvailablePayout(),
+            'form' => $form->createView(),
         ]);
-    }
-
-
-    /**
-     * @Route("/dashboard/MyWallet", name="my_wallet")
-     */
-    public function myWallet()
-    {
-        // get current user
-        $user = $this->getUser();
-        //$productRepository = $this->getDoctrine()->getRepository(Product::class);
-        //$products = $productRepository->findBy(['user' => $user]);
-
-        return $this->render('dashboard/myWallet.html.twig', [
-            //'products' => $products,
-            'user' => $user,
-        ]);
-    }
-
-    /**
-     * @Route("/dashboard/basket", name="app_basket")
-     */
-    public function basket()
-    {
-        // get current user
-        $user = $this->getUser();
-
-        return $this->render('dashboard/basket.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
-    /**
-     * @Route("/dashboard/download/{fichier}", name="downloadProduct")
-     */
-    public function download($fichier)
-    {
-        // get current user
-        header('Content-Type: application/octet-stream');
-        //header('Content-Length: '. $poids);
-        header('Content-disposition: attachment; filename='. $fichier);
-        header('Pragma: no-cache');
-        header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
-        header('Expires: 0');
-        //readfile($situation);
-        exit();
-
-        /*
-        return $this->render('dashboard/basket.html.twig', [
-            'user' => $user,
-        ]);
-        */
     }
 }

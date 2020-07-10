@@ -39,7 +39,7 @@ class Product
     private $category;
 
     /**
-     * @ORM\Column(type="text", length=255)
+     * @ORM\Column(type="text")
      */
     private $content;
 
@@ -69,11 +69,6 @@ class Product
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="products")
      */
     private $user;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Order::class, mappedBy="product")
-     */
-    private $orders;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -243,34 +238,6 @@ class Product
     public function setUser(?User $user): self
     {
         $this->user = $user;
-        return $this;
-    }
-
-    /**
-     * @return Collection|Order[]
-     */
-    public function getOrders(): Collection
-    {
-        return $this->orders;
-    }
-
-    public function addOrder(Order $order): self
-    {
-        if (!$this->orders->contains($order)) {
-            $this->orders[] = $order;
-            $order->addProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrder(Order $order): self
-    {
-        if ($this->orders->contains($order)) {
-            $this->orders->removeElement($order);
-            $order->removeProduct($this);
-        }
-
         return $this;
     }
 

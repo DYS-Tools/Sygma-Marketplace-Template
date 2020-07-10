@@ -13,7 +13,10 @@ class BecomeAuthorFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('agreeTerms', CheckboxType::class, ['mapped' => false])
+        ->add('Accepter', CheckboxType::class, [
+            'mapped' => false,
+            'required' => true,
+        ])
         ->add('save', SubmitType::class)
         ;
     }

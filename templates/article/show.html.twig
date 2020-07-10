@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ article.title }}</h1>
+
+        <img class="card-img-top" src="../article/img/{{ article.img1 }}" alt="{{ article.title }}">
+
+        <div class="container">
+            <p> {{ article.content }}</p>
+
+            <p> le {{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</p>
+        </div>
+
+        <div class="product-button">
+            <button type="button">
+                <a href="{{ path('article_index') }}">Retour à la liste</a>
+            </button>
+        </div>
+
+    </div>
+{% endblock %}

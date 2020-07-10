@@ -36,7 +36,9 @@
             <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}" />
             <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
             <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/card.css') }}" />
 
         {% endblock %}
 
@@ -58,7 +60,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('dashboard') }}">Mon compte</a>
                     </li>
-                {% elseif is_granted('ROLE_ADMIN') %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('become_author') }}">Commencer à vendre</a>
+                    </li>
+
+                    
 
                 {% elseif is_granted('ROLE_USER') %}
                     <li class="nav-item">
@@ -73,24 +80,30 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
                     </li>
-
-                {% endif %}
-
-                {% if app.user %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('become_author') }}">Commencer à vendre</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_basket') }}">Panier</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
-                </li>
                 {% endif %}
                 </div>
+                
             </div>
+            {% if app.user %}
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <!-- The Profile picture inserted via div class below, with shaping provided by Bootstrap -->
+                            <div class="img-rounded profile-img"></div>
+                                <i class="fas fa-user-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('dashboard') }}">Mon compte</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="{{ path('app_logout') }}">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
         </nav>
 
         {% block body %}
@@ -110,10 +123,9 @@
                         <nav class="footer-nav">
                             <ul>
                                 <a href="{{ path('review_client') }}"><li><span class="yellowgreen">Avis client</span></li></a>
-                                <a href="{# path('blog') #}"><li><span class="yellowgreen">Le blog</span></li></a>
+                                <a href="{{ path('article_index') }}"><li><span class="yellowgreen">Le blog</span></li></a>
                                 <a href="{{ path('app_faq') }}"><li><span class="yellowgreen">FAQ</span></li></a>
                                 <a href="{{ path('become_author') }}"><li><span class="yellowgreen">Devenir Vendeur</span></li></a>
-                                
                             </ul>
                         </nav>
                     </div>
@@ -123,6 +135,7 @@
                             <a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
                             <a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
                         </div>
+                        <a href="{{ path('contact') }}"><span class="yellowgreen">Contactez nous</span></a>
                     </div>
                 </div>
 
