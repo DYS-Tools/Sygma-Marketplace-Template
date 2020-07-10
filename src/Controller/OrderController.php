@@ -28,27 +28,26 @@ class OrderController extends AbstractController
         
 
         return $this->render('order/order.html.twig', [
-            'stripe_public_key' => $payment->getStripePublicCredentials(),
-            'CHECKOUT_SESSION_ID' => $session['id'],
             'product' => $product
         ]);
     }
 
     /**
-     * @Route("/redirectStripe/{product}", name="redirectStripe")
+     * @Route("/redirectPayment/{product}", name="redirectPayment")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function redirectStripe(payment $payment, $product)
+    public function redirectPayment(payment $payment, $product)
     {
         $user = $this->getUser();
-        $session = $payment->makePayment($product, $user);
-        dd($session);
+
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $product = $productRepository->findOneBy(['id' => $product]);
+
+        $session = $payment->makePayment($product, $user);
+        
+        dd($session);
         
         return $this->render('order/order.html.twig', [
-            'stripe_public_key' => $payment->getStripePublicCredentials(),
-            'CHECKOUT_SESSION_ID' => $session['id'],
             'product' => $product
         ]);
     }

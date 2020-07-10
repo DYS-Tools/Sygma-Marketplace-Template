@@ -41,5 +41,5 @@ services:
 
     App\Service\payment:
         arguments:
-            $secretStripeKeyTest: '%env(resolve:STRIPE_SECRET_TEST)%'
-            $publicStripeKeyTest: '%env(resolve:STRIPE_PUBLIC_TEST)%'
+            #$secretStripeKeyTest: '%env(resolve:STRIPE_SECRET_TEST)%'
+            #$publicStripeKeyTest: '%env(resolve:STRIPE_PUBLIC_TEST)%'

@@ -290,34 +290,6 @@ class DashboardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
             if($form->get('amount')->getData() <= $user->getAvailablePayout()){
-
-                // Try to generate payout via Paypal
-                // Generate payout   
-                $stripe = new \Stripe\StripeClient(
-                    $payment->getStripeSecretCredentials()
-                  );
-                $stripe->setupIntents->create([
-                'payment_method_types' => ['card'],
-                ]);
-
-                $destination = $form->get('iban')->getData();
-                $destination = $stripe->accounts->createExternalAccount(
-                    $form->get('iban')->getData(),
-                    [
-                      'external_account' => $form->get('iban')->getData(),
-                    ]
-                  );
-
-                $virement = $stripe->payouts->create([
-                    'amount' => $form->get('amount')->getData() * 100,
-                    'currency' => 'eur',
-                    'destination' => $destination
-                  ]);
-
-                dd($virement);
-                dd($stripe->payouts->retrieve( $virement['id'],[]));
-
-                // remove amount in database User
                 $user->setAvailablePayout($user->getAvailablePayout() - $form->get('amount')->getData());
             }
             else{
