@@ -32,7 +32,7 @@
                         <td>{{ category.name }}</td>
                         <td> 
                             <a href="{{ path('category_delete', {'id': category.id}) }}">
-                                <button type="button" class="btn btn-danger">Supprimer la catégorie</button>
+                                <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                             </a>  
                         </td>
                     
@@ -43,8 +43,7 @@
         {% endif %}
 
 
-        <p> vous souhaiteriez mieux vendre ?
-            <a href="{{ path('help_author') }}"><span class="yellowgreen"><i class="fa fa-question-circle" aria-hidden="true"></i> Aide pour auteurs</span></a>
+        <p><span class="yellowgreen"><i class="fas fa-exclamation-triangle"></i> Attention avec la suppression de catégorie</span>
         </p>
     </div>
 

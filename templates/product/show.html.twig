@@ -63,52 +63,60 @@
 
         </div>
 
-        <div class="col-lg-3 offset-lg-1 side-bar">
+        <div class="col-lg-3  side-bar">
+            <div class="side-bar-info">
             <br/>
             <h2 class="font3"> Caractéristique technique </h2>
             <br/>
-            <p class="font6"> catégorie du produit : {{ product.category.name }}</p>
-            <p class="font6"> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
+            
+                <p class="font6"> catégorie du produit : {{ product.category.name }}</p>
+                <p class="font6"> Date de publication : {{ product.published ? product.published|date('d/m/Y') : '' }}</p>
 
-            <p class="font6"><a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a></p>
-            <br/>
+                <p class="font6"><a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a></p>
+                <br/>
+            </div>
 
-            <div class="row">
-                <div class="product-button col-lg-4">
-                    <button type="button">
-                        {%   if product.demoLink != NULL %}
-                            <a href="{{ product.demoLink }}">Démonstration</a>
-                        {% else %}
-                            <p> Pas de démonstration.</p>
-                        {%  endif  %}
-                    </button>
-                </div>
-                <br/><br/>
+            <div class="side-bar-info">
+                <div class="row">
+                    <div class="product-button col-lg-4">
+                        <button type="button" class="padding-button">
+                            {%   if product.demoLink != NULL %}
+                                <a href="{{ product.demoLink }}">Démonstration</a>
+                            {% else %}
+                                <p> Pas de démonstration.</p>
+                            {%  endif  %}
+                        </button>
+                    </div>
+                    <br/><br/>
 
-                <div class="product-button col-lg-4">
-                    <button type="button">
-                        <a href="{{ path('product_index') }}">Retour à la liste</a>
-                    </button>
+                    <div class="product-button col-lg-4">
+                        <button type="button" class="padding-button">
+                            <a href="{{ path('product_index') }}">Retour à la liste</a>
+                        </button>
+                    </div>
                 </div>
             </div>
 
 
 
-            <div>
-                <br/>
-                <br/>
-                <hr>
+            <div class="side-bar-info">
+                
                 <p> Vente pour ce produit: {{ product.numberSale}} </p>
-                <br/>
+                
+            </div>
+
+            <div class="side-bar-info ">
+                <p> Ajouter maintenant ce produit a votre collection, et créer de meilleurs choses</p>
                 <a id="paybutton" href="{{ path('order', { 'product': product.id }  ) }}" class="bottom">
-                    <div class="product-button">
-                        <button type="button">
-                            Acheter
-                        </button>
+                    <div class="margin-block pay-product">
+                        <h2 class="center"> Payer maintenant</h2>
                     </div>
                 </a>
+            </div>
+            
 
-                <br/><br/><br/>
+                
+            <div class="side-bar-info">
                 <a href="{{ path('product_index') }}">Retour à la liste</a>
             </div>
 

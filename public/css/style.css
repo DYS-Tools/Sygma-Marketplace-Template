@@ -597,7 +597,7 @@ ul.dropdown-menu.show li a  {
 }
 .content-page{
     background-color: rgba(210,210,210,0.8);
-    background: linear-gradient(rgba(170,170,170,0.8), rgba(210,210,210,0.8) );
+    background: linear-gradient(rgba(230,230,230,0.8), rgba(240,240,240,0.8) );
     padding-bottom: 4%;
     margin-bottom: 0;
 }
@@ -612,21 +612,29 @@ ul.dropdown-menu.show li a  {
 .content-bar{
     margin-top: 2%;
     /*box-shadow: 1px 1px 4px grey;*/
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 12px;
+    background-color: rgba(225,225,225,1);
+    border-radius: 3px;
     padding-bottom: 4%;
     margin-bottom: 0;
-    box-shadow: 1px 1px 4px rgba(120,120,120,0.9);
+    box-shadow: 1px 1px 4px rgba(120,120,120,0.1);
+    border: 1px solid rgba(175,175,175,1);
 }
 .content-info{
     margin-left: 10%;
 }
 
 .side-bar{
-    margin-top: 2%;
-    box-shadow: 1px 1px 4px rgba(120,120,120,0.9);
-    background-color: rgba(135,135,135,0.1);
-    border-radius: 12px;
+   margin-top :2%; 
+    
+}
+.side-bar-info{
+    border: 1px solid rgba(175,175,175,1);
+    margin-top: 1%;
+    box-shadow: 1px 1px 4px rgba(120,120,120,0.1);
+    background-color: rgba(225,225,225,1);
+    border-radius: 3px;
+    margin-bottom: 6%;
+    padding: 5%;
 }
 
 .side-bar h2, .side-bar p, .side-bar h3{
@@ -658,6 +666,33 @@ ul.dropdown-menu.show li a  {
 .search-container {
     margin-bottom: 100px ;
     margin-top: 100px ;
+}
+.pay-product{
+    background-color: limegreen;
+    transition-duration: 0.4s;
+}
+.pay-product:hover{
+    background-color: grey;
+    transition-duration: 0.4s;
+}
+.pay-product a:hover{
+    text-decoration: none;
+}
+#paybutton:hover{
+    text-decoration: none;
+}
+.margin-block{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.pay-product h2{
+    text-align: center;
+    margin-left: 0;
+    padding: 7%;
+    color: linen;
+    font-size: 25px;
 }
 
 /********* ORDER PAGE DESIGN ***********************/
