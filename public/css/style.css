@@ -12,6 +12,22 @@ body{
 
 }
 
+.btn-form{
+    border: 2px solid yellowgreen;
+    border-radius: 3px;
+    transition-duration: 0.7s;
+    font-weight: bold;
+    padding: 12px;
+    margin-bottom: 5%;
+}
+.btn-form:hover{
+    background-color: yellowgreen;
+    transition-duration: 0.1s;
+    border-radius: 0px;
+    
+
+}
+
 /* ==========================================================================================================
 										POLICE
    ========================================================================================================== */
@@ -249,6 +265,9 @@ ul.dropdown{
 ul.dropdown-menu{
     padding-right: 70px;
 }
+.profile-img{
+    margin-left: 3%;
+}
 
 ul.dropdown-menu.show {
     background-color: #343a40 ;
@@ -265,8 +284,13 @@ ul.dropdown-menu.show {
 ul.dropdown-menu.show li a  {
     color : yellowgreen;
     font-size: 16px;
-    padding: 4%;
+    padding: 6%;
     padding-bottom: 4.5%;
+    transition-duration: 0.3s;
+}
+.dropdown-menu.show li a:hover{
+    color: rgba(190,190,190,1);
+    transition-duration: 0.3s;
 }
 ul.dropdown-menu.show li{
     padding: 0%;

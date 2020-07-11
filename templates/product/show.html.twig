@@ -179,6 +179,8 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
+
     <script>
         var slideIndex = 1;
         showSlides(slideIndex);

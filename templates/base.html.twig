@@ -60,7 +60,7 @@
                 {% if app.user %}
                 <!--
                     <li class="nav-item">
-                        <a class="nav-link hover-yellowgreen" href="{{ path('dashboard') }}">Mon compte</a>
+                        <a class="nav-link hover-yellowgreen" href="{ { path('dashboard') }}">Mon compte</a>
                     </li>
                 -->
                     {% if is_granted('ROLE_USER') %}
@@ -108,6 +108,10 @@
                                 <a href="{ { path('dashboard') }}">Mon compte</a>
                             </li>
                             -->
+                            <li>
+                                <a href="{{ path('product_index') }}">Accueil</a>
+                            </li>
+
                             <li role="separator" class="divider"></li>
                             <li>
                                 <a href="{{ path('app_logout') }}">Logout</a>
@@ -121,10 +125,13 @@
                             <hr class="hr-yellowgreen">
                             <br/>
                             <h6 class="size4 white-grey"> Dashboard Auteur </h6>
-                            <li>
-                                <a href="{{ path('author_product') }}">Gestionnaire de produit</span></a>
-                            </li>
 
+                            <li>
+                                <a href="{{ path('product_new') }}">Ajouter un produit</span></a>
+                            </li>
+                            <li>
+                                <a href="{{ path('author_product') }}">Mes produits</span></a>
+                            </li>
                             <li>
                                 <a href="{{ path('my_sell') }}">Mes Ventes</span></a>
                             </li>
