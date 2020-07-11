@@ -7,42 +7,56 @@
     <div class="content-page">
           <div class="container">
 
+              <!--
             <div class="#">
-              <a id="paybutton" href="{{ path('redirectPayment', { 'product': product.id } ) }}" class="bottom"><p class="cart">
+              <a id="paybutton" href="{#   path('redirectPayment', { 'product': product.id } ) #}" class="bottom"><p class="cart">
               <button class="big-button-pay">Payer </button></p>
               </a>
 
             </div>
-            
 
-          <!-- PAYPAL BUTTON -->
-          <script src="https://www.paypal.com/sdk/js?
-          client-id=AeoM0EQ3G02PdSFOIPtFsejsDfq4UzfXyXyiUUA7g3AgB3txTnYQjQ4lMOXz4ZMEVVEnsiiIzoNeAtrO"> // Replace YOUR_SB_CLIENT_ID with your sandbox client ID
-          </script>
+            -->
 
-          <div id="paypal-button-container"></div>
+              <p> https://developer.paypal.com/docs/platforms/checkout/set-up-payments/ </p>
+              <p> je shouaite acheter le produits ( order/order.html.twig ) </p>
+              <p> Mettre les bouton dans la page single.. </p>
 
-          <!-- Add the checkout buttons, set up the order and approve the order -->
-          <script>
-            paypal.Buttons({
-              createOrder: function(data, actions) {
-                return actions.order.create({
-                  purchase_units: [{
-                    amount: {
-                      value: '0.01'
-                    }
-                  }]
-                });
-              },
-              onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                  alert('Transaction completed by ' + details.payer.name.given_name);
-                });
-              }
-            }).render('#paypal-button-container'); // Display payment options on your web page
-          </script>
-          <br/>
-            <br/>
+              <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script>
+
+              <!-- id button paypal generate with javascript -->
+              <div id="paypal-button-container">
+
+              </div>
+
+              <script>
+                  paypal.Buttons({
+                      // createOrder est appelé lorsque l'acheteur clique sur l'un des boutons de paiement.
+                      // Cette fonction doit retourner un numéro de commande ( https://developer.paypal.com/docs/api/orders/v2/#orders )
+                      // pour rendre le flux de paiement. Dans cet exemple,
+                      // createOrder appelle votre serveur pour obtenir l'ID de commande.
+                      createOrder: function (data, actions) {
+                          return fetch('/order/{product}', {
+                              method: 'POST'
+                          }).then(function(res) {
+                              return res.json();
+                          }).then(function(data) {
+                              return data.id;
+                          });
+                      },
+                      // onApprove est appelé lorsque l'acheteur approuve la commande.
+                      // Cela se produit lorsque l'acheteur termine avec succès le flux de paiement. Dans cet exemple,
+                      // onApprove appelle votre serveur pour effectuer un ordre de capture appel ( https://developer.paypal.com/docs/api/orders/v2/#orders_capture ).
+                      onApprove: function (data, actions) {
+                          return fetch('/my-server/capture-order/' + data.orderID, {
+                              method: 'POST'
+                          }).then(function(res) {
+                              if (!res.ok) {
+                                  alert('Something went wrong');
+                              }
+                          });
+                      }
+                  }).render('#paypal-button-container');
+              </script>
           
       </div>
 
