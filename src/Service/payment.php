@@ -9,7 +9,6 @@
 namespace App\Service;
 
 
-use App\Entity\Email;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
@@ -18,11 +17,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Stripe\Stripe;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\ScopingHttpClient;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 
 class payment
@@ -36,8 +35,7 @@ class payment
     private $paypal_secret_test;
     private $client;
 
-
-    public function __construct(EntityManagerInterface $em,$sandbox_account_test, $paypal_client_id_test , $paypal_secret_test, $client )
+    public function __construct(EntityManagerInterface $em,$sandbox_account_test, $paypal_client_id_test , $paypal_secret_test, HttpClientInterface $client )
     {
         $this->em = $em;
         $this->client = $client;
@@ -47,7 +45,6 @@ class payment
     }
 
     /* get env var Paypal*/
-
     public function getPaypalSandbox()
     {
         return $this->sandbox_account_test;
@@ -62,7 +59,6 @@ class payment
     {
         return $this->paypal_secret_test;
     }
-
     /* end get env var Paypal */
 
 
@@ -88,34 +84,35 @@ class payment
 
     public function payout(){
         // transfet funds in acct_XXXXX account
-        dd();
+        return "function payout service";
     }
 
+
+    //////////////////
     // Paypal
+    //////////////////
+
+    /*
+     * get env var and request Paypal API
+     * return token
+     */
     public function connectPaypal() {
-
-        dump( $this->getPaypalSandbox()) ;
-        dump( $this->getPaypalClientIdTest()) ;
-        dump( $this->getPaypalSecretTest()) ;
-
-        // Todo : request curl with httpClient  // https://developer.paypal.com/docs/platforms/get-started/#step-1-get-api-credentials
-
+        // https://developer.paypal.com/docs/platforms/get-started/#step-1-get-api-credentials
         $response = $this->client->request('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', [
             'headers' => [
-                'Content-Type' => 'text/plain',
+                'Accept' => 'application/json, application/x-www-form-urlencoded',
+                'Accept-Language' => 'en_US',
             ],
+            'auth_basic' =>  [$this->getPaypalClientIdTest(),$this->getPaypalSecretTest()],
+            'body' => ['grant_type' => 'client_credentials']
         ]);
+        $content = $response->getContent(); // get Content
+        $contentJson = json_decode($content); // get Json
 
-        return "a" ;
+        $tokenPaypalAcces = $contentJson->access_token; // get value "acces_token"
+        dump($tokenPaypalAcces);
 
-        /*
-        curl -v POST https://api.sandbox.paypal.com/v1/oauth2/token \
-        -H "Accept: application/json" \
-        -H "Accept-Language: en_US" \
-        -u "CLIENT_ID:SECRET" \
-        -d "grant_type=client_credentials"
-        */
+        // token
+        return $tokenPaypalAcces;
     }
-
-
 }
