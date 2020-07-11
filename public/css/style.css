@@ -51,6 +51,9 @@ p {
 
 }
 
+.white-grey{
+    color: rgb(220,220,220);
+}
 a:link
 {
     text-decoration:none;
@@ -220,6 +223,12 @@ a.logo span {
 .user-link{
     color: rgba(240,240,240,0.7);
 }
+.pseudo{
+    color: rgba(240,240,240,0.7);;
+    /*margin-right: 3%;*/
+    padding-right: 11%;
+    font-family: 'Source sans pro';
+}
 
 
 
@@ -231,6 +240,10 @@ i.fa-user-circle {
 i.fa-sort-down {
     color : yellowgreen;
     font-size: 16px ;
+}
+
+ul.dropdown{
+    color:rgb(33, 37, 41);
 }
 
 ul.dropdown-menu.show {
@@ -251,6 +264,8 @@ ul.dropdown-menu.show li a  {
 .navbar-dark .navbar-nav .nav-link:hover {
     color : yellowgreen;
 }
+
+
 /* ==========================================================================================================
 										SECTIONS
    ========================================================================================================== */
