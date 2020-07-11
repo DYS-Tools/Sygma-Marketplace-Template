@@ -109,7 +109,7 @@ class payment
         $contentJson = json_decode($content); // get Json
 
         $tokenPaypalAcces = $contentJson->access_token; // get value "acces_token"
-        dump($tokenPaypalAcces);
+        //dump($tokenPaypalAcces);
 
         // token
         return $tokenPaypalAcces;
