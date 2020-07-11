@@ -122,8 +122,8 @@ class DashboardController extends AbstractController
      */
     public function statisticAdmin()
     {
-        $user = $this->getUser() ;
-
+        $winWithApplication = $this->getDoctrine()->getRepository(Order::class)->countTotalCommissions() + $this->getDoctrine()->getRepository(Order::class)->countOrderAdminEur();
+        
         return $this->render('dashboard/statisticAdmin.html.twig', [
             'ProductForSell' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForSell(),
             'ProductForVerified' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForVerified(),
@@ -135,6 +135,11 @@ class DashboardController extends AbstractController
             'countArticle' => $this->getDoctrine()->getRepository(Article::class)->countArticle(),
             'countTicketOpen' => $this->getDoctrine()->getRepository(Ticket::class)->countTicketOpen(),
             'countTicketClose' => $this->getDoctrine()->getRepository(Ticket::class)->countTicketClose(),
+            'saveDate' => 'xx/xx/xx', // TODO: Information from SaveBot
+            'orderAdminEur' => $this->getDoctrine()->getRepository(Order::class)->countOrderAdminEur(),   // TT order avec un user Admin
+            'currentAvailablePayout' => $this->getDoctrine()->getRepository(User::class)->countCurrentAvailablePayout(), // TT available payout
+            'totalCommissions' => $this->getDoctrine()->getRepository(Order::class)->countTotalCommissions(), // tt order amount * 0.20
+            'winWithApplication' => $winWithApplication // totalComissions + orderAdminEur
         ]);
     }
 
