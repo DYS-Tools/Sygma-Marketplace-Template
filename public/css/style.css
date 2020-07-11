@@ -244,6 +244,10 @@ i.fa-sort-down {
 
 ul.dropdown{
     color:rgb(33, 37, 41);
+    
+}
+ul.dropdown-menu{
+    padding-right: 70px;
 }
 
 ul.dropdown-menu.show {
@@ -251,13 +255,29 @@ ul.dropdown-menu.show {
     color : yellowgreen;
     margin-top : 20px;
     position: relative;
-    top: 20px; left: -130px;
+    top: 20px; left: -270px;
     padding-left: 20px ;
+    padding-right: 10px;
+    width: 25vw;
 }
 
 
 ul.dropdown-menu.show li a  {
     color : yellowgreen;
+    font-size: 16px;
+    padding: 4%;
+    padding-bottom: 4.5%;
+}
+ul.dropdown-menu.show li{
+    padding: 0%;
+    width: 80%;
+    
+}
+.hr-yellowgreen{
+    background-color: rgba(100,100,100,1);
+    width: 60%;
+    /*margin-left: -20%;*/
+    margin-left: 0%;
 }
 
 /* for main nav */

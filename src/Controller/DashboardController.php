@@ -27,18 +27,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class DashboardController extends AbstractController
 {
-    /**
-     * @Route("/dashboard", name="dashboard")
-     */
-    public function index()
-    {
-        // get current user
-        $user = $this->getUser() ;
-
-        return $this->render('dashboard/dashboard.html.twig', [
-            'user' => $user,
-        ]);
-    }
 
     /**
      * @Route("/dashboard/ProductVerified", name="product_verified")
