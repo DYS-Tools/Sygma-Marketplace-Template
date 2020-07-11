@@ -64,8 +64,7 @@ class payment
 
     public function makePayment(Product $product, User $user )
     {
-        // Todo : render token API ( with function connect Paypal )
-        dd ( $this->connectPaypal() );
+        $PaypalToken = $this->connectPaypal() ;
 
         //create Order
         $order = new Order;
