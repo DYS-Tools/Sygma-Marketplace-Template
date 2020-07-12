@@ -6,6 +6,7 @@ use App\Entity\Order;
 use App\Entity\Product;
 use App\Service\payment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -137,69 +138,52 @@ class OrderController extends AbstractController
     {
         // test function : http://localhost/perso/Web-Item-Market/public/createOrder
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
-        // Todo : recupéré le numéro de commande à l'apelle du bouton js dans Order/order.html.twig
+
         $BearerAccessToken = $payment->connectPaypal();
+        $accessToken= $BearerAccessToken;
 
-        $json = '{
-                  "intent": "CAPTURE",
-                  "purchase_units": [
-                    {
-                      "amount": {
-                        "currency_code": "EUR",
-                        "value": "3.00"
-                      }
-                    }
-                  ]
-                }';
+        $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders');
 
-        /////////
-        $response = $this->client->request('POST', 'https://api.sandbox.paypal.com/v2/checkout/orders', [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Authorization' => "Bearer $BearerAccessToken", // good
-                //'PayPal-Partner-Attribution-Id' => '<BN-Code>' //( code partner )
-            ],
-            'json' => $json
-        ]);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Authorization: Bearer ' . $accessToken,
+            'Accept: application/json',
+            'Content-Type: application/json'
+        ));
 
-        dump($response->getStatusCode());
-        $content = $response->getContent(); // get Content
-        dump($content);
-        $contentJson = json_decode($content); // get Json
+        // SSL
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-        // key ?
-        $result = $contentJson->key; // get value "acces_token"
-        dd($result);
+        $payloadData = '
+        {
+          "intent" : "CAPTURE",
+          "purchase_units" :[
+            {
+              "amount" :{
+                "currency_code" : "EUR",
+                "value" : "7.47"
+              }
+            }
+          ]
+        }';
 
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payloadData);
 
-        /*
-            curl -v -X POST https://api.sandbox.paypal.com/v2/checkout/orders \
-             -H 'Content-Type: application/json' \
-             -H 'Authorization: Bearer Access-Token' \
-             -H 'PayPal-Partner-Attribution-Id: BN-Code' \
-             -d '{
-             "intent": "CAPTURE",
-             "purchase_units": [{
-               "amount": {
-                 "currency_code": "USD",
-                 "value": "100.00"
-               },
-               "payee": {
-                 "email_address": "seller@example.com"
-               },
-               "payment_instruction": {
-                 "disbursement_mode": "INSTANT",
-                 "platform_fees": [{
-                   "amount": {
-                     "currency_code": "USD",
-                     "value": "25.00"
-                   }
-                 }]
-               }
-             }]
-            }'
+        // brut
+        //$result = curl_exec($ch);
+        //dump($result);
 
-        */
+        $response = json_decode(curl_exec($ch), true);
+        dd($response);
+        // debug
+
+        $err = curl_error($ch); // dump($err) ;
+        $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // dd($httpStatusCode);
+
+        curl_close($ch);
+
+        // return id Order ?
     }
 
     /**
