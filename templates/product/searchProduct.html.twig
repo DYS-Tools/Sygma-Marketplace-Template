@@ -20,9 +20,6 @@
         {{ form_end(searchForm) }}
     </div>
 
-    <!-- -------------------------------------------
-            container-best-sell
-    -------------------------------------------  -->
     <div class="container-best-sell col-lg-12">
         <div class="box-card">
                 <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  résultats de la recherche :   </h1>
@@ -40,26 +37,28 @@
                                 <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
 
                                 <div class="row">
-                                    <div class="col-lg-8">
+                                {% if product.price > 0 %}
+                                    <div class="col-lg-7">
                                         <p class="card-text"> {{ product.numberSale}}  Vente </p>
                                     </div>
+                                {% endif %}
                                     {% if product.price > 0 %}
                                     <div class="col-lg-4">
                                         <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
                                     </div>
-                                    {% elseif product.price > 0 %}
+                                    {% elseif product.price == 0 %}
+                                    <div class="col-lg-6">
                                             <a href="{{ asset("product/" ~ product.file)  }}" 
                                                 download>
                                                 <button type="button" class="btn btn-success">Download product</button>
                                             </a>
-
-    
+                                    </div>
+                                    <div class="col-lg-1">
                                         <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    </div>
 
                                     {% endif %}
-
-                                    <p> test category :</p>{{ product.category.name  }}
                                 </div>
                             </div>
                         </div>

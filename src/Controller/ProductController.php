@@ -40,7 +40,7 @@ class ProductController extends AbstractController
             if (empty($searchForm->get('search')->getData()) || $searchForm->get('search')->getData() == '' || $searchForm->get('search')->getData() == null)
             {
                 $productRepository->findAllTProductVerified();
-                $keyword = '';
+                //$keyword = '';
 
             }
 
@@ -72,21 +72,27 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/search/{keyword}", name="product_with_search", methods={"GET"})
+     * @Route("/search/{keyword}", name="product_with_search")
      */
-    public function productWithSearch(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepository , $keyword): Response
+    public function productWithSearch($keyword, ProductRepository $productRepository, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepository): Response
     {
-        if(!empty($keyword)){
-            $keyword='Web';
+        $searchForm = $this->createForm(SearchProductFormType::class);
+        $searchForm->handleRequest($request);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $keyword = $searchForm->get('search')->getData();
+            
+            $this->redirectToRoute('product_with_search', array(
+                'keyword' => $keyword,
+                ));
+        }
+        
+        if(!empty($keyword)) {
             $products = $productRepository->findLike($keyword);
         }
         else{
             $products = $productRepository->findAllTProductVerified();
         }
-
-        $searchForm = $this->createForm(SearchProductFormType::class);
-        $searchForm->handleRequest($request);
-
 
         $pagination = $paginator->paginate(
             $products, /* query NOT result */
@@ -95,7 +101,6 @@ class ProductController extends AbstractController
         );
 
         return $this->render('product/searchProduct.html.twig', [
-            'products' => $products,
             'pagination' => $pagination,
             'searchForm' => $searchForm->createView(),
             'categories' => $categoryRepository->findBy(['active' => 1]),
