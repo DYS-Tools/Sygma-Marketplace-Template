@@ -40,6 +40,7 @@
             <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/card.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/slideshow.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
 
         {% endblock %}
 
@@ -47,30 +48,17 @@
 
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <!--logo start-->
             <a href="{{ path('product_index') }}" class="logo"><b>Web Item<span>Market</span></b></a>
-            <!--logo end-->
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                 {% if app.user %}
-                <!--
-                    <li class="nav-item">
-                        <a class="nav-link hover-yellowgreen" href="{ { path('dashboard') }}">Mon compte</a>
-                    </li>
-                -->
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
                         <a class="nav-link hover-yellowgreen" href="{{ path('become_author') }}">Devenir auteur</a>
                     </li>
                     {% endif %}
-
-                    
-
                 {% elseif is_granted('ROLE_USER') %}
                     <li class="nav-item">
                         <a class="nav-link" href="">Mes produits</a>
@@ -90,14 +78,13 @@
             </div>
             {% if app.user %}
                 <ul class="nav navbar-nav pull-right">
-
-                    <p class="align-middle size3 white-grey pseudo"> {{ app.user.pseudo }}</p>
+                    <!--<p class="align-middle size3 white-grey pseudo"> { { app.user.pseudo }}</p>-->
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <!-- The Profile picture inserted via div class below, with shaping provided by Bootstrap -->
                             <div class="img-rounded profile-img"></div>
-                                <i class="fas fa-user-circle size3"></i>
+                                <i class="fas fa-user-circle"></i>
                         </a>
                         <ul class="dropdown-menu">
                             {% if is_granted('ROLE_USER') %}
@@ -216,7 +203,9 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
                     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
                     crossorigin="anonymous"></script>
+
             
-        {% endblock %}
+
+            {% endblock %}
     </body>
 </html>

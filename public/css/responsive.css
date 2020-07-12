@@ -1,0 +1,49 @@
+@media all and (max-device-width: 480px){
+
+    /************************************************/
+    /********************** GENERAL******************/
+    /************************************************/
+
+    /************************************************/
+    /********************** NAVBAR ******************/
+    /************************************************/
+    i.fa-user-circle{
+        font-size: 100px;
+        /*border: 1px solid red;*/
+        padding: 20px
+    }
+    ul.dropdown-menu{
+        
+    }
+    ul.dropdown-menu.show {
+        background-color: #343a40 ;
+        color : yellowgreen;
+        margin-top : 20px;
+        width: 100vw;
+        position: relative;
+            top: 0px; left: 0px;
+    }
+    ul.dropdown-menu.show h6{
+        font-size: 55px;
+    }
+    ul.dropdown-menu.show li a{
+        font-size: 40px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+    /************************************************/
+    /********* DROPDOWN CATEGORY NAV ****************/
+    /************************************************/
+
+    .category-nav-desktop a{
+        display: none;
+    }
+    .category-nav-mobile{
+        display: block;
+    }
+
+
+    /************************************************/
+    /**************  CARD ***************************/
+    /************************************************/
+}
