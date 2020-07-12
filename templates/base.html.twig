@@ -58,13 +58,16 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                 {% if app.user %}
+                <!--
                     <li class="nav-item">
-                        <a class="nav-link hover-yellowgreen" href="{{ path('dashboard') }}">Mon compte</a>
+                        <a class="nav-link hover-yellowgreen" href="{ { path('dashboard') }}">Mon compte</a>
                     </li>
-
+                -->
+                    {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
-                        <a class="nav-link hover-yellowgreen" href="{{ path('become_author') }}">Commencer à vendre</a>
+                        <a class="nav-link hover-yellowgreen" href="{{ path('become_author') }}">Devenir auteur</a>
                     </li>
+                    {% endif %}
 
                     
 
@@ -87,20 +90,81 @@
             </div>
             {% if app.user %}
                 <ul class="nav navbar-nav pull-right">
+
+                    <p class="align-middle size3 white-grey pseudo"> {{ app.user.pseudo }}</p>
+
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <!-- The Profile picture inserted via div class below, with shaping provided by Bootstrap -->
                             <div class="img-rounded profile-img"></div>
-                                <i class="fas fa-user-circle"></i>
+                                <i class="fas fa-user-circle size3"></i>
                         </a>
                         <ul class="dropdown-menu">
+                            {% if is_granted('ROLE_USER') %}
+                            <br/>
+                            <h6 class="size4 white-grey"> Utilisateur </h6>
+                            <!--
                             <li>
-                                <a href="{{ path('dashboard') }}">Mon compte</a>
+                                <a href="{ { path('dashboard') }}">Mon compte</a>
                             </li>
+                            -->
+                            <li>
+                                <a href="{{ path('product_index') }}">Accueil</a>
+                            </li>
+
                             <li role="separator" class="divider"></li>
                             <li>
                                 <a href="{{ path('app_logout') }}">Logout</a>
                             </li>
+                            <li>
+                                <a href="{{ path('my_order') }}">Mes commandes</a>
+                            </li>
+                            {% endif %}
+
+                            {% if is_granted('ROLE_AUTHOR') %}
+                            <hr class="hr-yellowgreen">
+                            <br/>
+                            <h6 class="size4 white-grey"> Dashboard Auteur </h6>
+
+                            <li>
+                                <a href="{{ path('product_new') }}">Ajouter un produit</span></a>
+                            </li>
+                            <li>
+                                <a href="{{ path('author_product') }}">Mes produits</span></a>
+                            </li>
+                            <li>
+                                <a href="{{ path('my_sell') }}">Mes Ventes</span></a>
+                            </li>
+
+                            <li>
+                                <a href="{{ path('money_managment') }}">Finance</span></a>
+                            </li>
+
+                            {% endif %}
+
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <hr class="hr-yellowgreen">
+                            <br/>
+                            <h6 class="size4 white-grey"> ADMIN Function </h6>
+                            <li>
+                                <a href="{{ path('statistic_admin') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Statistique</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('product_verified') }}"><i class="fab fa-product-hunt"></i>  Administration produits</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('ticket_handler') }}"><i class="fas fa-check-square"></i>  Gestion des tickets</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('article_index_admin') }}"><i class="fas fa-th"></i>  Le blog</a>
+                            </li>
+
+                            <li>
+                                <a href="{{ path('category_handler') }}"><i class="fa fa-file-text" aria-hidden="true"></i>  Gestion des catégories</a>
+                            </li>
+                            {% endif %}
+                            
+
                         </ul>
                     </li>
                 </ul>
@@ -152,8 +216,6 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
                     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
                     crossorigin="anonymous"></script>
-
-            <script src="https://js.stripe.com/v3/"></script>
             
         {% endblock %}
     </body>

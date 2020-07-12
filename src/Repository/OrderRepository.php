@@ -27,5 +27,40 @@ class OrderRepository extends ServiceEntityRepository
         return (int) $qb->getQuery()->getSingleScalarResult();
     }
 
+    public function countOrderAdminEur(){
+        // Sum of cash for admin product
+
+        return $this
+            
+            ->createQueryBuilder('a')
+            ->where('a.status = :status')
+            ->setParameter('status', 'finish')
+            ->leftJoin('a.user', 'u')
+            ->andwhere('u.roles = :roles')
+            ->setParameter('roles', '["ROLE_ADMIN"]')
+            ->select('SUM(a.amount)')
+            ->getQuery()
+            ->getSingleScalarResult();
+            ;
+    }
+
+    public function countTotalCommissions(){
+        // Total order without admin * 0.20 
+
+        $TotalOrderAuthor = $this
+            ->createQueryBuilder('a')
+            ->where('a.status = :status')
+            ->setParameter('status', 'finish')
+            ->leftJoin('a.user', 'u')
+            ->andWhere('u.roles = :roles')
+            ->setParameter('roles', '["ROLE_AUTHOR"]')
+            ->select('SUM(a.amount)')
+            ->getQuery()
+            ->getSingleScalarResult();
+            ;
+
+        return $TotalOrderAuthor * 0.20;
+    }
+
     //USER
 }

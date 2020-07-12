@@ -47,17 +47,17 @@ class ProductType extends AbstractType
             ])
 
             ->add('img1', FileType::class, [
-                'label' => 'ajouter une image',
+                'label' => 'ajouter une image ( dimension optimales 1200x900 )',
                 'data_class'=>null,
                 'required'   => true,
             ])
             ->add('img2', FileType::class, [
-                'label' => 'ajouter une image ( option )',
+                'label' => 'ajouter une image optionelle ( dimension optimales 1200x900 )',
                 'data_class'=>null,
                 'required'   => false,
             ])
             ->add('img3', FileType::class, [
-                'label' => 'ajouter une image ( option )',
+                'label' => 'ajouter une image optionelle ( dimension optimales 1200x900 )',
                 'data_class'=>null,
                 'required'   => false,
             ])

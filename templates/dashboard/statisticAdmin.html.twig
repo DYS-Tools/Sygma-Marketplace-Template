@@ -205,14 +205,68 @@
             }
         </script>
 
+        <hr/>
+
 
         <!-- ----------------------------------------------------------------------------------------------------------
-                                              Cash Flow
+                                              Admin Statistique
         ----------------------------------------------------------------------------------------------------------- -->
         <div class="centered">
-            <h1> <i class="fa fa-caret-right" aria-hidden="true"></i>  Gestion du Cash Flow </h1>
+            <h1> <i class="fa fa-caret-right" aria-hidden="true"></i>  Métrique administrateur </h1>
             <br/>
         </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="container-card">
+                    <div class="card-title">  <h2>  <i class="fa fa-file-text" aria-hidden="true"></i>     Métrique ADMIN </h2> </div>
+
+                    <div class="card-content">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> Dernière Sauvegarde </th>
+                                <td>{% if saveDate is defined %} {{ saveDate }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> Montant à reverser aux auteurs actuellement </th>
+                                <td> {% if currentAvailablePayout is defined %}{{ currentAvailablePayout }} {% endif %}€</td>
+                            </tr>
+                             <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> Solde Disponible sur WebItemMarket</th>
+                                <td> [API paypal] €</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                    <div class="container-card">
+                        <div class="card-title">  <h2>  <i class="fa fa-file-text" aria-hidden="true"></i> CashFlow application </h2> </div>
+
+                        <div class="card-content">
+                            <table class="table table-hover">
+                                <tbody>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> TT Ventes des produits admin </th>
+                                <td> {% if orderAdminEur is defined %} {{ orderAdminEur }} {% endif %}€</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> TT commissions généré par les auteurs </th>
+                                <td> {% if totalCommissions is defined %}{{ totalCommissions }} {% endif %}€</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> CA Total Application( produit admin + commissions )</th>
+                                <td> {% if winWithApplication is defined %}{{ winWithApplication }} {% endif %}€</td>
+                            </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
         <hr/>
         <!--
         Todo :

@@ -118,6 +118,7 @@
                 <p class="font3"><a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a></p>
                 
                 <p class="eur-text">{{ product.price }}<i class="fa fa-eur" aria-hidden="true"></i> <span class="eur-text-min">TTC </span></p>
+                <p class="font3 bold"> Produit proposé par <span class="yellowgreen"> {{ product.user.pseudo }}</span> </p>
             </div>
 
             <div class="side-bar-info">
@@ -178,6 +179,8 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
+
     <script>
         var slideIndex = 1;
         showSlides(slideIndex);

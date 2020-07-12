@@ -12,6 +12,22 @@ body{
 
 }
 
+.btn-form{
+    border: 2px solid yellowgreen;
+    border-radius: 3px;
+    transition-duration: 0.7s;
+    font-weight: bold;
+    padding: 12px;
+    margin-bottom: 5%;
+}
+.btn-form:hover{
+    background-color: yellowgreen;
+    transition-duration: 0.1s;
+    border-radius: 0px;
+    
+
+}
+
 /* ==========================================================================================================
 										POLICE
    ========================================================================================================== */
@@ -51,6 +67,9 @@ p {
 
 }
 
+.white-grey{
+    color: rgb(220,220,220);
+}
 a:link
 {
     text-decoration:none;
@@ -220,6 +239,12 @@ a.logo span {
 .user-link{
     color: rgba(240,240,240,0.7);
 }
+.pseudo{
+    color: rgba(240,240,240,0.7);;
+    /*margin-right: 3%;*/
+    padding-right: 11%;
+    font-family: 'Source sans pro';
+}
 
 
 
@@ -233,24 +258,58 @@ i.fa-sort-down {
     font-size: 16px ;
 }
 
+ul.dropdown{
+    color:rgb(33, 37, 41);
+    
+}
+ul.dropdown-menu{
+    padding-right: 70px;
+}
+.profile-img{
+    margin-left: 3%;
+}
+
 ul.dropdown-menu.show {
     background-color: #343a40 ;
     color : yellowgreen;
     margin-top : 20px;
     position: relative;
-    top: 20px; left: -130px;
+    top: 20px; left: -270px;
     padding-left: 20px ;
+    padding-right: 10px;
+    width: 25vw;
 }
 
 
 ul.dropdown-menu.show li a  {
     color : yellowgreen;
+    font-size: 16px;
+    padding: 6%;
+    padding-bottom: 4.5%;
+    transition-duration: 0.3s;
+}
+.dropdown-menu.show li a:hover{
+    color: rgba(190,190,190,1);
+    transition-duration: 0.3s;
+}
+ul.dropdown-menu.show li{
+    padding: 0%;
+    width: 80%;
+    
+}
+.hr-yellowgreen{
+    background-color: rgba(100,100,100,1);
+    width: 60%;
+    /*margin-left: -20%;*/
+    margin-left: 0%;
 }
 
 /* for main nav */
 .navbar-dark .navbar-nav .nav-link:hover {
     color : yellowgreen;
 }
+
+
 /* ==========================================================================================================
 										SECTIONS
    ========================================================================================================== */
