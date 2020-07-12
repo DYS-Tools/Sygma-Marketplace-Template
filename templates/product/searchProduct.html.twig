@@ -43,11 +43,21 @@
                                     <div class="col-lg-8">
                                         <p class="card-text"> {{ product.numberSale}}  Vente </p>
                                     </div>
-
+                                    {% if product.price > 0 %}
                                     <div class="col-lg-4">
                                         <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
                                     </div>
+                                    {% elseif product.price > 0 %}
+                                            <a href="{{ asset("product/" ~ product.file)  }}" 
+                                                download>
+                                                <button type="button" class="btn btn-success">Download product</button>
+                                            </a>
+
+    
+                                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                    {% endif %}
 
                                     <p> test category :</p>{{ product.category.name  }}
                                 </div>

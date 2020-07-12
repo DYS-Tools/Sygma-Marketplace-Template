@@ -130,17 +130,28 @@
                                 <h5 class="card-title-product">{{ FreeProduct.name }}</h5>
                                 <p class="card-text">{{ FreeProduct.description }}</p>
 
-                                <p class="yellowgreen"> <strong> {{ FreeProduct.price }} € </strong>  </p>
+                                <p class="yellowgreen"> <strong> Produit gratuit </strong>  </p>
 
                                 <div class="row">
-                                    <div class="col-lg-8">
-                                        <p class="card-text"> {{ FreeProduct.numberSale}}  Vente </p>
-                                    </div>
+                                   
 
-                                    <div class="col-lg-4">
-                                        <a href="{{ path('product_show', {'id': FreeProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> </a>
-                                        <a href="{{path('order', { 'product': FreeProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                    
+                                    {% if FreeProduct.price == 0 %}
+                                    <div class="col-lg-6">
+                                            <a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
+                                                download>
+                                                <button type="button" class="btn btn-success">Download product</button>
+                                            </a>
                                     </div>
+                                    <div class="col-lg-2">
+                                            <a href="{{ path('product_show', {'id': FreeProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    </div>
+                                    
+                                    {% endif %}
+                                    
+                                    <!--{ % with %}
+                                        
+                                    -->
                                 </div>
                             </div>
                         </div>

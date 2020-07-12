@@ -32,7 +32,7 @@
                         <td class='green'> {{ order.status }}</td>
                     {% endif %}
 
-                    {% if order.status == 'finish' %}
+                    {% if order.status == 'finish' || order.product.price == 0 %}
                         <td>
                             <a href="{{ asset("product/" ~ order.product.file)  }}" 
                                 download>
