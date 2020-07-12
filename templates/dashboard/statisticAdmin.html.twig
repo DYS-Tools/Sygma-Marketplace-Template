@@ -231,6 +231,10 @@
                                 <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> Montant à reverser aux auteurs actuellement </th>
                                 <td> {% if currentAvailablePayout is defined %}{{ currentAvailablePayout }} {% endif %}€</td>
                             </tr>
+                             <tr>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> Solde Disponible sur WebItemMarket</th>
+                                <td> [API paypal] €</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -245,11 +249,11 @@
                             <table class="table table-hover">
                                 <tbody>
                             <tr>
-                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> TT commandes sur produits admin </th>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> TT Ventes des produits admin </th>
                                 <td> {% if orderAdminEur is defined %} {{ orderAdminEur }} {% endif %}€</td>
                             </tr>
                             <tr>
-                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> Total des commissions enregistré </th>
+                                <th scope="row"> <i class="fa fa-caret-right" aria-hidden="true"></i> TT commissions généré par les auteurs </th>
                                 <td> {% if totalCommissions is defined %}{{ totalCommissions }} {% endif %}€</td>
                             </tr>
                             <tr>

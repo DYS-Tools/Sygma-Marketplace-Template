@@ -23,40 +23,29 @@
                 <div class="row">
                 {% for product in products %}
                 <div class="col-lg-3">
-                    <!-- product card -->
-                    <div class="card" style="width: 26rem;">
-                        <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
-                        <div class="card-body">
-                            <h5 class="card-title-product">{{ product.name }}</h5>
-                            <p class="card-text">{{ product.description }}</p>
+                        <!-- product card -->
+                        <div class="card" style="width: 26rem;">
+                            <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title-product">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description }}</p>
 
-                            <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+                                <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
 
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <p class="card-text"> {{ product.numberSale}}  Vente </p>
-                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <p class="card-text"> {{ product.numberSale}}  Vente </p>
+                                    </div>
 
-                                <div class="col-lg-4">
-                                    <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    <!-- Todo : product edit path -->
-                                    <a href="{{ path('product_edit', { 'id': product.id }  ) }}" class="btn btn-info"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    {% if product.verified == 0  %}
-                                        <p class="card-text"> Status: en attente de vérification </p>
-                                    {% else %}
-                                        <p class="card-text"> Status: est vérifié !</p>
-                                    {% endif %}
+                                    <div class="col-lg-4">
+                                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> </a>
+                                        <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- end product card -->
                     </div>
-                    <!-- end product card -->
-                </div>
                 {% endfor %}
                 </div>
             </div>
@@ -69,8 +58,5 @@
                 </tr>
             
         {% endif %}
-
-
-
-
+        <br/><br/>
 {% endblock %}
