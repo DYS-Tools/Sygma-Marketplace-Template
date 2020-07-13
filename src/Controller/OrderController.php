@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Service\payment;
+use http\Env\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Component\Routing\Annotation\Route;
@@ -132,18 +133,18 @@ class OrderController extends AbstractController
     /**
      * @Route("/createOrder", name="create_order")
      * @Security("is_granted('ROLE_USER')")
-     * get id product and render order page
+     * get id order
      */
     public function create_order(HttpClientInterface $client,payment $payment)
     {
         // test function : http://localhost/perso/Web-Item-Market/public/createOrder
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
-
         $BearerAccessToken = $payment->connectPaypal();
         $accessToken= $BearerAccessToken;
 
         $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders');
 
+        // HEADER
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Authorization: Bearer ' . $accessToken,
@@ -151,7 +152,7 @@ class OrderController extends AbstractController
             'Content-Type: application/json'
         ));
 
-        // SSL
+        // SSL certificat
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
@@ -167,34 +168,40 @@ class OrderController extends AbstractController
             }
           ]
         }';
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payloadData); // send JSON
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payloadData);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // return caracter
 
-        // brut
-        //$result = curl_exec($ch);
-        //dump($result);
-
-        $response = json_decode(curl_exec($ch), true);
-        dd($response);
-        // debug
-
-        $err = curl_error($ch); // dump($err) ;
-        $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // dd($httpStatusCode);
-
+        $result = curl_exec($ch);
         curl_close($ch);
 
-        // return id Order ?
+        $resultJson = json_decode($result);  // return complete json
+        dump($resultJson);
+
+        $orderId = $resultJson->id ;  // return just OrderId
+        dump($orderId);
+
+       // return $orderId ;
+        return $this->render('order/order.html.twig', [
+            'orderId' => $orderId
+        ]);
+        // curl debug
+        //$err = curl_error($ch); // dump($err) ;
+        //$httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // dd($httpStatusCode);
     }
 
     /**
-     * @Route("/captureOrder", name="capture_order")
+     * @Route("/captureOrder/{orderId}", name="capture_order")
      * @Security("is_granted('ROLE_USER')")
-     * payout approuved
+     * if payout approuved
      */
-    public function capture_order()
+    public function capture_order(payment $payment, $orderId)
     {
+
+        dump($orderId);
+        // test function : http://localhost/perso/Web-Item-Market/public/captureOrder
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
-        // Todo : a la finalisation du paiement (  défini dans le js dans Order/order.html.twig )
+
         /*
         curl -v -k -X POST https://api.paypal.com/v2/checkout/orders/5O190127TN364715T/capture \
          -H 'PayPal-Request-Id: 7b92603e-77ed-4896-8e78-5dea2050476a' \
@@ -203,6 +210,43 @@ class OrderController extends AbstractController
          -H 'Content-Type: application/json' \
          -d '{}'
         */
+
+        $BearerAccessToken = $payment->connectPaypal();
+        $accessToken = $BearerAccessToken;
+
+        // test get id order
+        //$orderToken = $this->create_order();
+
+        $ch = curl_init('https://api.paypal.com/v2/checkout/orders/'.$orderId.'"/capture');
+
+        // HEADER
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Authorization: Bearer ' . $accessToken,
+            'Accept: application/json',
+            'Content-Type: application/json',
+            //'PayPal-Request-Id : 7b92603e-77ed-4896-8e78-5dea2050476a'
+            //'PayPal-Partner-Attribution-Id:  BN-Code'
+        ));
+        // SSL certificat
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+
+        $payloadData = '
+        {
+        }';
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payloadData); // send JSON
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // return caracter
+
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        $resultJson = json_decode($result);
+        
+        dd($resultJson);
+        return $resultJson ;
     }
 
 
