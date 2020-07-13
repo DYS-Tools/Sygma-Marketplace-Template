@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,15 +22,17 @@ class ProductType extends AbstractType
             ->add('name', TextType::class, [
                 'help' => 'Nom du produit'
             ])
-            ->add('description',TextType::class, [
-                'help' => 'Description'
+            ->add('description',TextareaType::class, [
+                'help' => 'Description',
+                'attr' => ['rows' => 10]
             ])
 
             ->add('file', FileType::class, [
                 'label' => 'Uploader le produit',
                 // https://fr.wikipedia.org/wiki/Type_de_m%C3%A9dias ( List media )
                 'attr' => array(
-                    'accept' => "application/zip"
+                    'accept' => "application/zip",
+                    'class' => 'custom-file-label'
                 ),
                 'constraints' => [
                     new File([
@@ -40,6 +43,7 @@ class ProductType extends AbstractType
                 ],
                 'data_class'=>null,
                 'required'   => true,
+                'help' => 'Fichier ZIP uniquement'
             ])
             
             ->add('content',TextType::class, [
@@ -50,16 +54,22 @@ class ProductType extends AbstractType
                 'label' => 'ajouter une image ( dimension optimales 1200x900 )',
                 'data_class'=>null,
                 'required'   => true,
+                'attr' => ['class' => 'custom-file-label'],
+                'help' => 'Format non valide, utilisez le format 1200x900'
             ])
             ->add('img2', FileType::class, [
                 'label' => 'ajouter une image optionelle ( dimension optimales 1200x900 )',
                 'data_class'=>null,
                 'required'   => false,
+                'attr' => ['class' => 'custom-file-label'],
+                'help' => 'Format non valide, utilisez le format 1200x900'
             ])
             ->add('img3', FileType::class, [
                 'label' => 'ajouter une image optionelle ( dimension optimales 1200x900 )',
                 'data_class'=>null,
                 'required'   => false,
+                'attr' => ['class' => 'custom-file-label'],
+                'help' => 'Format non valide, utilisez le format 1200x900'
             ])
 
             ->add('price')
