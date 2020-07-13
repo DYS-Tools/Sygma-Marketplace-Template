@@ -5,11 +5,25 @@
 {% block body %}
 
 <ul class="nav nav-pills justify-content-center category-nav">
+
+    <!-- Dropdown Categories for media queries -->
+    <li class="nav-item dropdown category-nav-mobile">
+    <a class="nav-link dropdown-toggle category-nav-mobile-title" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voir les catégories</a>
+    <div class="dropdown-menu category-dropdown">
         {% for category in categories %}
-        <li class="nav-item">
+            <a class="dropdown-item" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+  </li>
+    <!-- end dropdown for category -->
+
+    {% for category in categories %}
+        <li class="nav-item category-nav-desktop">
             <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
         </li>
-        {% endfor %}
+    {% endfor %}
+
+    
 </ul>
 
 <div class="show-page">
@@ -109,7 +123,7 @@
         <div class="col-lg-3  side-bar">
             <div class="side-bar-info">
             <br/>
-            <h2 class="font3"> Caractéristique technique </h2>
+            <h2 class="font3 side-bar-subtitle"> Caractéristique technique </h2>
             <br/>
             
                 <p class="font3"> catégorie du produit : {{ product.category.name }}</p>

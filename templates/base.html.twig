@@ -161,31 +161,33 @@
         {% block body %}
             <!-- Content page -->
         {% endblock %}
-        <footer class="footer-outer navbar-dark bg-dark">
+        <footer class=" row footer-outer navbar-dark bg-dark">
             <div class="container footer-inner">
-                <div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
-                    <div class="column-1-3">
+                <div class="footer-three-grid wow fadeIn animated " data-wow-delay="0.66s">
+                    <div class="column-1-3 col-lg-2">
                         <a href="{{ path('product_index') }}">
-                                <h1><span class="yellowgreen">Web Item Market</span></h1>
+                                <h1><span class="yellowgreen footer-title">Web Item Market</span></h1>
                         </a>
                     </div>
-                    <div class="column-2-3">
+                    <div class="column-2-3 col-lg-12">
                         <nav class="footer-nav">
                             <ul>
-                                <a href="{{ path('review_client') }}"><li><span class="size5 hover-yellowgreen">Avis client</span></li></a>
-                                <a href="{{ path('article_index') }}"><li><span class="size5 hover-yellowgreen">Le blog</span></li></a>
-                                <a href="{{ path('app_faq') }}"><li><span class="size5 hover-yellowgreen">FAQ</span></li></a>
-                                <a href="{{ path('become_author') }}"><li><span class="size5 hover-yellowgreen">Devenir Vendeur</span></li></a>
+                                <div class="row d-flex justify-content-center container-a text-align">
+                                    <a href="{{ path('review_client') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-yellowgreen">Avis client</span></li></a>
+                                    <a href="{{ path('article_index') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-yellowgreen">Le blog</span></li></a>
+                                    <a href="{{ path('app_faq') }}"><li><span class="col-lg-2 size5  nav-a col-sm-12 col-md-12 hover-yellowgreen ">FAQ</span></li></a>
+                                    <a href="{{ path('become_author') }}"><li><span class=" col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-yellowgreen">Devenir Vendeur</span></li></a>
+                                </div>
                             </ul>
                         </nav>
                     </div>
-                    <div class="column-3-3">
+                    <div class="column-3-3 col-lg-2 col-sm-12 col-md-12">
                         <div class="social-icons-footer">
                             <a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f hover-yellowgreen"></i></a>
                             <a href="https://freehtml5.co"><i class="fab fa-instagram hover-yellowgreen"></i></a>
                             <a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter hover-yellowgreen"></i></a>
                         </div>
-                        <a href="{{ path('contact') }}"><span class="yellowgreen">Contactez nous</span></a>
+                        <a href="{{ path('contact') }}"><span class="yellowgreen contact-us">Contactez nous</span></a>
                     </div>
                 </div>
 
@@ -193,6 +195,7 @@
                 <p class="copyright">&copy; 2020 App. All rights reserved. Design by DYS-Tools </p>
 
             </div>
+            <br/><br/><br/><br/>
         </footer>
 
         {% block javascripts %}
@@ -204,8 +207,10 @@
                     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
                     crossorigin="anonymous"></script>
 
-            
-
+            <!-- Popper.js for dropdown menus -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js" integrity="sha512-UzofO1xJCmOl9xNdbqkMIaaW5raQxAE8WyMa977+mY2fT001KydNwvqSTJlHy70edjCN0nb20BXIgBgO/oj6MQ==" crossorigin="anonymous"></script>
+            <!-- End For require dropdown menus -->
             {% endblock %}
     </body>
 </html>

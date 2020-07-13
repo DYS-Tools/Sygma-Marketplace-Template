@@ -8,8 +8,8 @@
 
     <!-- Dropdown Categories for media queries -->
     <li class="nav-item dropdown category-nav-mobile">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voir les catégories</a>
-    <div class="dropdown-menu">
+    <a class="nav-link dropdown-toggle category-nav-mobile-title" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voir les catégories</a>
+    <div class="dropdown-menu category-dropdown">
         {% for category in categories %}
             <a class="dropdown-item" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
         {% endfor %}
@@ -132,11 +132,11 @@
                 container Free Template
     -------------------------------------------  -->
     <div class="container-free col-lg-12">
-        <div class="box-card">
+        <div class="box-card centered">
             <h2 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Template gratuit  </h2>
             <div class="row">
                 {% for FreeProduct in FreeProduct %}
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 ">
                         <!-- product card -->
                         <div class="card" style="width: 26rem;">
                             <img class="card-img-top" src="product/img/{{ FreeProduct.img1 }}"  alt="{{ FreeProduct.name }}">

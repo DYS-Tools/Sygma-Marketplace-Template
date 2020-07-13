@@ -4,14 +4,27 @@
 
 {% block body %}
     <ul class="nav nav-pills justify-content-center category-nav">
+
+    <!-- Dropdown Categories for media queries -->
+    <li class="nav-item dropdown category-nav-mobile">
+    <a class="nav-link dropdown-toggle category-nav-mobile-title" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voir les catégories</a>
+    <div class="dropdown-menu category-dropdown">
         {% for category in categories %}
-        <li class="nav-item">
+            <a class="dropdown-item" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+  </li>
+    <!-- end dropdown for category -->
+
+    {% for category in categories %}
+        <li class="nav-item category-nav-desktop">
             <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
         </li>
-        {% endfor %}
-    </ul>
-    <!-- add form search -->
-    <!-- nEW SEARCH BAR --> 
+    {% endfor %}
+
+    
+</ul>
+
     <br/><br/>
     <div class="container">
         {{ form_start(searchForm) }}
