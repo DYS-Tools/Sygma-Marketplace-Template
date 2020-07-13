@@ -9,7 +9,7 @@
 
               <p> https://developer.paypal.com/docs/platforms/checkout/set-up-payments/ </p>
               <p> je shouaite acheter le produits ( order/order.html.twig ) </p>
-              <p> Mettre les bouton dans la page single.. </p>
+              <p> Choisir un moyen de paiement  </p>
 
               <!-- id button paypal generate with javascript -->
               <div id="paypal-button-container">
@@ -31,20 +31,25 @@
             // pour rendre le flux de paiement. Dans cet exemple,
             // createOrder appelle votre serveur pour obtenir l'ID de commande.
             createOrder: function (data, actions) {
-                console.log("/perso/Web-Item-Market/public/createOrder");
+                console.log("clic button");
                 return fetch('/perso/Web-Item-Market/public/createOrder', {
                     method: 'GET'
                 }).then(function(res) {
                     return res.json();
+                    console.log(res.json() );
                 }).then(function(data) {
                     return data.id;
+                    console.log(data.id );
+                    console.log(data);
                 });
             },
+
             // onApprove est appelé lorsque l'acheteur approuve la commande.
             // Cela se produit lorsque l'acheteur termine avec succès le flux de paiement. Dans cet exemple,
             // onApprove appelle votre serveur pour effectuer un ordre de capture appel ( https://developer.paypal.com/docs/api/orders/v2/#orders_capture ).
             onApprove: function (data, actions) {
-                return fetch('/captureOrder' + data.orderID, {
+                console.log(data.orderId) ;
+                return fetch('/perso/Web-Item-Market/public/captureOrder' + data.orderId, {
                     method: 'POST'
                 }).then(function(res) {
                     if (!res.ok) {
