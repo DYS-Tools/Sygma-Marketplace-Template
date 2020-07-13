@@ -381,7 +381,10 @@ ul.dropdown-menu.show li{
     height: 250px;
     width: 100%;
 }
-
+.price-card{
+    font-size: 25px;
+    font-weight: bold;
+}
 
 .product-text h1 {
     margin: 0 0 0 38px;
