@@ -8,17 +8,12 @@
           <div class="container">
 
               <p> https://developer.paypal.com/docs/platforms/checkout/set-up-payments/ </p>
-              <p> je shouaite acheter le produits ( order/order.html.twig ) </p>
-              <p> Choisir un moyen de paiement  </p>
+              <h2> pour acheter le produit " {{ product.name }} " Veuillez choisir un moyen de paiement </h2>
 
-              <!-- 1 . id button paypal generate with javascript -->
-              <!--<div id="paypal-button-container">
+              <div class="container">
+                  <div id="paypal-button-container"></div>
               </div>
-              -->
 
-
-              <!-- 2. -->
-              <div id="paypal-button-container"></div>
       </div>
 
     </div>
@@ -29,34 +24,6 @@
 
 {{ parent() }}
 
-    <!-- // https://developer.paypal.com/docs/checkout/integrate/# */ -->
-    <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script>
-
-    <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                // This function sets up the details of the transaction, including the amount and line item details.
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '0.01'
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                // This function captures the funds from the transaction.
-                return actions.order.capture().then(function(details) {
-                    // This function shows a transaction success message to your buyer.
-                    alert('Transaction éfféctuer ' + details.payer.name.given_name);
-                });
-            }
-        }).render('#paypal-button-container');
-        //This function displays Smart Payment Buttons on your web page.
-    </script>
-
-    <!-- Script 1 -->
-    <!--
     <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script>
     <script>
         paypal.Buttons({
@@ -66,21 +33,51 @@
             // createOrder appelle votre serveur pour obtenir l'ID de commande.
             createOrder: function (data, actions) {
                 console.log("clic button");
+                // test 1 for get OrderId
+
                 return fetch('/perso/Web-Item-Market/public/createOrder', {
                     method: 'GET'
                 }).then(function(res) {
-                    return res.json();
+
                     console.log(res.json() );
+
+                    return res.json();
                 }).then(function(data) {
-                    return data.id;
+
                     console.log(data.id );
                     console.log(data);
+
+                    return data.id;
+
                 });
+
+
+                // test 2 for get OrderId
+                /*
+                fetch('/perso/Web-Item-Market/public/createOrder').then(function(response) {
+                if(response) {
+                   console.log("ok");
+                   console.log(response.status) ;
+                   console.log(response);
+                   console.log(response.blob() );
+                   console.log(response.body);
+                   console.log(response.json);
+
+                } else {
+                    console.log('Mauvaise réponse du réseau');
+                }
+                })
+                .catch(function(error) {
+                    console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
+                });
+                */
             },
 
             // onApprove est appelé lorsque l'acheteur approuve la commande.
             // Cela se produit lorsque l'acheteur termine avec succès le flux de paiement. Dans cet exemple,
             // onApprove appelle votre serveur pour effectuer un ordre de capture appel ( https://developer.paypal.com/docs/api/orders/v2/#orders_capture ).
+
+            // Todo : Send argument : orderId
             onApprove: function (data, actions) {
                 console.log(data.orderId) ;
                 return fetch('/perso/Web-Item-Market/public/captureOrder' + data.orderId, {
@@ -93,5 +90,4 @@
             }
         }).render('#paypal-button-container');
     </script>
-    -->
 {% endblock %}
