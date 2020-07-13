@@ -9,6 +9,9 @@ body{
     padding: 0;
     /*background-image:url(images/image_de_fond.png);*/
     background-color:rgba(240,240,240,0.5);
+    width: 100vw;
+    overflow: hidden;
+    overflow-y: scroll;
 
 }
 
@@ -217,6 +220,9 @@ a.logo span {
 }
 .category-link-nav:hover{
     color:yellowgreen;
+}
+.category-nav-mobile{
+    display: none;
 }
 
 .nav-dash{
@@ -606,12 +612,16 @@ i.fa-search {
     list-style: none;
     text-align: center;
 }
-
+/*
+.nav-a{
+    padding-right: 10%;
+    padding-left: 10%;
+}
+*/
 .footer-outer .footer-nav ul li {
     display: inline-block;
     line-height: 50px;
     color: #b5b5c8;
-    margin: 0 30px;
     font-size: 14px;
 }
 .footer-outer .footer-nav ul li:hover {
@@ -827,4 +837,19 @@ i.fa-search {
     color: black;
     font-weight: bold;
     border: none;
+}
+
+/***** FORM DESIGN *********/
+
+.section-form{
+    margin: 4%;
+    border: 1px solid rgba(230,230,230,0.8);
+    box-shadow: 1px 1px 5px rgba(230,230,230,0.8);
+    padding: 4%;
+}
+.form-button-product{
+    margin-left: 10%;
+}
+.custom-file-label,.custom-file-input{
+    border: 1px solid yellowgreen;
 }

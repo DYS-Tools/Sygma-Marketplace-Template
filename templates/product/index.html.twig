@@ -5,11 +5,25 @@
 {% block body %}
 
 <ul class="nav nav-pills justify-content-center category-nav">
+
+    <!-- Dropdown Categories for media queries -->
+    <li class="nav-item dropdown category-nav-mobile">
+    <a class="nav-link dropdown-toggle category-nav-mobile-title" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voir les catégories</a>
+    <div class="dropdown-menu category-dropdown">
+        {% for category in categories %}
+            <a class="dropdown-item" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+  </li>
+    <!-- end dropdown for category -->
+
     {% for category in categories %}
-    <li class="nav-item">
-        <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
-    </li>
+        <li class="nav-item category-nav-desktop">
+            <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
+        </li>
     {% endfor %}
+
+    
 </ul>
 
     <img src="img/head.jpg" alt="Web-Item-Market" style="width: 100%">
@@ -25,8 +39,8 @@
                     </div>
                     <div class="col-lg-8">
                         {{ form_start(searchForm) }}
-                        {{ form_widget(searchForm) }}
-                        <button class="btn-success product-button">{{ button_label|default('Rechercher') }} </button>
+                            {{ form_widget(searchForm) }}
+                            <button class="btn-success product-button">{{ button_label|default('Rechercher') }} </button>
                         {{ form_end(searchForm) }}
                     </div>
                 </div>
@@ -118,29 +132,30 @@
                 container Free Template
     -------------------------------------------  -->
     <div class="container-free col-lg-12">
-        <div class="box-card">
+        <div class="box-card centered">
             <h2 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  Template gratuit  </h2>
             <div class="row">
                 {% for FreeProduct in FreeProduct %}
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 ">
                         <!-- product card -->
                         <div class="card" style="width: 26rem;">
                             <img class="card-img-top" src="product/img/{{ FreeProduct.img1 }}"  alt="{{ FreeProduct.name }}">
                             <div class="card-body">
                                 <h5 class="card-title-product">{{ FreeProduct.name }}</h5>
                                 <p class="card-text">{{ FreeProduct.description }}</p>
-
-                                <p class="yellowgreen"> <strong> {{ FreeProduct.price }} € </strong>  </p>
-
+                                <p class="yellowgreen"> <strong> Produit gratuit </strong>  </p>
                                 <div class="row">
-                                    <div class="col-lg-8">
-                                        <p class="card-text"> {{ FreeProduct.numberSale}}  Vente </p>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <a href="{{ path('product_show', {'id': FreeProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> </a>
-                                        <a href="{{path('order', { 'product': FreeProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
-                                    </div>
+                                    {% if FreeProduct.price == 0 %}
+                                        <div class="col-lg-6">
+                                                <a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
+                                                    download>
+                                                    <button type="button" class="btn btn-success">Download product</button>
+                                                </a>
+                                        </div>
+                                        <div class="col-lg-2">
+                                                <a href="{{ path('product_show', {'id': FreeProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -151,7 +166,5 @@
         </div>
     </div>
     <!-- end Container Free Template -->
-
-
 </div>
 {% endblock %}

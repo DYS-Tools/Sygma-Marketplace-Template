@@ -1,4 +1,33 @@
 {{ form_start(form) }}
+
+    <div class="section-form">
+    <h4>Description générale du produit</h4>
+    <br/>
+    {{ form_row(form.name) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.content) }}
+    </div>
+    
+    <hr>
+
+    <div class="section-form">
+    <h4>Ajout des éléments</h4>
+    {{ form_row(form.file) }}   
+    {{ form_row(form.img1) }}
+    {{ form_row(form.img2) }}
+    {{ form_row(form.img3) }}
+    </div>
+    <hr>
+    
+    <div class="section-form">
+    <h4>Information relatif au produit</h4>
+    {{ form_row(form.price) }}
+    {{ form_row(form.demo_link) }}
+    {{ form_row(form.category) }}
+    </div>
+
+
     {{ form_widget(form) }}
-    <button class="btn-form">{{ button_label|default('Confirmer') }}</button>
+    <button class="btn-form form-button-product">{{ button_label|default('Confirmer') }}</button>
 {{ form_end(form) }}
+

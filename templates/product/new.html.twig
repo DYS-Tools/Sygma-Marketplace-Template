@@ -11,7 +11,22 @@
 
 
         {{ include('product/_form.html.twig') }}
-
+        <br/>
         <a href="{{ path('product_index') }}">Retour à la liste</a>
+        <br/>
+        <br/>
+        <br/>
         </div>
+{% endblock %}
+
+{% block javascripts %}
+
+{{ parent() }}
+
+<script>
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
 {% endblock %}

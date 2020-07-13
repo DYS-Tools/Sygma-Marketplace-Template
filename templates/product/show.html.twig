@@ -5,11 +5,25 @@
 {% block body %}
 
 <ul class="nav nav-pills justify-content-center category-nav">
+
+    <!-- Dropdown Categories for media queries -->
+    <li class="nav-item dropdown category-nav-mobile">
+    <a class="nav-link dropdown-toggle category-nav-mobile-title" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voir les catégories</a>
+    <div class="dropdown-menu category-dropdown">
         {% for category in categories %}
-        <li class="nav-item">
+            <a class="dropdown-item" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+  </li>
+    <!-- end dropdown for category -->
+
+    {% for category in categories %}
+        <li class="nav-item category-nav-desktop">
             <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
         </li>
-        {% endfor %}
+    {% endfor %}
+
+    
 </ul>
 
 <div class="show-page">
@@ -109,7 +123,7 @@
         <div class="col-lg-3  side-bar">
             <div class="side-bar-info">
             <br/>
-            <h2 class="font3"> Caractéristique technique </h2>
+            <h2 class="font3 side-bar-subtitle"> Caractéristique technique </h2>
             <br/>
             
                 <p class="font3"> catégorie du produit : {{ product.category.name }}</p>
@@ -117,7 +131,11 @@
 
                 <p class="font3"><a href="{{ path('contact_seller', { 'idUser': product.user.id, 'id': product.id } ) }}"> Contacter le vendeur </a></p>
                 
+                {% if product.price == 0 %}
+                <p class="font3 size2"> Produit Gratuit ( 0 €)</p>
+                {% else %}
                 <p class="eur-text">{{ product.price }}<i class="fa fa-eur" aria-hidden="true"></i> <span class="eur-text-min">TTC </span></p>
+                {% endif %}
                 <p class="font3 bold"> Produit proposé par <span class="yellowgreen"> {{ product.user.pseudo }}</span> </p>
             </div>
 
@@ -125,23 +143,20 @@
                 <div class="row">
                     <div class=" col-lg-4">
     
-                            {%   if product.demoLink != NULL %}
+                            {% if product.demoLink != NULL %}
                                 <a href="{{ product.demoLink }}">
                                 <button type="button" class="btn btn-success">Démonstration</button>
                                 </a>
                             {% else %}
                                 <p class="font3"> Pas de démonstration.</p>
                             {%  endif  %}
-                        
                     </div>
                     <br/><br/>
 
                     <div class=" col-lg-4">
-                        
                             <a href="{{ path('product_index') }}" class="font3">
                             <button type="button" class="btn btn-success">Retour</button>
                             </a>
-                        
                     </div>
                 </div>
             </div>
@@ -153,7 +168,8 @@
             </div>
 
             <div class="side-bar-info ">
-                <p> Ajouter maintenant ce produit a votre collection, et créer de meilleurs choses</p>
+                <p> Ajouter maintenant ce produit a votre collection.</p>
+                {% if product.price > 0 %}
                 <a id="paybutton" href="{{ path('order', { 'product': product.id }  ) }}" class="bottom">
                     <div class="margin-block pay-product">
                         <h2 class="center"> Payer maintenant<br/>
@@ -163,6 +179,12 @@
                         </h2>
                     </div>
                 </a>
+                {% elseif product.price == 0 %}
+                    <a href="{{ asset("product/" ~ product.file)  }}" 
+                                download>
+                                <button type="button" class="btn btn-success">Download product</button>
+                    </a>
+                {% endif %}
             </div>
             
 

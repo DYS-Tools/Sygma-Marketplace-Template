@@ -12,6 +12,7 @@ use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use App\Service\Upload;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +41,7 @@ class ProductController extends AbstractController
             if (empty($searchForm->get('search')->getData()) || $searchForm->get('search')->getData() == '' || $searchForm->get('search')->getData() == null)
             {
                 $productRepository->findAllTProductVerified();
-                $keyword = '';
+                //$keyword = '';
 
             }
 
@@ -72,21 +73,27 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/search/{keyword}", name="product_with_search", methods={"GET"})
+     * @Route("/search/{keyword}", name="product_with_search")
      */
-    public function productWithSearch(ProductRepository $productRepository, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepository , $keyword): Response
+    public function productWithSearch($keyword, ProductRepository $productRepository, PaginatorInterface $paginator, Request $request, CategoryRepository $categoryRepository): Response
     {
-        if(!empty($keyword)){
-            $keyword='Web';
+        $searchForm = $this->createForm(SearchProductFormType::class);
+        $searchForm->handleRequest($request);
+
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            $keyword = $searchForm->get('search')->getData();
+            
+            $this->redirectToRoute('product_with_search', array(
+                'keyword' => $keyword,
+                ));
+        }
+        
+        if(!empty($keyword)) {
             $products = $productRepository->findLike($keyword);
         }
         else{
             $products = $productRepository->findAllTProductVerified();
         }
-
-        $searchForm = $this->createForm(SearchProductFormType::class);
-        $searchForm->handleRequest($request);
-
 
         $pagination = $paginator->paginate(
             $products, /* query NOT result */
@@ -95,7 +102,6 @@ class ProductController extends AbstractController
         );
 
         return $this->render('product/searchProduct.html.twig', [
-            'products' => $products,
             'pagination' => $pagination,
             'searchForm' => $searchForm->createView(),
             'categories' => $categoryRepository->findBy(['active' => 1]),
@@ -262,21 +268,47 @@ class ProductController extends AbstractController
      * @Route("product/{id}/edit", name="product_edit", methods={"GET","POST"})
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
      */
-    public function edit(Request $request, Product $product): Response
+    public function editProduct(Request $request, Product $product, Upload $upload, EntityManagerInterface $entityManager, $id): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
+        $img1 = $product->getImg1();
+
+        //dd($product->getImg1());
+            //dd($img1);
         if ($form->isSubmitted() && $form->isValid()) {
+            /*
+            dd($product->getImg1());
+            if($product->getImg1() != null){unlink('product/img/' . $img1);};
+            if($product->getImg2() != null){unlink('product/img/' . $product->getImg2());};
+            if($product->getImg3() != null){unlink('product/img/' . $product->getImg3());};
+            if($product->getFile() != null){unlink('product/' . $product->getFile());};
+            */
 
-            if($product->getImg1() != null){unlink('../product/img/' . $product->getImg1());};
-            if($product->getImg2() != null){unlink('../product/img/' . $product->getImg2());};
-            if($product->getImg3() != null){unlink('../product/img/' . $product->getImg3());};
+            if($form->get('img1')->getData()){
+                $fileName1 = $upload->upload($form->get('img1')->getData());
+                $product->setImg1($fileName1);
+            }
+            if($form->get('img2')->getData()){
+                $fileName2 = $upload->upload($form->get('img2')->getData());
+                $product->setImg2($fileName2);
+            }
+            if($form->get('img3')->getData()){
+                $fileName3 = $upload->upload($form->get('img3')->getData());
+                $product->setImg3($fileName3);
+            }
+
+            if($form->get('file')->getData()){
+                $fileName3 = $upload->uploadFile($form->get('file')->getData());
+                $product->setFile($fileName3);
+            }
             
-            $path1 = $product->getImg1();
-            $this->getDoctrine()->getManager()->flush();
+            $product->setPublished(new \Datetime('now'));   //2020-06-06 14:52:49
+            $entityManager->persist($product);
+            $entityManager->flush();
 
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('author_product');
         }
 
         return $this->render('product/edit.html.twig', [
