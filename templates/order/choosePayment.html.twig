@@ -33,59 +33,41 @@
             // createOrder appelle votre serveur pour obtenir l'ID de commande.
             createOrder: function (data, actions) {
                 console.log("clic button");
-                // test 1 for get OrderId
-
                 return fetch('/perso/Web-Item-Market/public/createOrder', {
-                    method: 'GET'
-                }).then(function(res) {
-
-                    console.log(res.json() );
-
-                    return res.json();
-                }).then(function(data) {
-
-                    console.log(data.id );
-                    console.log(data);
-
-                    return data.id;
-
-                });
-
-
-                // test 2 for get OrderId
-                /*
-                fetch('/perso/Web-Item-Market/public/createOrder').then(function(response) {
-                if(response) {
-                   console.log("ok");
-                   console.log(response.status) ;
-                   console.log(response);
-                   console.log(response.blob() );
-                   console.log(response.body);
-                   console.log(response.json);
-
-                } else {
-                    console.log('Mauvaise réponse du réseau');
-                }
-                })
-                .catch(function(error) {
-                    console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
-                });
-                */
-            },
-
-            // onApprove est appelé lorsque l'acheteur approuve la commande.
-            // Cela se produit lorsque l'acheteur termine avec succès le flux de paiement. Dans cet exemple,
-            // onApprove appelle votre serveur pour effectuer un ordre de capture appel ( https://developer.paypal.com/docs/api/orders/v2/#orders_capture ).
-
-            // Todo : Send argument : orderId
-            onApprove: function (data, actions) {
-                console.log(data.orderId) ;
-                return fetch('/perso/Web-Item-Market/public/captureOrder' + data.orderId, {
                     method: 'POST'
                 }).then(function(res) {
-                    if (!res.ok) {
-                        alert('Something went wrong');
+                    if (res.status === 204)
+                    {
+                        console.log("204");
+                        // todo : redirect payement no succes..
                     }
+                    else
+                    {
+                        return res.json();
+                    }
+                }).then(function(data) {
+                    // console.log(data.id );
+                    // console.log(data);
+                    return data.id; // return json id
+                });
+            },
+            // Todo : Send argument : orderId
+            onApprove: function (data, actions) {
+                // Todo !important get data.id
+                console.log(data.orderID) ;
+
+                return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, {
+                    method: 'POST'
+                }).then(function(res) {
+                    console.log(res.status);
+
+                    // Todo : redirect payout ok
+                    console.log("redirect to payout ok ");
+
+                    if (res.status != 200) {
+                        console.log("redirect to payout error ");
+                    }
+
                 });
             }
         }).render('#paypal-button-container');
