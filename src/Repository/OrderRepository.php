@@ -62,5 +62,25 @@ class OrderRepository extends ServiceEntityRepository
         return $TotalOrderAuthor * 0.20;
     }
 
+    public function getByDateByAuthor(\Datetime $date,$user)
+        {
+            $from = new \DateTime($date->format("Y-m-d")." 00:00:00");
+            $to   = new \DateTime($date->format("Y-m-d")." 23:59:59");
+
+            $qb = $this->createQueryBuilder("e");
+            $qb
+                ->andWhere('e.created BETWEEN :from AND :to')
+                ->setParameter('to', $to)
+                ->setParameter('from', $from )
+                ->andWhere('e.user = :user')
+                ->setParameter('user', $user )
+                ->andWhere('e.status = :status')
+                ->setParameter('status', 'finish' )
+            ;
+            $result = $qb->getQuery()->getResult();
+
+            return $result;
+        }
+
     //USER
 }

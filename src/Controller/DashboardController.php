@@ -13,6 +13,7 @@ use App\Form\ProductType;
 use App\Form\RejectProductFormType;
 use App\Form\ResolveTicketType;
 use App\Repository\ArticleRepository;
+use App\Service\MakeJsonFormat;
 use App\Service\payment;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -215,16 +216,19 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/MySell", name="my_sell")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
-    public function mySell()
+    public function mySell(MakeJsonFormat $makeJsonFormat)
     {
         // get current user
         $user = $this->getUser();
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
         $ordered = $orderRepository->findBy(['user' => $user]);
 
+        $ArrayForGraph = $makeJsonFormat->get30LastDaysCommandsForAuthor($user);
+
         return $this->render('dashboard/mysell.html.twig', [
             'order' => $ordered,
             'user' => $user,
+            'ArrayForGraph' => $ArrayForGraph
         ]);
     }
 
