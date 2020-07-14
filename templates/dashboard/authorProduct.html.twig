@@ -18,11 +18,12 @@
     </div>
     
         {% if products > 0  %}
-        <div class="container">
+        
             <div class="box-card">
                 <div class="row">
                 {% for product in products %}
-                <div class="col-lg-3">
+
+                    <div class="col-lg-3">
                         <!-- product card -->
                         <div class="card" style="width: 26rem;">
                             <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
@@ -38,7 +39,7 @@
                                     </div>
 
                                     <div class="col-lg-4">
-                                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i> </a>
+                                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('product_edit', { 'id': product.id }  ) }}" class="btn btn-info"> Edit</a>
                                     </div>
                                 </div>
@@ -49,7 +50,6 @@
                 {% endfor %}
                 </div>
             </div>
-        </div>
 
         {% else %}
             <!-- <img class="card-img-top" src="product/img/{ { product.img1 }}"  alt="{ { product.name }}" height="420" width="100%">-->
