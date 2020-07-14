@@ -224,6 +224,9 @@ a.logo span {
 .category-nav-mobile{
     display: none;
 }
+.connect-mobile{
+    display: none;
+}
 
 .nav-dash{
     background-color: rgb(48, 54, 60);

@@ -148,12 +148,36 @@
                             <li>
                                 <a href="{{ path('category_handler') }}"><i class="fa fa-file-text" aria-hidden="true"></i>  Gestion des catégories</a>
                             </li>
+                            {% else %}
+                                <li>
+                                    <a href="{{ path('app_login') }}">Connection</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('app_register') }}">Inscription</a>
+                                </li>
                             {% endif %}
                             
                             <br/><br/>
                         </ul>
                     </li>
                 </ul>
+            {% else %}
+
+                <li class="dropdown connect-mobile">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <!-- The Profile picture inserted via div class below, with shaping provided by Bootstrap -->
+                            <div class="img-rounded profile-img"></div>
+                                <i class="fas fa-user-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('app_login') }}">Connection</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('app_register') }}">Inscription</a>
+                            </li>
+                        </ul>
+                </div>
             {% endif %}
         </nav>
 
