@@ -24,6 +24,7 @@
 
 {{ parent() }}
 
+    <!-- Paypal -->
     <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script>
     <script>
         paypal.Buttons({
@@ -38,8 +39,7 @@
                 }).then(function(res) {
                     if (res.status === 204)
                     {
-                        console.log("204");
-                        // todo : redirect payement no succes..
+                        document.location.href="{{ path('errorPayment') }}";
                     }
                     else
                     {
@@ -51,25 +51,23 @@
                     return data.id; // return json id
                 });
             },
-            // Todo : Send argument : orderId
+            // Send orderId in methods
             onApprove: function (data, actions) {
-                // Todo !important get data.id
                 console.log(data.orderID) ;
-
                 return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, {
                     method: 'POST'
                 }).then(function(res) {
                     console.log(res.status);
-
-                    // Todo : redirect payout ok
-                    console.log("redirect to payout ok ");
-
-                    if (res.status != 200) {
-                        console.log("redirect to payout error ");
+                    if (res.status = 200) {
+                         document.location.href="{{  path('successPayment') }}";  // OrderID no exist
                     }
-
+                    else {
+                        document.location.href="{{ path('errorPayment') }}";
+                    }
                 });
             }
         }).render('#paypal-button-container');
     </script>
+    <!-- end Paypal -->
+
 {% endblock %}
