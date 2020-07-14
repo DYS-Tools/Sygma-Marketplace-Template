@@ -32,7 +32,8 @@ class ProductType extends AbstractType
                 // https://fr.wikipedia.org/wiki/Type_de_m%C3%A9dias ( List media )
                 'attr' => array(
                     'accept' => "application/zip",
-                    'class' => 'custom-file-label'
+                    'class' => 'custom-file-label',
+                    'placeholder' => 'Déposez ici votre produit (Format ZIP)'
                 ),
                 'constraints' => [
                     new File([
@@ -54,21 +55,30 @@ class ProductType extends AbstractType
                 'label' => 'ajouter une image ( dimension optimales 1200x900 )',
                 'data_class'=>null,
                 'required'   => true,
-                'attr' => ['class' => 'custom-file-label'],
+                'attr' => [
+                    'class' => 'custom-file-label',
+                    'placeholder' => 'Déposez une image (1200x900)'
+                ],
                 'help' => 'Format non valide, utilisez le format 1200x900'
             ])
             ->add('img2', FileType::class, [
                 'label' => 'ajouter une image optionelle ( dimension optimales 1200x900 )',
                 'data_class'=>null,
                 'required'   => false,
-                'attr' => ['class' => 'custom-file-label'],
+                'attr' => [
+                    'class' => 'custom-file-label',
+                    'placeholder' => 'Déposez une image (1200x900)'
+                ],
                 'help' => 'Format non valide, utilisez le format 1200x900'
             ])
             ->add('img3', FileType::class, [
                 'label' => 'ajouter une image optionelle ( dimension optimales 1200x900 )',
                 'data_class'=>null,
                 'required'   => false,
-                'attr' => ['class' => 'custom-file-label'],
+                'attr' => [
+                    'class' => 'custom-file-label',
+                    'placeholder' => 'Déposez une image (1200x900)'
+                ],
                 'help' => 'Format non valide, utilisez le format 1200x900'
             ])
 

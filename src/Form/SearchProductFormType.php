@@ -15,6 +15,11 @@ class SearchProductFormType extends AbstractType
         ->add('search', TextType::class, [
             'data' => '',
             'required' => true,
+            'attr' => [
+                 'placeholder' => "Chercher un produit : HTML, Plugin, Javascript...",
+                 'label' => 'chercher un produit'
+            ],
+            'label' => 'chercher un produit'
         ]);
         ;
     }

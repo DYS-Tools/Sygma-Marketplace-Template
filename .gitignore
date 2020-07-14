@@ -8,7 +8,8 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
+/public/product
+/public/product/img
 ###> symfony/phpunit-bridge ###
 /public/data
 .phpunit

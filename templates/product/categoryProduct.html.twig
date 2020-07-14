@@ -21,7 +21,7 @@
     <div class="container-best-sell col-lg-12">
         <div class="box-card">
             {%   if categories is not null  %}
-            <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  {{ categoryCurrent.name }}  </h1>
+            <h1 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  {{ categoryCurrent.name }}  </h1>
             {%  endif  %}
             <div class="row">
                 {% for product in pagination %}
@@ -32,8 +32,8 @@
                             <div class="card-body">
                                 <h5 class="card-title-product">{{ product.name }}</h5>
                                 <p class="card-text">{{ product.description }}</p>
-
-                                <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+                                <p class="yellowgreen">{{ product.category.name  }} </p>
+                                <p class="yellowgreen price-card"> <strong> {{ product.price }} € </strong>  </p>
 
                                 <div class="row">
                                     <div class="col-lg-8">
@@ -44,8 +44,6 @@
                                         <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
                                     </div>
-
-                                    <p> test category :</p>{{ product.category.name  }}
                                 </div>
                             </div>
                         </div>

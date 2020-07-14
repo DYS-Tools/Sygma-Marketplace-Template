@@ -96,9 +96,9 @@ class Product
      * @Assert\Image(
      *     allowLandscape = true,
      *     allowPortrait = false,
-     *     minWidth = 1000,
+     *     minWidth = 1190,
      *     maxWidth = 1200,
-     *     minHeight = 800,
+     *     minHeight = 890,
      *     maxHeight = 900
      * )
      */
@@ -115,9 +115,9 @@ class Product
      * @Assert\Image(
      *     allowLandscape = true,
      *     allowPortrait = false,
-     *     minWidth = 1000,
+     *     minWidth = 1190,
      *     maxWidth = 1200,
-     *     minHeight = 800,
+     *     minHeight = 890,
      *     maxHeight = 900
      * )
      */
@@ -134,9 +134,9 @@ class Product
      * @Assert\Image(
      *     allowLandscape = true,
      *     allowPortrait = false,
-     *     minWidth = 1000,
+     *     minWidth = 1190,
      *     maxWidth = 1200,
-     *     minHeight = 800,
+     *     minHeight = 890,
      *     maxHeight = 900
      * )
      */

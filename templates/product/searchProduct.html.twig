@@ -47,7 +47,11 @@
                                 <h5 class="card-title-product">{{ product.name }}</h5>
                                 <p class="card-text">{{ product.description }}</p>
 
-                                <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+                                {% if product.price == 0 %}
+                                    <p class="yellowgreen price-card"> Produit gratuit </p>
+                                {% else %}
+                                    <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+                                {% endif %}
 
                                 <div class="row">
                                 {% if product.price > 0 %}
