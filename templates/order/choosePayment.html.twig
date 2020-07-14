@@ -27,50 +27,39 @@
     <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script>
     <script>
         paypal.Buttons({
+
+            // définir variable global de la class ?
+            // mettre data id dans cette variable à create order
+            // la récupérer sur captureOrder ?
+
             // createOrder est appelé lorsque l'acheteur clique sur l'un des boutons de paiement.
             // Cette fonction doit retourner un numéro de commande ( https://developer.paypal.com/docs/api/orders/v2/#orders )
             // pour rendre le flux de paiement. Dans cet exemple,
             // createOrder appelle votre serveur pour obtenir l'ID de commande.
             createOrder: function (data, actions) {
                 console.log("clic button");
-                // test 1 for get OrderId
-
                 return fetch('/perso/Web-Item-Market/public/createOrder', {
-                    method: 'GET'
+                    method: 'POST'
                 }).then(function(res) {
+                    // return json
+                    if (res.status === 204)
+                    {
+                        console.log("204");
+                    }
+                    else
+                    {
+                        // console.log("return json "); // good
+                        return res.json();
+                    }
+                    //console.log(res.json());
+                    //return res.json();
 
-                    console.log(res.json() );
-
-                    return res.json();
                 }).then(function(data) {
-
-                    console.log(data.id );
+                    // return id Order
+                    console.log(data.id ); // good
                     console.log(data);
-
                     return data.id;
-
                 });
-
-
-                // test 2 for get OrderId
-                /*
-                fetch('/perso/Web-Item-Market/public/createOrder').then(function(response) {
-                if(response) {
-                   console.log("ok");
-                   console.log(response.status) ;
-                   console.log(response);
-                   console.log(response.blob() );
-                   console.log(response.body);
-                   console.log(response.json);
-
-                } else {
-                    console.log('Mauvaise réponse du réseau');
-                }
-                })
-                .catch(function(error) {
-                    console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
-                });
-                */
             },
 
             // onApprove est appelé lorsque l'acheteur approuve la commande.
@@ -79,8 +68,8 @@
 
             // Todo : Send argument : orderId
             onApprove: function (data, actions) {
-                console.log(data.orderId) ;
-                return fetch('/perso/Web-Item-Market/public/captureOrder' + data.orderId, {
+                console.log(data.id + "data id dans onApprove") ;
+                return fetch('/perso/Web-Item-Market/public/captureOrder'+data.id, {
                     method: 'POST'
                 }).then(function(res) {
                     if (!res.ok) {

@@ -135,7 +135,7 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/createOrder", name="create_order")
+     * @Route("/createOrder", name="create_order" , methods={"POST"} )
      * @Security("is_granted('ROLE_USER')")
      * get id order
      */
@@ -143,6 +143,11 @@ class OrderController extends AbstractController
     {
         // test function : http://localhost/perso/Web-Item-Market/public/createOrder
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
+
+        // sendbox paypal
+        // sb-lz8752580455@personal.example.com
+        // d]s^zA<3
+
         $BearerAccessToken = $payment->connectPaypal();
         $accessToken= $BearerAccessToken;
         dump($accessToken);
@@ -169,7 +174,7 @@ class OrderController extends AbstractController
           "purchase_units" :[
             {
               "amount" :{
-                "currency_code" : "EUR",
+                "currency_code" : "USD",
                 "value" : "7.47"
               },
               "payee" : {
@@ -199,7 +204,7 @@ class OrderController extends AbstractController
             $orderId
         );
         */
-        
+
         //return json Response
         return new JsonResponse(
             $resultJson
@@ -224,7 +229,6 @@ class OrderController extends AbstractController
      */
     public function capture_order(payment $payment, $orderId)
     {
-
         dump($orderId);
         // test function : http://localhost/perso/Web-Item-Market/public/captureOrder
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
@@ -246,7 +250,7 @@ class OrderController extends AbstractController
         // test get id order
         //$orderToken = $this->create_order();
 
-        // $ch = curl_init('https://api.paypal.com/v2/checkout/orders/'.$orderId.'/capture'); // docs
+         //$ch = curl_init('https://api.paypal.com/v2/checkout/orders/'.$orderId.'/capture'); // docs
         $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders/'.$orderId.'/capture');  // sendbox api
 
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -264,7 +268,6 @@ class OrderController extends AbstractController
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-
         $payloadData = '
         {
         }';
@@ -280,22 +283,13 @@ class OrderController extends AbstractController
         $err = curl_error($ch);
         dump($err) ;
 
-
         curl_close($ch);
 
 
-
-
-
+        // return json ?
         $resultJson = json_decode($result);
         dd($resultJson);  // json
 
-
         return $resultJson ;
     }
-
-
-
-
-
 }
