@@ -40,7 +40,7 @@ class OrderController extends AbstractController
         //dd($user);
         $session = $payment->makePayment($product, $user);
         //dd($product);
-        dump($session);
+        //dump($session);
 
         return $this->render('order/choosePayment.html.twig', [
             'product' => $product
@@ -176,9 +176,6 @@ class OrderController extends AbstractController
               "amount" :{
                 "currency_code" : "USD",
                 "value" : "7.47"
-              },
-              "payee" : {
-                "email_address" : "yohanndurand76@gmail.com"
               }
             }
           ]
@@ -242,15 +239,11 @@ class OrderController extends AbstractController
          -d '{}'
         */
 
-        // todo : valid request .. ?
         $BearerAccessToken = $payment->connectPaypal();
         $accessToken = $BearerAccessToken;
         dump($accessToken);
 
-        // test get id order
-        //$orderToken = $this->create_order();
-
-         //$ch = curl_init('https://api.paypal.com/v2/checkout/orders/'.$orderId.'/capture'); // docs
+        //$ch = curl_init('https://api.paypal.com/v2/checkout/orders/'.$orderId.'/capture'); // docs
         $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders/'.$orderId.'/capture');  // sendbox api
 
         curl_setopt($ch, CURLOPT_POST, 1);
