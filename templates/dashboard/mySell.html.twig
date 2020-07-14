@@ -8,8 +8,102 @@
 
     <div class="container">
 
-        <h2> Mes ventes: </h2>
-        <br/>
+        <h2> Résumé des ventes </h2>
+
+        <div class="row">
+        <!-- graph -->
+        <br/><br/>
+        <div id="columnchart_values" style="width: 1200px; height: 350px;"></div>
+        <br/><br/><br/>
+
+
+         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load("current", {packages:['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ["Date", "Vente", { role: "style" } ],
+                    ["J-13", 0, "#9ACD32"],
+                    ["J-12", 1, "#9ACD32"],
+                    ["J-11", 4, "#9ACD32"],
+                    ["J-10", 7, "#9ACD32"],
+                    ["J-9", 9, "#9ACD32"],
+                    ["J-8", 2, "#9ACD32"],
+                    ["J-7", 2, "#9ACD32"],
+                    ["J-6", 2, "#9ACD32"],
+                    ["J-5", 7, "#9ACD32"],
+                    ["J-4", 8, "#9ACD32"],
+                    ["J-3", 2, "#9ACD32"],
+                    ["J-2", 5, "#9ACD32"],
+                    ["Hier", 6, "#9ACD32"],
+                    ["Aujourd\'hui", 4, "#9ACD32"]
+                ]);
+
+                var view = new google.visualization.DataView(data);
+                view.setColumns([0, 1,
+                                { calc: "stringify",
+                                    sourceColumn: 1,
+                                    type: "string",
+                                    role: "annotation" },
+                                2]);
+
+                var options = {
+                    title: "Vos ventes pour les derniers jours",
+                    width: 1200,
+                    height: 350,
+                    bar: {groupWidth: "95%"},
+                    legend: { position: "none" },
+                    backgroundColor: '#f7f7f7'
+                };
+                var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                chart.draw(view, options);
+            }
+        </script>
+
+
+        <!-- graph sell --> 
+
+        </div>
+        <div class="row">
+            <!-- card stats --> 
+            <div class="col-lg-4 offset-lg-1">
+                <div class="grey-card">
+                    <h1> Revenus généré </h1>
+                    <p> nombre d'euros généré avec l'ensemble des produits </p>
+                    <p class="number"> 108 € </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 offset-lg-1">
+                <div class="grey-card">
+                    <h1> Produits publié </h1>
+                    <p> Nombre de produits publié et accepté par la modération </p>
+                    <p class="number"> 57 € </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 offset-lg-1">
+                <div class="grey-card">
+                    <h1> Vente ce mois ci </h1>
+                    <p> Revenu en euros pour le mois xx/xx/xx </p>
+                    <p class="number"> 42 € </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 offset-lg-1">
+                <div class="grey-card">
+                    <h1> Ca du mois </h1>
+                    <p> CA pour le mois : xx/xx/xx </p>
+                    <p class="number"> 28 € </p>
+                </div>
+            </div>
+        </div>
+
+        <br/><br/>
+
+
+         <br/><br/><br/><br/><br/><br/><br/><br/>
         {% if order > 0  %}
             <table class="table">
                 <thead>
