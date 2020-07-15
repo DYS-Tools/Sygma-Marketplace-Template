@@ -19,6 +19,82 @@
         <hr/>
 
         <div class="row">
+        <!-- graph -->
+            <br/><br/>
+            <div id="columnchart_values" style="width: 1200px; height: 350px;"></div>
+            <br/><br/><br/>
+
+
+
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script type="text/javascript">
+                    google.charts.load("current", {packages:['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+                    function drawChart() {
+                    var data = google.visualization.arrayToDataTable(
+                        [
+                        ["Date", "Vente", { role: "style" } ],
+                        ["J-30", {{ ArrayForGraph['j-30'] }}, "#9ACD32"],
+                        ["J-29", {{ ArrayForGraph['j-29'] }}, "#9ACD32"],
+                        ["J-28", {{ ArrayForGraph['j-28'] }}, "#9ACD32"],
+                        ["J-27", {{ ArrayForGraph['j-27'] }}, "#9ACD32"],
+                        ["J-26", {{ ArrayForGraph['j-26'] }}, "#9ACD32"],
+                        ["J-25", {{ ArrayForGraph['j-25'] }}, "#9ACD32"],
+                        ["J-24", {{ ArrayForGraph['j-24'] }}, "#9ACD32"],
+                        ["J-23", {{ ArrayForGraph['j-23'] }}, "#9ACD32"],
+                        ["J-22", {{ ArrayForGraph['j-22'] }}, "#9ACD32"],
+                        ["J-21", {{ ArrayForGraph['j-21'] }}, "#9ACD32"],
+                        ["J-20", {{ ArrayForGraph['j-20'] }}, "#9ACD32"],
+                        ["J-19", {{ ArrayForGraph['j-19'] }}, "#9ACD32"],
+                        ["J-18", {{ ArrayForGraph['j-18'] }}, "#9ACD32"],
+                        ["J-17", {{ ArrayForGraph['j-17'] }}, "#9ACD32"],
+                        ["J-16", {{ ArrayForGraph['j-16'] }}, "#9ACD32"],
+                        ["J-15", {{ ArrayForGraph['j-15'] }}, "#9ACD32"],
+                        ["J-14", {{ ArrayForGraph['j-14'] }}, "#9ACD32"],
+                        ["J-13", {{ ArrayForGraph['j-13'] }}, "#9ACD32"],
+                        ["J-12", {{ ArrayForGraph['j-12'] }}, "#9ACD32"],
+                        ["J-11", {{ ArrayForGraph['j-11'] }}, "#9ACD32"],
+                        ["J-10", {{ ArrayForGraph['j-10'] }}, "#9ACD32"],
+                        ["J-9", {{ ArrayForGraph['j-9'] }}, "#9ACD32"],
+                        ["J-8", {{ ArrayForGraph['j-8'] }}, "#9ACD32"],
+                        ["J-7", {{ ArrayForGraph['j-7'] }}, "#9ACD32"],
+                        ["J-6", {{ ArrayForGraph['j-6'] }}, "#9ACD32"],
+                        ["J-5", {{ ArrayForGraph['j-5'] }}, "#9ACD32"],
+                        ["J-4", {{ ArrayForGraph['j-4'] }}, "#9ACD32"],
+                        ["J-3", {{ ArrayForGraph['j-3'] }}, "#9ACD32"],
+                        ["J-2", {{ ArrayForGraph['j-2'] }}, "#9ACD32"],
+                        ["J-1", {{ ArrayForGraph['j-1'] }}, "#9ACD32"],
+                        ["Aujourd\'hui", {{ ArrayForGraph['j-0'] }}, "#9ACD32"]
+                    ]
+                    );
+                    // ArrayForGraph['j-1'] = 1 {{ ArrayForGraph['j-1'] }}
+
+                    var view = new google.visualization.DataView(data);
+                    view.setColumns([0, 1,
+                                    { calc: "stringify",
+                                        sourceColumn: 1,
+                                        type: "string",
+                                        role: "annotation" },
+                                    2]);
+
+                    var options = {
+                        title: "Revenus de la plateforme pour les 30 derniers jours",
+                        width: 1200,
+                        height: 350,
+                        bar: {groupWidth: "95%"},
+                        legend: { position: "none" },
+                        backgroundColor: '#f7f7f7'
+                    };
+                    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                    chart.draw(view, options);
+                }
+            </script> 
+
+        </div>
+
+
+
+        <div class="row">
             <!-- -------------------
                     Product
             -------------------- -->

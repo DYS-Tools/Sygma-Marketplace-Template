@@ -82,5 +82,45 @@ class OrderRepository extends ServiceEntityRepository
             return $result;
         }
 
+    public function getCashFlowWithDate(\Datetime $date,$user){
+            $from = new \DateTime($date->format("Y-m-d")." 00:00:00");
+            $to   = new \DateTime($date->format("Y-m-d")." 23:59:59");
+            
+            $TotalCommission = $this
+            ->createQueryBuilder('a')
+            ->where('a.status = :status')
+            ->setParameter('status', 'finish')
+            ->leftJoin('a.user', 'u')
+            ->andWhere('u.roles = :roles')
+            ->setParameter('roles', '["ROLE_AUTHOR"]')
+            ->andWhere('a.created BETWEEN :from AND :to')
+            ->setParameter('to', $to)
+            ->setParameter('from', $from )
+            ->select('SUM(a.amount)')
+            ->getQuery()
+            ->getSingleScalarResult();
+            ;
+            $TotalCommission = $TotalCommission * 0.20;
+
+            
+            $EurCommandAdmin = $this
+            ->createQueryBuilder('a')
+            ->where('a.status = :status')
+            ->setParameter('status', 'finish')
+            ->leftJoin('a.user', 'u')
+            ->andwhere('u.roles = :roles')
+            ->setParameter('roles', '["ROLE_ADMIN"]')
+            ->andWhere('a.created BETWEEN :from AND :to')
+            ->setParameter('to', $to)
+            ->setParameter('from', $from )
+            ->select('SUM(a.amount)')
+            ->getQuery()
+            ->getSingleScalarResult();
+            ;
+            
+
+            return $EurCommandAdmin + $TotalCommission;
+    }
+
     //USER
 }

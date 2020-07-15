@@ -121,10 +121,14 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/statistic", name="statistic_admin")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function statisticAdmin()
+    public function statisticAdmin(MakeJsonFormat $makeJsonFormat)
     {
+        $user = $this->getUser();
         $winWithApplication = $this->getDoctrine()->getRepository(Order::class)->countTotalCommissions() + $this->getDoctrine()->getRepository(Order::class)->countOrderAdminEur();
         
+        
+        $ArrayForGraph = $makeJsonFormat->get30LastDaysCashflow($user);
+
         return $this->render('dashboard/statisticAdmin.html.twig', [
             'ProductForSell' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForSell(),
             'ProductForVerified' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForVerified(),
@@ -140,7 +144,8 @@ class DashboardController extends AbstractController
             'orderAdminEur' => $this->getDoctrine()->getRepository(Order::class)->countOrderAdminEur(),   // TT order avec un user Admin
             'currentAvailablePayout' => $this->getDoctrine()->getRepository(User::class)->countCurrentAvailablePayout(), // TT available payout
             'totalCommissions' => $this->getDoctrine()->getRepository(Order::class)->countTotalCommissions(), // tt order amount * 0.20
-            'winWithApplication' => $winWithApplication // totalComissions + orderAdminEur
+            'winWithApplication' => $winWithApplication, // totalComissions + orderAdminEur,
+            'ArrayForGraph' => $ArrayForGraph
         ]);
     }
 
