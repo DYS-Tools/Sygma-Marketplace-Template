@@ -52,9 +52,6 @@ class OrderController extends AbstractController
         $this->em->persist($order);
         $this->em->flush();
 
-        // TODO: passer la commande dans la vue, pour ensuite injecter l'id sur le lien ?
-        // Todo : mettre en finish l'etat de la commande
-
         return $this->render('order/choosePayment.html.twig', [
             'product' => $product
         ]);
@@ -67,14 +64,19 @@ class OrderController extends AbstractController
      */
     public function successPayment(payment $payment, \Swift_Mailer $mailer)
     {
-        /*
-         * avec $orderId en argument et dans le lien
+        // get current user
+        $user = $this->getUser();
 
+        // edit order for status = finished
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
-        $order = $orderRepository->findOneBy(['id' => $orderId]);
-        $order->setStatus('Finish');
-         */
+        $order = $orderRepository->findLastOrderOfUser($user);
+        $order[0]->setStatus("finish");
 
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($order[0]);
+        $entityManager->flush();
+
+        // send mail
         // \Swift_Mailer $mailer
         $message = (new \Swift_Message('Web-Item-Market'))
             ->setFrom('sacha6623@gmail.com')
@@ -88,8 +90,9 @@ class OrderController extends AbstractController
 
         $this->addFlash('success', "Email has been send");
 
-
         // TODO: Validation de la commande
+
+        // $product = $order[0]->getAmount() ; // price order
 
         // Incrementer la vente dans l'objet product  // product + 1
         // incrementer $order->getAmount() * 0.80;      // 80 % a availablePayout
@@ -104,7 +107,7 @@ class OrderController extends AbstractController
      */
     public function errorPayment(payment $payment, $product)
     {
-        // return view error..
+        // return view error
         return $this->render('order/errorPayment.html.twig', [
         ]);
     }
@@ -112,18 +115,22 @@ class OrderController extends AbstractController
     /**
      * @Route("/createOrder", name="create_order" , methods={"POST"} )
      * @Security("is_granted('ROLE_USER')")
-     * get id order
+     * get id order and create Order with amount...
      */
     public function create_order(HttpClientInterface $client,payment $payment)
     {
         // test function : http://localhost/perso/Web-Item-Market/public/createOrder
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
+
         // sendbox paypal
         // sb-lz8752580455@personal.example.com
         // d]s^zA<3
+
+        // get Token Paypal API
         $BearerAccessToken = $payment->connectPaypal();
         $accessToken= $BearerAccessToken;
         dump($accessToken);
+
         $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders');
         curl_setopt($ch, CURLOPT_POST, 1);
         // HEADER
@@ -137,8 +144,15 @@ class OrderController extends AbstractController
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
+        // get current user
+        $user = $this->getUser();
 
-        // Todo : valid data product in json ? passer dans l'url de cette methode un productId qui va sur le template
+        // get Amount Order for payment Paypal
+        $orderRepository = $this->getDoctrine()->getRepository(Order::class);
+        $order = $orderRepository->findLastOrderOfUser($user);
+
+        $priceOrder = $order[0]->getAmount() ; // price order
+
         $payloadData = '
         {
           "intent" : "CAPTURE",
@@ -146,7 +160,7 @@ class OrderController extends AbstractController
             {
               "amount" :{
                 "currency_code" : "USD",
-                "value" : "7.47"
+                "value" : "'.$priceOrder.'"
               }
             }
           ]
@@ -209,7 +223,7 @@ class OrderController extends AbstractController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // return caracter
 
         $result = curl_exec($ch);
-        dump($result);  // no json
+        //dump($result);  // no json
 
         // get error
         // $err = curl_error($ch); // dump($err) ;
