@@ -61,31 +61,11 @@ class payment
     }
     /* end get env var Paypal */
 
-
-    public function makePayment(Product $product, User $user )
-    {
-        $PaypalToken = $this->connectPaypal() ;
-
-        //create Order
-        $order = new Order;
-        $order->setUser($user);
-        $order->setAmount($product->getPrice());
-        $order->setStatus('waiting for payment');
-        $order->setCreated(new \DateTime(date('Y-m-d H:i:s')));
-        $order->setProduct($product);
-
-        $this->em->persist($order);
-        $this->em->flush();
-
-          // TODO: $order->setStatus('Finished');
-        return ;
-    }
-
+    // todo : function
     public function payout(){
         // transfet funds in acct_XXXXX account
         return "function payout service";
     }
-
 
     //////////////////
     // Paypal

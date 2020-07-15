@@ -8,12 +8,12 @@
           <div class="container">
 
               <p> https://developer.paypal.com/docs/platforms/checkout/set-up-payments/ </p>
-              <p> je shouaite acheter le produits ( order/order.html.twig ) </p>
-              <p> Mettre les bouton dans la page single.. </p>
+              <h2> pour acheter le produit " {{ product.name }} " Veuillez choisir un moyen de paiement </h2>
 
-              <!-- id button paypal generate with javascript -->
-              <div id="paypal-button-container">
+              <div class="container">
+                  <div id="paypal-button-container"></div>
               </div>
+
       </div>
 
     </div>
@@ -23,6 +23,8 @@
 {% block javascripts %}
 
 {{ parent() }}
+
+    <!-- Paypal -->
     <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script>
     <script>
         paypal.Buttons({
@@ -31,27 +33,41 @@
             // pour rendre le flux de paiement. Dans cet exemple,
             // createOrder appelle votre serveur pour obtenir l'ID de commande.
             createOrder: function (data, actions) {
-                console.log("/perso/Web-Item-Market/public/createOrder");
+                console.log("clic button");
                 return fetch('/perso/Web-Item-Market/public/createOrder', {
-                    method: 'GET'
-                }).then(function(res) {
-                    return res.json();
-                }).then(function(data) {
-                    return data.id;
-                });
-            },
-            // onApprove est appelé lorsque l'acheteur approuve la commande.
-            // Cela se produit lorsque l'acheteur termine avec succès le flux de paiement. Dans cet exemple,
-            // onApprove appelle votre serveur pour effectuer un ordre de capture appel ( https://developer.paypal.com/docs/api/orders/v2/#orders_capture ).
-            onApprove: function (data, actions) {
-                return fetch('/captureOrder' + data.orderID, {
                     method: 'POST'
                 }).then(function(res) {
-                    if (!res.ok) {
-                        alert('Something went wrong');
+                    if (res.status === 204)
+                    {
+                        document.location.href="{{ path('errorPayment') }}";
+                    }
+                    else
+                    {
+                        return res.json();
+                    }
+                }).then(function(data) {
+                    // console.log(data.id );
+                    // console.log(data);
+                    return data.id; // return json id
+                });
+            },
+            // Send orderId in methods
+            onApprove: function (data, actions) {
+                console.log(data.orderID) ;
+                return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, {
+                    method: 'POST'
+                }).then(function(res) {
+                    console.log(res.status);
+                    if (res.status = 200) {
+                         document.location.href="{{  path('successPayment') }}";  // OrderID no exist
+                    }
+                    else {
+                        document.location.href="{{ path('errorPayment') }}";
                     }
                 });
             }
         }).render('#paypal-button-container');
     </script>
+    <!-- end Paypal -->
+
 {% endblock %}
