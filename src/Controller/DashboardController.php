@@ -145,7 +145,7 @@ class DashboardController extends AbstractController
             'currentAvailablePayout' => $this->getDoctrine()->getRepository(User::class)->countCurrentAvailablePayout(), // TT available payout
             'totalCommissions' => $this->getDoctrine()->getRepository(Order::class)->countTotalCommissions(), // tt order amount * 0.20
             'winWithApplication' => $winWithApplication, // totalComissions + orderAdminEur,
-            'ArrayForGraph' => $ArrayForGraph
+            'ArrayForGraph' => $ArrayForGraph,
         ]);
     }
 
@@ -228,12 +228,17 @@ class DashboardController extends AbstractController
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
         $ordered = $orderRepository->findBy(['user' => $user]);
 
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+
         $ArrayForGraph = $makeJsonFormat->get30LastDaysCommandsForAuthor($user);
 
         return $this->render('dashboard/mysell.html.twig', [
             'order' => $ordered,
             'user' => $user,
-            'ArrayForGraph' => $ArrayForGraph
+            'ArrayForGraph' => $ArrayForGraph,
+            'MoneyGenerated' => $orderRepository->getTotalOrderAmountForOneAuthorWithRemoveCommision($user), /* argent généré en tout  ( somme commande * 0.80 ) */ 
+            'authorProductNumber' => count($productRepository->findBy(['user' => $user, 'verified' => 1])), /* lenght produit author accepté par la modération */
+            'CAAuthorForMonth' => $orderRepository->getTotalAmountGeneratedIn30LastDaysForAuthorWithRemoveCommision($user), 
         ]);
     }
 

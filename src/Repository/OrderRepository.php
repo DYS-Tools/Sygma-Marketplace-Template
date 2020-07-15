@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Order;
+use DateInterval;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -122,5 +124,49 @@ class OrderRepository extends ServiceEntityRepository
             return $EurCommandAdmin + $TotalCommission;
     }
 
-    //USER
+    public function getTotalOrderAmountForOneAuthorWithRemoveCommision($user){
+
+        $TotalAmountCommandAuthor = $this
+            ->createQueryBuilder('a')
+            ->where('a.status = :status')
+            ->setParameter('status', 'finish')
+            ->leftJoin('a.user', 'u')
+            ->andwhere('u.id = :user')
+            ->setParameter('user', $user)
+            ->select('SUM(a.amount)')
+            ->getQuery()
+            ->getSingleScalarResult();
+            ;
+
+        return $TotalAmountCommandAuthor * 0.80;
+    }
+
+    public function getTotalAmountGeneratedIn30LastDaysForAuthorWithRemoveCommision($user){
+        $date = new DateTime();
+        $last30Days = new DateTime('-30days');
+
+        // CA Author last 30 days * 0.80 
+        $from = new \DateTime($date->format("Y-m-d")." 00:00:00");
+        $to   = new \DateTime($date->format("Y-m-d")." 23:59:59");
+
+        $TotalAmountCommandAuthor = $this
+            ->createQueryBuilder('a')
+            ->where('a.status = :status')
+            ->setParameter('status', 'finish')
+            ->leftJoin('a.user', 'u')
+            ->andwhere('u.id = :user')
+            ->setParameter('user', $user)
+            ->andWhere('a.created BETWEEN :from AND :to')
+            ->setParameter('to', $date)
+            ->setParameter('from', $last30Days )
+            ->select('SUM(a.amount)')
+            ->getQuery()
+            ->getSingleScalarResult();
+            ;
+
+        return $TotalAmountCommandAuthor * 0.80;
+
+        
+    }
+
 }
