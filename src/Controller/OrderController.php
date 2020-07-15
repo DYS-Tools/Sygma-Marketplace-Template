@@ -67,14 +67,20 @@ class OrderController extends AbstractController
      */
     public function successPayment(payment $payment, \Swift_Mailer $mailer)
     {
-        /*
-         * avec $orderId en argument et dans le lien
+        // get current user
+        $user = $this->getUser();
 
+        // edit order for status = finished
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
-        $order = $orderRepository->findOneBy(['id' => $orderId]);
-        $order->setStatus('Finish');
-         */
+        $order = $orderRepository->findLastOrderOfUser($user);
+        $order[0]->setStatus("finish");
 
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($order[0]);
+        $entityManager->flush();
+
+
+        // send mail
         // \Swift_Mailer $mailer
         $message = (new \Swift_Message('Web-Item-Market'))
             ->setFrom('sacha6623@gmail.com')
@@ -118,6 +124,7 @@ class OrderController extends AbstractController
     {
         // test function : http://localhost/perso/Web-Item-Market/public/createOrder
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
+
         // sendbox paypal
         // sb-lz8752580455@personal.example.com
         // d]s^zA<3
@@ -138,7 +145,7 @@ class OrderController extends AbstractController
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 
 
-        // Todo : valid data product in json ? passer dans l'url de cette methode un productId qui va sur le template
+        // Todo : valid data product in json ? obtenir le product dans l'url ?
         $payloadData = '
         {
           "intent" : "CAPTURE",
