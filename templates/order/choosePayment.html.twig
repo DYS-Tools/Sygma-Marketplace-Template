@@ -33,7 +33,6 @@
             // pour rendre le flux de paiement. Dans cet exemple,
             // createOrder appelle votre serveur pour obtenir l'ID de commande.
             createOrder: function (data, actions) {
-                console.log("clic button");
                 return fetch('/perso/Web-Item-Market/public/createOrder', {
                     method: 'POST'
                 }).then(function(res) {
@@ -53,7 +52,7 @@
             },
             // Send orderId in methods
             onApprove: function (data, actions) {
-                console.log(data.orderID) ;
+                //console.log(data.orderID) ;
                 return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, {
                     method: 'POST'
                 }).then(function(res) {
