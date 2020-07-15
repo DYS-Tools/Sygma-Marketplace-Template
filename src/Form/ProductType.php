@@ -23,8 +23,9 @@ class ProductType extends AbstractType
                 'help' => 'Nom du produit'
             ])
             ->add('description',TextareaType::class, [
-                'help' => 'Description',
-                'attr' => ['rows' => 10]
+                'help' => 'Description Courte',
+                'attr' => ['rows' => 2],
+                'label' => 'Description courte'
             ])
 
             ->add('file', FileType::class, [
@@ -47,8 +48,10 @@ class ProductType extends AbstractType
                 'help' => 'Fichier ZIP uniquement'
             ])
             
-            ->add('content',TextType::class, [
-                'help' => 'Contenu'
+            ->add('content',TextareaType::class, [
+                'help' => 'Description détaillée',
+                'attr' => ['rows' => 10],
+                'label' => 'Fiche produit ( texte détaillé )'
             ])
 
             ->add('img1', FileType::class, [
