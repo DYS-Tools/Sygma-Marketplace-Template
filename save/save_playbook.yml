@@ -1,0 +1,56 @@
+---
+- name: Server Install
+  hosts: all
+  remote_user: root
+
+  vars_files:
+    - ./vars/vault.yml
+    - ./vars/vars.yml
+
+  vars_prompt:
+    #- name: symfony_env
+      #prompt: "Enter the environment for your Symfony app (prod|dev|test)"
+      #default: prod
+      #private: no
+
+  environment:
+    SYMFONY_ENV: "prod"
+    #SYMFONY_ENV: "{{ symfony_env|lower }}"
+
+  tasks:
+    - ping: ~
+
+    - name: apt-get update
+      become: true
+      apt:
+        update_cache: yes
+
+    - name: install apt-get install mysqldump
+      becomme: true
+      apt:
+        name: mysqldump
+        state: latest
+
+    ###### .env ######
+    - name: Add SQL connexion information in .env file ( with a new admin SQL User )
+      become: true
+      lineinfile:
+        dest: "{{ symfony_root_dir }}/.env"
+        # replace
+        regexp: 'DATABASE_URL=mysql://root:root@127.0.0.1:3306/WebItemMarket'
+        # for
+        line: DATABASE_URL=mysql://{{ sql_user }}:{{ sql_pass }}@localhost:3306/WebItemMarket
+
+  handlers:
+    - name: Restart Nginx
+      become: true
+      service:
+        name: nginx
+        state: restarted
+
+    - name: Restart PHP-FPM
+      become: true
+      service:
+        name: php7.3-fpm
+        state: restarted
+...
