@@ -6,30 +6,40 @@
 
     <div class="container">
         <h1>Nos articles</h1>
+        <br/>
 
         {% for article in pagination %}
-        <div class="card-group">
-            <div class="card">
-                <img class="card-img-top" src="../article/img/{{ article.img1 }}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{ article.title }}</h5>
-                    <p class="card-text">{{ article.description }}</p>
-                    <p class="card-text"><small class="text-muted">publié le {{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</small></p>
+        
+        <!---------- -->
 
-                    <div class="product-button">
-                        <button type="button">
-                            <a href="{{ path('article_show', {'id': article.id}) }}"> Détails </a>
-                        </button>
-                    </div>
+        <div class="row container-blog">
+                <div class="col-lg-2">
+
+                    <img class="card-img" src="../article/img/{{ article.img1 }}" alt="Card image cap" height="100%" width="100%">
                 </div>
-            </div>
-        </div>
-            <br/>
-            <hr/>
 
-        {% else %}
-            <h2> Pas d'article pour le moment.</h2>
+                <div class="col-lg-10">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h5 class="card-title-blog align-self-center">{{ article.title }}</h5>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="blog-index-button">
+                                <button type="button">
+                                    <a href="{{ path('article_show', {'id': article.id}) }}"> Voir l'article </a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="green-hr">
+                    <p class="card-text"> {{ article.description }}</p>
+                    <p class="card-text"><small class="text-muted">publié le {{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</small></p>
+                </div>
+        </div>
+        <br/><br/>
         {% endfor %}
+
+            <br/>
 
         <div class="navigation">
         {{ knp_pagination_render(pagination) }}
