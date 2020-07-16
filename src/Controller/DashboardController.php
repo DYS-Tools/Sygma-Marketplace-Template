@@ -13,6 +13,7 @@ use App\Form\ProductType;
 use App\Form\RejectProductFormType;
 use App\Form\ResolveTicketType;
 use App\Repository\ArticleRepository;
+use App\Service\MakeJsonFormat;
 use App\Service\payment;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -120,10 +121,14 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/statistic", name="statistic_admin")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function statisticAdmin()
+    public function statisticAdmin(MakeJsonFormat $makeJsonFormat)
     {
+        $user = $this->getUser();
         $winWithApplication = $this->getDoctrine()->getRepository(Order::class)->countTotalCommissions() + $this->getDoctrine()->getRepository(Order::class)->countOrderAdminEur();
         
+        
+        $ArrayForGraph = $makeJsonFormat->get30LastDaysCashflow($user);
+
         return $this->render('dashboard/statisticAdmin.html.twig', [
             'ProductForSell' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForSell(),
             'ProductForVerified' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForVerified(),
@@ -139,7 +144,8 @@ class DashboardController extends AbstractController
             'orderAdminEur' => $this->getDoctrine()->getRepository(Order::class)->countOrderAdminEur(),   // TT order avec un user Admin
             'currentAvailablePayout' => $this->getDoctrine()->getRepository(User::class)->countCurrentAvailablePayout(), // TT available payout
             'totalCommissions' => $this->getDoctrine()->getRepository(Order::class)->countTotalCommissions(), // tt order amount * 0.20
-            'winWithApplication' => $winWithApplication // totalComissions + orderAdminEur
+            'winWithApplication' => $winWithApplication, // totalComissions + orderAdminEur,
+            'ArrayForGraph' => $ArrayForGraph,
         ]);
     }
 
@@ -215,16 +221,24 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/MySell", name="my_sell")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
-    public function mySell()
+    public function mySell(MakeJsonFormat $makeJsonFormat)
     {
         // get current user
         $user = $this->getUser();
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
         $ordered = $orderRepository->findBy(['user' => $user]);
 
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+
+        $ArrayForGraph = $makeJsonFormat->get30LastDaysCommandsForAuthor($user);
+
         return $this->render('dashboard/mysell.html.twig', [
             'order' => $ordered,
             'user' => $user,
+            'ArrayForGraph' => $ArrayForGraph,
+            'MoneyGenerated' => $orderRepository->getTotalOrderAmountForOneAuthorWithRemoveCommision($user), /* argent généré en tout  ( somme commande * 0.80 ) */ 
+            'authorProductNumber' => count($productRepository->findBy(['user' => $user, 'verified' => 1])), /* lenght produit author accepté par la modération */
+            'CAAuthorForMonth' => $orderRepository->getTotalAmountGeneratedIn30LastDaysForAuthorWithRemoveCommision($user), 
         ]);
     }
 

@@ -903,3 +903,25 @@ div#search_product_form div label{
 .custom-file-label,.custom-file-input{
     border: 1px solid yellowgreen;
 }
+
+
+
+/************* MY SELL ************/
+
+.grey-card{
+    margin: 4%;
+    border: 1px solid rgba(190,190,190,0.8);
+    box-shadow: 1px 1px 15px rgba(200,200,200,0.8);
+    padding: 4%;
+    text-align: center;
+}
+.grey-card h1{
+    font-size: 24px;
+    text-align: center;
+}
+.grey-card p{
+    font-size: 14px;
+}
+.grey-card .number{
+    font-size: 34px;
+}
