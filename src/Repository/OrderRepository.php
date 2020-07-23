@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Order;
 use DateInterval;
 use DateTime;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -168,5 +169,15 @@ class OrderRepository extends ServiceEntityRepository
 
         
     }
-
+    // for validation order in payment
+    public function findLastOrderOfUser($user) {
+        return $this->createQueryBuilder('a')
+            ->setParameter('user', $user)
+            ->where('a.user = :user')
+            ->orderBy('a.created', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
