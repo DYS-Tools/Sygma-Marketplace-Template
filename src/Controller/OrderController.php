@@ -90,12 +90,26 @@ class OrderController extends AbstractController
 
         $this->addFlash('success', "Email has been send");
 
-        // TODO: Validation de la commande
 
-        // $product = $order[0]->getAmount() ; // price order
+        // update available payout Author
+        // Todo : Security , if user is author or admin
+        $orderAmount = $order[0]->getAmount() ; // get Amount in order
+        $creditAuthor = $orderAmount * 0.80; // 20% taxe
 
-        // Incrementer la vente dans l'objet product  // product + 1
-        // incrementer $order->getAmount() * 0.80;      // 80 % a availablePayout
+        $orderAuthor = $order[0]->getUser(); // price order
+        $orderAuthor->setAvailablePayout($creditAuthor); // Todo : Not float ?
+
+        $entityManager->persist($orderAuthor); // persist
+        $entityManager->flush();
+
+        // update NumberSale + 1
+        $numberSaleProduct = $order[0]->getProduct()->getNumberSale(); // get NumberSale in product
+        $orderProduct = $order[0]->getProduct() ; // get product in Order
+        $orderProduct->setNumberSale($numberSaleProduct + 1); // + 1 // Todo : Loop if reload
+
+        $entityManager->persist($orderProduct); // persist
+        $entityManager->flush();
+
 
         return $this->render('order/successPayment.html.twig', [
         ]);
