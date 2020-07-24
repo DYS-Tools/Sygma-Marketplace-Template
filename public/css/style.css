@@ -315,6 +315,9 @@ ul.dropdown-menu.show li{
     /*margin-left: -20%;*/
     margin-left: 0%;
 }
+.green-hr{
+    background-color: yellowgreen;
+}
 
 /* for main nav */
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -924,4 +927,55 @@ div#search_product_form div label{
 }
 .grey-card .number{
     font-size: 34px;
+}
+
+/******* BLOG **********/
+.container-blog{
+    border: 1px solid rgba(190,190,190,0.8);
+    box-shadow: 1px 1px 15px rgba(200,200,200,0.8);
+    padding: 20px;
+}
+.card-title-blog{
+    font-size: 25px;
+    vertical-align: middle;
+}
+.blog-index-button button{
+    color: black;
+    background-color: honeydew;
+    border: 4px solid yellowgreen;
+    padding: 10px;
+    text-decoration: none;
+}
+.blog-index-button button:hover{
+    color: black;
+    background-color: yellowgreen;
+    border: 4px solid yellowgreen;
+}
+.blog-single-image{
+    
+}
+.blog-single-title{
+    margin-bottom: 3%;
+    font-family: 'Source sans pro';
+    font-size: 30px;
+    text-align: center;
+}
+.article-content{
+    font-size: 25px;
+    font-family: 'Source sans pro';
+}
+.back-to-list-blog-show button{
+    padding: 1.4%;
+    background-color: whitesmoke;
+    color:black;
+    border : 3px solid yellowgreen;
+    margin-bottom: 3%;
+}
+.back-to-list-blog-show button:hover{
+    background-color: yellowgreen;
+}
+.blog-single-date{
+    font-family: 'Source sans pro';
+    font-size: 17px;
+    color: grey;
 }

@@ -20,7 +20,8 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'help' => 'Nom du produit'
+                'help' => 'Nom du produit',
+                'label' => 'Nom du produit'
             ])
             ->add('description',TextareaType::class, [
                 'help' => 'Description Courte',
