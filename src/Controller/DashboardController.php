@@ -275,12 +275,20 @@ class DashboardController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/dashboard/money_managment", name="money_managment")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function payoutAuthor(Request $request, payment $payment)
-    {   
+    {
+        // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
+        // new code
+        // Todo : Payout author with Paypal
+
+        // End new code
+
+        // Old Code
         if(!empty($request)){
             // regarder + query #parameters 'code' = ac_HaOpXENdmpt0lf8IwoTrh10TaXEF2pWq
             dump($request);
@@ -304,9 +312,10 @@ class DashboardController extends AbstractController
                 //TODO: FlashMessage
             }
         }
-        // else : Vous devez vous connecter a un compte stripe
+        // Old Code
+
         
-        // TODO : if payout : remove number in available payout variable
+        // TODO : if payout ok  : remove number in available payout variable
 
         return $this->render('dashboard/money_managment.html.twig', [
             'products' => $products,
