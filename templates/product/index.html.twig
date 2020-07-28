@@ -142,6 +142,7 @@
                                 <div class="row">
                                     {% if FreeProduct.price == 0 %}
                                         <div class="col-lg-6">
+                                        <!-- TODO : Create a controller function for this download, and incremtne a number_sale variable in BDD -->
                                                 <a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
                                                     download>
                                                     <button type="button" class="btn btn-success">Download product</button>
