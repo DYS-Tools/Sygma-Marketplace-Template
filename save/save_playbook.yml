@@ -54,13 +54,18 @@
         #target: /tmp/dumpSQLWebItemMarket.sql
 
     #Export database
-    # or try : mysqldump -u username -p dbname > dbexport.sql
+    # or try : mysqldump -u username -p dbname > dbexport.sql     {{mysql_root_password}}   {{ sql_user }}:{{ sql_pass }}
 
-    - name: Dump Database
-      mysql_db:
-        state: dump
-        name: WebItemMarket
-        target: /tmp/dumpSQLWebItemMarket.sql
+    - name: '[SHELL] Export Database with mysqlDump line command'
+      become: true
+      become_user: root
+      shell: mysqldump -u {{ sql_user }} -p WebItemMarket > /tmp/dumpSQLWebItemMarket.sql
+
+    #- name: Dump Database
+      #mysql_db:
+        #state: dump
+        #name: WebItemMarket
+        #target: /tmp/dumpSQLWebItemMarket.sql
 
 
     #export product file
