@@ -23,7 +23,6 @@
         </li>
     {% endfor %}
 
-    
 </ul>
 
     <img src="img/head3.jpg" alt="Web-Item-Market" style="width: 100%">
@@ -56,7 +55,7 @@
             <h2 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  Nos meilleurs produits  </h2>
             <div class="row">
                 {% for bestSell in bestSell %}
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 d-flex justify-content-around">
                         <!-- product card -->
                         <div class="card" style="width: 26rem;">
                             <img class="card-img-top" src="product/img/{{ bestSell.img1 }}"  alt="{{ bestSell.name }}">
@@ -95,7 +94,7 @@
             <h2 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  Nouveau produits  </h2>
             <div class="row">
                 {% for newProduct in newProduct %}
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 d-flex justify-content-around">
                         <!-- product card -->
                         <div class="card" style="width: 26rem;">
                             <img class="card-img-top" src="product/img/{{ newProduct.img1 }}"  alt="{{ newProduct.name }}">
@@ -132,7 +131,7 @@
             <h2 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  Template gratuit  </h2>
             <div class="row">
                 {% for FreeProduct in FreeProduct %}
-                    <div class="col-lg-3 ">
+                    <div class="col-lg-3 d-flex justify-content-around">
                         <!-- product card -->
                         <div class="card" style="width: 26rem;">
                             <img class="card-img-top" src="product/img/{{ FreeProduct.img1 }}"  alt="{{ FreeProduct.name }}">

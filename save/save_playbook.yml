@@ -25,6 +25,51 @@
       apt:
         update_cache: yes
 
+    #Install requirements for export    
+
+    - name: install python mysql bindings
+      become: true
+      apt:
+        name: python-mysqldb
+        state: installed
+  
+    - name:  Install PIP
+      become: true
+      apt:  name=python-pip state=latest
+
+    #- name:  Install pymssql
+      #become: true
+      #apt:  name=pymssql state=latest
+
+    - name: '[SHELL] install pymssql'
+      become: true
+      become_user: root
+      shell: pip install pymssql
+
+    #BUG HERE
+    #- mssql_db:
+        #name: WebItemMarket
+        #state: import
+        #login_host: true
+        #target: /tmp/dumpSQLWebItemMarket.sql
+
+    #Export database
+    # or try : mysqldump -u username -p dbname > dbexport.sql     {{mysql_root_password}}   {{ sql_user }}:{{ sql_pass }}
+
+    - name: '[SHELL] Export Database with mysqlDump line command'
+      become: true
+      become_user: root
+      shell: mysqldump -u {{ sql_user }} -p WebItemMarket > /tmp/dumpSQLWebItemMarket.sql
+
+    #- name: Dump Database
+      #mysql_db:
+        #state: dump
+        #name: WebItemMarket
+        #target: /tmp/dumpSQLWebItemMarket.sql
+
+
+    #export product file
+
   handlers:
     - name: Restart Nginx
       become: true
