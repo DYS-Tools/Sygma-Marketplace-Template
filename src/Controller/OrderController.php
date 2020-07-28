@@ -76,23 +76,8 @@ class OrderController extends AbstractController
         $entityManager->persist($order[0]);
         $entityManager->flush();
 
-        // send mail
-        // \Swift_Mailer $mailer
-        $message = (new \Swift_Message('Web-Item-Market'))
-            ->setFrom('sacha6623@gmail.com')
-            ->setTo($this->getUser()->getEmail())
-            ->setBody(
-                $this->renderView(
-                    'Emails/successPayment.html.twig',
-                    []),
-                'text/html');
-        $mailer->send($message);
-
-        $this->addFlash('success', "Email has been send");
-
-
         // update available payout Author
-        // Todo : Security , if user is author or admin
+        // Todo : Security , if user is author , if admin...
         $orderAmount = $order[0]->getAmount() ; // get Amount in order
         $creditAuthor = $orderAmount * 0.80; // 20% taxe
 
@@ -110,6 +95,21 @@ class OrderController extends AbstractController
         $entityManager->persist($orderProduct); // persist
         $entityManager->flush();
 
+
+        // send mail
+        // \Swift_Mailer $mailer
+        $message = (new \Swift_Message('Web-Item-Market'))
+            ->setFrom('sacha6623@gmail.com')
+            ->setTo($this->getUser()->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'Emails/successPayment.html.twig',
+                    []),
+                'text/html');
+        $mailer->send($message);
+
+        // Add flash message -> Todo : SweetAlert
+        $this->addFlash('success', "Email has been send");
 
         return $this->render('order/successPayment.html.twig', [
         ]);
