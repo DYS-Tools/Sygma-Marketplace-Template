@@ -67,7 +67,6 @@
         #name: WebItemMarket
         #target: /tmp/dumpSQLWebItemMarket.sql
 
-
     #export product file
 
   handlers:
