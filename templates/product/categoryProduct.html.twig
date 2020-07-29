@@ -25,7 +25,7 @@
             {%  endif  %}
             <div class="row">
                 {% for product in pagination %}
-                    <div class="col-lg-3 d-flex justify-content-around">
+                    <div class="col-lg-3  d-flex justify-content-around">
                         <!-- product card -->
                         <div class="card" style="width: 26rem;">
                             <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
@@ -36,11 +36,11 @@
                                 <p class="yellowgreen price-card"> <strong> {{ product.price }} € </strong>  </p>
 
                                 <div class="row">
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-7">
                                         <p class="card-text"> {{ product.numberSale}}  Vente </p>
                                     </div>
 
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-flex justify-content-around">
                                         <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
                                     </div>

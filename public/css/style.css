@@ -27,8 +27,9 @@ body{
     background-color: yellowgreen;
     transition-duration: 0.1s;
     border-radius: 0px;
-    
-
+}
+.btn-info{
+    margin: 7px;
 }
 
 /* ==========================================================================================================

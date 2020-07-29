@@ -60,7 +60,7 @@
                                     </div>
                                 {% endif %}
                                     {% if product.price > 0 %}
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-flex justify-content-around">
                                         <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
                                     </div>
@@ -85,18 +85,6 @@
             </div>
         </div>
     </div>
-    <!-- end container-best-sell -->
-
-
-
-    <!-- Todo : Display category or search product -->
-
-    {# total items count #}
-
-    <!-- <div class="count">
-        { { pagination.getTotalItemCount }}
-    </div>
-    -->
 
     {# display navigation #}
     <div class="navigation navigation-block">
