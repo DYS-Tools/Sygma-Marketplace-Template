@@ -223,19 +223,13 @@ class DashboardController extends AbstractController
      */
     public function mySell(MakeJsonFormat $makeJsonFormat)
     {
-        // get current user
-        $user = $this->getUser();
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
-        $ordered = $orderRepository->findBy(['user' => $user]);
-
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
 
-        $ArrayForGraph = $makeJsonFormat->get30LastDaysCommandsForAuthor($user);
-
         return $this->render('dashboard/mysell.html.twig', [
-            'order' => $ordered,
-            'user' => $user,
-            'ArrayForGraph' => $ArrayForGraph,
+            'order' => $orderRepository->findBy(['user' => $user]),
+            'user' => $this->getUser(),
+            'ArrayForGraph' => $makeJsonFormat->get30LastDaysCommandsForAuthor($user),
             'MoneyGenerated' => $orderRepository->getTotalOrderAmountForOneAuthorWithRemoveCommision($user), /* argent généré en tout  ( somme commande * 0.80 ) */ 
             'authorProductNumber' => count($productRepository->findBy(['user' => $user, 'verified' => 1])), /* lenght produit author accepté par la modération */
             'CAAuthorForMonth' => $orderRepository->getTotalAmountGeneratedIn30LastDaysForAuthorWithRemoveCommision($user), 
@@ -247,14 +241,11 @@ class DashboardController extends AbstractController
      */
     public function myOrder()
     {
-        // get current user
-        $user = $this->getUser();
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
-        $ordered = $orderRepository->findBy(['user' => $user]);
 
         return $this->render('dashboard/myOrder.html.twig', [
-            'orders' => $ordered,
-            'user' => $user,
+            'orders' => $orderRepository->findBy(['user' => $user]),
+            'user' => $this->getUser(),
         ]);
     }
 
