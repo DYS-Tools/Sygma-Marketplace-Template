@@ -1,6 +1,6 @@
 # Web-Item-Market project
 
-Welcome to SWeb-Item-Market !
+Welcome to Web-Item-Market !
 
 Web element gallery.
 
