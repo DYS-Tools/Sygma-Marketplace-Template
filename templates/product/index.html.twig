@@ -25,7 +25,7 @@
 
 </ul>
 
-    <img src="img/head3.jpg" alt="Web-Item-Market" style="width: 100%">
+    <img src="img/head.jpg" alt="Web-Item-Market" style="width: 100%">
 
 
     <!-- nEW SEARCH BAR -->
@@ -34,11 +34,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2 form-search">
-                        {{ form_start(searchForm) }}
-                            {{ form_widget(searchForm) }}
-                            <button class="btn-success search-submit-button">{{ button_label|default('Rechercher') }} </button>
-                        {{ form_end(searchForm) }}
+                    {{ form_start(searchForm) }}
+                        {{ form_widget(searchForm) }}
                     </div>
+                    <!-- <i class="fas fa-search"></i> -->
+                    <button class="search-submit-button"> <i class="fas fa-search"></i> </button>
+                    {{ form_end(searchForm) }}
                 </div>
             </div>
 
