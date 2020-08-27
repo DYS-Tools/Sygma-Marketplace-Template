@@ -591,6 +591,17 @@ div#search_product_form div label{
     text-align: center ;
 }
 
+/* ==========================================================================================================
+										PAGE PRODUCT NEW
+   ========================================================================================================== */
+.product-help {
+    background-color: white ;
+    padding-top: 50px ;
+    padding-bottom: 50px ;
+    padding-left: 35px;
+}
+
+
 
 /* ==========================================================================================================
 										SUB FOOTER
@@ -829,7 +840,11 @@ div#search_product_form div label{
     font-family: 'Courier New', Courier, monospace;
 }
 .fa-eur{
+<<<<<<< HEAD
     font-size: 18px;
+=======
+    font-size: 15px;
+>>>>>>> a42ecb217dc45c5a797436473fa7a0d08cb08d6e
 }
 .eur-text-min{
     font-size: 17px;

@@ -7,8 +7,10 @@
     <div class="container">
         <h1>Créer un nouveau produit</h1>
 
-        <a href="{{ path('help_author') }}"><span class="yellowgreen"><i class="fa fa-question-circle" aria-hidden="true"></i> Aide pour auteurs</span></a>
-
+        <div class="product-help">
+            <h6>En consultant l'aide proposé, vous avez plus de chance de vendre votre produit.</h6>
+            <a href="{{ path('help_author') }}"><span class="yellowgreen"><i class="fa fa-question-circle" aria-hidden="true"></i> Aide pour auteurs</span></a>
+        </div>
 
         {{ include('product/_form.html.twig') }}
         <br/>
