@@ -348,6 +348,7 @@ ul.dropdown-menu.show li{
 }
 
 .form-search{
+    align-content: left;
 }
 
 .search-container {
@@ -365,22 +366,24 @@ ul.dropdown-menu.show li{
     font-size: 20px;
 }
 .search-submit-button{
-    border: 4px solid yellowgreen;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: yellowgreen;
-    color: black;
-    padding: 15px;
-    font-weight: bold;
-    margin-left: 5%;
-    transition-duration: 0.1s;
+    border: none;
+    background-color: rgba(240,240,240,0.1);
 }
-.search-submit-button:hover{
-    color: whitesmoke;
+.search-submit-button .fa-search{
+    font-size: 40px;
     font-weight: bold;
+    color: yellowgreen;
+    margin-top: 30px;
+    border: none;
+    padding: 10px;
+    transition-duration: 0.8s;
+}
+.search-submit-button .fa-search:hover{
+    color: black;
+    transition-duration: 0.4s;
     background-color: yellowgreen;
-    border: 4px solid yellowgreen;
-    transition-duration: 0.2s;
+    border-radius: 14px;
+    padding: 10px;
 }
 
 i.fa-search {
@@ -837,7 +840,11 @@ div#search_product_form div label{
     font-family: 'Courier New', Courier, monospace;
 }
 .fa-eur{
+<<<<<<< HEAD
+    font-size: 18px;
+=======
     font-size: 15px;
+>>>>>>> a42ecb217dc45c5a797436473fa7a0d08cb08d6e
 }
 .eur-text-min{
     font-size: 17px;

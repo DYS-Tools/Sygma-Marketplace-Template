@@ -223,6 +223,8 @@ class DashboardController extends AbstractController
      */
     public function mySell(MakeJsonFormat $makeJsonFormat)
     {
+        $user = $this->getUser() ;
+
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
 
@@ -241,6 +243,8 @@ class DashboardController extends AbstractController
      */
     public function myOrder()
     {
+        $user = $this->getUser() ;
+        
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
 
         return $this->render('dashboard/myOrder.html.twig', [
