@@ -70,7 +70,7 @@
                                     <div class="col-lg-7">
                                         <p class="card-text"> {{ bestSell.numberSale}}  Vente </p>
                                     </div>
-
+                                    <hr>
                                     <div class="col-lg-4 d-flex justify-content-around">
                                         <a href="{{ path('product_show', {'id': bestSell.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('order', { 'product': bestSell.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
