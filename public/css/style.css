@@ -579,7 +579,9 @@ div#search_product_form div label{
 
 .card {
     margin-top: 15px ;
-    box-shadow: 4px 4px 4px rgb(200,200,200);
+    /*box-shadow: 4px 4px 4px rgb(200,200,200);*/
+    border: 1px solid  rgba(100,100,100,0.3);
+    border-radius: 10px;
 }
 
 /* ==========================================================================================================
@@ -840,11 +842,7 @@ div#search_product_form div label{
     font-family: 'Courier New', Courier, monospace;
 }
 .fa-eur{
-<<<<<<< HEAD
-    font-size: 18px;
-=======
     font-size: 15px;
->>>>>>> a42ecb217dc45c5a797436473fa7a0d08cb08d6e
 }
 .eur-text-min{
     font-size: 17px;
