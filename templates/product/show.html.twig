@@ -134,7 +134,7 @@
                 {% if product.price == 0 %}
                 <p class="font3 size2"> Produit Gratuit ( 0 €)</p>
                 {% else %}
-                <p class="eur-text">{{ product.price }}<i class="fa fa-eur" aria-hidden="true"></i> <span class="eur-text-min">TTC </span></p>
+                <p class="eur-text">{{ product.price }} <i class="fa fa-eur eur-single" aria-hidden="true"></i> <span class="eur-text-min">TTC </span></p>
                 {% endif %}
                 <p class="font3 bold"> Produit proposé par <span class="yellowgreen"> {{ product.user.pseudo }}</span> </p>
             </div>

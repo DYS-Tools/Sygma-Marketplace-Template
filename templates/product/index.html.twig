@@ -139,18 +139,19 @@
                             <div class="card-body">
                                 <h5 class="card-title-product">{{ FreeProduct.name }}</h5>
                                 <p class="card-text">{{ FreeProduct.description }}</p>
-                                <p class="yellowgreen"> <strong> Produit gratuit </strong>  </p>
-                                <div class="row">
+                                <p class="yellowgreen yellowgreen-text-middle font1"> <strong> Produit gratuit </strong>  </p>
+                                <div class="row middle-align-row">
                                     {% if FreeProduct.price == 0 %}
-                                        <div class="col-lg-7 d-flex justify-content-around">
-                                        <!-- TODO : Create a controller function for this download, and incremtne a number_sale variable in BDD -->
+                                        <div class="col-lg-4 d-flex justify-content-around">
                                                 <a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
                                                     download>
-                                                    <button type="button" class="btn btn-success">Download product</button>
+                                                    <button type="button" class="btn btn-success download-btn-free">Download</button>
                                                 </a>
                                         </div>
-                                        <div class="col-lg-2 d-flex justify-content-around">
-                                                <a href="{{ path('product_show', {'id': FreeProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <div class="col-lg-6 d-flex">
+                                                <a href="{{ path('product_show', {'id': FreeProduct.id}) }}"> 
+                                                    <button type="button" class="btn btn-secondary download-btn-free">Voir le produit </button>
+                                                </a>
                                         </div>
                                     {% endif %}
                                 </div>

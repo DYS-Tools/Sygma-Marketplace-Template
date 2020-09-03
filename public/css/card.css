@@ -7,3 +7,9 @@
 .card{
     width: 30vw;
 }
+.card-text{
+    color: rgb(40, 40, 40);
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}

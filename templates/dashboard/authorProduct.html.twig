@@ -10,9 +10,10 @@
 
     <div class="container">
 
-        <a href="{{ path('product_new') }}" class="btn btn-primary">Ajouter un produit</a><br/>
+        <a href="{{ path('product_new') }}" class="btn btn-primary">Ajouter un produit</a><br/><br/>
+        <h5 class="normal-txt"> produit en vente : <span class="yellowgreen number-big"> {{ products|length }} </span></h5>
         <hr>
-        <h2> Produit actuellement en vente : </h2>
+        <h3> Produit actuellement en vente : </h3>
         <br/>
 
     </div>
