@@ -1,3 +1,4 @@
+<!--
 <div class="nav-dash">
 <nav class="navbar navbar-expand-lg  ">
     <a class="navbar-brand" href="#"></a>
@@ -7,47 +8,52 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
 
-            {% if is_granted('ROLE_ADMIN') %}
+            { % if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('statistic_admin') }}"><span class="admin-link"><i class="fa fa-line-chart" aria-hidden="true"></i>   Statistique </span></a>
+                    <a class="nav-link" href="{ { path('statistic_admin') }}"><span class="admin-link"><i class="fa fa-line-chart" aria-hidden="true"></i>Statistique </span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('product_verified') }}"><span class="admin-link"> <i class="fa fa-tags" aria-hidden="true"></i>  Administration produits</span></a>
+                    <a class="nav-link" href="{ { path('product_verified') }}"><span class="admin-link"> <i class="fa fa-tags" aria-hidden="true"></i>Administration produits</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('ticket_handler') }}"><span class="admin-link"> <i class="fa fa-sticky-note" aria-hidden="true"></i>   Gestion des tickets</span></a>
+                    <a class="nav-link" href="{ { path('ticket_handler') }}"><span class="admin-link"> <i class="fa fa-sticky-note" aria-hidden="true"></i>Gestion des tickets</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('article_index_admin') }}"><span class="admin-link"><i class="fa fa-file-text" aria-hidden="true"></i>   Le blog</span></a>
-                </li>
-            {% endif %}
-
-            {% if is_granted('ROLE_AUTHOR') %}
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('author_product') }}"><span class="author-link">Gestionnaire de produit</span></a>
+                    <a class="nav-link" href="{ { path('article_index_admin') }}"><span class="admin-link"><i class="fa fa-file-text" aria-hidden="true"></i>Le blog</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('my_sell') }}"><span class="author-link">Mes Ventes</span></a>
+                    <a class="nav-link" href="{ { path('category_handler') }}"><span class="admin-link"><i class="fa fa-file-text" aria-hidden="true"></i>Gestion des catégories</span></a>
+                </li>
+            { % endif %}
+
+            { % if is_granted('ROLE_AUTHOR') %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{ { path('author_product') }}"><span class="author-link">Gestionnaire de produit</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('money_managment') }}"><span class="author-link">Finance</span></a>
+                    <a class="nav-link" href="{ { path('my_sell') }}"><span class="author-link">Mes Ventes</span></a>
                 </li>
 
-            {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{ { path('money_managment') }}"><span class="author-link">Finance</span></a>
+                </li>
 
-            {% if is_granted('ROLE_USER') %}
+            { % endif %}
+
+            { % if is_granted('ROLE_USER') %}
                 <li class="nav-item">
                     <a class="nav-link blank-link" href="{{ path('my_order') }}"><i class="fa fa-archive" aria-hidden="true"></i> <span class="user-link">Mes commandes</span></a>
                 </li>
 
-            {% endif %}
+            { % endif %}
         </ul>
     </div>
 </nav>
 </div>
+-->
 <br/>
 <br/>
 <br/>

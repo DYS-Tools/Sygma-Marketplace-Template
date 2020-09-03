@@ -96,19 +96,17 @@ class ProductRepository extends ServiceEntityRepository
     }
 
 
-    public function findLike($name)
+    public function findLike($keyword)
     {
-        if($name =! ''){
             return $this
             ->createQueryBuilder('a')
             ->where('a.name LIKE :name')
-            ->setParameter( 'name', "%$name%")
+            ->setParameter( 'name', "%$keyword%")
             ->orderBy('a.name')
             ->setMaxResults(20)
             ->getQuery()
             ->execute()
             ;
-        }
         
     }
 }

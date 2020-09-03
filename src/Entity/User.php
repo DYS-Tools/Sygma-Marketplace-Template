@@ -56,6 +56,11 @@ class User implements UserInterface
      */
     private $available_payout = 0;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pseudo;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -210,6 +215,18 @@ class User implements UserInterface
     public function setAvailablePayout(float $available_payout): self
     {
         $this->available_payout = $available_payout;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }

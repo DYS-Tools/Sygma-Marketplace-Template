@@ -94,10 +94,12 @@ class Product
      * mimeTypesMessage= "formats autorisés: png, jpeg, jpg"
      * )
      * @Assert\Image(
-     *     minWidth = 200,
-     *     maxWidth = 400,
-     *     minHeight = 200,
-     *     maxHeight = 400
+     *     allowLandscape = true,
+     *     allowPortrait = false,
+     *     minWidth = 1190,
+     *     maxWidth = 1200,
+     *     minHeight = 890,
+     *     maxHeight = 900
      * )
      */
     private $img1;
@@ -111,10 +113,12 @@ class Product
      * mimeTypesMessage= "formats autorisés: png, jpeg, jpg"
      * )
      * @Assert\Image(
-     *     minWidth = 200,
-     *     maxWidth = 400,
-     *     minHeight = 200,
-     *     maxHeight = 400
+     *     allowLandscape = true,
+     *     allowPortrait = false,
+     *     minWidth = 1190,
+     *     maxWidth = 1200,
+     *     minHeight = 890,
+     *     maxHeight = 900
      * )
      */
     private $img2;
@@ -128,10 +132,12 @@ class Product
      * mimeTypesMessage= "formats autorisés: png, jpeg, jpg"
      * )
      * @Assert\Image(
-     *     minWidth = 200,
-     *     maxWidth = 400,
-     *     minHeight = 200,
-     *     maxHeight = 400
+     *     allowLandscape = true,
+     *     allowPortrait = false,
+     *     minWidth = 1190,
+     *     maxWidth = 1200,
+     *     minHeight = 890,
+     *     maxHeight = 900
      * )
      */
     private $img3;

@@ -4,14 +4,27 @@
 
 {% block body %}
     <ul class="nav nav-pills justify-content-center category-nav">
+
+    <!-- Dropdown Categories for media queries -->
+    <li class="nav-item dropdown category-nav-mobile">
+    <a class="nav-link dropdown-toggle category-nav-mobile-title" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voir les catégories</a>
+    <div class="dropdown-menu category-dropdown">
         {% for category in categories %}
-        <li class="nav-item">
+            <a class="dropdown-item" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+  </li>
+    <!-- end dropdown for category -->
+
+    {% for category in categories %}
+        <li class="nav-item category-nav-desktop">
             <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
         </li>
-        {% endfor %}
-    </ul>
-    <!-- add form search -->
-    <!-- nEW SEARCH BAR --> 
+    {% endfor %}
+
+    
+</ul>
+
     <br/><br/>
     <div class="container">
         {{ form_start(searchForm) }}
@@ -20,16 +33,13 @@
         {{ form_end(searchForm) }}
     </div>
 
-    <!-- -------------------------------------------
-            container-best-sell
-    -------------------------------------------  -->
     <div class="container-best-sell col-lg-12">
         <div class="box-card">
                 <h1 class="text-left"><i class="fa fa-file-text" aria-hidden="true"></i>  résultats de la recherche :   </h1>
             <div class="row">
 
                 {% for product in pagination %}
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 d-flex justify-content-around">
                         <!-- product card -->
                         <div class="card" style="width: 26rem;">
                             <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
@@ -37,19 +47,35 @@
                                 <h5 class="card-title-product">{{ product.name }}</h5>
                                 <p class="card-text">{{ product.description }}</p>
 
-                                <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+                                {% if product.price == 0 %}
+                                    <p class="yellowgreen price-card"> Produit gratuit </p>
+                                {% else %}
+                                    <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+                                {% endif %}
 
                                 <div class="row">
-                                    <div class="col-lg-8">
+                                {% if product.price > 0 %}
+                                    <div class="col-lg-7">
                                         <p class="card-text"> {{ product.numberSale}}  Vente </p>
                                     </div>
-
-                                    <div class="col-lg-4">
+                                {% endif %}
+                                    {% if product.price > 0 %}
+                                    <div class="col-lg-4 d-flex justify-content-around">
                                         <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
                                     </div>
+                                    {% elseif product.price == 0 %}
+                                    <div class="col-lg-6">
+                                            <a href="{{ asset("product/" ~ product.file)  }}" 
+                                                download>
+                                                <button type="button" class="btn btn-success">Download product</button>
+                                            </a>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    </div>
 
-                                    <p> test category :</p>{{ product.category.name  }}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -59,18 +85,6 @@
             </div>
         </div>
     </div>
-    <!-- end container-best-sell -->
-
-
-
-    <!-- Todo : Display category or search product -->
-
-    {# total items count #}
-
-    <!-- <div class="count">
-        { { pagination.getTotalItemCount }}
-    </div>
-    -->
 
     {# display navigation #}
     <div class="navigation navigation-block">

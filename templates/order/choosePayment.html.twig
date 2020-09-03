@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Order{% endblock %}
+
+{% block body %}
+
+    <div class="content-page">
+          <div class="container">
+
+              <p> https://developer.paypal.com/docs/platforms/checkout/set-up-payments/ </p>
+              <h2> pour acheter le produit " {{ product.name }} " Veuillez choisir un moyen de paiement </h2>
+
+              <div class="container">
+                  <div id="paypal-button-container"></div>
+              </div>
+
+      </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+{{ parent() }}
+
+    <!-- Paypal -->
+    <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script>
+    <script>
+        paypal.Buttons({
+            // createOrder est appelé lorsque l'acheteur clique sur l'un des boutons de paiement.
+            // Cette fonction doit retourner un numéro de commande ( https://developer.paypal.com/docs/api/orders/v2/#orders )
+            // pour rendre le flux de paiement. Dans cet exemple,
+            // createOrder appelle votre serveur pour obtenir l'ID de commande.
+            createOrder: function (data, actions) {
+                return fetch('/perso/Web-Item-Market/public/createOrder', {
+                    method: 'POST'
+                }).then(function(res) {
+                    if (res.status === 204)
+                    {
+                        document.location.href="{{ path('errorPayment') }}";
+                    }
+                    else
+                    {
+                        return res.json();
+                    }
+                }).then(function(data) {
+                    // console.log(data.id );
+                    // console.log(data);
+                    return data.id; // return json id
+                });
+            },
+            // Send orderId in methods
+            onApprove: function (data, actions) {
+                //console.log(data.orderID) ;
+                return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, {
+                    method: 'POST'
+                }).then(function(res) {
+                    console.log(res.status);
+                    if (res.status = 200) {
+                         document.location.href="{{  path('successPayment') }}";  // OrderID no exist
+                    }
+                    else {
+                        document.location.href="{{ path('errorPayment') }}";
+                    }
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+    <!-- end Paypal -->
+
+{% endblock %}

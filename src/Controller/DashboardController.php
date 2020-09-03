@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Ticket;
@@ -12,6 +13,7 @@ use App\Form\ProductType;
 use App\Form\RejectProductFormType;
 use App\Form\ResolveTicketType;
 use App\Repository\ArticleRepository;
+use App\Service\MakeJsonFormat;
 use App\Service\payment;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -26,18 +28,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class DashboardController extends AbstractController
 {
-    /**
-     * @Route("/dashboard", name="dashboard")
-     */
-    public function index()
-    {
-        // get current user
-        $user = $this->getUser() ;
-
-        return $this->render('dashboard/dashboard.html.twig', [
-            'user' => $user,
-        ]);
-    }
 
     /**
      * @Route("/dashboard/ProductVerified", name="product_verified")
@@ -131,9 +121,13 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/statistic", name="statistic_admin")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function statisticAdmin()
+    public function statisticAdmin(MakeJsonFormat $makeJsonFormat)
     {
-        $user = $this->getUser() ;
+        $user = $this->getUser();
+        $winWithApplication = $this->getDoctrine()->getRepository(Order::class)->countTotalCommissions() + $this->getDoctrine()->getRepository(Order::class)->countOrderAdminEur();
+        
+        
+        $ArrayForGraph = $makeJsonFormat->get30LastDaysCashflow($user);
 
         return $this->render('dashboard/statisticAdmin.html.twig', [
             'ProductForSell' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForSell(),
@@ -146,6 +140,12 @@ class DashboardController extends AbstractController
             'countArticle' => $this->getDoctrine()->getRepository(Article::class)->countArticle(),
             'countTicketOpen' => $this->getDoctrine()->getRepository(Ticket::class)->countTicketOpen(),
             'countTicketClose' => $this->getDoctrine()->getRepository(Ticket::class)->countTicketClose(),
+            'saveDate' => 'xx/xx/xx', // TODO: Information from SaveBot
+            'orderAdminEur' => $this->getDoctrine()->getRepository(Order::class)->countOrderAdminEur(),   // TT order avec un user Admin
+            'currentAvailablePayout' => $this->getDoctrine()->getRepository(User::class)->countCurrentAvailablePayout(), // TT available payout
+            'totalCommissions' => $this->getDoctrine()->getRepository(Order::class)->countTotalCommissions(), // tt order amount * 0.20
+            'winWithApplication' => $winWithApplication, // totalComissions + orderAdminEur,
+            'ArrayForGraph' => $ArrayForGraph,
         ]);
     }
 
@@ -221,16 +221,20 @@ class DashboardController extends AbstractController
      * @Route("/dashboard/MySell", name="my_sell")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
-    public function mySell()
+    public function mySell(MakeJsonFormat $makeJsonFormat)
     {
-        // get current user
-        $user = $this->getUser();
+        $user = $this->getUser() ;
+
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
-        $ordered = $orderRepository->findBy(['user' => $user]);
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
 
         return $this->render('dashboard/mysell.html.twig', [
-            'order' => $ordered,
-            'user' => $user,
+            'order' => $orderRepository->findBy(['user' => $user]),
+            'user' => $this->getUser(),
+            'ArrayForGraph' => $makeJsonFormat->get30LastDaysCommandsForAuthor($user),
+            'MoneyGenerated' => $orderRepository->getTotalOrderAmountForOneAuthorWithRemoveCommision($user), /* argent généré en tout  ( somme commande * 0.80 ) */ 
+            'authorProductNumber' => count($productRepository->findBy(['user' => $user, 'verified' => 1])), /* lenght produit author accepté par la modération */
+            'CAAuthorForMonth' => $orderRepository->getTotalAmountGeneratedIn30LastDaysForAuthorWithRemoveCommision($user), 
         ]);
     }
 
@@ -239,14 +243,13 @@ class DashboardController extends AbstractController
      */
     public function myOrder()
     {
-        // get current user
-        $user = $this->getUser();
+        $user = $this->getUser() ;
+        
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
-        $ordered = $orderRepository->findBy(['user' => $user]);
 
         return $this->render('dashboard/myOrder.html.twig', [
-            'orders' => $ordered,
-            'user' => $user,
+            'orders' => $orderRepository->findBy(['user' => $user]),
+            'user' => $this->getUser(),
         ]);
     }
 
@@ -267,12 +270,20 @@ class DashboardController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/dashboard/money_managment", name="money_managment")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function payoutAuthor(Request $request, payment $payment)
-    {   
+    {
+        // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
+        // new code
+        // Todo : Payout author with Paypal
+
+        // End new code
+
+        // Old Code
         if(!empty($request)){
             // regarder + query #parameters 'code' = ac_HaOpXENdmpt0lf8IwoTrh10TaXEF2pWq
             dump($request);
@@ -289,34 +300,6 @@ class DashboardController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
             if($form->get('amount')->getData() <= $user->getAvailablePayout()){
-
-                // Try to generate payout via Paypal
-                // Generate payout   
-                $stripe = new \Stripe\StripeClient(
-                    $payment->getStripeSecretCredentials()
-                  );
-                $stripe->setupIntents->create([
-                'payment_method_types' => ['card'],
-                ]);
-
-                $destination = $form->get('iban')->getData();
-                $destination = $stripe->accounts->createExternalAccount(
-                    $form->get('iban')->getData(),
-                    [
-                      'external_account' => $form->get('iban')->getData(),
-                    ]
-                  );
-
-                $virement = $stripe->payouts->create([
-                    'amount' => $form->get('amount')->getData() * 100,
-                    'currency' => 'eur',
-                    'destination' => $destination
-                  ]);
-
-                dd($virement);
-                dd($stripe->payouts->retrieve( $virement['id'],[]));
-
-                // remove amount in database User
                 $user->setAvailablePayout($user->getAvailablePayout() - $form->get('amount')->getData());
             }
             else{
@@ -324,9 +307,10 @@ class DashboardController extends AbstractController
                 //TODO: FlashMessage
             }
         }
-        // else : Vous devez vous connecter a un compte stripe
+        // Old Code
+
         
-        // TODO : if payout : remove number in available payout variable
+        // TODO : if payout ok  : remove number in available payout variable
 
         return $this->render('dashboard/money_managment.html.twig', [
             'products' => $products,

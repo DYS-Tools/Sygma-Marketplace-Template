@@ -70,5 +70,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return (int) $qb->getQuery()->getSingleScalarResult();
     }
 
-    //USER
+    public function countCurrentAvailablePayout(){
+        // Available_payout SUM // Without ADMIN
+
+        return $this
+            ->createQueryBuilder('a')
+            ->where('a.roles LIKE :roles')
+            ->setParameter('roles', '%"ROLE_AUTHOR"%')
+            ->select('SUM(a.available_payout) as payout')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+            ;
+    }
 }

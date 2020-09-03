@@ -2,12 +2,34 @@
  * Author : DYS-Tools
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Source+Sans+Pro&display=swap');
+
 body{
     margin: 0;
     padding: 0;
     /*background-image:url(images/image_de_fond.png);*/
     background-color:rgba(240,240,240,0.5);
+    width: 100vw;
+    overflow: hidden;
+    overflow-y: scroll;
 
+}
+
+.btn-form{
+    border: 2px solid yellowgreen;
+    border-radius: 3px;
+    transition-duration: 0.7s;
+    font-weight: bold;
+    padding: 12px;
+    margin-bottom: 5%;
+}
+.btn-form:hover{
+    background-color: yellowgreen;
+    transition-duration: 0.1s;
+    border-radius: 0px;
+}
+.btn-info{
+    margin: 7px;
 }
 
 /* ==========================================================================================================
@@ -45,13 +67,86 @@ h6 {
 
 p {
     font-family: Times New Roman;
+    text-decoration: none;
 
+}
+
+.white-grey{
+    color: rgb(220,220,220);
+}
+a:link
+{
+    text-decoration:none;
+}
+
+
+/******** A RULES FOR Typography *****************/
+.white{
+    color: white;
+}
+.black{
+    color: black;
+}
+
+.grey {
+    color : grey;
+}
+
+.hover-yellowgreen:hover {
+    color: yellowgreen;
+}
+.bold{
+    font-weight: bold;
+}
+
+.size1{
+    font-size: 32px;
+}
+.size2{
+    font-size: 27px;
+}
+.size3{
+    font-size: 24px;
+}
+.size4{
+    font-size: 19px;
+}
+.size5{
+    font-size: 17px;
+}
+.size6{
+    font-size: 27px;
+}
+/*
+font-family: 'Raleway', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+*/
+.font1{
+    font-family: 'Raleway', sans-serif;
+}
+.font2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.font3{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.font4{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.font5{
+    font-family: 'Times New Roman', Times, serif;
+}
+.font6{
+    font-family: 'Courier New', Courier, monospace;
 }
 
 
 .center_div{
     margin: 0 auto;
     width:65% /* value of your choice which suits your alignment */
+}
+.contact-us{
+    color: white;
 }
 
 
@@ -109,7 +204,7 @@ a.logo span {
 /* ==========================================================================================================
 										NAVBAR
    ========================================================================================================== */
-
+/* for category nav */
 .category-nav{
     background-color:rgba(48, 54, 60,1); /* rgb(52, 58, 64) */
     padding-bottom: 0.7%;
@@ -130,6 +225,12 @@ a.logo span {
 .category-link-nav:hover{
     color:yellowgreen;
 }
+.category-nav-mobile{
+    display: none;
+}
+.connect-mobile{
+    display: none;
+}
 
 .nav-dash{
     background-color: rgb(48, 54, 60);
@@ -141,6 +242,7 @@ a.logo span {
     color:white;
 }
 
+/* for dashboard nav */
 .admin-link{
     color: wheat;
 }
@@ -149,6 +251,12 @@ a.logo span {
 }
 .user-link{
     color: rgba(240,240,240,0.7);
+}
+.pseudo{
+    color: rgba(240,240,240,0.7);;
+    /*margin-right: 3%;*/
+    padding-right: 11%;
+    font-family: 'Source sans pro';
 }
 
 
@@ -163,22 +271,68 @@ i.fa-sort-down {
     font-size: 16px ;
 }
 
+ul.dropdown{
+    color:rgb(33, 37, 41);
+    
+}
+ul.dropdown-menu{
+    padding-right: 70px;
+}
+.profile-img{
+    margin-left: 3%;
+}
+
 ul.dropdown-menu.show {
     background-color: #343a40 ;
     color : yellowgreen;
     margin-top : 20px;
     position: relative;
-    top: 20px; left: -130px;
+    top: 20px; left: -270px;
     padding-left: 20px ;
+    padding-right: 10px;
+    width: 25vw;
 }
-
+ul.dropdown-menu.show li a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 ul.dropdown-menu.show li a  {
     color : yellowgreen;
+    font-size: 16px;
+    padding: 0%;
+    padding-bottom: 15%;
+    transition-duration: 0.3s;
 }
+.dropdown-menu.show li a:hover{
+    color: rgba(190,190,190,1);
+    transition-duration: 0.3s;
+}
+ul.dropdown-menu.show li{
+    padding: 0%;
+    width: 80%;
+    
+}
+.hr-yellowgreen{
+    background-color: rgba(100,100,100,1);
+    width: 60%;
+    /*margin-left: -20%;*/
+    margin-left: 0%;
+}
+.green-hr{
+    background-color: yellowgreen;
+}
+
+/* for main nav */
+.navbar-dark .navbar-nav .nav-link:hover {
+    color : yellowgreen;
+}
+
+
 /* ==========================================================================================================
-										SECTIONS
+										SECTIONS SEARCH
    ========================================================================================================== */
+
 .intro-section{
     width: 100%;
     padding-top: 5%;
@@ -190,7 +344,60 @@ ul.dropdown-menu.show li a  {
     padding-top: 2%;
 }
 .search-section form{
-    width: 20vw;
+    width: 25vw;
+}
+
+.form-search{
+    align-content: left;
+}
+
+.search-container {
+    padding: 50px;
+    width: 100%;
+    /*background: linear-gradient(0.90turn, rgb(38,116,152), #ebf8e1, yellowgreen);*/
+    /* border: 2px red solid ; */
+}
+.search-container .form-control{
+    border-radius: 20px;
+    border: 1px solide yellowgreen;
+    padding:30px;
+    font-weight: bold;
+    font-family: 'Source sans pro';
+    font-size: 20px;
+}
+.search-submit-button{
+    border: none;
+    background-color: rgba(240,240,240,0.1);
+}
+.search-submit-button .fa-search{
+    font-size: 40px;
+    font-weight: bold;
+    color: yellowgreen;
+    margin-top: 30px;
+    border: none;
+    padding: 10px;
+    transition-duration: 0.8s;
+}
+.search-submit-button .fa-search:hover{
+    color: black;
+    transition-duration: 0.4s;
+    background-color: yellowgreen;
+    border-radius: 14px;
+    padding: 10px;
+}
+
+i.fa-search {
+    font-size: 150px ;
+    color : rgb(38,116,152) ;
+}
+div#search_product_form div label{
+    font-size: 27px;
+    font-family: 'Source sans pro';
+    font-weight: bold;
+}
+
+.text-left{
+    font-family: 'Source sans pro';
 }
 
 
@@ -208,6 +415,11 @@ ul.dropdown-menu.show li a  {
 /* ==========================================================================================================
 										PRODUCT CARD
    ========================================================================================================== */
+
+.box-card,.card{
+    font-family: 'Source sans pro';
+}
+
 .wrapper {
     height: 420px;
     width: 100%;
@@ -241,7 +453,10 @@ ul.dropdown-menu.show li a  {
     height: 250px;
     width: 100%;
 }
-
+.price-card{
+    font-size: 25px;
+    font-weight: bold;
+}
 
 .product-text h1 {
     margin: 0 0 0 38px;
@@ -298,7 +513,8 @@ ul.dropdown-menu.show li a  {
 
 .product-button button {
     background-color: yellowgreen;
-    color : white;
+    color : black;
+    font-weight: 700;
     border : white;
     height: 50px;
     width: 150px;
@@ -310,9 +526,9 @@ ul.dropdown-menu.show li a  {
 .product-button  {
     margin-left : 15px ;
 }
-
 .product-button button a {
-    color : white;
+    color : black;
+    font-weight: 700;
 }
 
 
@@ -342,26 +558,31 @@ ul.dropdown-menu.show li a  {
 }
 
 /* ==========================================================================================================
-										PRODUCT CARD HOME
+										PRODUCT CARD HOME CONTAINER
    ========================================================================================================== */
-
+/* body : background-color:rgba(240,240,240,0.5); */
 .container-best-sell {
-    background-color:rgba(240,240,240,0.6);
-}
-
-.container-free {
-    background-color:rgba(240,240,240,0.6);
+    /* background-color: rgba(240,240,240,0.5); */
+    background : linear-gradient(rgba(240,240,240,0.5), rgba(220,220,220,0.5));
+    padding: 50px ;
 }
 
 .container-product-new {
-    background-color: rgb(225,225,225);
+    background : linear-gradient(rgba(200,200,200,0.5) , rgba(220,220,220,0.5));
+    padding: 50px ;
+}
+
+.container-free {
+    background : linear-gradient(rgba(240,240,240,0.5), rgba(220,220,220,0.5));
+    padding: 50px ;
 }
 
 .card {
     margin-top: 15px ;
-    box-shadow: 4px 4px 4px rgb(200,200,200);
+    /*box-shadow: 4px 4px 4px rgb(200,200,200);*/
+    border: 1px solid  rgba(100,100,100,0.3);
+    border-radius: 10px;
 }
-
 
 /* ==========================================================================================================
 										SINGLE PAGE PRODUCT
@@ -371,6 +592,17 @@ ul.dropdown-menu.show li a  {
     padding: auto;
     text-align: center ;
 }
+
+/* ==========================================================================================================
+										PAGE PRODUCT NEW
+   ========================================================================================================== */
+.product-help {
+    background-color: white ;
+    padding-top: 50px ;
+    padding-bottom: 50px ;
+    padding-left: 35px;
+}
+
 
 
 /* ==========================================================================================================
@@ -453,12 +685,16 @@ ul.dropdown-menu.show li a  {
     list-style: none;
     text-align: center;
 }
-
+/*
+.nav-a{
+    padding-right: 10%;
+    padding-left: 10%;
+}
+*/
 .footer-outer .footer-nav ul li {
     display: inline-block;
     line-height: 50px;
     color: #b5b5c8;
-    margin: 0 30px;
     font-size: 14px;
 }
 .footer-outer .footer-nav ul li:hover {
@@ -538,9 +774,19 @@ ul.dropdown-menu.show li a  {
 
 
 /*********** SHOW PRODUCT *************/
+.show-page{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    max-width: 100vw;
+    overflow: hidden;
+}
 .content-page{
     background-color: rgba(210,210,210,0.8);
+    background: linear-gradient(rgba(230,230,230,0.8), rgba(240,240,240,0.8) );
     padding-bottom: 4%;
+    margin-bottom: 0;
+}
+.content-page .row{
     margin-bottom: 0;
 }
 
@@ -551,22 +797,30 @@ ul.dropdown-menu.show li a  {
 .content-bar{
     margin-top: 2%;
     /*box-shadow: 1px 1px 4px grey;*/
-    background-color: rgba(255,255,255,0.3);
-    border-radius: 12px;
+    background-color: rgba(225,225,225,1);
+    border-radius: 3px;
     padding-bottom: 4%;
     margin-bottom: 0;
+    box-shadow: 1px 1px 4px rgba(120,120,120,0.1);
+    border: 1px solid rgba(175,175,175,1);
 }
 .content-info{
     margin-left: 10%;
+    padding-right: 8%;
 }
 
-
-
 .side-bar{
-    margin-top: 2%;
-    box-shadow: 1px 1px 4px grey;
-    background-color: rgba(80,80,80,0.1);
-    border-radius: 12px;
+   margin-top :2%; 
+    
+}
+.side-bar-info{
+    border: 1px solid rgba(175,175,175,1);
+    margin-top: 1%;
+    box-shadow: 1px 1px 4px rgba(120,120,120,0.1);
+    background-color: rgba(225,225,225,1);
+    border-radius: 3px;
+    margin-bottom: 6%;
+    padding: 5%;
 }
 
 .side-bar h2, .side-bar p, .side-bar h3{
@@ -580,11 +834,174 @@ ul.dropdown-menu.show li a  {
     text-align: center;
     /*text-transform: uppercase;*/
     font-weight: bold;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.eur-text{
+    font-size: 70px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+.fa-eur{
+    font-size: 15px;
+}
+.eur-text-min{
+    font-size: 17px;
+}
+.number-sales{
+    font-size: 55px;
+    color:yellowgreen;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0em;
+}
+.sale-text{
+    font-size: 27px;
+    color: grey;
+    margin:0;
+    padding:0;
+}
+.fa-cart-arrow-down{
+    color: grey;
+}
+
+.pay-product{
+    background-color: rgb(60,140,60);
+    transition-duration: 0.4s;
+    padding-bottom: 0%;
+    border-bottom: 10px solid rgb(50,130,50);
+    border-radius: 4px;
+}
+.pay-product i{
+    color: whitesmoke;
+    font-size: 45px;
+}
+.pay-product:hover{
+    background-color: grey;
+    transition-duration: 0.4s;
+    border-bottom: 0px solid grey;
+    transition-duration: 0.4s;
+}
+.pay-product a:hover{
+    text-decoration: none;
+}
+#paybutton:hover{
+    text-decoration: none;
+}
+.margin-block{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 0.5%;
+}
+.pay-product h2{
+    text-align: center;
+    margin-left: 0;
+    padding: 7%;
+    color: linen;
+    font-size: 25px;
+}
+
+/********* ORDER PAGE DESIGN ***********************/
+
+.big-button-pay {
+    margin-top: 8%;
+    padding: 45px;
+    background-color: greenyellow;
+    color: black;
+    font-weight: bold;
+    border: none;
+}
+
+/***** FORM DESIGN *********/
+
+.section-form{
+    margin: 4%;
+    border: 1px solid rgba(230,230,230,0.8);
+    box-shadow: 1px 1px 5px rgba(230,230,230,0.8);
+    padding: 4%;
+}
+.form-button-product{
+    margin-left: 10%;
+}
+.custom-file-label,.custom-file-input{
+    border: 1px solid yellowgreen;
 }
 
 
-.search-container {
-    margin-bottom: 100px ;
-    margin-top: 100px ;
+
+/************* MY SELL ************/
+
+.grey-card{
+    margin: 4%;
+    border: 1px solid rgba(190,190,190,0.8);
+    box-shadow: 1px 1px 15px rgba(200,200,200,0.8);
+    padding: 4%;
+    text-align: center;
+}
+.grey-card h1{
+    font-size: 24px;
+    text-align: center;
+}
+.grey-card p{
+    font-size: 14px;
+}
+.grey-card .number{
+    font-size: 34px;
+}
+
+/******* BLOG **********/
+.container-blog{
+    border: 1px solid rgba(190,190,190,0.8);
+    box-shadow: 1px 1px 15px rgba(200,200,200,0.8);
+    padding: 20px;
+}
+.card-title-blog{
+    font-size: 25px;
+    vertical-align: middle;
+}
+.blog-index-button button{
+    color: black;
+    background-color: honeydew;
+    border: 4px solid yellowgreen;
+    padding: 10px;
+    text-decoration: none;
+}
+.blog-index-button button:hover{
+    color: black;
+    background-color: yellowgreen;
+    border: 4px solid yellowgreen;
+}
+.blog-single-image{
+    
+}
+.blog-single-title{
+    margin-bottom: 3%;
+    font-family: 'Source sans pro';
+    font-size: 30px;
+    text-align: center;
+}
+.article-content{
+    font-size: 25px;
+    font-family: 'Source sans pro';
+}
+.back-to-list-blog-show button{
+    padding: 1.4%;
+    background-color: whitesmoke;
+    color:black;
+    border : 3px solid yellowgreen;
+    margin-bottom: 3%;
+}
+.back-to-list-blog-show button:hover{
+    background-color: yellowgreen;
+}
+.blog-single-date{
+    font-family: 'Source sans pro';
+    font-size: 17px;
+    color: grey;
+}
+
+.container-white {
+    background-color: white ;
+    padding: 15px ;
+    margin-bottom: 30px;
 }
