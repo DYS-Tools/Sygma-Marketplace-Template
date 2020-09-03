@@ -5,41 +5,45 @@
 {% block body %}
 
     {{ include('dashboard/_nav.html.twig') }}
-
-    <div class="container">
-        <div class="centered">
-            <h1> Gestion des finances </h1>
-            <br/>
-        </div>
-
+<div class="container">
+    <div class="container-white">
         <div class="container">
-            <br/><br/>
-        </div>
-        
-        <h3> <i class="fa fa-money" aria-hidden="true"></i> Argent disponible :   {{ userPayout }} <i class="fa fa-eur" aria-hidden="true"></i></h3>
-        <h6> solde en attente :  <i class="fa fa-eur" aria-hidden="true"></i> </h6>
-        <br/><br/><hr/><br/>
-        <h2> Retirer vos fonds  </h2>
-        <br/>
+            <div class="centered">
+                <h1> Gestion des finances </h1>
+                <br/>
+            </div>
 
+            <div class="container">
+                <br/><br/>
+            </div>
+
+            <h3> <i class="fa fa-money" aria-hidden="true"></i> Argent disponible :   {{ userPayout }} <i class="fa fa-eur" aria-hidden="true"></i></h3>
+            <h6> solde en attente :  <i class="fa fa-eur" aria-hidden="true"></i> </h6>
+            <br/><br/><hr/><br/>
+            <h2> Retirer vos fonds  </h2>
+            <br/>
+
+            <br/><br/>
+
+            <h4> Fonds disponible : {{ userPayout }} € </h4>
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button class="btn">{{ button_label|default('Retirer les fonds') }}</button>
+            {{ form_end(form) }}
+        </div>
         <br/><br/>
 
-        <h4> Fonds disponible : {{ userPayout }} € </h4>
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button class="btn">{{ button_label|default('Retirer les fonds') }}</button>
-        {{ form_end(form) }}
+        <!-- New code -->
+        <!-- DashboardController -->
+
+        <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script>
+
+        <div class="container">
+            <h2> Je retire mes fonds ( {{ userPayout }} € )</h2>
+            <div id="paypal-button-payout-container"></div>
+        </div>
     </div>
-    <br/><br/>
-
-    <!-- New code -->
-
-    <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script>
-
-    <div class="container">
-        <h2> Je retire mes fonds ( {{ userPayout }} € )</h2>
-        <div id="paypal-button-payout-container"></div>
-    </div>
+</div>
 
     <script>
         paypal.Buttons({

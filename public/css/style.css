@@ -1018,3 +1018,8 @@ div#search_product_form div label{
 .number-big{
     font-size: 22px;
 }
+.container-white {
+    background-color: white ;
+    padding: 15px ;
+    margin-bottom: 30px;
+}
