@@ -83,18 +83,6 @@ class MakeJsonFormat
         
         return $Array30LastCommand;
 
-        /* possible in repository */
-        /*
-        $qb = $this->createQueryBuilder('m');
- 
-        $qb->where('m.dateUpload < :date')
-           ->setParameter('date', new \dateTime('7days'))
-           ->orderBy('m.dateUpload', 'DESC')
-           ->orderBy('m.view', 'DESC')
-           ->setMaxResults($nombre);
- 
-        return $qb->getQuery()->getResult();
-        */
     }
 
     /* Return Json for statistic author Graph */
