@@ -1019,7 +1019,8 @@ div#search_product_form div label{
     font-size: 22px;
 }
 .container-white {
+    margin-top: 50px ;
     background-color: white ;
     padding: 15px ;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
