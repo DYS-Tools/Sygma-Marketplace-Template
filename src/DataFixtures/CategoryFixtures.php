@@ -30,12 +30,14 @@ class CategoryFixtures extends Fixture
 
         $manager->persist($category2);
 
+        /*
         $category3 = new Category();
         $category3->setName("Plugin");
         $category3->setDescription("This category...............................");
         $this->addReference('THREECATEGORY',$category3);
 
         $manager->persist($category3);
+        */
 
         $manager->flush();
     }
