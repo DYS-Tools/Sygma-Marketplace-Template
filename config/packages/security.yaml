@@ -48,5 +48,6 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/author, roles: ROLE_AUTHOR }
-        - { path: ^/dashboard, roles: ROLE_USER }
-        - { path: ^/product/new, roles: [ ROLE_AUTHOR ] } #CRUD product
+        - { path: ^/dashboard/MyOrder, roles: ROLE_USER}  #Order User
+        - { path: ^/dashboard, roles: ROLE_ADMIN}
+        - { path: ^/product/new, roles: [ ROLE_ADMIN ] } #CRUD product
