@@ -56,7 +56,7 @@
                 {% if app.user %}
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
-                        <a class="nav-link hover-yellowgreen" href="{{ path('become_author') }}">Devenir auteur</a>
+                        <a class="nav-link hover-deepskyblue" href="{{ path('become_author') }}">Devenir auteur</a>
                     </li>
                     {% endif %}
                 {% elseif is_granted('ROLE_USER') %}
@@ -108,7 +108,7 @@
                             {% endif %}
 
                             {% if is_granted('ROLE_AUTHOR') %}
-                            <hr class="hr-yellowgreen">
+                            <hr class="hr-deepskyblue">
                             <br/>
                             <h6 class="size4 white-grey"> Dashboard Auteur </h6>
 
@@ -129,7 +129,7 @@
                             {% endif %}
 
                             {% if is_granted('ROLE_ADMIN') %}
-                            <hr class="hr-yellowgreen">
+                            <hr class="hr-deepskyblue">
                             <br/>
                             <h6 class="size4 white-grey"> ADMIN Function </h6>
                             <li>
@@ -189,17 +189,17 @@
                 <div class="footer-three-grid wow fadeIn animated " data-wow-delay="0.66s">
                     <div class="column-1-3 col-lg-2">
                         <a href="{{ path('product_index') }}">
-                                <h1><span class="yellowgreen footer-title">Web Item Market</span></h1>
+                                <h1><span class="deepskyblue footer-title">Web Item Market</span></h1>
                         </a>
                     </div>
                     <div class="column-2-3 col-lg-12">
                         <nav class="footer-nav">
                             <ul>
                                 <div class="row d-flex justify-content-center container-a text-align">
-                                    <a href="{{ path('review_client') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-yellowgreen">Avis client</span></li></a>
-                                    <a href="{{ path('article_index') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-yellowgreen">Le blog</span></li></a>
-                                    <a href="{{ path('app_faq') }}"><li><span class="col-lg-2 size5  nav-a col-sm-12 col-md-12 hover-yellowgreen ">FAQ</span></li></a>
-                                    <a href="{{ path('become_author') }}"><li><span class=" col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-yellowgreen">Devenir Vendeur</span></li></a>
+                                    <a href="{{ path('review_client') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Avis client</span></li></a>
+                                    <a href="{{ path('article_index') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Le blog</span></li></a>
+                                    <a href="{{ path('app_faq') }}"><li><span class="col-lg-2 size5  nav-a col-sm-12 col-md-12 hover-deepskyblue ">FAQ</span></li></a>
+                                    <a href="{{ path('become_author') }}"><li><span class=" col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Devenir Vendeur</span></li></a>
                                 </div>
                             </ul>
                         </nav>
@@ -207,12 +207,12 @@
                     <div class="column-3-3 col-lg-2 col-sm-12 col-md-12">
                         <!--
                         <div class="social-icons-footer">
-                            <a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f hover-yellowgreen"></i></a>
-                            <a href="https://freehtml5.co"><i class="fab fa-instagram hover-yellowgreen"></i></a>
-                            <a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter hover-yellowgreen"></i></a>
+                            <a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f hover-deepskyblue"></i></a>
+                            <a href="https://freehtml5.co"><i class="fab fa-instagram hover-deepskyblue"></i></a>
+                            <a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter hover-deepskyblue"></i></a>
                         </div>
                         -->
-                        <br/><a href="{{ path('contact') }}"><span class="yellowgreen contact-us">Contactez nous</span></a>
+                        <br/><a href="{{ path('contact') }}"><span class="deepskyblue contact-us">Contactez nous</span></a>
                     </div>
                 </div>
 

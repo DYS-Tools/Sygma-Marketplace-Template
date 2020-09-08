@@ -64,7 +64,7 @@
                                 <h5 class="card-title-product">{{ bestSell.name }}</h5>
                                 <p class="card-text">{{ bestSell.description }}</p>
 
-                                <p class="yellowgreen"> <strong> {{ bestSell.price }} € </strong>  </p>
+                                <p class="deepskyblue"> <strong> {{ bestSell.price }} € </strong>  </p>
 
                                 <div class="row">
                                     <div class="col-lg-7">
@@ -102,7 +102,7 @@
                             <div class="card-body">
                                 <h5 class="card-title-product">{{ newProduct.name }}</h5>
                                 <p class="card-text">{{ newProduct.description }}</p>
-                                <p class="yellowgreen price-card"> {{ newProduct.price }} €</p>
+                                <p class="deepskyblue price-card"> {{ newProduct.price }} €</p>
 
                                 <div class="row">
                                     <div class="col-lg-7">
@@ -110,7 +110,7 @@
                                     </div>
 
                                     <div class="col-lg-4 d-flex justify-content-around">
-                                        <a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info "><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('order', { 'product': newProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@
                             <div class="card-body">
                                 <h5 class="card-title-product">{{ FreeProduct.name }}</h5>
                                 <p class="card-text">{{ FreeProduct.description }}</p>
-                                <p class="yellowgreen yellowgreen-text-middle font1"> <strong> Produit gratuit </strong>  </p>
+                                <p class="deepskyblue deepskyblue-text-middle font1"> <strong> Produit gratuit </strong>  </p>
                                 <div class="row middle-align-row">
                                     {% if FreeProduct.price == 0 %}
                                         <div class="col-lg-4 d-flex justify-content-around">
@@ -150,7 +150,7 @@
                                         </div>
                                         <div class="col-lg-6 d-flex">
                                                 <a href="{{ path('product_show', {'id': FreeProduct.id}) }}"> 
-                                                    <button type="button" class="btn btn-secondary download-btn-free">Voir le produit </button>
+                                                    <button type="button" class="btn btn-secondary download-btn-free btn-deepskyblue">Voir le produit </button>
                                                 </a>
                                         </div>
                                     {% endif %}
