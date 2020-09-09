@@ -5,14 +5,14 @@
     background-color: white ;
     margin: 15px ;
     height: 300px ;
-    border-left : 4px yellowgreen solid ;
-    border-right : 4px yellowgreen solid ;
-    border-bottom : 5px yellowgreen dashed ;
+    border-left : 4px deepskyblue solid ;
+    border-right : 4px deepskyblue solid ;
+    border-bottom : 5px deepskyblue dashed ;
     border-radius: 10px;
 }
 
 .card-title {
-    background-color: yellowgreen;
+    background-color: deepskyblue;
     color : white;
     padding : 10px ;
 }
@@ -29,15 +29,15 @@
    ========================================================================================================== */
 
 .container-card-tab {
-    border-left : 4px yellowgreen solid ;
-    border-right : 4px yellowgreen solid ;
-    border-top : 4px yellowgreen solid ;
-    border-bottom : 5px yellowgreen dashed ;
+    border-left : 4px deepskyblue solid ;
+    border-right : 4px deepskyblue solid ;
+    border-top : 4px deepskyblue solid ;
+    border-bottom : 5px deepskyblue dashed ;
     padding: 15px ;
 }
 
 .container-card-tab-title {
-    background-color: yellowgreen;
+    background-color: deepskyblue;
     color : white;
     padding : 10px ;
     height: 50px;

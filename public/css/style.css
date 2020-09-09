@@ -1037,3 +1037,9 @@ div#search_product_form div label{
     padding: 15px ;
     margin-bottom: 50px;
 }
+
+/* MyOrder */
+.MyOrder-card {
+    margin-top: 45px;
+}
+
