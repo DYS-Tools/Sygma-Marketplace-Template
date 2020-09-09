@@ -7,54 +7,50 @@
     {{ include('dashboard/_nav.html.twig') }}
 
     <div class="container">
-        <br/>
-        <h2> Mes commandes </h2>
-        <br/>
-        
-        <table class="table">
-            <thead>
-                <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Commande</th>
-                <th scope="col">Status</th>
-                <th scope="col">Téléchargement</th>
-                <th scope="col">Prix</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for order in orders %}
-                <tr>
-                    <th scope="row">{{ order.created|date("m/d/Y") }}</th>
-                    <td>{{ order.id }}</td>
-                    {% if order.status == 'waiting for payment' or order.status == 'In progress'  %}
-                        <td class='orange'> {{ order.status }}</td>
-                    {% elseif order.status == 'finish' %}
-                        <td class='green'> {{ order.status }}</td>
+        <div class="container-white">
+            <div class="container">
+                <br/>
+                <h2> Mes commandes </h2>
+                <br/>
+                <div class="container-MyOrder">
+                    {% for order in orders %}
+                        <div class="MyOrder-card text-center">
+                            <div class="card-header">
+                                n°{{ order.id }} - {{ order.product.name }}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    {% if order.status == 'waiting for payment' or order.status == 'In progress'  %}
+                                         {{ order.status }}
+                                    {% elseif order.status == 'finish' %}
+                                         {{ order.status }}
+                                    {% endif %}
+                                </h5>
+                                <p class="card-text">{{ order.amount }} €</p>
+                                {% if order.status == 'finish' or order.product.price == 0 %}
+
+                                    <a href="{{ asset("product/" ~ order.product.file)  }}"
+                                       download>
+                                        <button type="button" class="btn btn-success">Download product</button>
+                                    </a>
+
+                                {% else %}
+                                    Commande non terminée
+                                {% endif %}
+                            </div>
+                            <div class="card-footer text-muted">
+                                {{ order.created|date("m/d/Y") }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    {% if orders|length < 1 %}
+                    <p> Vous n'avez pas encore effectué de commande sur la place de marché. Commencez donc par acheter un produit.</p>
                     {% endif %}
+                </div>
 
-                    {% if order.status == 'finish' or order.product.price == 0 %}
-                        <td>
-                            <a href="{{ asset("product/" ~ order.product.file)  }}" 
-                                download>
-                                <button type="button" class="btn btn-success">Download product</button>
-                            </a>
-                        </td>
-                    {% else %}
-                        <td> Commande non terminée </td>
-                    {% endif %}
-
-                    <td>{{ order.amount }} €</td>
-                    
-                </tr>
-            {% endfor %}
-
-            {% if orders|length < 1 %}
-            <p> Vous n'avez pas encore effectué de commande sur la place de marché. Commencez donc par acheter un produit, ou vendez les votres.
-            {% endif %}
-
-            </tbody>
-        </table>
-
+            </div>
+        </div>
     </div>
     <br/><br/>
 
