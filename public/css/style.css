@@ -743,6 +743,9 @@ div#search_product_form div label{
     font-size: 13px;
     padding: 40px 0;
 }
+.footer-title{
+    font-size: 30px;
+}
 
 .google-play-btn {
     margin-left: 10px;
@@ -887,10 +890,10 @@ div#search_product_form div label{
 }
 
 .pay-product{
-    background-color: rgb(60,140,60);
+    background-color: rgb(35, 35, 141) ;
     transition-duration: 0.4s;
     padding-bottom: 0%;
-    border-bottom: 10px solid rgb(50,130,50);
+    border-bottom: 10px solid rgb(21, 21, 87);
     border-radius: 4px;
 }
 .pay-product i{
