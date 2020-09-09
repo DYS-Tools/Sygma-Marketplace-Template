@@ -56,7 +56,7 @@ class ArticleController extends AbstractController
 
             $entityManager->persist($article);
             $entityManager->flush();
-
+            // Congratulation
             return $this->redirectToRoute('article_index_admin');
         }
 
