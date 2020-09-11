@@ -13,12 +13,16 @@
 </ul>
 
 <div class="container">
-    <h1> contacter le vendeur a propos du produit : {{ product.name }} </h1>
+    <div class="container-white">
+        <div class="container">
+            <h1> Contacter le vendeur à propos du produit : {{ product.name }} </h1>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('envoyer une question') }}</button>
-    {{ form_end(form) }}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('envoyer une question') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
 </div>
 
     
