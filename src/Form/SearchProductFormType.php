@@ -19,7 +19,7 @@ class SearchProductFormType extends AbstractType
                  'placeholder' => "Chercher un produit : HTML, Plugin, Javascript...",
                  'label' => 'chercher un produit'
             ],
-            'label' => 'chercher un produit'
+            'label' => 'Chercher un produit'
         ]);
         ;
     }

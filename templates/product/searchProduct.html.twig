@@ -25,12 +25,23 @@
     
 </ul>
 
-    <br/><br/>
-    <div class="container">
-        {{ form_start(searchForm) }}
-            {{ form_widget(searchForm) }}
-            <button class="btn-success product-button">{{ button_label|default('Rechercher') }}</button>
-        {{ form_end(searchForm) }}
+    <!-- nEW SEARCH BAR -->
+    <div class="search-container">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 form-search">
+                        {{ form_start(searchForm) }}
+                        {{ form_widget(searchForm) }}
+                    </div>
+                    <!-- <i class="fas fa-search"></i> -->
+                    <button class="search-submit-button"> <i class="fas fa-search"></i> </button>
+                    {{ form_end(searchForm) }}
+                </div>
+            </div>
+
+
+        </div>
     </div>
 
     <div class="container-best-sell col-lg-12">
