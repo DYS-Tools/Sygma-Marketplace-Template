@@ -47,7 +47,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        # - { path: ^/author, roles: ROLE_AUTHOR }
+        - { path: ^/become_author, roles: ROLE_ADMIN } #Become Author page
         - { path: ^/dashboard/MyOrder, roles: ROLE_USER}  #Order User
-        - { path: ^/dashboard, roles: ROLE_ADMIN}
+        - { path: ^/dashboard, roles: ROLE_ADMIN} 
         - { path: ^/product/new, roles: [ ROLE_ADMIN ] } #CRUD product

@@ -56,7 +56,7 @@
                 {% if app.user %}
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
-                        <a class="nav-link hover-deepskyblue" href="{{ path('become_author') }}">Devenir auteur</a>
+                        <!--<a class="nav-link hover-deepskyblue" href="{ { path('become_author') }}">Devenir auteur</a>-->
                     </li>
                     {% endif %}
                 {% elseif is_granted('ROLE_USER') %}
@@ -201,7 +201,7 @@
                                     <a href="{{ path('review_client') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Avis client</span></li></a>
                                     <a href="{{ path('article_index') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Le blog</span></li></a>
                                     <a href="{{ path('app_faq') }}"><li><span class="col-lg-2 size5  nav-a col-sm-12 col-md-12 hover-deepskyblue ">FAQ</span></li></a>
-                                    <a href="{{ path('become_author') }}"><li><span class=" col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Devenir Vendeur</span></li></a>
+                                    <!--<a href="{ { path('become_author') }}"><li><span class=" col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Devenir Vendeur</span></li></a>-->
                                 </div>
                             </ul>
                         </nav>
@@ -241,6 +241,9 @@
 
             <!-- Script SweetAlert -->
             <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
+
+            <!-- integrate vue.js --> 
+            <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
             {% endblock %}
     </body>
 </html>
