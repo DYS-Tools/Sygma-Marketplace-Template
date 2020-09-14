@@ -54,7 +54,7 @@ jobs:
       - run:
           name: Install System packages
           command: apt update && apt -y install python3-pip ssh
-            
+
       # Installation
       #- run:
           #name: Install Ansible
