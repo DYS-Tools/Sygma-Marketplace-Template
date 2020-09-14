@@ -95,6 +95,7 @@
         line: STRIPE_PUBLIC_TEST={{ public_key_stripe_test }}
 
     ###### end .env ######
+
     - name: apt-get install composer
       become: true
       apt:
