@@ -180,14 +180,14 @@ font-family: 'Source Sans Pro', sans-serif;
     color :deepskyblue;
 }
 .btn-info, .btn-deepskyblue{
-    background-color: deepskyblue;
-    border: 1px solid deepskyblue;
+    background-color: rgb(0,82,132);
+    border: 1px solid rgb(0,82,132);
 }
 .btn-info:hover, .btn-deepskyblue:hover{
     background-color: white;
-    color: deepskyblue;
-    border: 1px solid deepskyblue;
-    
+    color: rgb(0,82,132);
+    border: 1px solid rgb(0,82,132);
+
 }
 
 
@@ -292,7 +292,7 @@ i.fa-sort-down {
 
 ul.dropdown{
     color:rgb(33, 37, 41);
-    
+
 }
 ul.dropdown-menu{
     padding-right: 70px;
@@ -330,7 +330,7 @@ ul.dropdown-menu.show li a  {
 ul.dropdown-menu.show li{
     padding: 0%;
     width: 80%;
-    
+
 }
 .hr-deepskyblue{
     background-color: rgba(100,100,100,1);
@@ -391,7 +391,7 @@ ul.dropdown-menu.show li{
 .search-submit-button .fa-search{
     font-size: 40px;
     font-weight: bold;
-    color: deepskyblue;
+    color: rgb(0,82,132);
     margin-top: 30px;
     border: none;
     padding: 10px;
@@ -400,7 +400,7 @@ ul.dropdown-menu.show li{
 .search-submit-button .fa-search:hover{
     color: black;
     transition-duration: 0.4s;
-    background-color: deepskyblue;
+    background-color: rgb(0,82,132);
     border-radius: 14px;
     padding: 10px;
 }
@@ -531,7 +531,7 @@ div#search_product_form div label{
 }
 
 .product-button button {
-    background-color: deepskyblue;
+    background-color: rgb(0,82,132);
     color : black;
     font-weight: 700;
     border : white;
@@ -567,7 +567,7 @@ div#search_product_form div label{
     text-transform: uppercase;
     letter-spacing: 0.2em;
     color: #ffffff;
-    background-color: deepskyblue;
+    background-color: rgb(0,82,132);
     cursor: pointer;
     outline: none;
 }
@@ -776,7 +776,7 @@ div#search_product_form div label{
     display: inline;
 }
 .deepskyblue{
-    color: deepskyblue;
+    color: rgb(0,82,132);
 }
 .inline{
     display: flex;
@@ -832,8 +832,8 @@ div#search_product_form div label{
 }
 
 .side-bar{
-   margin-top :2%; 
-    
+   margin-top :2%;
+
 }
 .side-bar-info{
     border: 1px solid rgba(175,175,175,1);
@@ -874,7 +874,7 @@ div#search_product_form div label{
 }
 .number-sales{
     font-size: 55px;
-    color:deepskyblue;
+    color:rgb(0,82,132);
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
     letter-spacing: 0em;
