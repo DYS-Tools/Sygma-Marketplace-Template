@@ -3,9 +3,29 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Créer un article</h1>
+    <div class="container">
+        <div class="container-white">
+            <div class="container">
+                <h1>Créer un article</h1>
+                {{ include('article/_form.html.twig') }}
+                <a href="{{ path('article_index') }}">Retour à la liste</a>
+            </div>
+        </div>
+    </div>
 
-    {{ include('article/_form.html.twig') }}
+    <!-- Au clic sur save, faire apparaitre modal en JS -->
+    <script>
+        $(':submit').on( 'click', function () {
+            swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                icon: "success",
+                button: "Aww yiss!",
+            });
+        });
 
-    <a href="{{ path('article_index') }}">Retour à la liste</a>
+        $('p').click(function () {
+            alert ("Quelqu'un a cliqué sur un paragraphe!")
+        });
+    </script>
 {% endblock %}

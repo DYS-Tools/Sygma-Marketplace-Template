@@ -24,9 +24,7 @@
     {% endfor %}
 
 </ul>
-
-    <img src="img/head.jpg" alt="Web-Item-Market" style="width: 100%">
-
+    <img src="img/test_baner1.jpg" alt="Web-Item-Market" style="width: 100%">
 
     <!-- nEW SEARCH BAR -->
     <div class="search-container">
@@ -37,7 +35,6 @@
                     {{ form_start(searchForm) }}
                         {{ form_widget(searchForm) }}
                     </div>
-                    <!-- <i class="fas fa-search"></i> -->
                     <button class="search-submit-button"> <i class="fas fa-search"></i> </button>
                     {{ form_end(searchForm) }}
                 </div>
@@ -47,6 +44,9 @@
         </div>
     </div>
 
+    <img src="img/transit_banner.jpg" alt="Web-Item-Market" style="width: 100%">
+    <br/>
+    <br/><br/>
 
     <!-- -------------------------------------------
             container-best-sell
@@ -64,7 +64,7 @@
                                 <h5 class="card-title-product">{{ bestSell.name }}</h5>
                                 <p class="card-text">{{ bestSell.description }}</p>
 
-                                <p class="yellowgreen"> <strong> {{ bestSell.price }} € </strong>  </p>
+                                <p class="deepskyblue"> <strong> {{ bestSell.price }} € </strong>  </p>
 
                                 <div class="row">
                                     <div class="col-lg-7">
@@ -102,7 +102,7 @@
                             <div class="card-body">
                                 <h5 class="card-title-product">{{ newProduct.name }}</h5>
                                 <p class="card-text">{{ newProduct.description }}</p>
-                                <p class="yellowgreen price-card"> {{ newProduct.price }} €</p>
+                                <p class="deepskyblue price-card"> {{ newProduct.price }} €</p>
 
                                 <div class="row">
                                     <div class="col-lg-7">
@@ -110,7 +110,7 @@
                                     </div>
 
                                     <div class="col-lg-4 d-flex justify-content-around">
-                                        <a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info "><i class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{path('order', { 'product': newProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
                                     </div>
                                 </div>
@@ -139,18 +139,19 @@
                             <div class="card-body">
                                 <h5 class="card-title-product">{{ FreeProduct.name }}</h5>
                                 <p class="card-text">{{ FreeProduct.description }}</p>
-                                <p class="yellowgreen"> <strong> Produit gratuit </strong>  </p>
-                                <div class="row">
+                                <p class="deepskyblue deepskyblue-text-middle font1"> <strong> Produit gratuit </strong>  </p>
+                                <div class="row middle-align-row">
                                     {% if FreeProduct.price == 0 %}
-                                        <div class="col-lg-7 d-flex justify-content-around">
-                                        <!-- TODO : Create a controller function for this download, and incremtne a number_sale variable in BDD -->
+                                        <div class="col-lg-4 d-flex justify-content-around">
                                                 <a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
                                                     download>
-                                                    <button type="button" class="btn btn-success">Download product</button>
+                                                    <button type="button" class="btn btn-success download-btn-free">Download</button>
                                                 </a>
                                         </div>
-                                        <div class="col-lg-2 d-flex justify-content-around">
-                                                <a href="{{ path('product_show', {'id': FreeProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <div class="col-lg-6 d-flex">
+                                                <a href="{{ path('product_show', {'id': FreeProduct.id}) }}"> 
+                                                    <button type="button" class="btn btn-secondary download-btn-free btn-deepskyblue">Voir le produit </button>
+                                                </a>
                                         </div>
                                     {% endif %}
                                 </div>

@@ -134,7 +134,7 @@
                 {% if product.price == 0 %}
                 <p class="font3 size2"> Produit Gratuit ( 0 €)</p>
                 {% else %}
-                <p class="eur-text">{{ product.price }}<i class="fa fa-eur" aria-hidden="true"></i> <span class="eur-text-min">TTC </span></p>
+                <p class="eur-text">{{ product.price }} <i class="fa fa-eur eur-single" aria-hidden="true"></i> <span class="eur-text-min">TTC </span></p>
                 {% endif %}
                 <p class="font3 bold"> Produit proposé par <span class="yellowgreen"> {{ product.user.pseudo }}</span> </p>
             </div>
@@ -145,7 +145,7 @@
     
                             {% if product.demoLink != NULL %}
                                 <a href="{{ product.demoLink }}">
-                                <button type="button" class="btn btn-success">Démonstration</button>
+                                <button type="button" class="btn btn-info">Démonstration</button>
                                 </a>
                             {% else %}
                                 <p class="font3"> Pas de démonstration.</p>
@@ -155,7 +155,7 @@
 
                     <div class=" col-lg-4">
                             <a href="{{ path('product_index') }}" class="font3">
-                            <button type="button" class="btn btn-success">Retour</button>
+                            <button type="button" class="btn btn-info">Retour</button>
                             </a>
                     </div>
                 </div>

@@ -4,14 +4,18 @@
 
 {% block body %}
     <div class="container">
-        <br/><br/>
-        <h3>Contact</h3>
-        <p class="size4"> Contactez nous pour poser une question, regler un litige, proposer une nouvelle catégorie de produit.. ou tout simplement pour nous donner 
-        votre avis.</p>
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <a type="submit"><button class="btn-form"> Envoyer</button></a>
-        {{ form_end(form) }}
+        <div class="container-white">
+            <div class="container">
+                <br/><br/>
+                <h3>Contact</h3>
+                <p class="size4"> Contactez nous pour poser une question, regler un litige, proposer une nouvelle catégorie de produit.. ou tout simplement pour nous donner
+                votre avis.</p>
+                {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <a type="submit"><button class="btn-form"> Envoyer</button></a>
+                {{ form_end(form) }}
+            </div>
+            <br/><br/>
+        </div>
     </div>
-    <br/><br/>
 {% endblock %}

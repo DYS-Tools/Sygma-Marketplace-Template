@@ -16,7 +16,7 @@ body{
 }
 
 .btn-form{
-    border: 2px solid yellowgreen;
+    border: 2px solid deepskyblue;
     border-radius: 3px;
     transition-duration: 0.7s;
     font-weight: bold;
@@ -24,12 +24,18 @@ body{
     margin-bottom: 5%;
 }
 .btn-form:hover{
-    background-color: yellowgreen;
+    background-color: deepskyblue;
     transition-duration: 0.1s;
     border-radius: 0px;
 }
 .btn-info{
     margin: 7px;
+}
+.download-btn-free{
+    /*border: 1px solid deepskyblue;*/
+}
+.middle-align-row{
+    vertical-align: middle;
 }
 
 /* ==========================================================================================================
@@ -91,9 +97,12 @@ a:link
 .grey {
     color : grey;
 }
+.deepskyblue-text-middle{
+    font-size: 22px;
+}
 
-.hover-yellowgreen:hover {
-    color: yellowgreen;
+.hover-deepskyblue:hover {
+    color: deepskyblue;
 }
 .bold{
     font-weight: bold;
@@ -167,8 +176,18 @@ font-family: 'Source Sans Pro', sans-serif;
     color : red ;
 }
 
-.yellowgreen {
-    color :yellowgreen;
+.deepskyblue {
+    color :deepskyblue;
+}
+.btn-info, .btn-deepskyblue{
+    background-color: rgb(0,82,132);
+    border: 1px solid rgb(0,82,132);
+}
+.btn-info:hover, .btn-deepskyblue:hover{
+    background-color: white;
+    color: rgb(0,82,132);
+    border: 1px solid rgb(0,82,132);
+
 }
 
 
@@ -198,7 +217,7 @@ a.logo:hover, a.logo:focus {
 }
 
 a.logo span {
-    color: yellowgreen;
+    color: deepskyblue;
 }
 
 /* ==========================================================================================================
@@ -219,11 +238,11 @@ a.logo span {
     text-decoration: none;
     font-weight: 400;
     font-size: 18.5px;
-    /*background-color: yellowgreen;*/
+    /*background-color: deepskyblue;*/
 
 }
 .category-link-nav:hover{
-    color:yellowgreen;
+    color:deepskyblue;
 }
 .category-nav-mobile{
     display: none;
@@ -262,18 +281,18 @@ a.logo span {
 
 
 i.fa-user-circle {
-    color : yellowgreen;
+    color : deepskyblue;
     font-size: 35px ;
 }
 
 i.fa-sort-down {
-    color : yellowgreen;
+    color : deepskyblue;
     font-size: 16px ;
 }
 
 ul.dropdown{
     color:rgb(33, 37, 41);
-    
+
 }
 ul.dropdown-menu{
     padding-right: 70px;
@@ -284,7 +303,7 @@ ul.dropdown-menu{
 
 ul.dropdown-menu.show {
     background-color: #343a40 ;
-    color : yellowgreen;
+    color : deepskyblue;
     margin-top : 20px;
     position: relative;
     top: 20px; left: -270px;
@@ -298,7 +317,7 @@ ul.dropdown-menu.show li a{
 }
 
 ul.dropdown-menu.show li a  {
-    color : yellowgreen;
+    color : deepskyblue;
     font-size: 16px;
     padding: 0%;
     padding-bottom: 15%;
@@ -311,21 +330,21 @@ ul.dropdown-menu.show li a  {
 ul.dropdown-menu.show li{
     padding: 0%;
     width: 80%;
-    
+
 }
-.hr-yellowgreen{
+.hr-deepskyblue{
     background-color: rgba(100,100,100,1);
     width: 60%;
     /*margin-left: -20%;*/
     margin-left: 0%;
 }
 .green-hr{
-    background-color: yellowgreen;
+    background-color: deepskyblue;
 }
 
 /* for main nav */
 .navbar-dark .navbar-nav .nav-link:hover {
-    color : yellowgreen;
+    color : deepskyblue;
 }
 
 
@@ -337,7 +356,7 @@ ul.dropdown-menu.show li{
     width: 100%;
     padding-top: 5%;
     padding-bottom: 4%;
-    background-color: yellowgreen;
+    background-color: deepskyblue;
 }
 .search-section{
     width: 100vw;
@@ -354,12 +373,12 @@ ul.dropdown-menu.show li{
 .search-container {
     padding: 50px;
     width: 100%;
-    /*background: linear-gradient(0.90turn, rgb(38,116,152), #ebf8e1, yellowgreen);*/
+    /*background: linear-gradient(0.90turn, rgb(38,116,152), #ebf8e1, deepskyblue);*/
     /* border: 2px red solid ; */
 }
 .search-container .form-control{
     border-radius: 20px;
-    border: 1px solide yellowgreen;
+    border: 1px solide deepskyblue;
     padding:30px;
     font-weight: bold;
     font-family: 'Source sans pro';
@@ -372,7 +391,7 @@ ul.dropdown-menu.show li{
 .search-submit-button .fa-search{
     font-size: 40px;
     font-weight: bold;
-    color: yellowgreen;
+    color: rgb(0,82,132);
     margin-top: 30px;
     border: none;
     padding: 10px;
@@ -381,7 +400,7 @@ ul.dropdown-menu.show li{
 .search-submit-button .fa-search:hover{
     color: black;
     transition-duration: 0.4s;
-    background-color: yellowgreen;
+    background-color: rgb(0,82,132);
     border-radius: 14px;
     padding: 10px;
 }
@@ -512,7 +531,7 @@ div#search_product_form div label{
 }
 
 .product-button button {
-    background-color: yellowgreen;
+    background-color: rgb(0,82,132);
     color : black;
     font-weight: 700;
     border : white;
@@ -548,7 +567,7 @@ div#search_product_form div label{
     text-transform: uppercase;
     letter-spacing: 0.2em;
     color: #ffffff;
-    background-color: yellowgreen;
+    background-color: rgb(0,82,132);
     cursor: pointer;
     outline: none;
 }
@@ -724,6 +743,9 @@ div#search_product_form div label{
     font-size: 13px;
     padding: 40px 0;
 }
+.footer-title{
+    font-size: 30px;
+}
 
 .google-play-btn {
     margin-left: 10px;
@@ -753,8 +775,8 @@ div#search_product_form div label{
 .faq .logo{
     display: inline;
 }
-.yellowgreen{
-    color: yellowgreen;
+.deepskyblue{
+    color: rgb(0,82,132);
 }
 .inline{
     display: flex;
@@ -810,8 +832,8 @@ div#search_product_form div label{
 }
 
 .side-bar{
-   margin-top :2%; 
-    
+   margin-top :2%;
+
 }
 .side-bar-info{
     border: 1px solid rgba(175,175,175,1);
@@ -844,12 +866,15 @@ div#search_product_form div label{
 .fa-eur{
     font-size: 15px;
 }
+.eur-single{
+    font-size: 32px;
+}
 .eur-text-min{
     font-size: 17px;
 }
 .number-sales{
     font-size: 55px;
-    color:yellowgreen;
+    color:rgb(0,82,132);
     font-weight: bold;
     font-family: 'Courier New', Courier, monospace;
     letter-spacing: 0em;
@@ -865,10 +890,10 @@ div#search_product_form div label{
 }
 
 .pay-product{
-    background-color: rgb(60,140,60);
+    background-color: rgb(35, 35, 141) ;
     transition-duration: 0.4s;
     padding-bottom: 0%;
-    border-bottom: 10px solid rgb(50,130,50);
+    border-bottom: 10px solid rgb(21, 21, 87);
     border-radius: 4px;
 }
 .pay-product i{
@@ -924,7 +949,7 @@ div#search_product_form div label{
     margin-left: 10%;
 }
 .custom-file-label,.custom-file-input{
-    border: 1px solid yellowgreen;
+    border: 1px solid deepskyblue;
 }
 
 
@@ -962,17 +987,14 @@ div#search_product_form div label{
 .blog-index-button button{
     color: black;
     background-color: honeydew;
-    border: 4px solid yellowgreen;
+    border: 4px solid deepskyblue;
     padding: 10px;
     text-decoration: none;
 }
 .blog-index-button button:hover{
     color: black;
-    background-color: yellowgreen;
-    border: 4px solid yellowgreen;
-}
-.blog-single-image{
-    
+    background-color: deepskyblue;
+    border: 4px solid deepskyblue;
 }
 .blog-single-title{
     margin-bottom: 3%;
@@ -988,11 +1010,11 @@ div#search_product_form div label{
     padding: 1.4%;
     background-color: whitesmoke;
     color:black;
-    border : 3px solid yellowgreen;
+    border : 3px solid deepskyblue;
     margin-bottom: 3%;
 }
 .back-to-list-blog-show button:hover{
-    background-color: yellowgreen;
+    background-color: deepskyblue;
 }
 .blog-single-date{
     font-family: 'Source sans pro';
@@ -1000,8 +1022,24 @@ div#search_product_form div label{
     color: grey;
 }
 
+/************* Paragraph **************/
+
+.normal-txt{
+    font-size: 15px;
+
+}
+.number-big{
+    font-size: 22px;
+}
 .container-white {
+    margin-top: 50px ;
     background-color: white ;
     padding: 15px ;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
+
+/* MyOrder */
+.MyOrder-card {
+    margin-top: 45px;
+}
+

@@ -44,7 +44,6 @@ class ProductController extends AbstractController
                 //$keyword = '';
 
             }
-
             return $this->redirectToRoute('product_with_search', array(
                 'keyword' => $keyword,
             ));

@@ -17,9 +17,9 @@ class SearchProductFormType extends AbstractType
             'required' => true,
             'attr' => [
                  'placeholder' => "Chercher un produit : HTML, Plugin, Javascript...",
-                 'label' => 'chercher un produit'
+                 'label' => 'Chercher un produit'
             ],
-            'label' => 'chercher un produit'
+            'label' => 'Chercher un produit'
         ]);
         ;
     }

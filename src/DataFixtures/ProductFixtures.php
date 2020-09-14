@@ -128,7 +128,7 @@ class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product5->setNumberSale(128);
         $product5->setPrice(11);
         $product5->setUser($this->getReference('SADMIN'));
-        $product5->setCategory( $this->getReference('THREECATEGORY'));
+        $product5->setCategory( $this->getReference('TWOCATEGORY'));
         $product5->setVerified(1);
         $product5->setImg1("WPimg2.png");
         $product5->setImg2("WPimg1.png");
