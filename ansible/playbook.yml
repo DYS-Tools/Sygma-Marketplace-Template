@@ -159,8 +159,8 @@
     - name: doctrine:schema:update
       command: '{{ symfony_console_path }} doctrine:schema:update --force --no-interaction'
 
-    - name: Load data fixtures
-      command: '{{ symfony_console_path }} doctrine:fixtures:load --no-interaction'
+    #- name: Load data fixtures
+      #command: '{{ symfony_console_path }} doctrine:fixtures:load --no-interaction'
       #when: symfony_env != "prod"
 
   roles:
