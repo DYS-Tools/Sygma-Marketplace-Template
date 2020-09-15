@@ -1,6 +1,10 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic|Open+Sans+Condensed:700");
 
+/*  color template : # b1ddab
+	color now : #1E90FF ( dodgerblue ) 
+*/
+
 /*
 	TXT by HTML5 UP
 	html5up.net | @ajlkn
@@ -1792,7 +1796,7 @@ input, select, textarea {
 		font-weight: 700;
 		text-transform: uppercase;
 		text-decoration: none;
-		background: #b1ddab;
+		background: #1E90FF;
 		color: #fff;
 		border: 0;
 		line-height: 1em;
@@ -2193,6 +2197,11 @@ input, select, textarea {
 
 /* Box */
 
+	.box.post{
+		/*border: 1px solid black; */
+		padding: 23px;
+		box-shadow: 2px 2px 15px rgba(30, 30, 30, 0.25);
+	}
 	.box.highlight {
 		text-align: center;
 	}
@@ -2412,7 +2421,7 @@ input, select, textarea {
 			}
 
 			#nav li.current a {
-				background: #b1ddab;
+				background: #1E90FF;
 				color: #fff;
 			}
 
@@ -2540,7 +2549,7 @@ input, select, textarea {
 
 	#main {
 		background: #fff;
-		border-top: solid 5px #b1ddab;
+		border-top: solid 5px #1E90FF;
 		border-bottom: solid 5px #c1cac5;
 		border-top-width: 35px;
 		border-bottom-width: 10px;
@@ -2823,7 +2832,7 @@ input, select, textarea {
 						position: absolute;
 						left: 0;
 						top: 0;
-						background: #b1ddab;
+						background: #1E90FF;
 						width: 44px;
 						height: 44px;
 						content: '\f0c9';

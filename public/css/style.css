@@ -16,7 +16,7 @@ body{
 }
 
 .btn-form{
-    border: 2px solid deepskyblue;
+    border: 2px solid #1E90FF;
     border-radius: 3px;
     transition-duration: 0.7s;
     font-weight: bold;
@@ -24,7 +24,7 @@ body{
     margin-bottom: 5%;
 }
 .btn-form:hover{
-    background-color: deepskyblue;
+    background-color: #1E90FF;
     transition-duration: 0.1s;
     border-radius: 0px;
 }
@@ -32,7 +32,7 @@ body{
     margin: 7px;
 }
 .download-btn-free{
-    /*border: 1px solid deepskyblue;*/
+    /*border: 1px solid #1E90FF;*/
 }
 .middle-align-row{
     vertical-align: middle;
@@ -97,12 +97,12 @@ a:link
 .grey {
     color : grey;
 }
-.deepskyblue-text-middle{
+.#1E90FF-text-middle{
     font-size: 22px;
 }
 
-.hover-deepskyblue:hover {
-    color: deepskyblue;
+.hover-#1E90FF:hover {
+    color: #1E90FF;
 }
 .bold{
     font-weight: bold;
@@ -176,14 +176,14 @@ font-family: 'Source Sans Pro', sans-serif;
     color : red ;
 }
 
-.deepskyblue {
-    color :deepskyblue;
+.#1E90FF {
+    color :#1E90FF;
 }
-.btn-info, .btn-deepskyblue{
+.btn-info, .btn-#1E90FF{
     background-color: rgb(0,82,132);
     border: 1px solid rgb(0,82,132);
 }
-.btn-info:hover, .btn-deepskyblue:hover{
+.btn-info:hover, .btn-#1E90FF:hover{
     background-color: white;
     color: rgb(0,82,132);
     border: 1px solid rgb(0,82,132);
@@ -217,7 +217,7 @@ a.logo:hover, a.logo:focus {
 }
 
 a.logo span {
-    color: deepskyblue;
+    color: #1E90FF;
 }
 
 /* ==========================================================================================================
@@ -238,11 +238,11 @@ a.logo span {
     text-decoration: none;
     font-weight: 400;
     font-size: 18.5px;
-    /*background-color: deepskyblue;*/
+    /*background-color: #1E90FF;*/
 
 }
 .category-link-nav:hover{
-    color:deepskyblue;
+    color:#1E90FF;
 }
 .category-nav-mobile{
     display: none;
@@ -281,12 +281,12 @@ a.logo span {
 
 
 i.fa-user-circle {
-    color : deepskyblue;
+    color : #1E90FF;
     font-size: 35px ;
 }
 
 i.fa-sort-down {
-    color : deepskyblue;
+    color : #1E90FF;
     font-size: 16px ;
 }
 
@@ -303,7 +303,7 @@ ul.dropdown-menu{
 
 ul.dropdown-menu.show {
     background-color: #343a40 ;
-    color : deepskyblue;
+    color : #1E90FF;
     margin-top : 20px;
     position: relative;
     top: 20px; left: -270px;
@@ -317,7 +317,7 @@ ul.dropdown-menu.show li a{
 }
 
 ul.dropdown-menu.show li a  {
-    color : deepskyblue;
+    color : #1E90FF;
     font-size: 16px;
     padding: 0%;
     padding-bottom: 15%;
@@ -332,19 +332,19 @@ ul.dropdown-menu.show li{
     width: 80%;
 
 }
-.hr-deepskyblue{
+.hr-#1E90FF{
     background-color: rgba(100,100,100,1);
     width: 60%;
     /*margin-left: -20%;*/
     margin-left: 0%;
 }
 .green-hr{
-    background-color: deepskyblue;
+    background-color: #1E90FF;
 }
 
 /* for main nav */
 .navbar-dark .navbar-nav .nav-link:hover {
-    color : deepskyblue;
+    color : #1E90FF;
 }
 
 
@@ -356,7 +356,7 @@ ul.dropdown-menu.show li{
     width: 100%;
     padding-top: 5%;
     padding-bottom: 4%;
-    background-color: deepskyblue;
+    background-color: #1E90FF;
 }
 .search-section{
     width: 100vw;
@@ -373,12 +373,12 @@ ul.dropdown-menu.show li{
 .search-container {
     padding: 50px;
     width: 100%;
-    /*background: linear-gradient(0.90turn, rgb(38,116,152), #ebf8e1, deepskyblue);*/
+    /*background: linear-gradient(0.90turn, rgb(38,116,152), #ebf8e1, #1E90FF);*/
     /* border: 2px red solid ; */
 }
 .search-container .form-control{
     border-radius: 20px;
-    border: 1px solide deepskyblue;
+    border: 1px solide #1E90FF;
     padding:30px;
     font-weight: bold;
     font-family: 'Source sans pro';
@@ -775,7 +775,7 @@ div#search_product_form div label{
 .faq .logo{
     display: inline;
 }
-.deepskyblue{
+.#1E90FF{
     color: rgb(0,82,132);
 }
 .inline{
@@ -949,7 +949,7 @@ div#search_product_form div label{
     margin-left: 10%;
 }
 .custom-file-label,.custom-file-input{
-    border: 1px solid deepskyblue;
+    border: 1px solid #1E90FF;
 }
 
 
@@ -987,14 +987,14 @@ div#search_product_form div label{
 .blog-index-button button{
     color: black;
     background-color: honeydew;
-    border: 4px solid deepskyblue;
+    border: 4px solid #1E90FF;
     padding: 10px;
     text-decoration: none;
 }
 .blog-index-button button:hover{
     color: black;
-    background-color: deepskyblue;
-    border: 4px solid deepskyblue;
+    background-color: #1E90FF;
+    border: 4px solid #1E90FF;
 }
 .blog-single-title{
     margin-bottom: 3%;
@@ -1010,11 +1010,11 @@ div#search_product_form div label{
     padding: 1.4%;
     background-color: whitesmoke;
     color:black;
-    border : 3px solid deepskyblue;
+    border : 3px solid #1E90FF;
     margin-bottom: 3%;
 }
 .back-to-list-blog-show button:hover{
-    background-color: deepskyblue;
+    background-color: #1E90FF;
 }
 .blog-single-date{
     font-family: 'Source sans pro';

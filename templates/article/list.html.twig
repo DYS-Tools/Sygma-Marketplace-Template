@@ -5,39 +5,45 @@
 {% block body %}
 
     <div class="container">
-        <h1>Nos articles</h1>
-        <br/>
-
+        <br/><br/>
+        <h2 class="major"><span>Nos articles de blog</span></h2>
+        <section class="box blog">
         {% for article in pagination %}
-        
-        <!---------- -->
+        <!-- Blog -->			
+            <div>
+                <div class="row">
+                    <div class="col-12 col-12-medium">
+                        <div class="content">
 
-        <div class="row container-blog">
-                <div class="col-lg-2">
+                            <!-- Featured Post -->
+                                <article class="box post">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <header>
+                                                <h3><a href="#">{{ article.title }}</a></h3>
+                                                <p>{{ article.description }}</p>
+                                                
+                                                <ul class="meta">
+                                                    <li class="icon fa-clock">{{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</li>
+                                                    <!--<li class="icon fa-comments"><a href="#">8</a></li>-->
+                                                </ul>
+                                            </header>
+                                        </div>
 
-                    <img class="card-img" src="../article/img/{{ article.img1 }}" alt="Card image cap" height="100%" width="100%">
-                </div>
+                                            <div class="col-lg-3">
+                                                <a href="#" class="image featured"><img src="../article/img/{{ article.img1 }}" alt="" /></a>
+                                                <a href="{{ path('article_show', {'id': article.id}) }}" class="button">Continuer la lecture</a>
+                                            </div>
+                                    </div> 
+                                </article>
 
-                <div class="col-lg-10">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <h5 class="card-title-blog align-self-center">{{ article.title }}</h5>
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="blog-index-button">
-                                <button type="button">
-                                    <a href="{{ path('article_show', {'id': article.id}) }}"> Voir l'article </a>
-                                </button>
-                            </div>
                         </div>
                     </div>
-                    <hr class="green-hr">
-                    <p class="card-text"> {{ article.description }}</p>
-                    <p class="card-text"><small class="text-muted">publié le {{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</small></p>
                 </div>
-        </div>
-        <br/><br/>
+            </div>
+            <br/><br/>
         {% endfor %}
+        </section>
 
             <br/>
 
