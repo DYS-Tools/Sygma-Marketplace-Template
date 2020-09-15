@@ -76,23 +76,59 @@
         # for
         line: MAILER_URL=gmail://{{ mail }}:{{ mail_password }}@localhost?encryption=tls&auth_mode=oauth
 
-    - name: Add Secret Key Stripe connexion information in .env file
-      become: true
-      lineinfile:
-        dest: "{{ symfony_root_dir }}/.env"
+    # Stripe
+    #- name: Add Secret Key Stripe connexion information in .env file
+      #become: true
+      #lineinfile:
+        #dest: "{{ symfony_root_dir }}/.env"
         # replace
-        regexp: 'STRIPE_SECRET_TEST=key'
+        #regexp: 'STRIPE_SECRET_TEST=key'
         # for
-        line: STRIPE_SECRET_TEST={{ secret_key_stripe_test  }}
+        #line: STRIPE_SECRET_TEST={{ secret_key_stripe_test  }}
 
-    - name: Add Public Key Stripe connexion information in .env file
+    #- name: Add Public Key Stripe connexion information in .env file
+      #become: true
+      #lineinfile:
+        #dest: "{{ symfony_root_dir }}/.env"
+        # replace
+        #regexp: 'STRIPE_PUBLIC_TEST=key'
+        # for
+        #line: STRIPE_PUBLIC_TEST={{ public_key_stripe_test }}
+
+    # Paypal
+    # For account test // no use
+    - name: Add Paypal SANDBOX_ACCOUNT_TEST information in .env file
       become: true
       lineinfile:
         dest: "{{ symfony_root_dir }}/.env"
         # replace
-        regexp: 'STRIPE_PUBLIC_TEST=key'
+        regexp: 'SANDBOX_ACCOUNT_TEST=key'
         # for
-        line: STRIPE_PUBLIC_TEST={{ public_key_stripe_test }}
+        line: SANDBOX_ACCOUNT_TEST={{ sandbox_account_test }}
+
+    - name: Add Paypal PAYPAL_CLIENT_ID_TEST information in .env file
+      become: true
+      lineinfile:
+        dest: "{{ symfony_root_dir }}/.env"
+        # replace
+        regexp: 'PAYPAL_CLIENT_ID_TEST=key'
+        # for
+        line: PAYPAL_CLIENT_ID_TEST={{ paypal_client_id_test }}
+
+    - name: Add Paypal PAYPAL_SECRET_TEST information in .env file
+      become: true
+      lineinfile:
+        dest: "{{ symfony_root_dir }}/.env"
+        # replace
+        regexp: 'PAYPAL_SECRET_TEST=key'
+        # for
+        line: PAYPAL_SECRET_TEST={{ paypal_secret_test }}
+
+    ## replace for var prod
+
+      # SANDBOX_ACCOUNT_TEST=key        Fait en théorie a mettre dans le vault
+      # PAYPAL_CLIENT_ID_TEST=key       Fait en théorie a mettre dans le vault
+      # PAYPAL_SECRET_TEST=key          Fait en théorie a mettre dans le vault
 
     ###### end .env ######
 
