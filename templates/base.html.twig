@@ -54,23 +54,22 @@
 					<ul>
 						<li class="current"><a href="{{ path('product_index') }}">Home</a></li>
 						<li>
-							<a href="#">Nos produits ( drop ) </a>
+							<a href="{{ path('product_index') }}">Nos produits ( drop ) </a>
 							<ul>
-								<li><a href="#">Lorem ipsum dolor</a></li>
-								<li><a href="#">Magna phasellus</a></li>
+								<li><a href="#">Produits gratuits</a></li>
+								<li><a href="#">Nouveautés</a></li>
 								<li>
-									<a href="#">Phasellus consequat</a>
+									<a href="#">Theme CSS</a>
 									<ul>
-										<li><a href="#">Lorem ipsum dolor</a></li>
-										<li><a href="#">Phasellus consequat</a></li>
-										<li><a href="#">Magna phasellus</a></li>
-										<li><a href="#">Etiam dolore nisl</a></li>
+										<li><a href="#">Dark CSS</a></li>
+										<li><a href="#">Light CSS</a></li>
+										<li><a href="#">CSS elements</a></li>
 									</ul>
 								</li>
-								<li><a href="#">Veroeros feugiat</a></li>
+								<li><a href="#">Autres</a></li>
 							</ul>
 						</li>
-						<li><a href="">A propos</a></li>
+						<li><a href="{{ path('contact') }}">Contact</a></li>
 						<li><a href="{{ path('article_index') }}">Blog</a></li>
 						<li><a href="{{ path('become_author') }}">Devenir vendeur</a></li>
 					</ul>
@@ -214,47 +213,8 @@
         {% block body %}
             <!-- Content page -->
         {% endblock %}
-        <footer class=" row footer-outer navbar-dark bg-dark">
-            <div class="container footer-inner">
-                <div class="footer-three-grid wow fadeIn animated " data-wow-delay="0.66s">
-                    <div class="column-1-3 col-lg-3">
-                        <a href="{{ path('product_index') }}">
-                                <!-- TODO : place a logo -->
-                                <img src="{{ asset('img/logo.png') }}" alt="Web-Item-Market" style="width: 100%">
-                                
-                                <!--<h1><span class="deepskyblue footer-title">Web Item Market</span></h1>-->
-                        </a>
-                    </div>
-                    <div class="column-2-3 col-lg-12">
-                        <nav class="footer-nav">
-                            <ul>
-                                <div class="row d-flex justify-content-center container-a text-align">
-                                    <a href="{{ path('review_client') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Avis client</span></li></a>
-                                    <a href="{{ path('article_index') }}"><li><span class="col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Le blog</span></li></a>
-                                    <a href="{{ path('app_faq') }}"><li><span class="col-lg-2 size5  nav-a col-sm-12 col-md-12 hover-deepskyblue ">FAQ</span></li></a>
-                                    <!--<a href="{ { path('become_author') }}"><li><span class=" col-lg-2 nav-a col-sm-12 col-md-12 size5 hover-deepskyblue">Devenir Vendeur</span></li></a>-->
-                                </div>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="column-3-3 col-lg-2 col-sm-12 col-md-12">
-                        <!--
-                        <div class="social-icons-footer">
-                            <a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f hover-deepskyblue"></i></a>
-                            <a href="https://freehtml5.co"><i class="fab fa-instagram hover-deepskyblue"></i></a>
-                            <a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter hover-deepskyblue"></i></a>
-                        </div>
-                        -->
-                        <br/><a href="{{ path('contact') }}"><span class="deepskyblue contact-us">Contactez nous</span></a>
-                    </div>
-                </div>
-
-                <span class="border-bottom-footer"></span>
-                <p class="copyright">&copy; 2020 App. All rights reserved. Design by DYS-Tools </p>
-
-            </div>
-            <br/><br/><br/><br/>
-        </footer>
+        
+        <!-- TODO: Footer -->
 
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -284,7 +244,7 @@
 			<script src="js/breakpoints.min.js"></script>
 			<script src="js/util.js"></script>
 			<script src="js/main.js"></script>
-            <!-- <link rel="stylesheet" href="{ { asset('css/style.css') }}" />
+            <link rel="stylesheet" href="{ { asset('css/style.css') }}" />
 
             {% endblock %}
     </body>
