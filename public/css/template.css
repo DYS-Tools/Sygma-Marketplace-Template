@@ -1826,7 +1826,7 @@ input, select, textarea {
 		input[type="reset"]:active,
 		button:active,
 		.button:active {
-			background: #a1cd9b;
+			background: #1E90FF;
 		}
 
 		input[type="button"].alt,
@@ -2122,7 +2122,7 @@ input, select, textarea {
 		form input[type="password"]:focus,
 		form select:focus,
 		form textarea:focus {
-			border-color: #a1cd9b;
+			border-color: #1E90FF;
 		}
 
 	form input[type="text"],
@@ -2843,7 +2843,7 @@ input, select, textarea {
 					}
 
 					#titleBar .toggle:active:before {
-						background-color: #a1cd9b;
+						background-color: #1E90FF;
 					}
 
 			#navPanel {

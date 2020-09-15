@@ -13,3 +13,9 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 }
+.card-title{
+    background-color: none;
+    color: #1E90FF;
+    font-weight: bold;
+    font-size: 19px;
+}
