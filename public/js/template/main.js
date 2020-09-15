@@ -32,6 +32,13 @@
 			hideDelay: 350
 		});
 
+		$('#nav > ul').dropotron({
+			mode: 'fade',
+			noOpenerFade: true,
+			hoverDelay: 150,
+			hideDelay: 350
+		});
+
 	// Nav.
 
 		// Title Bar.

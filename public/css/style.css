@@ -1049,10 +1049,28 @@ div#search_product_form div label{
 nav{
 }
 .dropdown-main-menu{
-    margin: 0px;
-    padding: 0px;
+    margin-right: 25px;
+    margin-top: 10px;
+    color: black;
+    position:relative;
+    z-index: 2000;
 }
 .dropdown-menu{
-    margin: 0px;
-    padding: 0px;
+    margin-right: 25px;
+    margin-top: 10px;
+    color: red;
+}
+.profile-img{
+    color: #1E90FF;
+    z-index: -1;
+    display: block;
+}
+.dropdown.a.div{
+    color: #1E90FF;
+}
+
+/******** ICO **********/
+.ico-index{
+    font-size: 60px;
+    color: #1E90FF;
 }
