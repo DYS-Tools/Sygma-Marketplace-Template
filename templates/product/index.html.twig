@@ -1,168 +1,414 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Nos produits{% endblock %}
 
 {% block body %}
 
-<ul class="nav nav-pills justify-content-center category-nav">
+	<head>
+		<title>Web Item Market</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="public/css/template.css" />
+	</head>
 
-    <!-- Dropdown Categories for media queries -->
-    <li class="nav-item dropdown category-nav-mobile">
-    <a class="nav-link dropdown-toggle category-nav-mobile-title" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voir les catégories</a>
-    <div class="dropdown-menu category-dropdown">
-        {% for category in categories %}
-            <a class="dropdown-item" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
-        {% endfor %}
-    </div>
-  </li>
-    <!-- end dropdown for category -->
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
 
-    {% for category in categories %}
-        <li class="nav-item category-nav-desktop">
-            <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
-        </li>
-    {% endfor %}
+		<img src="img/test_baner1.jpg" alt="Web-Item-Market" style="width: 100%">
+			<!-- Header -->
+			<!--
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="index.html" id="logo">Web Item Market</a></h1>
+							<p>Des Templates CSS unique et incroyables</p>
+						</div>
+					</div>
+				</header>
+			-->
 
-</ul>
-    <img src="img/test_baner1.jpg" alt="Web-Item-Market" style="width: 100%">
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li class="current"><a href="index.html">Home</a></li>
+						<li>
+							<a href="#">Nos produits ( drop ) </a>
+							<ul>
+								<li><a href="#">Lorem ipsum dolor</a></li>
+								<li><a href="#">Magna phasellus</a></li>
+								<li>
+									<a href="#">Phasellus consequat</a>
+									<ul>
+										<li><a href="#">Lorem ipsum dolor</a></li>
+										<li><a href="#">Phasellus consequat</a></li>
+										<li><a href="#">Magna phasellus</a></li>
+										<li><a href="#">Etiam dolore nisl</a></li>
+									</ul>
+								</li>
+								<li><a href="#">Veroeros feugiat</a></li>
+							</ul>
+						</li>
+						<li><a href="left-sidebar.html">A propos</a></li>
+						<li><a href="right-sidebar.html">Blog</a></li>
+						<li><a href="no-sidebar.html">Devenir vendeur</a></li>
+					</ul>
+				</nav>
 
-    <!-- nEW SEARCH BAR -->
-    <div class="search-container">
-        <div class="row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 offset-lg-2 form-search">
-                    {{ form_start(searchForm) }}
-                        {{ form_widget(searchForm) }}
-                    </div>
-                    <button class="search-submit-button"> <i class="fas fa-search"></i> </button>
-                    {{ form_end(searchForm) }}
-                </div>
-            </div>
+			<!-- Banner -->
+			<!--
+				<section id="banner">
+					<div class="content">
+						<h2>Welcome to TXT by HTML5 UP</h2>
+						<p>A free responsive site template built on HTML5, CSS3, and some other stuff</p>
+						<a href="#main" class="button scrolly">Alright let's go</a>
+					</div>
+				</section>
+			-->
 
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row gtr-200">
+							<div class="col-12">
 
-        </div>
-    </div>
+							<!-- nEW SEARCH BAR -->
+								<div class="search-container">
+									<div class="row">
+										<div class="container">
+											<div class="row">
+												<div class="col-lg-8 offset-lg-2 form-search">
+												{{ form_start(searchForm) }}
+													{{ form_widget(searchForm) }}
+												</div>
+												<button class="search-submit-button"> <i class="fas fa-search"></i> </button>
+												{{ form_end(searchForm) }}
+											</div>
+										</div>
+									</div>
+								</div>
 
-    <img src="img/transit_banner.jpg" alt="Web-Item-Market" style="width: 100%">
-    <br/>
-    <br/><br/>
+							<h2 class="major"><span>Nos produits</span></h2>
 
-    <!-- -------------------------------------------
-            container-best-sell
-    -------------------------------------------  -->
-    <div class="container-best-sell col-lg-12">
-        <div class="box-card">
-            <h2 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  Nos meilleurs produits  </h2>
-            <div class="row">
-                {% for bestSell in bestSell %}
-                    <div class="col-lg-3 d-flex justify-content-around">
-                        <!-- product card -->
-                        <div class="card" style="width: 26rem;">
-                            <img class="card-img-top" src="product/img/{{ bestSell.img1 }}"  alt="{{ bestSell.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title-product">{{ bestSell.name }}</h5>
-                                <p class="card-text">{{ bestSell.description }}</p>
+							<div class="item-container">
+								<h3> Nos meilleurs produits </h3>
+								<div class="row">
+									{% for bestSell in bestSell %}
+									<div class="col-lg-6">
+										<div class="card" style="width: 35rem;">
+											<img class="card-img-top" src="product/img/{{ bestSell.img1 }}" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">{{ bestSell.name }}</h5>
+												<p class="card-text"> {{ bestSell.description }}</p>
+													<div class="col-lg-4 d-flex justify-content-around">
+														<a href="{{ path('product_show', {'id': bestSell.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+														<a href="{{ path('order', { 'product': bestSell.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+													</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+								<br/><hr>
 
-                                <p class="deepskyblue"> <strong> {{ bestSell.price }} € </strong>  </p>
+								<h3> Nouveaux produits </h3>
+								<div class="row">
+								{% for newProduct in newProduct %}
+									<div class="col-lg-6">
+										<div class="card" style="width: 35rem;">
+											<img class="card-img-top" src="product/img/{{ newProduct.img1 }}" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">{{ newProduct.name }}</h5>
+												<p class="card-text"> {{ newProduct.description }}</p>
+													<div class="col-lg-4 d-flex justify-content-around">
+														<a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+														<a href="{{ path('order', { 'product': newProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+													</div>
+											</div>
+										</div>
+									</div>
 
-                                <div class="row">
-                                    <div class="col-lg-7">
-                                        <p class="card-text"> {{ bestSell.numberSale}}  Vente </p>
-                                    </div>
-                                    <hr>
-                                    <div class="col-lg-4 d-flex justify-content-around">
-                                        <a href="{{ path('product_show', {'id': bestSell.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="{{path('order', { 'product': bestSell.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end product card -->
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <!-- end container-best-sell -->
+								{% endfor %}
+								</div>
+								<br/><hr>
+								
+								<h3> Produits gratuits </h3>
+								<div class="row">
+									{% for FreeProduct in FreeProduct %}
+									<div class="col-lg-6">
+											<div class="card" style="width: 35rem;">
+												<img class="card-img-top" src="product/img/{{ FreeProduct.img1 }}" alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title">{{ FreeProduct.name }}</h5>
+													<p class="card-text"> {{ FreeProduct.description }}</p>
+													<span class="deepskyblue deepskyblue-text-middle font1"> <strong> Produit gratuit </strong>  </span>
+										<div class="row middle-align-row">
+										{% if FreeProduct.price == 0 %}
+											<div class="col-lg-4 d-flex justify-content-around">
+													<a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
+														download>
+														<button type="button" class="btn btn-success download-btn-free">Download</button>
+													</a>
+											</div>
+											<div class="col-lg-6 d-flex">
+													<a href="{{ path('product_show', {'id': FreeProduct.id}) }}"> 
+														<button type="button" class="btn btn-secondary download-btn-free btn-deepskyblue">Voir le produit </button>
+													</a>
+											</div>
+										{% endif %}
+												</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
 
+							<br/><br/><br/>
+							<h2 class="major"><span>Nos actualités</span></h2>
 
-    <!-- -------------------------------------------
-            container-product-new
-    -------------------------------------------  -->
-    <div class="container-product-new col-lg-12">
-        <div class="box-card">
-            <h2 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  Nouveau produits  </h2>
-            <div class="row">
-                {% for newProduct in newProduct %}
-                    <div class="col-lg-3 d-flex justify-content-around">
-                        <!-- product card -->
-                        <div class="card" style="width: 26rem;">
-                            <img class="card-img-top" src="product/img/{{ newProduct.img1 }}"  alt="{{ newProduct.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title-product">{{ newProduct.name }}</h5>
-                                <p class="card-text">{{ newProduct.description }}</p>
-                                <p class="deepskyblue price-card"> {{ newProduct.price }} €</p>
+								<!-- Highlight -->
+									<section class="box highlight">
+										<ul class="special">
+											<li><a href="#" class="icon solid fa-search"><span class="label">Magnifier</span></a></li>
+											<li><a href="#" class="icon solid fa-tablet-alt"><span class="label">Tablet</span></a></li>
+											<li><a href="#" class="icon solid fa-flask"><span class="label">Flask</span></a></li>
+											<li><a href="#" class="icon solid fa-cog"><span class="label">Cog?</span></a></li>
+										</ul>
+										<header>
+											<h2>A random assortment of icons in circles</h2>
+											<p>And some text that attempts to explain their significance</p>
+										</header>
+										<p>
+											Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu<br />
+											ante risus. Aliquam erat volutpat. Aliquam luctus et mattis lectus amet pulvinar. Nam nec turpis consequat.
+										</p>
+									</section>
 
-                                <div class="row">
-                                    <div class="col-lg-7">
-                                        <p class="card-text"> {{ newProduct.numberSale}}  Vente </p>
-                                    </div>
+							</div>
+							<div class="col-12">
 
-                                    <div class="col-lg-4 d-flex justify-content-around">
-                                        <a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info "><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="{{path('order', { 'product': newProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end product card -->
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <!-- end container-product-new -->
+								<!-- Features -->
+									<section class="box features">
+										<h2 class="major"><span>A Major Heading</span></h2>
+										<div>
+											<div class="row">
+												<div class="col-3 col-6-medium col-12-small">
 
-    <!-- -------------------------------------------
-                container Free Template
-    -------------------------------------------  -->
-    <div class="container-free col-lg-12">
-        <div class="box-card centered">
-            <h2 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  Template gratuit  </h2>
-            <div class="row">
-                {% for FreeProduct in FreeProduct %}
-                    <div class="col-lg-3 d-flex justify-content-around">
-                        <!-- product card -->
-                        <div class="card" style="width: 26rem;">
-                            <img class="card-img-top" src="product/img/{{ FreeProduct.img1 }}"  alt="{{ FreeProduct.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title-product">{{ FreeProduct.name }}</h5>
-                                <p class="card-text">{{ FreeProduct.description }}</p>
-                                <p class="deepskyblue deepskyblue-text-middle font1"> <strong> Produit gratuit </strong>  </p>
-                                <div class="row middle-align-row">
-                                    {% if FreeProduct.price == 0 %}
-                                        <div class="col-lg-4 d-flex justify-content-around">
-                                                <a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
-                                                    download>
-                                                    <button type="button" class="btn btn-success download-btn-free">Download</button>
-                                                </a>
-                                        </div>
-                                        <div class="col-lg-6 d-flex">
-                                                <a href="{{ path('product_show', {'id': FreeProduct.id}) }}"> 
-                                                    <button type="button" class="btn btn-secondary download-btn-free btn-deepskyblue">Voir le produit </button>
-                                                </a>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end product card -->
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <!-- end Container Free Template -->
-</div>
+													<!-- Feature -->
+														<section class="box feature">
+															<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+															<h3><a href="#">A Subheading</a></h3>
+															<p>
+																Phasellus quam turpis, feugiat sit amet ornare in, a hendrerit in
+																lectus dolore. Praesent semper mod quis eget sed etiam eu ante risus.
+															</p>
+														</section>
+
+												</div>
+												<div class="col-3 col-6-medium col-12-small">
+
+													<!-- Feature -->
+														<section class="box feature">
+															<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+															<h3><a href="#">Another Subheading</a></h3>
+															<p>
+																Phasellus quam turpis, feugiat sit amet ornare in, a hendrerit in
+																lectus dolore. Praesent semper mod quis eget sed etiam eu ante risus.
+															</p>
+														</section>
+
+												</div>
+												<div class="col-3 col-6-medium col-12-small">
+
+													<!-- Feature -->
+														<section class="box feature">
+															<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+															<h3><a href="#">And Another</a></h3>
+															<p>
+																Phasellus quam turpis, feugiat sit amet ornare in, a hendrerit in
+																lectus dolore. Praesent semper mod quis eget sed etiam eu ante risus.
+															</p>
+														</section>
+
+												</div>
+												<div class="col-3 col-6-medium col-12-small">
+
+													<!-- Feature -->
+														<section class="box feature">
+															<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
+															<h3><a href="#">And One More</a></h3>
+															<p>
+																Phasellus quam turpis, feugiat sit amet ornare in, a hendrerit in
+																lectus dolore. Praesent semper mod quis eget sed etiam eu ante risus.
+															</p>
+														</section>
+
+												</div>
+												<div class="col-12">
+													<ul class="actions">
+														<li><a href="#" class="button large">Do Something</a></li>
+														<li><a href="#" class="button alt large">Think About It</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</section>
+
+							</div>
+							<div class="col-12">
+
+								<!-- Blog -->
+									<section class="box blog">
+										<h2 class="major"><span>Another Major Heading</span></h2>
+										<div>
+											<div class="row">
+												<div class="col-9 col-12-medium">
+													<div class="content">
+
+														<!-- Featured Post -->
+															<article class="box post">
+																<header>
+																	<h3><a href="#">Here's a really big heading</a></h3>
+																	<p>With a smaller subtitle that attempts to elaborate</p>
+																	<ul class="meta">
+																		<li class="icon fa-clock">15 minutes ago</li>
+																		<li class="icon fa-comments"><a href="#">8</a></li>
+																	</ul>
+																</header>
+																<a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
+																<p>
+																	Phasellus quam turpis, feugiat sit amet ornare in, a hendrerit in lectus. Praesent
+																	semper mod quis eget mi. Etiam sed ante risus aliquam erat et volutpat. Praesent a
+																	dapibus velit. Curabitur sed nisi nunc, accumsan vestibulum lectus. Lorem ipsum
+																	dolor sit non aliquet sed, tempor et dolor. Praesent a dapibus velit. Curabitur
+																	accumsan.
+																</p>
+																<a href="#" class="button">Continue Reading</a>
+															</article>
+
+													</div>
+												</div>
+												<div class="col-3 col-12-medium">
+													<div class="sidebar">
+
+														<!-- Archives -->
+															<ul class="divided">
+																<li>
+																	<article class="box post-summary">
+																		<h3><a href="#">A Subheading</a></h3>
+																		<ul class="meta">
+																			<li class="icon fa-clock">6 hours ago</li>
+																			<li class="icon fa-comments"><a href="#">34</a></li>
+																		</ul>
+																	</article>
+																</li>
+																<li>
+																	<article class="box post-summary">
+																		<h3><a href="#">Another Subheading</a></h3>
+																		<ul class="meta">
+																			<li class="icon fa-clock">9 hours ago</li>
+																			<li class="icon fa-comments"><a href="#">27</a></li>
+																		</ul>
+																	</article>
+																</li>
+																<li>
+																	<article class="box post-summary">
+																		<h3><a href="#">And Another</a></h3>
+																		<ul class="meta">
+																			<li class="icon fa-clock">Yesterday</li>
+																			<li class="icon fa-comments"><a href="#">184</a></li>
+																		</ul>
+																	</article>
+																</li>
+																<li>
+																	<article class="box post-summary">
+																		<h3><a href="#">And Another</a></h3>
+																		<ul class="meta">
+																			<li class="icon fa-clock">2 days ago</li>
+																			<li class="icon fa-comments"><a href="#">286</a></li>
+																		</ul>
+																	</article>
+																</li>
+																<li>
+																	<article class="box post-summary">
+																		<h3><a href="#">And One More</a></h3>
+																		<ul class="meta">
+																			<li class="icon fa-clock">3 days ago</li>
+																			<li class="icon fa-comments"><a href="#">8,086</a></li>
+																		</ul>
+																	</article>
+																</li>
+															</ul>
+															<a href="#" class="button alt">Archives</a>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						<div class="row gtr-200">
+							<div class="col-12">
+
+								<!-- About -->
+									<section>
+										<h2 class="major"><span>What's this about?</span></h2>
+										<p>
+											This is <strong>TXT</strong>, yet another free responsive site template designed by
+											<a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net">HTML5 UP</a>. It's released under the
+											<a href="http://html5up.net/license/">Creative Commons Attribution</a> license so feel free to use it for
+											whatever you're working on (personal or commercial), just be sure to give us credit for the design.
+											That's basically it :)
+										</p>
+									</section>
+
+							</div>
+							<div class="col-12">
+
+								<!-- Contact -->
+									<section>
+										<h2 class="major"><span>Get in touch</span></h2>
+										<ul class="contact">
+											<li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>
+											<li><a class="icon brands fa-twitter" href="#"><span class="label">Twitter</span></a></li>
+											<li><a class="icon brands fa-instagram" href="#"><span class="label">Instagram</span></a></li>
+											<li><a class="icon brands fa-dribbble" href="#"><span class="label">Dribbble</span></a></li>
+											<li><a class="icon brands fa-linkedin-in" href="#"><span class="label">LinkedIn</span></a></li>
+										</ul>
+									</section>
+
+							</div>
+						</div>
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 {% endblock %}
