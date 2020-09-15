@@ -37,7 +37,7 @@
             // createOrder appelle votre serveur pour obtenir l'ID de commande.
             createOrder: function (data, actions) {
                 // return fetch('/perso/Web-Item-Market/public/createOrder', { // dev
-                   return fetch('/createOrder', {
+                   return fetch('http://webitemmarket.yohanndurand.fr/createOrder', {
                     method: 'POST'
                 }).then(function(res) {
                     if (res.status === 204)
@@ -58,7 +58,7 @@
             onApprove: function (data, actions) {
                 // console.log(data.orderID) ;
                 // return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, { // dev
-                return fetch('/captureOrder/'+data.orderID, {
+                return fetch('http://webitemmarket.yohanndurand.fr/captureOrder/'+data.orderID, {
                     method: 'POST'
                 }).then(function(res) {
                     console.log(res.status);
