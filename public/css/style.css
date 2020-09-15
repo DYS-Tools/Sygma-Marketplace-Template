@@ -1043,3 +1043,16 @@ div#search_product_form div label{
     margin-top: 45px;
 }
 
+
+/******* DROPDOWN menu ******/
+
+nav{
+}
+.dropdown-main-menu{
+    margin: 0px;
+    padding: 0px;
+}
+.dropdown-menu{
+    margin: 0px;
+    padding: 0px;
+}
