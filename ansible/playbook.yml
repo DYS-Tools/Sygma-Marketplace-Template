@@ -97,14 +97,14 @@
 
     # Paypal
     # For account test // no use
-    - name: Add Paypal SANDBOX_ACCOUNT_TEST information in .env file
-      become: true
-      lineinfile:
-        dest: "{{ symfony_root_dir }}/.env"
+    #- name: Add Paypal SANDBOX_ACCOUNT_TEST information in .env file
+      #become: true
+      #lineinfile:
+        #dest: "{{ symfony_root_dir }}/.env"
         # replace
-        regexp: 'SANDBOX_ACCOUNT_TEST=key'
+        #regexp: 'SANDBOX_ACCOUNT_TEST=key'
         # for
-        line: SANDBOX_ACCOUNT_TEST={{ sandbox_account_test }}
+        #line: SANDBOX_ACCOUNT_TEST={{ sandbox_account_test }}
 
     - name: Add Paypal PAYPAL_CLIENT_ID_TEST information in .env file
       become: true
@@ -123,12 +123,6 @@
         regexp: 'PAYPAL_SECRET_TEST=key'
         # for
         line: PAYPAL_SECRET_TEST={{ paypal_secret_test }}
-
-    ## replace for var prod
-
-      # SANDBOX_ACCOUNT_TEST=key        Fait en théorie a mettre dans le vault
-      # PAYPAL_CLIENT_ID_TEST=key       Fait en théorie a mettre dans le vault
-      # PAYPAL_SECRET_TEST=key          Fait en théorie a mettre dans le vault
 
     ###### end .env ######
 
