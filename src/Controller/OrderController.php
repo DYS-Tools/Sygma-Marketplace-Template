@@ -244,7 +244,7 @@ class OrderController extends AbstractController
         curl_close($ch);
 
         $resultJson = json_decode($result);
-        dd($resultJson);  // json   Error ?
+        //dd($resultJson);  // json   Error ? // Todo : dd in test 
 
         return $resultJson ;
     }
