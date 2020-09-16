@@ -13,11 +13,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * Require ROLE_ADMIN for *every* controller method in this class.
  * @IsGranted("ROLE_ADMIN")
+ * @Route("/sy-admin", name="-sy_admin_index")
  */
 class AdminDashboardController extends AbstractController
 {
     /**
-     * @Route("/sy-admin", name="-sy_admin_index")
+     * @Route("/", name="sy_admin_index")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function index()
