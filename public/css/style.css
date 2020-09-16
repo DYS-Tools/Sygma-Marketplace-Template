@@ -306,23 +306,23 @@ ul.dropdown-menu{
 ul.dropdown-menu.show {
     background-color: #343a40 ;
     color : #1E90FF;
-    margin-top : 20px;
+    margin-top : 0px;
     position: relative;
-    top: 20px; left: -270px;
+    top: -10px; left: -270px;
     padding-left: 20px ;
     padding-right: 10px;
     width: 25vw;
 }
 ul.dropdown-menu.show li a{
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 ul.dropdown-menu.show li a  {
     color : #1E90FF;
     font-size: 16px;
     padding: 0%;
-    padding-bottom: 15%;
+    padding-bottom: 5%;
     transition-duration: 0.3s;
 }
 .dropdown-menu.show li a:hover{
@@ -965,14 +965,14 @@ div#search_product_form div label{
 /************* MY SELL ************/
 
 .grey-card{
-    margin: 4%;
+    margin: 2%;
     border: 1px solid rgba(190,190,190,0.8);
     box-shadow: 1px 1px 15px rgba(200,200,200,0.8);
-    padding: 4%;
+    padding: 2%;
     text-align: center;
 }
 .grey-card h1{
-    font-size: 24px;
+    font-size: 21px;
     text-align: center;
 }
 .grey-card p{
@@ -1054,8 +1054,6 @@ div#search_product_form div label{
 
 /******* DROPDOWN menu ******/
 
-nav{
-}
 .dropdown-main-menu{
     margin-right: 25px;
     margin-top: 10px;
@@ -1065,7 +1063,7 @@ nav{
 }
 .dropdown-menu{
     margin-right: 25px;
-    margin-top: 10px;
+    margin-top: 70px;
 }
 .profile-img{
     color: #1E90FF;
@@ -1080,4 +1078,16 @@ nav{
 .ico-index{
     font-size: 60px;
     color: #1E90FF;
+}
+.hr-dropdown{
+    margin: 0px;
+    color: #1E90FF;
+}
+.dropdown-menu li{
+    margin: 0px;
+    padding: 0px;
+}
+.title-dropdown{
+    margin: 0;
+    padding: 0px;
 }

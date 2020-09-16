@@ -82,20 +82,28 @@ class SecurityController extends AbstractController
     {
         //@IsGranted("ROLE_USER")
         //@Security("is_granted('ROLE_USER')")
+        $user = $this->getUser();
 
         $form = $this->createForm(BecomeAuthorFormType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $user = $this->getUser();
-            $user->setRoles(['ROLE_AUTHOR']);
-            $em->persist($user);
-            $em->flush();
+            if($user->getRoles() == ['ROLE_USER']){
+                $user->setRoles(['ROLE_AUTHOR']);
+                $em->persist($user);
+                $em->flush();
 
-            $this->addFlash(
-                'success',
-                'you are author now, congratulation !'
-            );
+                $this->addFlash(
+                    'success',
+                    'you are author now, congratulation !'
+                );
+            }
+            else{
+                $this->addFlash(
+                    'success',
+                    'Vous ne respectez pas les conditions requises pour être auteur'
+                );
+            }
 
             return $this->redirectToRoute('product_index');
         }
