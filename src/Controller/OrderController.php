@@ -145,7 +145,8 @@ class OrderController extends AbstractController
         $accessToken= $BearerAccessToken;
         dump($accessToken);
 
-        $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders');
+        // $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders'); // sendbox = dev 
+        $ch = curl_init('https://api.paypal.com/v2/checkout/orders'); // for prod
         curl_setopt($ch, CURLOPT_POST, 1);
         // HEADER
         curl_setopt($ch, CURLOPT_HEADER, false);
@@ -208,13 +209,15 @@ class OrderController extends AbstractController
         dump($orderId);
         // test function : http://localhost/perso/Web-Item-Market/public/captureOrder
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
+        // https://developer.paypal.com/docs/platforms/test-go-live/   // test go live
 
         $BearerAccessToken = $payment->connectPaypal();
         $accessToken = $BearerAccessToken;
         dump($accessToken);
 
-        //$ch = curl_init('https://api.paypal.com/v2/checkout/orders/'.$orderId.'/capture'); // docs
-        $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders/'.$orderId.'/capture');  // sendbox api
+        //$ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders/'.$orderId.'/capture');  // sendbox = dev 
+        $ch = curl_init('https://api.paypal.com/v2/checkout/orders/'.$orderId.'/capture'); // docs // for prod
+
         curl_setopt($ch, CURLOPT_POST, 1);
         // HEADER
         curl_setopt($ch, CURLOPT_HEADER, false);
