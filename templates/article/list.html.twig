@@ -20,11 +20,11 @@
                                     <div class="row">
                                         <div class="col-lg-8">
                                             <header>
-                                                <h3><a href="#">{{ article.title }}</a></h3>
-                                                <p>{{ article.description }}</p>
+                                                <h5><a class="blue" href="#">{{ article.title }}</a></h5>
+                                                <p class="blog-description">{{ article.description }}</p>
                                                 
                                                 <ul class="meta">
-                                                    <li class="icon fa-clock">{{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</li>
+                                                    <li class="icon fa-clock clock-icon">{{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</li>
                                                     <!--<li class="icon fa-comments"><a href="#">8</a></li>-->
                                                 </ul>
                                             </header>

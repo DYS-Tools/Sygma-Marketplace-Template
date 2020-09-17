@@ -14,7 +14,9 @@ body{
     overflow-y: scroll;
 
 }
-
+span{
+    background-color: none;
+}
 .btn-form{
     border: 2px solid #1E90FF;
     border-radius: 3px;
@@ -980,12 +982,16 @@ div#search_product_form div label{
 }
 .grey-card .number{
     font-size: 34px;
+    margin: 10px;
+}
+.box-stats{
+    margin: 0 auto;
 }
 
 /******* BLOG **********/
 .container-blog{
     border: 1px solid rgba(190,190,190,0.8);
-    box-shadow: 1px 1px 15px rgba(200,200,200,0.8);
+    box-shadow: 1px 1px 15px rgba(230,230,230,0.1);
     padding: 20px;
 }
 .card-title-blog{
@@ -1042,7 +1048,7 @@ div#search_product_form div label{
 .container-white {
     margin-top: 50px ;
     background-color: white ;
-    padding: 15px ;
+    /*padding: 10px ;*/
     margin-bottom: 50px;
 }
 
@@ -1090,4 +1096,55 @@ div#search_product_form div label{
 .title-dropdown{
     margin: 0;
     padding: 0px;
+}
+
+/*** Botstrap edit ****/
+div.card-body.row{
+
+}
+.overflow{
+    overflow: hidden;
+}
+.card-title{
+    background-color: none;
+}
+
+/*********BTN******/
+
+.btn,.button{
+    background-color: #1E90FF;
+    border: 1px solid #1E90FF;
+    padding: 18px;
+    
+}
+.btn-info{
+    background-color: #1E90FF;
+    border: 1px solid #1E90FF;
+    padding: 18px;
+    color: white;
+    font-weight: 400;
+}
+.btn:hover,.button:hover {
+    color: #1E90FF;
+    background-color: white;
+    border: 1px solid #1E90FF;
+}
+.btn-info:hover{
+    transition-duration: 0.3s;
+}
+.index-card-button{
+    padding-right: 35px;
+    padding-left: 35px;
+}
+.box-button-index{
+    margin-left: 15%;
+}
+
+/**********************************/
+
+.blog-description{
+    font-size: 12px;
+}
+.clock-icon,.blue{
+    color: #1E90FF;
 }

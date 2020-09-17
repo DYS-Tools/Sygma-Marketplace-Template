@@ -17,63 +17,36 @@
         <hr/>
 
         <div class="container-card-tab-title">  <h2> <i class="fa fa-file-text" aria-hidden="true"></i>     Article </h2> </div>
-        <div class="container-card-tab">
-
-
             <div class="product-button">
                 <button type="button">
                     <a href="{{ path('article_new') }}">Créer un article  <i class="fa fa-file-text" aria-hidden="true"></i></a>
                 </button>
             </div>
             <br/>
-
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Titre</th>
-                        <th>Description</th>
-                        <th>Image ( lien ) </th>
-                        <th>Créer le</th>
-                        <th>voir plus</th>
-                        <th>Modifier</th>
-                        <th>Supprimer</th>
-                    </tr>
-                    </thead>
-                    <tbody>
                     {% for article in articles %}
-                        <tr>
-                            <td> {{ article.id }}</td>
-                            <td>{{ article.title }}</td>
-                            <td>{{ article.description }}</td>
-                            <td>{{ article.img1 }}</td>
-                            <td>{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}</td>
-                            <td>
-                                <div class="product-button">
-                                    <button type="button">
-                                        <a href="{{ path('article_show', {'id': article.id}) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="product-button">
-                                    <button type="button">
-                                        <a href="{{ path('article_edit', {'id': article.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                {{ include('article/_delete_form.html.twig') }}
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="7">pas de résultats</td>
-                        </tr>
+                    <div class="container-card-tab">
+                        <h2> Article {{ article.id }}</h2>
+                        <h2> Nom : {{ article.title }} </h2>
+                        <p> {{ article.description }}</p>
+                        <p>{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}</p>
+
+                        <div class="row">
+                            <div class="product-button">
+                                <button type="button">
+                                    <a href="{{ path('article_show', {'id': article.id}) }}">Voir l'article</a>
+                                </button>
+                            </div>
+
+                             <div class="product-button">
+                                <button type="button">
+                                    <a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br/><br/>
                     {% endfor %}
-                    </tbody>
-                </table>
-        </div> <!-- container-card-tab -->
     </div> <!-- end container -->
     <br/><br/>
     {% endblock %}

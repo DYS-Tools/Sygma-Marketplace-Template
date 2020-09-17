@@ -42,8 +42,15 @@
                             <td>{{ ticket.name }}</td>
                             <td>{{ ticket.subject }}</td>
                             <td>{{ ticket.email }}</td>
-                            <td><a href="{{ path('ticket_handler_Single', {'id': ticket.id}) }}"> <i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                            <td>{{ ticket.status }}</td>
+                            <td>
+                                <div class="product-button">
+                                    <button type="button">
+                                        <a href="{{ path('ticket_handler_Single', {'id': ticket.id}) }}"> 
+                                    Répondre</a>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>{% if ticket.status == 0 %}<h5><span class="badge badge-success">Ouvert</span></h5> {% endif %}</td>
 
                         </tr>
                         </tbody>

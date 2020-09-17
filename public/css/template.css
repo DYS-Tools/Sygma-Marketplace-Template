@@ -2200,7 +2200,7 @@ input, select, textarea {
 	.box.post{
 		/*border: 1px solid black; */
 		padding: 23px;
-		box-shadow: 2px 2px 15px rgba(30, 30, 30, 0.25);
+		box-shadow: 2px 2px 15px rgba(180, 180, 180, 0.2);
 	}
 	.box.highlight {
 		text-align: center;

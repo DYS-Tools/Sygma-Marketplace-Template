@@ -71,9 +71,9 @@
 											<div class="card-body">
 												<h5 class="card-title">{{ bestSell.name }}</h5>
 												<p class="card-text"> {{ bestSell.description }}</p>
-													<div class="col-lg-4 d-flex justify-content-around">
-														<a href="{{ path('product_show', {'id': bestSell.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-														<a href="{{ path('order', { 'product': bestSell.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+													<div class="col-lg-4 d-flex justify-content-around box-button-index">
+														<a href="{{ path('product_show', {'id': bestSell.id}) }}" class="btn btn-info index-card-button">Voir</a>
+														<a href="{{ path('order', { 'product': bestSell.id }  ) }}" class="btn btn-info index-card-button">Acheter  </a>
 													</div>
 											</div>
 										</div>
@@ -91,9 +91,9 @@
 											<div class="card-body">
 												<h5 class="card-title">{{ newProduct.name }}</h5>
 												<p class="card-text"> {{ newProduct.description }}</p>
-													<div class="col-lg-4 d-flex justify-content-around">
-														<a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-														<a href="{{ path('order', { 'product': newProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+													<div class="col-lg-4 d-flex justify-content-around box-button-index">
+														<a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info index-card-button">Voir</a>
+														<a href="{{ path('order', { 'product': newProduct.id }  ) }}" class="btn btn-info index-card-button">Acheter</a>
 													</div>
 											</div>
 										</div>
@@ -112,18 +112,19 @@
 												<div class="card-body">
 													<h5 class="card-title">{{ FreeProduct.name }}</h5>
 													<p class="card-text"> {{ FreeProduct.description }}</p>
-													<span class="deepskyblue deepskyblue-text-middle font1"> <strong> Produit gratuit </strong>  </span>
+													
+													<br/>
 										<div class="row middle-align-row">
 										{% if FreeProduct.price == 0 %}
 											<div class="col-lg-4 d-flex justify-content-around">
 													<a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
 														download>
-														<button type="button" class="btn btn-success download-btn-free">Download</button>
+														<button type="button" class="btn btn-success download-btn-free">Téléchargement</button>
 													</a>
 											</div>
 											<div class="col-lg-6 d-flex">
 													<a href="{{ path('product_show', {'id': FreeProduct.id}) }}"> 
-														<button type="button" class="btn btn-secondary download-btn-free btn-deepskyblue">Voir le produit </button>
+														<button type="button" class="btn btn-secondary download-btn-free index-card-button">Voir le produit </button>
 													</a>
 											</div>
 										{% endif %}

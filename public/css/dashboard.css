@@ -4,17 +4,23 @@
 .container-card {
     background-color: white ;
     margin: 15px ;
-    height: 300px ;
-    border-left : 4px deepskyblue solid ;
-    border-right : 4px deepskyblue solid ;
-    border-bottom : 5px deepskyblue dashed ;
+    height: 400px ;
+    border-top: 7px #1E90FF solid;
+    border-left : 2px #1E90FF solid ;
+    border-right : 2px #1E90FF solid ;
+    border-bottom : 1px #1E90FF solid ;
     border-radius: 10px;
+    padding-top: 15px;
+}
+.container-card .card-title{
+    margin-left: 15%;
 }
 
 .dashboard .card-title {
-    background-color: deepskyblue;
+    background-color: #1E90FF;
     color : white;
     padding : 10px ;
+    padding-top: 15px;
 }
 
 .card-content {
@@ -29,18 +35,34 @@
    ========================================================================================================== */
 
 .container-card-tab {
-    border-left : 4px deepskyblue solid ;
-    border-right : 4px deepskyblue solid ;
-    border-top : 4px deepskyblue solid ;
-    border-bottom : 5px deepskyblue dashed ;
+    border-top: 7px #1E90FF solid;
+    border-left : 2px #1E90FF solid ;
+    border-right : 2px #1E90FF solid ;
+    border-bottom : 1px #1E90FF solid ;
     padding: 15px ;
 }
 
 .container-card-tab-title {
-    background-color: deepskyblue;
+    /*background-color: #1E90FF;*/
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color : white;
     padding : 10px ;
     height: 50px;
     width: 20%;
     border-radius: 8px ;
+}
+
+/******** BUTTON *************/
+div.product-button button{
+    color: white;
+    border-radius: 4px;
+    background-color: #1E90FF;
+    padding: 20px;
+    height: auto;
+    width: auto;
+    
+}
+div.product-button button a{
+    color: white;
+    padding: 15px;
 }
