@@ -80,8 +80,6 @@ class SecurityController extends AbstractController
      */
     public function becomeAuthor(EntityManagerInterface $em, Request $request)
     {
-        //@IsGranted("ROLE_USER")
-        //@Security("is_granted('ROLE_USER')")
         $user = $this->getUser();
 
         $form = $this->createForm(BecomeAuthorFormType::class);
