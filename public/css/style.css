@@ -1135,9 +1135,12 @@ div.card-body.row{
 .index-card-button{
     padding-right: 35px;
     padding-left: 35px;
+    font-weight: 700;
+    font-size: 20px;
 }
 .box-button-index{
     margin-left: 15%;
+    font-weight: 700;
 }
 
 /**********************************/
