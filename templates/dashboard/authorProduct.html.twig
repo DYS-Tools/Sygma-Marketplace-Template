@@ -15,42 +15,27 @@
         <hr>
         <h3> Produit actuellement en vente : </h3>
         <br/>
-
-    </div>
     
         {% if products > 0  %}
-        
-            <div class="box-card">
-                <div class="row">
                 {% for product in products %}
-
-                    <div class="col-lg-3 d-flex justify-content-around">
-                        <!-- product card -->
-                        <div class="card" style="width: 26rem;">
-                            <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title-product">{{ product.name }}</h5>
-                                <p class="card-text">{{ product.description }}</p>
-
-                                <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
-
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <p class="card-text"> {{ product.numberSale}}  Vente </p>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="{{path('product_edit', { 'id': product.id }  ) }}" class="btn btn-info"> Edit</a>
-                                    </div>
+                        <div class="card w-100">
+                            <div class="card-header">
+                                Produit en vente
+                            </div>
+                            <div class="card-body row">
+                                <div class="col-lg-7">
+                                    <h5 class="card-title ">{{ product.name }}</h5>
+                                    <img class="w-20" src="../product/img/{{ product.img1 }}" alt="{{ product.name }}" width="95%" height="70%">
+                                </div>
+                                <div class="col-lg-4">
+                                    <br>
+                                    <p class="card-text">{{ product.description }}</p>
+                                    <a href="#" class="btn btn-primary">Voir le produit dans la boutique</a>
                                 </div>
                             </div>
-                        </div>
-                        <!-- end product card -->
-                    </div>
+                        </div> 
+                    </br>
                 {% endfor %}
-                </div>
-            </div>
 
         {% else %}
             <!-- <img class="card-img-top" src="product/img/{ { product.img1 }}"  alt="{ { product.name }}" height="420" width="100%">-->
@@ -60,4 +45,5 @@
             
         {% endif %}
         <br/><br/>
+    </div>
 {% endblock %}
