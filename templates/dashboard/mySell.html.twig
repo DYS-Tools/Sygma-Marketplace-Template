@@ -6,21 +6,21 @@
 
     {{ include('dashboard/_nav.html.twig') }}
 
-    <div class="container">
+    <div class="container overflow">
         <div class="container-white">
             <div class="container">
                 <h2> Résumé des ventes </h2>
                 <div class="row">
                     <br/><br/>
-                    <div id="columnchart_values" style="width: 1200px; height: 350px;"></div>
+                    <div id="columnchart_values" style="width: 70%; height: 350px;"></div>
                     <br/><br/><br/>
                 </div>
+                <br/><br/><br/><br/>
 
-                <div class="row">
+                <div class="row box-stats">
                     <div class="col-lg-4 offset-lg-1">
                         <div class="grey-card">
                             <h1> Revenus généré </h1>
-                            <p> nombre d'euros généré avec l'ensemble des produits </p>
                             <p class="number"> {{ MoneyGenerated }} € </p>
                         </div>
                     </div>
@@ -28,7 +28,6 @@
                     <div class="col-lg-4 offset-lg-1">
                         <div class="grey-card">
                             <h1> Produits publié </h1>
-                            <p> Nombre de produits publié et accepté par la modération (lenght produit author ) </p>
                             <p class="number"> {{ authorProductNumber }} </p>
                         </div>
                     </div>
@@ -36,7 +35,6 @@
                     <div class="col-lg-4 offset-lg-1">
                         <div class="grey-card">
                             <h1> Vente ce mois ci </h1>
-                            <p> Revenu en euros pour le mois xx/xx/xx  ( sum total produit author * 0.80 les 30 derniers jours ) </p>
                             <p class="number"> {{ CAAuthorForMonth }} € </p>
                         </div>
                     </div>
@@ -44,7 +42,6 @@
                     <div class="col-lg-4 offset-lg-1">
                         <div class="grey-card">
                             <h1> Argent disponible</h1>
-                            <p> Somme disponible pour le retrait </p>
                             <p class="number"> {{ user.availablePayout }} € </p>
                         </div>
                     </div>
@@ -126,7 +123,7 @@
                         height: 350,
                         bar: {groupWidth: "95%"},
                         legend: { position: "none" },
-                        backgroundColor: '#f7f7f7',
+                        backgroundColor: '#ffffff',
                     };
                     var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
                     chart.draw(view, options);

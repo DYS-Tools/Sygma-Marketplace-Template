@@ -17,7 +17,7 @@ class BecomeAuthorFormType extends AbstractType
             'mapped' => false,
             'required' => true,
         ])
-        ->add('save', SubmitType::class)
+        ->add('Confirmer', SubmitType::class)
         ;
     }
 

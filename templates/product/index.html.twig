@@ -1,168 +1,290 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Nos produits{% endblock %}
 
 {% block body %}
 
-<ul class="nav nav-pills justify-content-center category-nav">
+	<head>
+		<title>Web Item Market</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	</head>
 
-    <!-- Dropdown Categories for media queries -->
-    <li class="nav-item dropdown category-nav-mobile">
-    <a class="nav-link dropdown-toggle category-nav-mobile-title" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Voir les catégories</a>
-    <div class="dropdown-menu category-dropdown">
-        {% for category in categories %}
-            <a class="dropdown-item" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
-        {% endfor %}
-    </div>
-  </li>
-    <!-- end dropdown for category -->
+	<body class="homepage is-preload">
+	<img src="img/test_baner1.jpg" alt="Web-Item-Market" style="width: 100%">
+		<div id="page-wrapper">
+			<!-- Header -->
+			<!--
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="index.html" id="logo">Web Item Market</a></h1>
+							<p>Des Templates CSS unique et incroyables</p>
+						</div>
+					</div>
+				</header>
+			-->
 
-    {% for category in categories %}
-        <li class="nav-item category-nav-desktop">
-            <a class="nav-link category-link-nav" href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a>
-        </li>
-    {% endfor %}
+			<!-- Banner -->
+			<!--
+				<section id="banner">
+					<div class="content">
+						<h2>Welcome to TXT by HTML5 UP</h2>
+						<p>A free responsive site template built on HTML5, CSS3, and some other stuff</p>
+						<a href="#main" class="button scrolly">Alright let's go</a>
+					</div>
+				</section>
+			-->
 
-</ul>
-    <img src="img/test_baner1.jpg" alt="Web-Item-Market" style="width: 100%">
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row gtr-200">
+							<div class="col-12">
 
-    <!-- nEW SEARCH BAR -->
-    <div class="search-container">
-        <div class="row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 offset-lg-2 form-search">
-                    {{ form_start(searchForm) }}
-                        {{ form_widget(searchForm) }}
-                    </div>
-                    <button class="search-submit-button"> <i class="fas fa-search"></i> </button>
-                    {{ form_end(searchForm) }}
-                </div>
-            </div>
+							<!-- nEW SEARCH BAR -->
+								<div class="search-container">
+									<div class="row">
+										<div class="container">
+											<div class="row">
+												<div class="col-lg-8 offset-lg-2 form-search">
+												{{ form_start(searchForm) }}
+													{{ form_widget(searchForm) }}
+												</div>
+												<button class="search-submit-button"> <i class="fas fa-search"></i> </button>
+												{{ form_end(searchForm) }}
+											</div>
+										</div>
+									</div>
+								</div>
 
+							<h2 class="major"><span>Nos produits</span></h2>
 
-        </div>
-    </div>
+							<div class="item-container">
+								<h3> Nos meilleurs produits </h3>
+								<div class="row">
+									{% for bestSell in bestSell %}
+									<div class="col-lg-6">
+										<div class="card" style="width: 35rem;">
+											<img class="card-img-top" src="product/img/{{ bestSell.img1 }}" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">{{ bestSell.name }}</h5>
+												<p class="card-text"> {{ bestSell.description }}</p>
+													<div class="col-lg-4 d-flex justify-content-around box-button-index">
+														<a href="{{ path('product_show', {'id': bestSell.id}) }}" class="btn btn-info index-card-button">Voir</a>
+														<a href="{{ path('order', { 'product': bestSell.id }  ) }}" class="btn btn-info index-card-button">Acheter  </a>
+													</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+								<br/><hr>
 
-    <img src="img/transit_banner.jpg" alt="Web-Item-Market" style="width: 100%">
-    <br/>
-    <br/><br/>
+								<h3> Nouveaux produits </h3>
+								<div class="row">
+								{% for newProduct in newProduct %}
+									<div class="col-lg-6">
+										<div class="card" style="width: 35rem;">
+											<img class="card-img-top" src="product/img/{{ newProduct.img1 }}" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">{{ newProduct.name }}</h5>
+												<p class="card-text"> {{ newProduct.description }}</p>
+													<div class="col-lg-4 d-flex justify-content-around box-button-index">
+														<a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info index-card-button">Voir</a>
+														<a href="{{ path('order', { 'product': newProduct.id }  ) }}" class="btn btn-info index-card-button">Acheter</a>
+													</div>
+											</div>
+										</div>
+									</div>
 
-    <!-- -------------------------------------------
-            container-best-sell
-    -------------------------------------------  -->
-    <div class="container-best-sell col-lg-12">
-        <div class="box-card">
-            <h2 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  Nos meilleurs produits  </h2>
-            <div class="row">
-                {% for bestSell in bestSell %}
-                    <div class="col-lg-3 d-flex justify-content-around">
-                        <!-- product card -->
-                        <div class="card" style="width: 26rem;">
-                            <img class="card-img-top" src="product/img/{{ bestSell.img1 }}"  alt="{{ bestSell.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title-product">{{ bestSell.name }}</h5>
-                                <p class="card-text">{{ bestSell.description }}</p>
+								{% endfor %}
+								</div>
+								<br/><hr>
+								
+								<h3> Produits gratuits </h3>
+								<div class="row">
+									{% for FreeProduct in FreeProduct %}
+									<div class="col-lg-6">
+											<div class="card" style="width: 35rem;">
+												<img class="card-img-top" src="product/img/{{ FreeProduct.img1 }}" alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title">{{ FreeProduct.name }}</h5>
+													<p class="card-text"> {{ FreeProduct.description }}</p>
+													
+													<br/>
+										<div class="row middle-align-row">
+										{% if FreeProduct.price == 0 %}
+											<div class="col-lg-4 d-flex justify-content-around">
+													<a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
+														download>
+														<button type="button" class="btn btn-success download-btn-free">Téléchargement</button>
+													</a>
+											</div>
+											<div class="col-lg-6 d-flex">
+													<a href="{{ path('product_show', {'id': FreeProduct.id}) }}"> 
+														<button type="button" class="btn btn-secondary download-btn-free index-card-button">Voir le produit </button>
+													</a>
+											</div>
+										{% endif %}
+												</div>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
 
-                                <p class="deepskyblue"> <strong> {{ bestSell.price }} € </strong>  </p>
+							<br/><br/><br/>
+							<!--
+							<h2 class="major"><span>Nos actualités</span></h2>
+									<section class="box highlight">
+										<ul class="special">
+											<li><a href="#" class="icon solid fa-search"><span class="label">Magnifier</span></a></li>
+											<li><a href="#" class="icon solid fa-tablet-alt"><span class="label">Tablet</span></a></li>
+											<li><a href="#" class="icon solid fa-flask"><span class="label">Flask</span></a></li>
+											<li><a href="#" class="icon solid fa-cog"><span class="label">Cog?</span></a></li>
+										</ul>
+										<header>
+											<h2>A random assortment of icons in circles</h2>
+											<p>And some text that attempts to explain their significance</p>
+										</header>
+										<p>
+											Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus. Praesent semper mod quis eget mi. Etiam eu<br />
+											ante risus. Aliquam erat volutpat. Aliquam luctus et mattis lectus amet pulvinar. Nam nec turpis consequat.
+										</p>
+									</section>
 
-                                <div class="row">
-                                    <div class="col-lg-7">
-                                        <p class="card-text"> {{ bestSell.numberSale}}  Vente </p>
-                                    </div>
-                                    <hr>
-                                    <div class="col-lg-4 d-flex justify-content-around">
-                                        <a href="{{ path('product_show', {'id': bestSell.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="{{path('order', { 'product': bestSell.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end product card -->
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <!-- end container-best-sell -->
+							</div>
+							-->
+							<div class="col-12">
 
+								<!-- Features -->
+									<section class="box features">
+										<h2 class="major"><span>Avantage</span></h2>
+										<div>
+											<div class="row">
+												<div class="col-3 col-6-medium col-12-small">
 
-    <!-- -------------------------------------------
-            container-product-new
-    -------------------------------------------  -->
-    <div class="container-product-new col-lg-12">
-        <div class="box-card">
-            <h2 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  Nouveau produits  </h2>
-            <div class="row">
-                {% for newProduct in newProduct %}
-                    <div class="col-lg-3 d-flex justify-content-around">
-                        <!-- product card -->
-                        <div class="card" style="width: 26rem;">
-                            <img class="card-img-top" src="product/img/{{ newProduct.img1 }}"  alt="{{ newProduct.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title-product">{{ newProduct.name }}</h5>
-                                <p class="card-text">{{ newProduct.description }}</p>
-                                <p class="deepskyblue price-card"> {{ newProduct.price }} €</p>
+													<!-- Feature -->
+														<section class="box feature">
+															<a href="#" class="image featured"><i class="fas fa-book ico-index"></i></a>
+															<h3><a href="#">Template documenté</a></h3>
+															<p>
+																Nos designs sont documenté pour la facilité de la prise en main
+															</p>
+														</section>
 
-                                <div class="row">
-                                    <div class="col-lg-7">
-                                        <p class="card-text"> {{ newProduct.numberSale}}  Vente </p>
-                                    </div>
+												</div>
+												<div class="col-3 col-6-medium col-12-small">
 
-                                    <div class="col-lg-4 d-flex justify-content-around">
-                                        <a href="{{ path('product_show', {'id': newProduct.id}) }}" class="btn btn-info "><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="{{path('order', { 'product': newProduct.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end product card -->
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <!-- end container-product-new -->
+													<!-- Feature -->
+														<section class="box feature">
+															<a href="#" class="image featured"><i class="fas fa-marker ico-index"></i></a>
+															<h3><a href="#">Des mises a jour régulière</a></h3>
+															<p>
+																Notre site est maintenu et propose des mise a jour très régulières
+															</p>
+														</section>
 
-    <!-- -------------------------------------------
-                container Free Template
-    -------------------------------------------  -->
-    <div class="container-free col-lg-12">
-        <div class="box-card centered">
-            <h2 class="text-left"><!--<i class="fa fa-file-text" aria-hidden="true"></i>-->  Template gratuit  </h2>
-            <div class="row">
-                {% for FreeProduct in FreeProduct %}
-                    <div class="col-lg-3 d-flex justify-content-around">
-                        <!-- product card -->
-                        <div class="card" style="width: 26rem;">
-                            <img class="card-img-top" src="product/img/{{ FreeProduct.img1 }}"  alt="{{ FreeProduct.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title-product">{{ FreeProduct.name }}</h5>
-                                <p class="card-text">{{ FreeProduct.description }}</p>
-                                <p class="deepskyblue deepskyblue-text-middle font1"> <strong> Produit gratuit </strong>  </p>
-                                <div class="row middle-align-row">
-                                    {% if FreeProduct.price == 0 %}
-                                        <div class="col-lg-4 d-flex justify-content-around">
-                                                <a href="{{ asset("product/" ~ FreeProduct.file)  }}" 
-                                                    download>
-                                                    <button type="button" class="btn btn-success download-btn-free">Download</button>
-                                                </a>
-                                        </div>
-                                        <div class="col-lg-6 d-flex">
-                                                <a href="{{ path('product_show', {'id': FreeProduct.id}) }}"> 
-                                                    <button type="button" class="btn btn-secondary download-btn-free btn-deepskyblue">Voir le produit </button>
-                                                </a>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end product card -->
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <!-- end Container Free Template -->
-</div>
+												</div>
+												<div class="col-3 col-6-medium col-12-small">
+
+													<!-- Feature -->
+														<section class="box feature">
+															<a href="#" class="image featured"><i class="fas fa-shield-alt ico-index"></i></a>
+															<h3><a href="#">Un paiement sécurisé</a></h3>
+															<p>
+																Le site est en HTTPS, les transactions sont donc crypé, nous utilisons paypal pour encaisser les paiements.
+															</p>
+														</section>
+
+												</div>
+												<div class="col-3 col-6-medium col-12-small">
+
+													<!-- Feature -->
+														<section class="box feature">
+															<a href="#" class="image featured"><i class="fas fa-money-check-alt ico-index"></i></a>
+															<h3><a href="#">Des produits gratuits</a></h3>
+															<p>
+																Fouillez pour trouver également des produits gratuits
+															</p>
+														</section>
+
+												</div>
+												<div class="col-12">
+													<ul class="actions">
+														<li><a href="#" class="button large">Produits gratuits</a></li>
+														<li><a href="#" class="button alt large">Les nouveautés</a></li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</section>
+
+							</div>
+							
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						<div class="row gtr-200">
+							<div class="col-12">
+
+								<!-- About -->
+								<!--
+									<section>
+										<h2 class="major"><span>What's this about?</span></h2>
+										<p>
+											This is <strong>TXT</strong>, yet another free responsive site template designed by
+											<a href="http://twitter.com/ajlkn">AJ</a> for <a href="http://html5up.net">HTML5 UP</a>. It's released under the
+											<a href="http://html5up.net/license/">Creative Commons Attribution</a> license so feel free to use it for
+											whatever you're working on (personal or commercial), just be sure to give us credit for the design.
+											That's basically it :)
+										</p>
+									</section>
+								-->
+
+							</div>
+							<div class="col-12">
+
+								<!-- Contact -->
+									<section>
+										<h2 class="major"><span>Rejoignez la communauté</span></h2>
+										<ul class="contact">
+											<li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>
+											<li><a class="icon brands fa-twitter" href="#"><span class="label">Twitter</span></a></li>
+											<li><a class="icon brands fa-instagram" href="#"><span class="label">Instagram</span></a></li>
+											<li><a class="icon brands fa-dribbble" href="#"><span class="label">Dribbble</span></a></li>
+											<li><a class="icon brands fa-linkedin-in" href="#"><span class="label">LinkedIn</span></a></li>
+										</ul>
+									</section>
+
+							</div>
+						</div>
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; DYS-Tools. All rights reserved</li><li> WebItemMarket</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<!--
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+		-->
+
+	</body>
 {% endblock %}
