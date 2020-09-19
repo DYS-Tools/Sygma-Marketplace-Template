@@ -30,7 +30,7 @@ class UserDashboardController extends AbstractController
 {
 
     /**
-     * @Route("/dashboard/MyOrder", name="my_order")
+     * @Route("/user/MyOrder", name="my_order")
      */
     public function myOrder()
     {

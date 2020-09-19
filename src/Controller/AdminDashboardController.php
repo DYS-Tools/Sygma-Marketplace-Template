@@ -21,8 +21,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AdminDashboardController extends AbstractController
 {
+
+    /**
+     * @Route("/SY_admin/Home", name="admin_home")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function AdminHome(Request $request)
+    {
+        // get current user
+        $user = $this->getUser() ;
+
+        return $this->render('admin/home.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
      /**
-     * @Route("/dashboard/ProductVerified", name="product_verified")
+     * @Route("/SY_admin/ProductVerification", name="product_verified")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function productVerifiedPage(Request $request)
@@ -37,7 +52,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/ticketHandler", name="ticket_handler")
+     * @Route("/SY_admin/ticketHandler", name="ticket_handler")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function ticketHandler()
@@ -55,7 +70,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/ticketHandler/{id}", name="ticket_handler_Single")
+     * @Route("/SY_admin/ticketHandler/{id}", name="ticket_handler_Single")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function ticketHandlerSingle($id, Request $request, \Swift_Mailer $mailer, EntityManagerInterface $em)
@@ -95,7 +110,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/Blog", name="article_index_admin")
+     * @Route("/SY_admin/Blog", name="article_index_admin")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function BlogAdminPage(ArticleRepository $articleRepository)
@@ -110,7 +125,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/statistic", name="statistic_admin")
+     * @Route("/SY_admin/statistic", name="statistic_admin")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function statisticAdmin(MakeJsonFormat $makeJsonFormat)
@@ -142,7 +157,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/Product/rejected/{id}", name="app_dashboard_product_rejected")
+     * @Route("/SY_admin/Product/rejected/{id}", name="app_dashboard_product_rejected")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function productRejeted(Request $request, \Swift_Mailer $mailer, $id)
@@ -184,7 +199,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/product/verified/{id}", name="app_dashboard_product_verified")
+     * @Route("/SY_admin/product/verified/{id}", name="app_dashboard_product_verified")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function productVerifiedAction(Request $request,\Swift_Mailer $mailer, $id)
@@ -211,7 +226,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/category_handler", name="category_handler")
+     * @Route("/SY_admin/category_handler", name="category_handler")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function category_handler()

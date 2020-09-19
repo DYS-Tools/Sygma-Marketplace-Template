@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class AuthorDashboardController extends AbstractController
 {
     /**
-     * @Route("/dashboard/MySell", name="my_sell")
+     * @Route("/author/MySell", name="my_sell")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function mySell(MakeJsonFormat $makeJsonFormat)
@@ -37,7 +37,7 @@ class AuthorDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/authorProduct", name="author_product")
+     * @Route("/author/authorProduct", name="author_product")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function authorProduct()
@@ -53,7 +53,7 @@ class AuthorDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard/money_managment", name="money_managment")
+     * @Route("/author/money_managment", name="money_managment")
      * @Security("is_granted('ROLE_AUTHOR')")
      */
     public function payoutAuthor(Request $request, payment $payment)

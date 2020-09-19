@@ -1,0 +1,20 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <!-- display products that customers have purchased, available for download -->
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <br/><br/>
+
+        <div class="centered text-center">
+            <h1> Bienvenue dans l'administration de la plateforme </h1>
+        </div>
+        <hr/>
+        <br/>
+
+{% endblock %}
