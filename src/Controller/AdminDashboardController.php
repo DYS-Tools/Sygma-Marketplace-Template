@@ -244,4 +244,15 @@ class AdminDashboardController extends AbstractController
             'product' => $products
         ]);
     }
+
+    /**
+     * @Route("/SY_admin/laboratory", name="laboratory")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function laboratory()
+    {
+        return $this->render('admin/laboratory.html.twig', [
+            'user' => $this->getUser()
+        ]);
+    }
 }
