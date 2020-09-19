@@ -40,7 +40,7 @@ class FrontController extends AbstractController
             $em->persist($ticket);
             $em->flush();
 
-            /*
+            
             // \Swift_Mailer $mailer
             $message = (new \Swift_Message('Web-Item-Market'))
                 ->setFrom($form->get('Email')->getData())
@@ -57,7 +57,7 @@ class FrontController extends AbstractController
             $mailer->send($message);
 
             $this->addFlash('success', "Email has been send");
-            */
+            
             $this->redirectToRoute('contact');
         }
         return $this->render('front/contact.html.twig', [
