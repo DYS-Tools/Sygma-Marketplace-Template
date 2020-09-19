@@ -128,7 +128,7 @@ class OrderController extends AbstractController
 
     /**
      * @Route("/createOrder", name="create_order" , methods={"POST"} )
-     * @Security("is_granted('ROLE_USER')")
+     * Error if role User ? 
      * get id order and create Order with amount...
      */
     public function create_order(HttpClientInterface $client,payment $payment)
@@ -201,7 +201,7 @@ class OrderController extends AbstractController
 
     /**
      * @Route("/captureOrder/{orderId}", name="capture_order")
-     * @Security("is_granted('ROLE_USER')")
+     * Error if role User ? 
      * if payout approuved
      */
     public function capture_order(payment $payment, $orderId)
