@@ -43,6 +43,8 @@
             <link rel="stylesheet" href="{{ asset('css/slideshow.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
 
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
         {% endblock %}
 
     </head>
@@ -114,7 +116,6 @@
                                 {% endif %}
 
                                 {% if is_granted('ROLE_AUTHOR') %}
-                                <hr class="hr-dropdown">
                                 <br/>
                                 <h6 class="size4 white-grey title-dropdown"> Dashboard Auteur </h6>
 
@@ -135,7 +136,6 @@
                                 {% endif %}
 
                                 {% if is_granted('ROLE_ADMIN') %}
-                                <hr class="hr-dropdown">
                                 <br/>
                                 <h6 class="size4 white-grey title-dropdown"> ADMIN Function </h6>
                                 <li>

@@ -1096,6 +1096,8 @@ div#search_product_form div label{
 .title-dropdown{
     margin: 0;
     padding: 0px;
+    font-size: 15px;
+    font-family: 'Roboto Slab', serif;
 }
 
 /*** Botstrap edit ****/
