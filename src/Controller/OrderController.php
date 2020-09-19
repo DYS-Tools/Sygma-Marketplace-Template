@@ -128,7 +128,7 @@ class OrderController extends AbstractController
 
     /**
      * @Route("/createOrder", name="create_order" , methods={"POST"} )
-     * @Security("is_granted('ROLE_USER')")
+     * Error if role User ? 
      * get id order and create Order with amount...
      */
     public function create_order(HttpClientInterface $client,payment $payment)
@@ -145,7 +145,8 @@ class OrderController extends AbstractController
         $accessToken= $BearerAccessToken;
         dump($accessToken);
 
-        $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders');
+        // $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders'); // sendbox = dev 
+        $ch = curl_init('https://api.paypal.com/v2/checkout/orders'); // for prod
         curl_setopt($ch, CURLOPT_POST, 1);
         // HEADER
         curl_setopt($ch, CURLOPT_HEADER, false);
@@ -200,7 +201,7 @@ class OrderController extends AbstractController
 
     /**
      * @Route("/captureOrder/{orderId}", name="capture_order")
-     * @Security("is_granted('ROLE_USER')")
+     * Error if role User ? 
      * if payout approuved
      */
     public function capture_order(payment $payment, $orderId)
@@ -208,13 +209,15 @@ class OrderController extends AbstractController
         dump($orderId);
         // test function : http://localhost/perso/Web-Item-Market/public/captureOrder
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
+        // https://developer.paypal.com/docs/platforms/test-go-live/   // test go live
 
         $BearerAccessToken = $payment->connectPaypal();
         $accessToken = $BearerAccessToken;
         dump($accessToken);
 
-        //$ch = curl_init('https://api.paypal.com/v2/checkout/orders/'.$orderId.'/capture'); // docs
-        $ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders/'.$orderId.'/capture');  // sendbox api
+        //$ch = curl_init('https://api.sandbox.paypal.com/v2/checkout/orders/'.$orderId.'/capture');  // sendbox = dev 
+        $ch = curl_init('https://api.paypal.com/v2/checkout/orders/'.$orderId.'/capture'); // docs // for prod
+
         curl_setopt($ch, CURLOPT_POST, 1);
         // HEADER
         curl_setopt($ch, CURLOPT_HEADER, false);
@@ -244,7 +247,7 @@ class OrderController extends AbstractController
         curl_close($ch);
 
         $resultJson = json_decode($result);
-        dd($resultJson);  // json   Error ?
+        //dd($resultJson);  // json   Error ? // Todo : dd in test 
 
         return $resultJson ;
     }
