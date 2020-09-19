@@ -26,7 +26,7 @@ class AuthorDashboardController extends AbstractController
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
 
-        return $this->render('dashboard/mysell.html.twig', [
+        return $this->render('author/mysell.html.twig', [
             'order' => $orderRepository->findBy(['user' => $user]),
             'user' => $this->getUser(),
             'ArrayForGraph' => $makeJsonFormat->get30LastDaysCommandsForAuthor($user),
@@ -46,7 +46,7 @@ class AuthorDashboardController extends AbstractController
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['user' => $user]);
 
-        return $this->render('dashboard/authorProduct.html.twig', [
+        return $this->render('author/authorProduct.html.twig', [
             'products' => $products,
             'user' => $user,
         ]);
@@ -59,7 +59,7 @@ class AuthorDashboardController extends AbstractController
     public function payoutAuthor(Request $request, payment $payment)
     {
         // Finance in nav 
-        
+
         // https://developer.paypal.com/docs/platforms/checkout/set-up-payments/
         // new code
         // Todo : Payout author with Paypal
@@ -95,7 +95,7 @@ class AuthorDashboardController extends AbstractController
         
         // TODO : if payout ok  : remove number in available payout variable
 
-        return $this->render('dashboard/money_managment.html.twig', [
+        return $this->render('author/money_managment.html.twig', [
             'products' => $products,
             'user' => $user,
             'userPayout' => $user->getAvailablePayout(),

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <br/><br/>
+        <h2> Rejet pour le produit {{ product.name }} </h2>
+        <br/>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('Rejeter le produit et envoyer un mail') }}</button>
+        {{ form_end(form) }}
+
+    </div>
+    <br/><br/>
+
+{% endblock %}

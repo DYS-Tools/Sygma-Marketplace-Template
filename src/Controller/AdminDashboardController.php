@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\Ticket;
@@ -29,7 +30,7 @@ class AdminDashboardController extends AbstractController
         // get current user
         $user = $this->getUser() ;
 
-        return $this->render('dashboard/productVerified.html.twig', [
+        return $this->render('admin/productVerified.html.twig', [
             'noVerifiedProduct' => $this->getDoctrine()->getRepository(Product::class)->findAllTProductNoVerified(),
             'user' => $user,
         ]);
@@ -47,7 +48,7 @@ class AdminDashboardController extends AbstractController
         $ticketInProgressRepo = $this->getDoctrine()->getRepository(Ticket::class);
         $ticketInProgress = $ticketInProgressRepo->findBy(['status' => 0]);
 
-        return $this->render('dashboard/ticketHandler.html.twig', [
+        return $this->render('admin/ticketHandler.html.twig', [
             'ticketInProgress' => $ticketInProgress,
             'user' => $user,
         ]);
@@ -86,7 +87,7 @@ class AdminDashboardController extends AbstractController
             $this->redirectToRoute('ticket_handler');
 
         }
-        return $this->render('dashboard/ticketHandlerSingle.html.twig', [
+        return $this->render('admin/ticketHandlerSingle.html.twig', [
             'ticket' => $ticket,
             'user' => $user,
             'form' => $form->createView(),
@@ -102,7 +103,7 @@ class AdminDashboardController extends AbstractController
         // get current user
         $user = $this->getUser() ;
 
-        return $this->render('dashboard/blog.html.twig', [
+        return $this->render('admin/blog.html.twig', [
             'articles' => $articleRepository->findAll(),
             'user' => $user,
         ]);
@@ -120,7 +121,7 @@ class AdminDashboardController extends AbstractController
         
         $ArrayForGraph = $makeJsonFormat->get30LastDaysCashflow($user);
 
-        return $this->render('dashboard/statisticAdmin.html.twig', [
+        return $this->render('admin/statisticAdmin.html.twig', [
             'ProductForSell' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForSell(),
             'ProductForVerified' => $this->getDoctrine()->getRepository(Product::class)->countAllProductForVerified(),
             'countOrder' => $this->getDoctrine()->getRepository(Order::class)->countAllOrder(),
@@ -175,7 +176,7 @@ class AdminDashboardController extends AbstractController
             return $this->redirectToRoute('product_verified');
         }
 
-        return $this->render('dashboard/productRejected.html.twig', [
+        return $this->render('admin/productRejected.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
             
@@ -207,5 +208,25 @@ class AdminDashboardController extends AbstractController
             $mailer->send($message);
 
         return $this->redirectToRoute('product_verified');
+    }
+
+    /**
+     * @Route("/dashboard/category_handler", name="category_handler")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function category_handler()
+    {
+        $user = $this->getUser() ;
+
+        $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
+        $categories = $categoryRepository->findAll();
+
+        $productRepository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $productRepository->findAll();
+
+        return $this->render('admin/categoryHandler.html.twig', [
+            'categories' => $categories,
+            'product' => $products
+        ]);
     }
 }

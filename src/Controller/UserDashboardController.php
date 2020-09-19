@@ -38,7 +38,7 @@ class UserDashboardController extends AbstractController
         
         $orderRepository = $this->getDoctrine()->getRepository(Order::class);
 
-        return $this->render('dashboard/myOrder.html.twig', [
+        return $this->render('user/myOrder.html.twig', [
             'orders' => $orderRepository->findBy(['user' => $user]),
             'user' => $this->getUser(),
         ]);

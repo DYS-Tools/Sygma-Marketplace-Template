@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+
+
+        <div class="centered">
+            <h1> <i class="fa fa-caret-right" aria-hidden="true"></i>   Produits à vérifier : </h1>
+            <br/>
+        </div>
+        <hr/>
+
+        <div class="container-card-tab-title">  <h2> <i class="fa fa-tags" aria-hidden="true"></i>    Produits </h2> </div>
+        <div class="container-card-tab">
+
+            {% if noVerifiedProduct > 0  %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col"><i class="fa fa-tags" aria-hidden="true"></i></th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Prix  </th>
+                        <th scope="col">Téléchargement</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Vérifier</th>
+                        <th scope="col">Rejeter</th>
+                    </tr>
+                    </thead>
+                    {% for noVerifiedProduct in noVerifiedProduct %}
+                        <tbody>
+                        <tr>
+                            <th scope="row"><i class="fa fa-tags" aria-hidden="true"></i></th>
+                            <td>{{ noVerifiedProduct.name }}</td>
+                            <td>{{ noVerifiedProduct.description }}</td>
+                            <td>{{ noVerifiedProduct.price}} <i class="fa fa-eur" aria-hidden="true"></i></td>
+
+
+                            {% dump "product/" ~ noVerifiedProduct.file %}
+                            <td>
+                                <a href="{{ asset("product/" ~ noVerifiedProduct.file)  }}" download>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i>    {{ noVerifiedProduct.file }}</button>
+                                </a>
+
+                            </td>
+
+                            <td>
+                                <a href="{{  path('product_show', {'id': noVerifiedProduct.id}) }}" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            </td>
+
+                            <td>
+                                <a href="{{ path('app_dashboard_product_verified', { 'id' : noVerifiedProduct.id } ) }}">
+                                    <button type="button" class="btn btn-info"> <i class="fa fa-check" aria-hidden="true"></i></button><br/>
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="{{ path('app_dashboard_product_rejected', { 'id' : noVerifiedProduct.id } ) }}">
+                                    <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button><br/>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            {% endif %}
+
+        </div> <!-- container-card-tab -->
+    </div> <!-- end container -->
+    <br/><br/>
+
+{% endblock %}

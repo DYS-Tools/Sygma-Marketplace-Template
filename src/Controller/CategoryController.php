@@ -16,25 +16,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class CategoryController extends AbstractController
 {
-     /**
-     * @Route("/dashboard/category_handler", name="category_handler")
-     * @Security("is_granted('ROLE_ADMIN')")
-     */
-    public function category_handler()
-    {
-        $user = $this->getUser() ;
-
-        $categoryRepository = $this->getDoctrine()->getRepository(Category::class);
-        $categories = $categoryRepository->findAll();
-
-        $productRepository = $this->getDoctrine()->getRepository(Product::class);
-        $products = $productRepository->findAll();
-
-        return $this->render('dashboard/categoryHandler.html.twig', [
-            'categories' => $categories,
-            'product' => $products
-        ]);
-    }
 
     /**
      * @Route("/dashboard/category/new", name="category_new")

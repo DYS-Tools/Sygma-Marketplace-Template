@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <!-- display products that customers have purchased, available for download -->
+
+    {{ include('dashboard/_nav.html.twig') }}
+
+    <div class="container">
+        <br/><br/>
+
+        <div class="centered">
+            <h1> Ticket ouvert </h1>
+        </div>
+        <hr/>
+        <br/>
+        <div class="container-card-tab-title">  <h2> <i class="fa fa-sticky-note" aria-hidden="true"></i>  Ticket </h2> </div>
+
+        <div class="container-card-tab">
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col"><i class="fa fa-sticky-note" aria-hidden="true"></i></th>
+                    <th scope="col">id</th>
+                    <th scope="col">nom</th>
+                    <th scope="col">sujet</th>
+                    <th scope="col">email</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">status</th>
+                </tr>
+                </thead>
+
+                {% if ticketInProgress > 0  %}
+                    {% for ticket in ticketInProgress %}
+                        <tbody>
+                        <tr>
+                            <th scope="row"><i class="fa fa-info" aria-hidden="true"></i></th>
+                            <td>{{ ticket.id }}</td>
+                            <td>{{ ticket.name }}</td>
+                            <td>{{ ticket.subject }}</td>
+                            <td>{{ ticket.email }}</td>
+                            <td>
+                                <div class="product-button">
+                                    <button type="button">
+                                        <a href="{{ path('ticket_handler_Single', {'id': ticket.id}) }}"> 
+                                    Répondre</a>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>{% if ticket.status == 0 %}<h5><span class="badge badge-success">Ouvert</span></h5> {% endif %}</td>
+
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+            </table>
+
+                {% else %}
+
+                <p> <i class="fa fa-list" aria-hidden="true"></i>  Il n'y a pas de ticket en cours </p>
+            {% endif %}
+        </div> <!-- container-card-tab -->
+    </div> <!-- end container -->
+
+    <br/><br/>
+
+
+
+{% endblock %}
