@@ -78,7 +78,7 @@ class payment
     public function connectPaypal() {
         // https://developer.paypal.com/docs/platforms/get-started/#step-1-get-api-credentials
 
-        // $response = $this->client->request('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', [ // sandbox = dev 
+        // $response = $this->client->request('POST', 'https://api.sandbox.paypal.com/v1/oauth2/token', [ // sandbox = dev                                                        
         $response = $this->client->request('POST', 'https://api.paypal.com/v1/oauth2/token', [ // for prod
             'headers' => [
                 'Accept' => 'application/json, application/x-www-form-urlencoded',

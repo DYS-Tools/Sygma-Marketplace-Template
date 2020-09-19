@@ -26,8 +26,8 @@
 {{ parent() }}
 
     <!-- Paypal -->
-    <!-- <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script> --> <!-- Dev Token  -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AX6K27SxTfeoahqPzTEa3Ufjj2zb-35nOPtcAm8w3mnycR7Idl9r2cuNwV3qSKJa34j6PRnkwLNAT1u5"></script> <!-- Prod Token  -->
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id=ASKlzgOeCEaz7OYoISCgkmuZBwmojFWrd3bIFCSTuGA_JeSbTRIYrktgyVzstPtzOHzyCqpuzkiulg5C"></script> -->  <!-- Dev Token  -->
+   <script src="https://www.paypal.com/sdk/js?client-id=AX6K27SxTfeoahqPzTEa3Ufjj2zb-35nOPtcAm8w3mnycR7Idl9r2cuNwV3qSKJa34j6PRnkwLNAT1u5"></script> <!-- Prod Token  -->
 
     <script>
         paypal.Buttons({
@@ -36,7 +36,7 @@
             // pour rendre le flux de paiement. Dans cet exemple,
             // createOrder appelle votre serveur pour obtenir l'ID de commande.
             createOrder: function (data, actions) {
-                // return fetch('/perso/Web-Item-Market/public/createOrder', { // dev
+                 //return fetch('/perso/Web-Item-Market/public/createOrder', { // dev
                    return fetch('http://webitemmarket.yohanndurand.fr/createOrder', {
                     method: 'POST'
                 }).then(function(res) {
@@ -57,7 +57,7 @@
             // Send orderId in methods
             onApprove: function (data, actions) {
                 // console.log(data.orderID) ;
-                // return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, { // dev
+                 //return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, { // dev
                 return fetch('http://webitemmarket.yohanndurand.fr/captureOrder/'+data.orderID, {
                     method: 'POST'
                 }).then(function(res) {

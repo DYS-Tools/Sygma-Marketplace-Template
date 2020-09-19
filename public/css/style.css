@@ -14,9 +14,11 @@ body{
     overflow-y: scroll;
 
 }
-
+span{
+    background-color: none;
+}
 .btn-form{
-    border: 2px solid deepskyblue;
+    border: 2px solid #1E90FF;
     border-radius: 3px;
     transition-duration: 0.7s;
     font-weight: bold;
@@ -24,15 +26,17 @@ body{
     margin-bottom: 5%;
 }
 .btn-form:hover{
-    background-color: deepskyblue;
+    background-color: #1E90FF;
     transition-duration: 0.1s;
     border-radius: 0px;
 }
 .btn-info{
     margin: 7px;
+    color: black;
+    background-color:#1E90FF ;
 }
 .download-btn-free{
-    /*border: 1px solid deepskyblue;*/
+    /*border: 1px solid #1E90FF;*/
 }
 .middle-align-row{
     vertical-align: middle;
@@ -97,12 +101,12 @@ a:link
 .grey {
     color : grey;
 }
-.deepskyblue-text-middle{
+.#1E90FF-text-middle{
     font-size: 22px;
 }
 
-.hover-deepskyblue:hover {
-    color: deepskyblue;
+.hover-#1E90FF:hover {
+    color: #1E90FF;
 }
 .bold{
     font-weight: bold;
@@ -176,14 +180,14 @@ font-family: 'Source Sans Pro', sans-serif;
     color : red ;
 }
 
-.deepskyblue {
-    color :deepskyblue;
+.#1E90FF {
+    color :#1E90FF;
 }
-.btn-info, .btn-deepskyblue{
+.btn-info, .btn-#1E90FF{
     background-color: rgb(0,82,132);
     border: 1px solid rgb(0,82,132);
 }
-.btn-info:hover, .btn-deepskyblue:hover{
+.btn-info:hover, .btn-#1E90FF:hover{
     background-color: white;
     color: rgb(0,82,132);
     border: 1px solid rgb(0,82,132);
@@ -217,7 +221,7 @@ a.logo:hover, a.logo:focus {
 }
 
 a.logo span {
-    color: deepskyblue;
+    color: #1E90FF;
 }
 
 /* ==========================================================================================================
@@ -238,11 +242,11 @@ a.logo span {
     text-decoration: none;
     font-weight: 400;
     font-size: 18.5px;
-    /*background-color: deepskyblue;*/
+    /*background-color: #1E90FF;*/
 
 }
 .category-link-nav:hover{
-    color:deepskyblue;
+    color:#1E90FF;
 }
 .category-nav-mobile{
     display: none;
@@ -281,12 +285,12 @@ a.logo span {
 
 
 i.fa-user-circle {
-    color : deepskyblue;
+    color : #1E90FF;
     font-size: 35px ;
 }
 
 i.fa-sort-down {
-    color : deepskyblue;
+    color : #1E90FF;
     font-size: 16px ;
 }
 
@@ -303,24 +307,24 @@ ul.dropdown-menu{
 
 ul.dropdown-menu.show {
     background-color: #343a40 ;
-    color : deepskyblue;
-    margin-top : 20px;
+    color : #1E90FF;
+    margin-top : 0px;
     position: relative;
-    top: 20px; left: -270px;
+    top: -10px; left: -270px;
     padding-left: 20px ;
     padding-right: 10px;
     width: 25vw;
 }
 ul.dropdown-menu.show li a{
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 ul.dropdown-menu.show li a  {
-    color : deepskyblue;
+    color : #1E90FF;
     font-size: 16px;
     padding: 0%;
-    padding-bottom: 15%;
+    padding-bottom: 5%;
     transition-duration: 0.3s;
 }
 .dropdown-menu.show li a:hover{
@@ -332,19 +336,19 @@ ul.dropdown-menu.show li{
     width: 80%;
 
 }
-.hr-deepskyblue{
+.hr-#1E90FF{
     background-color: rgba(100,100,100,1);
     width: 60%;
     /*margin-left: -20%;*/
     margin-left: 0%;
 }
 .green-hr{
-    background-color: deepskyblue;
+    background-color: #1E90FF;
 }
 
 /* for main nav */
 .navbar-dark .navbar-nav .nav-link:hover {
-    color : deepskyblue;
+    color : #1E90FF;
 }
 
 
@@ -356,7 +360,7 @@ ul.dropdown-menu.show li{
     width: 100%;
     padding-top: 5%;
     padding-bottom: 4%;
-    background-color: deepskyblue;
+    background-color: #1E90FF;
 }
 .search-section{
     width: 100vw;
@@ -373,12 +377,12 @@ ul.dropdown-menu.show li{
 .search-container {
     padding: 50px;
     width: 100%;
-    /*background: linear-gradient(0.90turn, rgb(38,116,152), #ebf8e1, deepskyblue);*/
+    /*background: linear-gradient(0.90turn, rgb(38,116,152), #ebf8e1, #1E90FF);*/
     /* border: 2px red solid ; */
 }
 .search-container .form-control{
     border-radius: 20px;
-    border: 1px solide deepskyblue;
+    border: 1px solide #1E90FF;
     padding:30px;
     font-weight: bold;
     font-family: 'Source sans pro';
@@ -387,20 +391,26 @@ ul.dropdown-menu.show li{
 .search-submit-button{
     border: none;
     background-color: rgba(240,240,240,0.1);
+    transition-duration: 1s;
+}
+.search-submit-button:hover{
+    border: none;
+    background-color: rgba(240,240,240,0.1);
+    transition-duration: 1s;
 }
 .search-submit-button .fa-search{
     font-size: 40px;
     font-weight: bold;
-    color: rgb(0,82,132);
-    margin-top: 30px;
+    color: #1E90FF;
+    margin-top: 40px;
     border: none;
     padding: 10px;
     transition-duration: 0.8s;
 }
 .search-submit-button .fa-search:hover{
     color: black;
-    transition-duration: 0.4s;
-    background-color: rgb(0,82,132);
+    transition-duration: 1s;
+    background-color: #1E90FF;
     border-radius: 14px;
     padding: 10px;
 }
@@ -775,7 +785,7 @@ div#search_product_form div label{
 .faq .logo{
     display: inline;
 }
-.deepskyblue{
+.#1E90FF{
     color: rgb(0,82,132);
 }
 .inline{
@@ -949,7 +959,7 @@ div#search_product_form div label{
     margin-left: 10%;
 }
 .custom-file-label,.custom-file-input{
-    border: 1px solid deepskyblue;
+    border: 1px solid #1E90FF;
 }
 
 
@@ -957,14 +967,14 @@ div#search_product_form div label{
 /************* MY SELL ************/
 
 .grey-card{
-    margin: 4%;
+    margin: 2%;
     border: 1px solid rgba(190,190,190,0.8);
     box-shadow: 1px 1px 15px rgba(200,200,200,0.8);
-    padding: 4%;
+    padding: 2%;
     text-align: center;
 }
 .grey-card h1{
-    font-size: 24px;
+    font-size: 21px;
     text-align: center;
 }
 .grey-card p{
@@ -972,12 +982,16 @@ div#search_product_form div label{
 }
 .grey-card .number{
     font-size: 34px;
+    margin: 10px;
+}
+.box-stats{
+    margin: 0 auto;
 }
 
 /******* BLOG **********/
 .container-blog{
     border: 1px solid rgba(190,190,190,0.8);
-    box-shadow: 1px 1px 15px rgba(200,200,200,0.8);
+    box-shadow: 1px 1px 15px rgba(230,230,230,0.1);
     padding: 20px;
 }
 .card-title-blog{
@@ -987,14 +1001,14 @@ div#search_product_form div label{
 .blog-index-button button{
     color: black;
     background-color: honeydew;
-    border: 4px solid deepskyblue;
+    border: 4px solid #1E90FF;
     padding: 10px;
     text-decoration: none;
 }
 .blog-index-button button:hover{
     color: black;
-    background-color: deepskyblue;
-    border: 4px solid deepskyblue;
+    background-color: #1E90FF;
+    border: 4px solid #1E90FF;
 }
 .blog-single-title{
     margin-bottom: 3%;
@@ -1010,11 +1024,11 @@ div#search_product_form div label{
     padding: 1.4%;
     background-color: whitesmoke;
     color:black;
-    border : 3px solid deepskyblue;
+    border : 3px solid #1E90FF;
     margin-bottom: 3%;
 }
 .back-to-list-blog-show button:hover{
-    background-color: deepskyblue;
+    background-color: #1E90FF;
 }
 .blog-single-date{
     font-family: 'Source sans pro';
@@ -1034,7 +1048,7 @@ div#search_product_form div label{
 .container-white {
     margin-top: 50px ;
     background-color: white ;
-    padding: 15px ;
+    /*padding: 10px ;*/
     margin-bottom: 50px;
 }
 
@@ -1043,3 +1057,97 @@ div#search_product_form div label{
     margin-top: 45px;
 }
 
+
+/******* DROPDOWN menu ******/
+
+.dropdown-main-menu{
+    margin-right: 25px;
+    margin-top: 10px;
+    color: black;
+    position:relative;
+    z-index: 2000;
+}
+.dropdown-menu{
+    margin-right: 25px;
+    margin-top: 70px;
+}
+.profile-img{
+    color: #1E90FF;
+    z-index: -1;
+    display: block;
+}
+.dropdown.a.div{
+    color: #1E90FF;
+}
+
+/******** ICO **********/
+.ico-index{
+    font-size: 60px;
+    color: #1E90FF;
+}
+.hr-dropdown{
+    margin: 0px;
+    color: #1E90FF;
+}
+.dropdown-menu li{
+    margin: 0px;
+    padding: 0px;
+}
+.title-dropdown{
+    margin: 0;
+    padding: 0px;
+}
+
+/*** Botstrap edit ****/
+div.card-body.row{
+
+}
+.overflow{
+    overflow: hidden;
+}
+.card-title{
+    background-color: none;
+}
+
+/*********BTN******/
+
+.btn,.button{
+    background-color: #1E90FF;
+    border: 1px solid #1E90FF;
+    padding: 18px;
+    
+}
+.btn-info{
+    background-color: #1E90FF;
+    border: 1px solid #1E90FF;
+    padding: 18px;
+    color: white;
+    font-weight: 400;
+}
+.btn:hover,.button:hover {
+    color: #1E90FF;
+    background-color: white;
+    border: 1px solid #1E90FF;
+}
+.btn-info:hover{
+    transition-duration: 0.3s;
+}
+.index-card-button{
+    padding-right: 35px;
+    padding-left: 35px;
+    font-weight: 700;
+    font-size: 20px;
+}
+.box-button-index{
+    margin-left: 15%;
+    font-weight: 700;
+}
+
+/**********************************/
+
+.blog-description{
+    font-size: 12px;
+}
+.clock-icon,.blue{
+    color: #1E90FF;
+}

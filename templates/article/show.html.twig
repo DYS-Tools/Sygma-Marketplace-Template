@@ -3,15 +3,51 @@
 {% block title %}{{ article.title }}{% endblock %}
 
 {% block body %}
+
+<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>{{ article.title }}</h2>
+												<p>{{ article.description }}</p>
+												<ul class="meta">
+													<li class="icon fa-clock">{{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</li>
+													<!--<li class="icon fa-comments"><a href="#">1,024</a></li>-->
+												</ul>
+											</header>
+
+											<section>
+												<span class="image featured"><img src="../article/img/{{ article.img1 }}" alt="{{ article.title }}" /></span>
+												<p>
+													{{ article.content }}
+												</p>
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+<!--
     <div class="container">
         <br/><br/>
-        <img class="card-img-top blog-single-image" src="../article/img/{{ article.img1 }}" alt="{{ article.title }}">
+        <img class="card-img-top blog-single-image" src="../article/img/{ { article.img1 }}" alt="{ { article.title }}">
         <br/><br/><br/>
-        <h1 class="blog-single-title">{{ article.title }}</h1>
+        <h1 class="blog-single-title">{ { article.title }}</h1>
         <div class="container">
-            <p class="article-content"> {{ article.content }}</p>
+            <p class="article-content"> { { article.content }}</p>
 
-            <p class="blog-single-date"> le {{ article.createdAt ? article.createdAt|date('d m Y') : '' }}</p>
+            <p class="blog-single-date"> le { { article.createdAt ? article.createdAt|date('d m Y') : '' }}</p>
         </div>
 
         <div class="back-to-list-blog-show">
@@ -21,4 +57,5 @@
         </div>
 
     </div>
+    -->
 {% endblock %}
