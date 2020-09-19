@@ -109,7 +109,7 @@ class OrderController extends AbstractController
         $mailer->send($message);
 
         // Add flash message -> Todo : SweetAlert
-        $this->addFlash('success', "Email has been send");
+        $this->addFlash('success', "Nous avons recu votre commande");
 
         return $this->render('order/successPayment.html.twig', [
         ]);

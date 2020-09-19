@@ -158,6 +158,16 @@
 
 			<!-- endNAV -->
         <br/>
+
+        <br/><br/>
+        <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
         {% block body %}
             <!-- Content page -->
         {% endblock %}

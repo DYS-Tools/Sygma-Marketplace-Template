@@ -56,7 +56,7 @@ class FrontController extends AbstractController
                         ]), 'text/html');
             $mailer->send($message);
 
-            $this->addFlash('success', "Email has been send");
+            $this->addFlash('success', "Le message a été envoyé");
             
             $this->redirectToRoute('contact');
         }
