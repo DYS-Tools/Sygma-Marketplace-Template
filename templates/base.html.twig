@@ -40,9 +40,10 @@
             <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/card.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/loader.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/slideshow.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
-
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/css-loader/3.3.3/loader-double.css" integrity="sha512-SdYMierl+cwd2zEp+KMJ4QRzQcucmEqno8/lexstiH44VlQBV2rF5XM7/+GqjKy8lYZDQf7NIoKLyHFgZjOCGA==" crossorigin="anonymous" />
             <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 
         {% endblock %}
@@ -168,13 +169,47 @@
             {% endfor %}
         </div>
 
+        <div class="cssload-thecube" id="cssload-thecube">
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
+        </div>
+
+        <div class="content-application-front" id="content-application-front">
         {% block body %}
             <!-- Content page -->
         {% endblock %}
+        </div>
         
         <!-- TODO: Footer -->
 
         {% block javascripts %}
+
+            <!-- CSS loader -->
+            <script>
+                // var elements = document.getElementsByClassName(names);
+                var loader = document.getElementById("cssload-thecube");
+                var application = document.getElementById("content-application-front");
+
+                loader.style.display = "block";
+                application.style.display = "none";
+                var start = 0
+                var end = 0
+                var diff = 0
+                var end = new Date()
+                var diff = end - start
+                document.addEventListener('DOMContentLoaded', function(){
+                    diff = new Date(diff)
+                    var msec = diff.getMilliseconds()
+                    console.log('page chargée en ' + msec + ' ms');
+
+                    loader.style.display = "none";
+                    application.style.display = "block";
+                });
+            </script>
+            <!-- END CSS loader -->
+
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
                     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
                     crossorigin="anonymous"></script>
