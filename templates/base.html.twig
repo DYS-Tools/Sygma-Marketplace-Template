@@ -185,30 +185,12 @@
         <!-- TODO: Footer -->
 
         {% block javascripts %}
-
-            <!-- CSS loader -->
-            <script>
-                // var elements = document.getElementsByClassName(names);
-                var loader = document.getElementById("cssload-thecube");
-                var application = document.getElementById("content-application-front");
-
-                loader.style.display = "block";
-                application.style.display = "none";
-                var start = 0
-                var end = 0
-                var diff = 0
-                var end = new Date()
-                var diff = end - start
-                document.addEventListener('DOMContentLoaded', function(){
-                    diff = new Date(diff)
-                    var msec = diff.getMilliseconds()
-                    console.log('page chargée en ' + msec + ' ms');
-
-                    loader.style.display = "none";
-                    application.style.display = "block";
-                });
-            </script>
             <!-- END CSS loader -->
+
+            <script>
+            //var loader = document.getElementById("cssload-thecube");
+            //loader.style.display = "none";
+            </script>
 
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
                     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -230,6 +212,7 @@
             <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 
             <!-- Scripts -->
+            <script src="{{ asset('js/loader.js') }}"></script>
 			<script src="{{ asset('js/template/jquery.min.js') }}"></script>
 			<script src="{{ asset('js/template/jquery.dropotron.min.js') }}"></script>
 			<script src="{{ asset('js/template/jquery.dropotron.min.js') }}"></script>    
