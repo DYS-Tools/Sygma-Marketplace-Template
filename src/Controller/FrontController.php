@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ticket;
 use App\Form\ContactFormType;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +24,7 @@ class FrontController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function ContacteMe(Request $request, \Swift_Mailer $mailer, EntityManagerInterface $em)
+    public function ContacteMe(Request $request, \Swift_Mailer $mailer, EntityManagerInterface $em, CategoryRepository $categoryRepository)
     {
         $form = $this->createForm(ContactFormType::class);
         $form->handleRequest($request);
@@ -62,24 +63,27 @@ class FrontController extends AbstractController
         }
         return $this->render('front/contact.html.twig', [
             'form' => $form->createView(),
+            'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
 
     /**
      * @Route("/legal", name="app_legal")
      */
-    public function legal()
+    public function legal(CategoryRepository $categoryRepository)
     {
         return $this->render('front/legal.html.twig', [
+            'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
 
     /**
      * @Route("/faq", name="app_faq")
      */
-    public function faq()
+    public function faq(CategoryRepository $categoryRepository)
     {
         return $this->render('front/faq.html.twig', [
+            'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
 

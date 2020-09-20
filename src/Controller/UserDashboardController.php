@@ -13,6 +13,7 @@ use App\Form\ProductType;
 use App\Form\RejectProductFormType;
 use App\Form\ResolveTicketType;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use App\Service\MakeJsonFormat;
 use App\Service\payment;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,7 +33,7 @@ class UserDashboardController extends AbstractController
     /**
      * @Route("/user/MyOrder", name="my_order")
      */
-    public function myOrder()
+    public function myOrder(CategoryRepository $categoryRepository)
     {
         $user = $this->getUser() ;
         
@@ -41,6 +42,7 @@ class UserDashboardController extends AbstractController
         return $this->render('user/myOrder.html.twig', [
             'orders' => $orderRepository->findBy(['user' => $user]),
             'user' => $this->getUser(),
+            'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
 }

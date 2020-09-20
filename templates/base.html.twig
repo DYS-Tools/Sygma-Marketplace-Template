@@ -58,18 +58,11 @@
 						<li class="current"><a href="{{ path('product_index') }}">Home</a></li>
 						<li>
 							<a href="{{ path('product_index') }}">Nos produits</a>
+                            {# render(controller("App\\Controller\\CategoryController::GetallCategory")) #}
 							<ul>
-								<li><a href="#">Produits gratuits</a></li>
-								<li><a href="#">Nouveautés</a></li>
-								<li>
-									<a href="#">Theme CSS</a>
-									<ul>
-										<li><a href="#">Dark CSS</a></li>
-										<li><a href="#">Light CSS</a></li>
-										<li><a href="#">CSS elements</a></li>
-									</ul>
-								</li>
-								<li><a href="#">Autres</a></li>
+                                {% for category in categories %}
+                                    <li><a href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a></li>
+                                {% endfor %}
 							</ul>
 						</li>
 						<li><a href="{{ path('contact') }}">Contact</a></li>

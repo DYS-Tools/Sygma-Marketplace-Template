@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+//use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends AbstractController
 {
@@ -68,5 +70,25 @@ class CategoryController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('category_handler');
+    }
+
+    public function GetAllCategory(CategoryRepository $categoryRepo)
+    {
+        /*
+        $categories = $categoryRepo->findAll();
+        //return new Response($categories);    App\\Controller\\CategoryController::GetallCategory
+        //return $this->render($categories);
+
+        //$categories = implode($categories);
+        // (et l'action de controller que tu appelle peux éventuellement te renvoyer du HTML avec un renderView)
+        //dd(implode($categories));
+        $nav = '';
+        foreach ($categories as $category){
+            return new Response(
+                "<li><a href="{{ path('contact') }}">" . $category . "</a></li>"
+            );
+        }
+        */
+
     }
 }
