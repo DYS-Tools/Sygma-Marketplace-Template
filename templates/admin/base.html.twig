@@ -56,7 +56,7 @@
 						<li class="current"><a href="{{ path('product_index') }}">Retourner sur la plateforme</a></li>
                         <!--
 						<li>
-							<a href="{{ path('product_index') }}"></a>
+							<a href="{ { path('product_index') }}"></a>
 							<ul>
 								<li><a href="#">Produits gratuits</a></li>
 								<li><a href="#">Nouveautés</a></li>
@@ -77,12 +77,22 @@
                         <li><a href="{{ path('product_verified') }}">Verification produit</a></li>
                         <li><a href="{{ path('statistic_admin') }}">Statistique</a></li>
                         <li><a href="{{ path('category_handler') }}">Gerer les catégories</a></li>
+                        <li><a href="{{ path('laboratory') }}">Le laboratoire</a></li>
                         {% endif %}
 					</ul>
 				</nav>
 
 			<!-- endNAV -->
         <br/>
+        <br/><br/>
+        <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
         {% block body %}
             <!-- Content page -->
         {% endblock %}

@@ -40,8 +40,11 @@
             <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/card.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/loader.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/slideshow.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/css-loader/3.3.3/loader-double.css" integrity="sha512-SdYMierl+cwd2zEp+KMJ4QRzQcucmEqno8/lexstiH44VlQBV2rF5XM7/+GqjKy8lYZDQf7NIoKLyHFgZjOCGA==" crossorigin="anonymous" />
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 
         {% endblock %}
 
@@ -55,18 +58,11 @@
 						<li class="current"><a href="{{ path('product_index') }}">Home</a></li>
 						<li>
 							<a href="{{ path('product_index') }}">Nos produits</a>
+                            {# render(controller("App\\Controller\\CategoryController::GetallCategory")) #}
 							<ul>
-								<li><a href="#">Produits gratuits</a></li>
-								<li><a href="#">Nouveautés</a></li>
-								<li>
-									<a href="#">Theme CSS</a>
-									<ul>
-										<li><a href="#">Dark CSS</a></li>
-										<li><a href="#">Light CSS</a></li>
-										<li><a href="#">CSS elements</a></li>
-									</ul>
-								</li>
-								<li><a href="#">Autres</a></li>
+                                {% for category in categories %}
+                                    <li><a href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a></li>
+                                {% endfor %}
 							</ul>
 						</li>
 						<li><a href="{{ path('contact') }}">Contact</a></li>
@@ -114,7 +110,6 @@
                                 {% endif %}
 
                                 {% if is_granted('ROLE_AUTHOR') %}
-                                <hr class="hr-dropdown">
                                 <br/>
                                 <h6 class="size4 white-grey title-dropdown"> Dashboard Auteur </h6>
 
@@ -135,7 +130,6 @@
                                 {% endif %}
 
                                 {% if is_granted('ROLE_ADMIN') %}
-                                <hr class="hr-dropdown">
                                 <br/>
                                 <h6 class="size4 white-grey title-dropdown"> ADMIN Function </h6>
                                 <li>
@@ -158,13 +152,39 @@
 
 			<!-- endNAV -->
         <br/>
+
+        <br/><br/>
+        <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="cssload-thecube" id="cssload-thecube">
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
+        </div>
+
+        <div class="content-application-front" id="content-application-front">
         {% block body %}
             <!-- Content page -->
         {% endblock %}
+        </div>
         
         <!-- TODO: Footer -->
 
         {% block javascripts %}
+            <!-- END CSS loader -->
+
+            <script>
+            //var loader = document.getElementById("cssload-thecube");
+            //loader.style.display = "none";
+            </script>
+
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
                     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
                     crossorigin="anonymous"></script>
@@ -185,6 +205,7 @@
             <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 
             <!-- Scripts -->
+            <script src="{{ asset('js/loader.js') }}"></script>
 			<script src="{{ asset('js/template/jquery.min.js') }}"></script>
 			<script src="{{ asset('js/template/jquery.dropotron.min.js') }}"></script>
 			<script src="{{ asset('js/template/jquery.dropotron.min.js') }}"></script>    

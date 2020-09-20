@@ -151,7 +151,7 @@ class ProductController extends AbstractController
      * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_AUTHOR')")
      * 
      */
-    public function new(Request $request, Upload $upload, \Swift_Mailer $mailer): Response
+    public function new(Request $request, Upload $upload, \Swift_Mailer $mailer, CategoryRepository $categoryRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
 
@@ -205,6 +205,7 @@ class ProductController extends AbstractController
         return $this->render('product/new.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
+            'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
 
@@ -215,6 +216,7 @@ class ProductController extends AbstractController
     {
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
         $products = $productRepository->findBy(['id' => $id]);
+
         return $this->render('product/show.html.twig', [
             'product' => $product,
             'categories' => $categoryRepository->findBy(['active' => 1]),
