@@ -48,20 +48,20 @@
     </head>
 
     <body>
+
         <!-- Nav -->
 				<nav id="nav">
 					<ul>
                         {% if is_granted('ROLE_ADMIN') %}
 						<li class="current"><a href="{{ path('product_index') }}">Retourner sur la plateforme</a></li>
-						<li><a href="{{ path('ticket_handler') }}">Ticket</a></li>
-						<li><a href="{{ path('article_index_admin') }}">Gestion du blog</a></li>
-                        <li><a href="{{ path('product_verified') }}">Verification produit</a></li>
-                        <li><a href="{{ path('statistic_admin') }}">Statistique</a></li>
-                        <li><a href="{{ path('category_handler') }}">Gerer les catégories</a></li>
-                        <li><a href="{{ path('laboratory') }}">Le laboratoire</a></li>
+						<li><a href="{{ path('product_new') }}">Ajouter un produit</a></li>
+						<li><a href="{{ path('author_product') }}">Mes produits</a></li>
+                        <li><a href="{{ path('my_sell') }}">Mes ventes</a></li>
+                        <li><a href="{{ path('money_managment') }}">Finance</a></li>
                         {% endif %}
 					</ul>
 				</nav>
+
 			<!-- endNAV -->
         <br/>
         <br/><br/>
@@ -107,6 +107,8 @@
 			<script src="{{ asset('js/template/breakpoints.min.js') }}"></script>
 			<script src="{{ asset('js/template/util.js') }}"></script>
 			<script src="{{ asset('js/template/main.js') }}"></script>
+            <!--<link rel="stylesheet" href="{ { asset('css/style.css') }}" />-->
+
             {% endblock %}
     </body>
 </html>
