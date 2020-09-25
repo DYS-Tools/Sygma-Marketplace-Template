@@ -77,79 +77,84 @@
                             <li><a href="{{ path('app_login') }}"> Connexion</a></li>
                             <li><a href="{{ path('app_register') }}">Inscription</a></li>
                         {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin_home') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Administration</a> </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_AUTHOR') %}
+                            <li><a href="{{ path('author_product') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Espace auteur</a> </li>
+                        {% endif %}
 					</ul>
 				</nav>
-
-                <nav>
                 
+                <!--
+                <nav>
                 <ul class="nav navbar-nav pull-right dropdown-main-menu">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <!-- The Profile picture inserted via div class below, with shaping provided by Bootstrap -->
                                 <div class="img-rounded profile-img"></div>
                                     <i class="fas fa-user-circle"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                {% if is_granted('ROLE_USER') %}
+                                { % if is_granted('ROLE_USER') %}
                                 <h6 class="size4 white-grey title-dropdown"> Utilisateur </h6>
-                                <!--
+                                
                                 <li>
                                     <a href="{ { path('dashboard') }}">Mon compte</a>
                                 </li>
-                                -->
+                                
                                 <li>
-                                    <a href="{{ path('product_index') }}">Accueil</a>
+                                    <a href="{ { path('product_index') }}">Accueil</a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li>
-                                    <a href="{{ path('app_logout') }}">Logout</a>
+                                    <a href="{ { path('app_logout') }}">Logout</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('my_order') }}">Mes commandes</a>
+                                    <a href="{ { path('my_order') }}">Mes commandes</a>
                                 </li>
-                                {% endif %}
+                                { % endif %}
 
-                                {% if is_granted('ROLE_AUTHOR') %}
+                                { % if is_granted('ROLE_AUTHOR') %}
                                 <br/>
                                 <h6 class="size4 white-grey title-dropdown"> Dashboard Auteur </h6>
 
                                 <li>
-                                    <a href="{{ path('product_new') }}">Ajouter un produit</span></a>
+                                    <a href="{ { path('product_new') }}">Ajouter un produit</span></a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('author_product') }}">Mes produits</span></a>
+                                    <a href="{ { path('author_product') }}">Mes produits</span></a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('my_sell') }}">Mes Ventes</span></a>
+                                    <a href="{ { path('my_sell') }}">Mes Ventes</span></a>
                                 </li>
 
                                 <li>
-                                    <a href="{{ path('money_managment') }}">Finance</span></a>
+                                    <a href="{ { path('money_managment') }}">Finance</span></a>
                                 </li>
 
-                                {% endif %}
+                                { % endif %}
 
-                                {% if is_granted('ROLE_ADMIN') %}
+                                { % if is_granted('ROLE_ADMIN') %}
                                 <br/>
                                 <h6 class="size4 white-grey title-dropdown"> ADMIN Function </h6>
                                 <li>
-                                    <a href="{{ path('admin_home') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Administration</a>
+                                    <a href="{ { path('admin_home') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Administration</a>
                                 </li>
-                                {% else %}
+                                { % else %}
                                     <li>
-                                        <a href="{{ path('app_login') }}">Connection</a>
+                                        <a href="{ { path('app_login') }}">Connection</a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('app_register') }}">Inscription</a>
+                                        <a href="{ { path('app_register') }}">Inscription</a>
                                     </li>
-                                {% endif %}
+                                { % endif %}
                                 
                                 <br/><br/>
                             </ul>
                         </li>
                     </ul>
                     </nav>
-
+                -->
 			<!-- endNAV -->
         <br/>
 

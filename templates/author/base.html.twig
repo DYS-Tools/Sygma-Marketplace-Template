@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="Web Item Market" />
+        <meta name="keywords" content="Web Item Market" />
+
+        <!-- Facebook and Twitter integration -->
+        <meta property="og:title" content=""/>
+        <meta property="og:image" content=""/>
+        <meta property="og:url" content=""/>
+        <meta property="og:site_name" content=""/>
+        <meta property="og:description" content=""/>
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:image" content="" />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:card" content="" />
+
+        <title>{% block title %}Web Item Market {% endblock %}</title>
+
+        {% block stylesheets %}
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+                  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+                  crossorigin="anonymous">
+
+            <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+                  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+                  crossorigin="anonymous">
+
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+                  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+                  crossorigin="anonymous">
+
+            <!-- Favicons -->
+            <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}" />
+            <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+            <link rel="stylesheet" href="{{ asset('css/template.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/card.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/slideshow.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
+
+        {% endblock %}
+
+    </head>
+
+    <body>
+
+        <!-- Nav -->
+				<nav id="nav">
+					<ul>
+                        {% if is_granted('ROLE_ADMIN') %}
+						<li class="current"><a href="{{ path('product_index') }}">Retourner sur la plateforme</a></li>
+						<li><a href="{{ path('product_new') }}">Ajouter un produit</a></li>
+						<li><a href="{{ path('author_product') }}">Mes produits</a></li>
+                        <li><a href="{{ path('my_sell') }}">Mes ventes</a></li>
+                        <li><a href="{{ path('money_managment') }}">Finance</a></li>
+                        {% endif %}
+					</ul>
+				</nav>
+
+			<!-- endNAV -->
+        <br/>
+        <br/><br/>
+        <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
+        {% block body %}
+            <!-- Content page -->
+        {% endblock %}
+        
+        <!-- TODO: Footer -->
+
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                    crossorigin="anonymous"></script>
+
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+                    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+                    crossorigin="anonymous"></script>
+
+            <!-- Popper.js for dropdown menus -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js" integrity="sha512-UzofO1xJCmOl9xNdbqkMIaaW5raQxAE8WyMa977+mY2fT001KydNwvqSTJlHy70edjCN0nb20BXIgBgO/oj6MQ==" crossorigin="anonymous"></script>
+            <!-- End For require dropdown menus -->
+
+            <!-- Script SweetAlert -->
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
+
+            <!-- integrate vue.js --> 
+            <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+
+            <!-- Scripts -->
+			<script src="{{ asset('js/template/jquery.min.js') }}"></script>
+			<script src="{{ asset('js/template/jquery.dropotron.min.js') }}"></script>
+			<script src="{{ asset('js/template/jquery.dropotron.min.js') }}"></script>    
+			<script src="{{ asset('js/template/browser.min.js') }}"></script>   
+			<script src="{{ asset('js/template/breakpoints.min.js') }}"></script>
+			<script src="{{ asset('js/template/util.js') }}"></script>
+			<script src="{{ asset('js/template/main.js') }}"></script>
+            <!--<link rel="stylesheet" href="{ { asset('css/style.css') }}" />-->
+
+            {% endblock %}
+    </body>
+</html>
