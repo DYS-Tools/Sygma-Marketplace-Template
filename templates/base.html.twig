@@ -40,8 +40,11 @@
             <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/search.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/card.css') }}" />
+            <link rel="stylesheet" href="{{ asset('css/loader.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/slideshow.css') }}" />
             <link rel="stylesheet" href="{{ asset('css/responsive.css') }}" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/css-loader/3.3.3/loader-double.css" integrity="sha512-SdYMierl+cwd2zEp+KMJ4QRzQcucmEqno8/lexstiH44VlQBV2rF5XM7/+GqjKy8lYZDQf7NIoKLyHFgZjOCGA==" crossorigin="anonymous" />
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
 
         {% endblock %}
 
@@ -55,18 +58,11 @@
 						<li class="current"><a href="{{ path('product_index') }}">Home</a></li>
 						<li>
 							<a href="{{ path('product_index') }}">Nos produits</a>
+                            {# render(controller("App\\Controller\\CategoryController::GetallCategory")) #}
 							<ul>
-								<li><a href="#">Produits gratuits</a></li>
-								<li><a href="#">Nouveautés</a></li>
-								<li>
-									<a href="#">Theme CSS</a>
-									<ul>
-										<li><a href="#">Dark CSS</a></li>
-										<li><a href="#">Light CSS</a></li>
-										<li><a href="#">CSS elements</a></li>
-									</ul>
-								</li>
-								<li><a href="#">Autres</a></li>
+                                {% for category in categories %}
+                                    <li><a href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a></li>
+                                {% endfor %}
 							</ul>
 						</li>
 						<li><a href="{{ path('contact') }}">Contact</a></li>
@@ -74,110 +70,131 @@
                         {% if app.user %}
                             <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                             {% if is_granted('ROLE_USER') %}
-                            <!--<li><a href="{ { path('become_author') }}">Devenir vendeur</a></li>-->
-                            {% else %}
+                                <li>
+                                    <a href="{{ path('my_order') }}">Mon compte</a>
+                                    <ul>
+                                            <li><a href="{{ path('my_order') }}">Mes commandes</a></li>
+                                    </ul>
+                                </li>
+                                <!--<li><a href="{ { path('become_author') }}">Devenir vendeur</a></li>-->
                             {% endif %}
                         {% else %}
                             <li><a href="{{ path('app_login') }}"> Connexion</a></li>
                             <li><a href="{{ path('app_register') }}">Inscription</a></li>
                         {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin_home') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Administration</a> </li>
+                        {% endif %}
+                        {% if is_granted('ROLE_AUTHOR') %}
+                            <li><a href="{{ path('author_product') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Espace auteur</a> </li>
+                        {% endif %}
 					</ul>
 				</nav>
-
-                <nav>
                 
+                <!--
+                <nav>
                 <ul class="nav navbar-nav pull-right dropdown-main-menu">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <!-- The Profile picture inserted via div class below, with shaping provided by Bootstrap -->
                                 <div class="img-rounded profile-img"></div>
                                     <i class="fas fa-user-circle"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                {% if is_granted('ROLE_USER') %}
+                                { % if is_granted('ROLE_USER') %}
                                 <h6 class="size4 white-grey title-dropdown"> Utilisateur </h6>
-                                <!--
+                                
                                 <li>
                                     <a href="{ { path('dashboard') }}">Mon compte</a>
                                 </li>
-                                -->
+                                
                                 <li>
-                                    <a href="{{ path('product_index') }}">Accueil</a>
+                                    <a href="{ { path('product_index') }}">Accueil</a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li>
-                                    <a href="{{ path('app_logout') }}">Logout</a>
+                                    <a href="{ { path('app_logout') }}">Logout</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('my_order') }}">Mes commandes</a>
+                                    <a href="{ { path('my_order') }}">Mes commandes</a>
                                 </li>
-                                {% endif %}
+                                { % endif %}
 
-                                {% if is_granted('ROLE_AUTHOR') %}
-                                <hr class="hr-dropdown">
+                                { % if is_granted('ROLE_AUTHOR') %}
                                 <br/>
                                 <h6 class="size4 white-grey title-dropdown"> Dashboard Auteur </h6>
 
                                 <li>
-                                    <a href="{{ path('product_new') }}">Ajouter un produit</span></a>
+                                    <a href="{ { path('product_new') }}">Ajouter un produit</span></a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('author_product') }}">Mes produits</span></a>
+                                    <a href="{ { path('author_product') }}">Mes produits</span></a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('my_sell') }}">Mes Ventes</span></a>
+                                    <a href="{ { path('my_sell') }}">Mes Ventes</span></a>
                                 </li>
 
                                 <li>
-                                    <a href="{{ path('money_managment') }}">Finance</span></a>
+                                    <a href="{ { path('money_managment') }}">Finance</span></a>
                                 </li>
 
-                                {% endif %}
+                                { % endif %}
 
-                                {% if is_granted('ROLE_ADMIN') %}
-                                <hr class="hr-dropdown">
+                                { % if is_granted('ROLE_ADMIN') %}
                                 <br/>
                                 <h6 class="size4 white-grey title-dropdown"> ADMIN Function </h6>
                                 <li>
-                                    <a href="{{ path('statistic_admin') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Statistique</a>
+                                    <a href="{ { path('admin_home') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Administration</a>
                                 </li>
-                                <li>
-                                    <a href="{{ path('product_verified') }}"><i class="fab fa-product-hunt"></i>  Administration produits</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('ticket_handler') }}"><i class="fas fa-check-square"></i>  Gestion des tickets</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('article_index_admin') }}"><i class="fas fa-th"></i>  Le blog</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ path('category_handler') }}"><i class="fa fa-file-text" aria-hidden="true"></i>  Gestion des catégories</a>
-                                </li>
-                                {% else %}
+                                { % else %}
                                     <li>
-                                        <a href="{{ path('app_login') }}">Connection</a>
+                                        <a href="{ { path('app_login') }}">Connection</a>
                                     </li>
                                     <li>
-                                        <a href="{{ path('app_register') }}">Inscription</a>
+                                        <a href="{ { path('app_register') }}">Inscription</a>
                                     </li>
-                                {% endif %}
+                                { % endif %}
                                 
                                 <br/><br/>
                             </ul>
                         </li>
                     </ul>
                     </nav>
-
+                -->
 			<!-- endNAV -->
         <br/>
+
+        <br/><br/>
+        <div class="container">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="cssload-thecube" id="cssload-thecube">
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
+        </div>
+
+        <div class="content-application-front" id="content-application-front">
         {% block body %}
             <!-- Content page -->
         {% endblock %}
+        </div>
         
         <!-- TODO: Footer -->
 
         {% block javascripts %}
+            <!-- END CSS loader -->
+
+            <script>
+            //var loader = document.getElementById("cssload-thecube");
+            //loader.style.display = "none";
+            </script>
+
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
                     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
                     crossorigin="anonymous"></script>
@@ -198,6 +215,7 @@
             <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 
             <!-- Scripts -->
+            <script src="{{ asset('js/loader.js') }}"></script>
 			<script src="{{ asset('js/template/jquery.min.js') }}"></script>
 			<script src="{{ asset('js/template/jquery.dropotron.min.js') }}"></script>
 			<script src="{{ asset('js/template/jquery.dropotron.min.js') }}"></script>    

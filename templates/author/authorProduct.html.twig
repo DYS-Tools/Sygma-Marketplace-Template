@@ -1,13 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'author/base.html.twig' %}
 
 
 {% block title %}Dashboard{% endblock %}
 
 {% block body %}
     <!-- display products that customers have purchased, available for download -->
-
-    {{ include('dashboard/_nav.html.twig') }}
-
     <div class="container">
 
         <a href="{{ path('product_new') }}" class="btn btn-primary">Ajouter un produit</a><br/><br/>
