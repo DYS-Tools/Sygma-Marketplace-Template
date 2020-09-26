@@ -25,7 +25,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class AdminDashboardController extends AbstractController
 {
-
     /**
      * @Route("/SY_admin/Home", name="admin_home")
      */

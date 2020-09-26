@@ -52,7 +52,7 @@
         <!-- Nav -->
 				<nav id="nav">
 					<ul>
-                        {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_AUTHOR') %}
 						<li class="current"><a href="{{ path('product_index') }}">Retourner sur la plateforme</a></li>
 						<li><a href="{{ path('product_new') }}">Ajouter un produit</a></li>
 						<li><a href="{{ path('author_product') }}">Mes produits</a></li>

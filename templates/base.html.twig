@@ -70,8 +70,13 @@
                         {% if app.user %}
                             <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                             {% if is_granted('ROLE_USER') %}
-                            <!--<li><a href="{ { path('become_author') }}">Devenir vendeur</a></li>-->
-                            {% else %}
+                                <li>
+                                    <a href="{{ path('my_order') }}">Mon compte</a>
+                                    <ul>
+                                            <li><a href="{{ path('my_order') }}">Mes commandes</a></li>
+                                    </ul>
+                                </li>
+                                <!--<li><a href="{ { path('become_author') }}">Devenir vendeur</a></li>-->
                             {% endif %}
                         {% else %}
                             <li><a href="{{ path('app_login') }}"> Connexion</a></li>
