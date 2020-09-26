@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use App\Repository\CategoryRepository;
 
 class OrderController extends AbstractController
 {
@@ -32,7 +33,7 @@ class OrderController extends AbstractController
      * @Security("is_granted('ROLE_USER')")
      * get id product and render order page
      */
-    public function createOrderWithPaypal(payment $payment, $product)
+    public function createOrderWithPaypal(payment $payment, $product, CategoryRepository $categoryRepository)
     {
         // get product
         $productRepository = $this->getDoctrine()->getRepository(Product::class);
@@ -53,7 +54,8 @@ class OrderController extends AbstractController
         $this->em->flush();
 
         return $this->render('order/choosePayment.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
 
