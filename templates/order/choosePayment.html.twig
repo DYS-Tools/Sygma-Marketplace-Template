@@ -36,8 +36,8 @@
             // pour rendre le flux de paiement. Dans cet exemple,
             // createOrder appelle votre serveur pour obtenir l'ID de commande.
             createOrder: function (data, actions) {
-                 //return fetch('/perso/Web-Item-Market/public/createOrder', { // dev
-                   return fetch('http://webitemmarket.yohanndurand.fr/createOrder', {
+                 //return fetch('/perso/Web-Item-Market/public/createOrder', { // dev // local 
+                 return fetch('http://webitemmarket.yohanndurand.fr/createOrder', {
                     method: 'POST'
                 }).then(function(res) {
                     if (res.status === 204)
@@ -57,7 +57,7 @@
             // Send orderId in methods
             onApprove: function (data, actions) {
                 // console.log(data.orderID) ;
-                 //return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, { // dev
+                // return fetch('/perso/Web-Item-Market/public/captureOrder/'+data.orderID, { // dev // local 
                 return fetch('http://webitemmarket.yohanndurand.fr/captureOrder/'+data.orderID, {
                     method: 'POST'
                 }).then(function(res) {
