@@ -21,12 +21,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Require ROLE_ADMIN for *every* controller method in this class.
+ * @Route("/SY_admin")
  * @IsGranted("ROLE_ADMIN")
  */
 class AdminDashboardController extends AbstractController
 {
     /**
-     * @Route("/SY_admin/Home", name="admin_home")
+     * @Route("/", name="admin_home")
      */
     public function AdminHome(Request $request)
     {
@@ -39,7 +40,7 @@ class AdminDashboardController extends AbstractController
     }
 
      /**
-     * @Route("/SY_admin/ProductVerification", name="product_verified")
+     * @Route("/ProductVerification", name="product_verified")
      */
     public function productVerifiedPage(Request $request)
     {
@@ -47,13 +48,13 @@ class AdminDashboardController extends AbstractController
         $user = $this->getUser() ;
 
         return $this->render('admin/productVerified.html.twig', [
-            'noVerifiedProduct' => $this->getDoctrine()->getRepository(Product::class)->findAllTProductNoVerified(),
+            'noVerifiedProduct' => $this->getDoctrine()->getRepository(Product::class)->findAllTProductNoVerified(),                                                                              
             'user' => $user,
         ]);
     }
 
     /**
-     * @Route("/SY_admin/ticketHandler", name="ticket_handler")
+     * @Route("/ticketHandler", name="ticket_handler")
      */
     public function ticketHandler()
     {
@@ -70,7 +71,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/SY_admin/ticketHandler/{id}", name="ticket_handler_Single")
+     * @Route("/ticketHandler/{id}", name="ticket_handler_Single")
      */
     public function ticketHandlerSingle($id, Request $request, \Swift_Mailer $mailer, EntityManagerInterface $em)
     {
@@ -109,7 +110,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/SY_admin/Blog", name="article_index_admin")
+     * @Route("/Blog", name="article_index_admin")
      */
     public function BlogAdminPage(ArticleRepository $articleRepository)
     {
@@ -123,7 +124,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/SY_admin/statistic", name="statistic_admin")
+     * @Route("/statistic", name="statistic_admin")
      */
     public function statisticAdmin(MakeJsonFormat $makeJsonFormat)
     {
@@ -154,7 +155,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/SY_admin/Product/rejected/{id}", name="app_dashboard_product_rejected")
+     * @Route("/Product/rejected/{id}", name="app_dashboard_product_rejected")
      */
     public function productRejeted(Request $request, \Swift_Mailer $mailer, $id)
     {
@@ -195,7 +196,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/SY_admin/product/verified/{id}", name="app_dashboard_product_verified")
+     * @Route("/product/verified/{id}", name="app_dashboard_product_verified")
      */
     public function productVerifiedAction(Request $request,\Swift_Mailer $mailer, $id)
     {
@@ -221,7 +222,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/SY_admin/category_handler", name="category_handler")
+     * @Route("/category_handler", name="category_handler")
      */
     public function category_handler()
     {
@@ -240,7 +241,7 @@ class AdminDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/SY_admin/laboratory", name="laboratory")
+     * @Route("/laboratory", name="laboratory")
      */
     public function laboratory()
     {

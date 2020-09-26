@@ -13,11 +13,48 @@ use Symfony\Component\Routing\Annotation\Route;
 class FrontController extends AbstractController
 {
     /**
+     * @Route("/legal", name="app_legal")
+     */
+    public function legal(CategoryRepository $categoryRepository)
+    {
+        // Todo : no test succes 
+        return $this->render('front/legal.html.twig', [
+            'categories' => $categoryRepository->findBy(['active' => 1]),
+        ]);
+    }
+
+    /**
+     * @Route("/faq", name="app_faq")
+     */
+    public function faq(CategoryRepository $categoryRepository)
+    {
+        // Todo : no test succes 
+        return $this->render('front/faq.html.twig', [
+            'categories' => $categoryRepository->findBy(['active' => 1]),
+        ]);
+    }
+
+    /**
      * @Route("/review", name="review_client")
      */
-    public function reviewClient()
+    public function reviewClient(CategoryRepository $categoryRepository)
     {
+        // Todo : Fix bug: error 500 in prod with category repository
+        // Todo : no test succes 
         return $this->render('front/ReviewClient.html.twig', [
+            'categories' => $categoryRepository->findBy(['active' => 1]),
+        ]);
+    }
+
+    /**
+     * @Route("/helpAuthor", name="help_author")
+     */
+    public function help_author(CategoryRepository $categoryRepository)
+    { 
+        // Todo : Fix bug: error 500 in prod with category repository
+        // Todo : no test succes 
+        return $this->render('front/helpAuthor.html.twig', [
+            'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
 
@@ -66,38 +103,5 @@ class FrontController extends AbstractController
             'categories' => $categoryRepository->findBy(['active' => 1]),
         ]);
     }
-
-    /**
-     * @Route("/legal", name="app_legal")
-     */
-    public function legal(CategoryRepository $categoryRepository)
-    {
-        return $this->render('front/legal.html.twig', [
-            'categories' => $categoryRepository->findBy(['active' => 1]),
-        ]);
-    }
-
-    /**
-     * @Route("/faq", name="app_faq")
-     */
-    public function faq(CategoryRepository $categoryRepository)
-    {
-        return $this->render('front/faq.html.twig', [
-            'categories' => $categoryRepository->findBy(['active' => 1]),
-        ]);
-    }
-
-
-    /**
-     * @Route("/helpAuthor", name="help_author")
-     */
-    public function help_author()
-    {
-        return $this->render('front/helpAuthor.html.twig', [
-        ]);
-    }
-
-
-
 
 }

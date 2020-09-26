@@ -38,7 +38,7 @@
                             <td>{{ noVerifiedProduct.price}} <i class="fa fa-eur" aria-hidden="true"></i></td>
 
 
-                            {% dump "product/" ~ noVerifiedProduct.file %}
+                            {# dump "product/" ~ noVerifiedProduct.file #}
                             <td>
                                 <a href="{{ asset("product/" ~ noVerifiedProduct.file)  }}" download>
                                     <button type="button" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i>    {{ noVerifiedProduct.file }}</button>
