@@ -90,77 +90,6 @@
                         {% endif %}
 					</ul>
 				</nav>
-                
-                <!--
-                <nav>
-                <ul class="nav navbar-nav pull-right dropdown-main-menu">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <div class="img-rounded profile-img"></div>
-                                    <i class="fas fa-user-circle"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                { % if is_granted('ROLE_USER') %}
-                                <h6 class="size4 white-grey title-dropdown"> Utilisateur </h6>
-                                
-                                <li>
-                                    <a href="{ { path('dashboard') }}">Mon compte</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="{ { path('product_index') }}">Accueil</a>
-                                </li>
-                                <li role="separator" class="divider"></li>
-                                <li>
-                                    <a href="{ { path('app_logout') }}">Logout</a>
-                                </li>
-                                <li>
-                                    <a href="{ { path('my_order') }}">Mes commandes</a>
-                                </li>
-                                { % endif %}
-
-                                { % if is_granted('ROLE_AUTHOR') %}
-                                <br/>
-                                <h6 class="size4 white-grey title-dropdown"> Dashboard Auteur </h6>
-
-                                <li>
-                                    <a href="{ { path('product_new') }}">Ajouter un produit</span></a>
-                                </li>
-                                <li>
-                                    <a href="{ { path('author_product') }}">Mes produits</span></a>
-                                </li>
-                                <li>
-                                    <a href="{ { path('my_sell') }}">Mes Ventes</span></a>
-                                </li>
-
-                                <li>
-                                    <a href="{ { path('money_managment') }}">Finance</span></a>
-                                </li>
-
-                                { % endif %}
-
-                                { % if is_granted('ROLE_ADMIN') %}
-                                <br/>
-                                <h6 class="size4 white-grey title-dropdown"> ADMIN Function </h6>
-                                <li>
-                                    <a href="{ { path('admin_home') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Administration</a>
-                                </li>
-                                { % else %}
-                                    <li>
-                                        <a href="{ { path('app_login') }}">Connection</a>
-                                    </li>
-                                    <li>
-                                        <a href="{ { path('app_register') }}">Inscription</a>
-                                    </li>
-                                { % endif %}
-                                
-                                <br/><br/>
-                            </ul>
-                        </li>
-                    </ul>
-                    </nav>
-                -->
-			<!-- endNAV -->
         <br/>
 
         <br/><br/>
@@ -186,6 +115,44 @@
         </div>
         
         <!-- TODO: Footer -->
+        <div class="page-footer">
+            <div class="row">
+                <div class="col-lg-3 col-footer">
+                    <h4>Notre site</h4>
+                    <ul>
+                        <li> link</li>
+                        <li> link</li>
+                        <li> link</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-footer">
+                    <h4>Nos services</h4>
+                    <ul>
+                        <li> link</li>
+                        <li> link</li>
+                        <li> link</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-footer">
+                    <h4>Communauté</h4>
+                    <ul>
+                        <li> lien</li>
+                        <li> link</li>
+                        <li> link</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+
+        <!-- Footer -->
+
+
 
         {% block javascripts %}
             <!-- END CSS loader -->

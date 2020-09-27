@@ -1154,3 +1154,19 @@ div.card-body.row{
 .clock-icon,.blue{
     color: #1E90FF;
 }
+
+
+/*****FOOTER ***********/
+.page-footer{
+    background-color: #2c3c4b;
+    color: whitesmoke;
+    /*width: 100vw;*/
+    margin: 0;
+    padding: 10%;
+}
+.footer-copyright{
+    background-color: #1e2831;
+    /*width: 100vw;*/
+    margin: 0;
+    color: whitesmoke;
+}
