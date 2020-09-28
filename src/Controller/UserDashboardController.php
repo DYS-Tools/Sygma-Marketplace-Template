@@ -26,12 +26,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * Require ROLE_USER for *every* controller method in this class.
  * @IsGranted("ROLE_USER")
+ * @Route("/user")
  */
 class UserDashboardController extends AbstractController
 {
 
     /**
-     * @Route("/user/MyOrder", name="my_order")
+     * @Route("/MyOrder", name="my_order")
      */
     public function myOrder(CategoryRepository $categoryRepository)
     {

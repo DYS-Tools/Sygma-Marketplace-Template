@@ -1,11 +1,8 @@
 doctrine_migrations:
 
-    migrations_paths:
-        'DoctrineMigrations': '%kernel.project_dir%/src/Migrations'
-
-    # dir_name: '%kernel.project_dir%/src/Migrations' # remove for depreciation test 
-    
+    #migrations_paths:
+    #    'DoctrineMigrations': '%kernel.project_dir%/src/Migrations'
+    dir_name: '%kernel.project_dir%/src/Migrations' # remove for depreciation test 
     # namespace is arbitrary but should be different from App\Migrations
     # as migrations classes should NOT be autoloaded
-
-    #namespace: DoctrineMigrations # remove for depreciation test 
+    namespace: DoctrineMigrations # remove for depreciation test 

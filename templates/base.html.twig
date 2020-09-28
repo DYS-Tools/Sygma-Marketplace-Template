@@ -51,14 +51,12 @@
     </head>
 
     <body>
-
         <!-- Nav -->
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="{{ path('product_index') }}">Home</a></li>
 						<li>
 							<a href="{{ path('product_index') }}">Nos produits</a>
-                            {# render(controller("App\\Controller\\CategoryController::GetallCategory")) #}
 							<ul>
                                 {% for category in categories %}
                                     <li><a href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a></li>
@@ -90,80 +88,7 @@
                         {% endif %}
 					</ul>
 				</nav>
-                
-                <!--
-                <nav>
-                <ul class="nav navbar-nav pull-right dropdown-main-menu">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <div class="img-rounded profile-img"></div>
-                                    <i class="fas fa-user-circle"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                { % if is_granted('ROLE_USER') %}
-                                <h6 class="size4 white-grey title-dropdown"> Utilisateur </h6>
-                                
-                                <li>
-                                    <a href="{ { path('dashboard') }}">Mon compte</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="{ { path('product_index') }}">Accueil</a>
-                                </li>
-                                <li role="separator" class="divider"></li>
-                                <li>
-                                    <a href="{ { path('app_logout') }}">Logout</a>
-                                </li>
-                                <li>
-                                    <a href="{ { path('my_order') }}">Mes commandes</a>
-                                </li>
-                                { % endif %}
-
-                                { % if is_granted('ROLE_AUTHOR') %}
-                                <br/>
-                                <h6 class="size4 white-grey title-dropdown"> Dashboard Auteur </h6>
-
-                                <li>
-                                    <a href="{ { path('product_new') }}">Ajouter un produit</span></a>
-                                </li>
-                                <li>
-                                    <a href="{ { path('author_product') }}">Mes produits</span></a>
-                                </li>
-                                <li>
-                                    <a href="{ { path('my_sell') }}">Mes Ventes</span></a>
-                                </li>
-
-                                <li>
-                                    <a href="{ { path('money_managment') }}">Finance</span></a>
-                                </li>
-
-                                { % endif %}
-
-                                { % if is_granted('ROLE_ADMIN') %}
-                                <br/>
-                                <h6 class="size4 white-grey title-dropdown"> ADMIN Function </h6>
-                                <li>
-                                    <a href="{ { path('admin_home') }}"><i class="fa fa-line-chart" aria-hidden="true"></i>  Administration</a>
-                                </li>
-                                { % else %}
-                                    <li>
-                                        <a href="{ { path('app_login') }}">Connection</a>
-                                    </li>
-                                    <li>
-                                        <a href="{ { path('app_register') }}">Inscription</a>
-                                    </li>
-                                { % endif %}
-                                
-                                <br/><br/>
-                            </ul>
-                        </li>
-                    </ul>
-                    </nav>
-                -->
-			<!-- endNAV -->
-        <br/>
-
-        <br/><br/>
+        <br/><br/><br/>
         <div class="container">
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
@@ -180,12 +105,28 @@
         </div>
 
         <div class="content-application-front" id="content-application-front">
-        {% block body %}
-            <!-- Content page -->
-        {% endblock %}
+        {% block body %} {% endblock %}
         </div>
-        
-        <!-- TODO: Footer -->
+
+        <div class="foot" style="width=100vw;">
+            <!-- footer --> 
+            <footer class="footer-section w-100" style="width=100vw;"> 
+                <div class="container link-block centered center-block">
+                    <a href="{{ path('contact') }}"><span class="footer-link">Contact</span></a>
+                    <a href="{{ path('app_faq') }}"><span class="footer-link">FAQ</span></a>
+                    <a href="{{ path('app_legal') }}"><span class="footer-link">Mentions légales</span></a>
+                    <a href="{{ path('review_client') }}"><span class="footer-link">Avis clients</span></a>
+                    {# if is_granted('ROLE_ADMIN') #}
+                    <a href="{{ path('help_author') }}"><span class="footer-link">Aide aux auteurs</span></a>
+                    {# endif #}
+                </div>
+            </footer>
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="#"> WebitemMarket.com</a>
+            </div>
+        </div>
+
 
         {% block javascripts %}
             <!-- END CSS loader -->
@@ -223,8 +164,6 @@
 			<script src="{{ asset('js/template/breakpoints.min.js') }}"></script>
 			<script src="{{ asset('js/template/util.js') }}"></script>
 			<script src="{{ asset('js/template/main.js') }}"></script>
-            <!--<link rel="stylesheet" href="{ { asset('css/style.css') }}" />-->
-
             {% endblock %}
     </body>
 </html>

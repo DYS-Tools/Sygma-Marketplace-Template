@@ -50,5 +50,7 @@ security:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/become_author, roles: ROLE_ADMIN } #Become Author page
         - { path: ^/dashboard/MyOrder, roles: ROLE_USER}  #Order User
-        - { path: ^/dashboard, roles: ROLE_ADMIN} 
+        - { path: ^/author, roles: ROLE_AUTHOR} 
+        - { path: ^/user, roles: ROLE_USER} 
+        - { path: ^/SY_admin, roles: ROLE_ADMIN} 
         - { path: ^/product/new, roles: [ ROLE_ADMIN ] } #CRUD product

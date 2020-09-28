@@ -17,11 +17,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * Require ROLE_AUTHOR for *every* controller method in this class.
  * @IsGranted("ROLE_AUTHOR")
+ * @Route("/author")
  */
 class AuthorDashboardController extends AbstractController
 {
     /**
-     * @Route("/author/MySell", name="my_sell")
+     * @Route("/MySell", name="my_sell")
      */
     public function mySell(MakeJsonFormat $makeJsonFormat, CategoryRepository $categoryRepository)
     {
@@ -42,7 +43,7 @@ class AuthorDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/author/authorProduct", name="author_product")
+     * @Route("/authorProduct", name="author_product")
      */
     public function authorProduct(CategoryRepository $categoryRepository)
     {
@@ -58,7 +59,7 @@ class AuthorDashboardController extends AbstractController
     }
 
     /**
-     * @Route("/author/money_managment", name="money_managment")
+     * @Route("/money_managment", name="money_managment")
      */
     public function payoutAuthor(Request $request, payment $payment, CategoryRepository $categoryRepository)
     {
