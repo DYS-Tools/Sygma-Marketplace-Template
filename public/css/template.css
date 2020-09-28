@@ -2554,6 +2554,7 @@ input, select, textarea {
 		border-top-width: 35px;
 		border-bottom-width: 10px;
 		padding: 6em 0 6em 0;
+		padding-bottom: 0;
 	}
 
 /* Sidebar + Content */

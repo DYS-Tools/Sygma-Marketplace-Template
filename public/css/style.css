@@ -1157,16 +1157,32 @@ div.card-body.row{
 
 
 /*****FOOTER ***********/
-.page-footer{
+.foot{
+    width: 100vw;
+    overflow: visible;
+    margin: 0;
+}
+.footer-section{
     background-color: #2c3c4b;
     color: whitesmoke;
-    /*width: 100vw;*/
-    margin: 0;
-    padding: 10%;
+    width: 100vw;
+    margin: 0 0 0 0;
+    padding: 5%;
+    width: 100vw;
 }
 .footer-copyright{
     background-color: #1e2831;
     /*width: 100vw;*/
     margin: 0;
     color: whitesmoke;
+}
+.footer-link{
+    color: whitesmoke;
+    margin-left: 10%;
+}
+.footer-link:hover{
+    color:#1E90FF;
+}
+.link-block{
+    margin-left: 30%;
 }

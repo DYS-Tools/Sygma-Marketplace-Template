@@ -51,14 +51,12 @@
     </head>
 
     <body>
-
         <!-- Nav -->
 				<nav id="nav">
 					<ul>
 						<li class="current"><a href="{{ path('product_index') }}">Home</a></li>
 						<li>
 							<a href="{{ path('product_index') }}">Nos produits</a>
-                            {# render(controller("App\\Controller\\CategoryController::GetallCategory")) #}
 							<ul>
                                 {% for category in categories %}
                                     <li><a href="{{ path('product_with_category', {'id': category.id}) }}">{{ category.name }}</a></li>
@@ -90,9 +88,7 @@
                         {% endif %}
 					</ul>
 				</nav>
-        <br/>
-
-        <br/><br/>
+        <br/><br/><br/>
         <div class="container">
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
@@ -109,49 +105,23 @@
         </div>
 
         <div class="content-application-front" id="content-application-front">
-        {% block body %}
-            <!-- Content page -->
-        {% endblock %}
+        {% block body %} {% endblock %}
         </div>
-        
-        <!-- TODO: Footer -->
-        <div class="page-footer">
-            <div class="row">
-                <div class="col-lg-3 col-footer">
-                    <h4>Notre site</h4>
-                    <ul>
-                        <li> link</li>
-                        <li> link</li>
-                        <li> link</li>
-                    </ul>
+
+        <div class="foot" style="width=100vw;">
+            <!-- footer --> 
+            <footer class="footer-section w-100" style="width=100vw;"> 
+                <div class="container link-block centered center-block">
+                    <a href="{{ path('contact') }}"><span class="footer-link">Contact</span></a>
+                    <a href="{{ path('app_faq') }}"><span class="footer-link">FAQ</span></a>
+                    <a href="{{ path('app_legal') }}"><span class="footer-link">Mentions légales</span></a>
                 </div>
-                <div class="col-lg-3 col-footer">
-                    <h4>Nos services</h4>
-                    <ul>
-                        <li> link</li>
-                        <li> link</li>
-                        <li> link</li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-footer">
-                    <h4>Communauté</h4>
-                    <ul>
-                        <li> lien</li>
-                        <li> link</li>
-                        <li> link</li>
-                    </ul>
-                </div>
+            </footer>
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="#"> WebitemMarket.com</a>
             </div>
         </div>
-        
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-        </div>
-        <!-- Copyright -->
-
-        <!-- Footer -->
-
 
 
         {% block javascripts %}
@@ -190,8 +160,6 @@
 			<script src="{{ asset('js/template/breakpoints.min.js') }}"></script>
 			<script src="{{ asset('js/template/util.js') }}"></script>
 			<script src="{{ asset('js/template/main.js') }}"></script>
-            <!--<link rel="stylesheet" href="{ { asset('css/style.css') }}" />-->
-
             {% endblock %}
     </body>
 </html>
