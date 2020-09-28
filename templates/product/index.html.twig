@@ -240,12 +240,36 @@
 									</section>
 							</div>
 						</div>
+						<br/>
+
+						<div class=" foot row d-flex justify-content-around w-100" style="width=100vw;">
+							<div class="col-lg-2">
+							<a href="{{ path('contact') }}"><span class="footer-link">Contact</span></a>
+							</div>
+							<div class="col-lg-2">
+							<a href="{{ path('app_faq') }}"><span class="footer-link">FAQ</span></a>
+							</div>
+							<div class="col-lg-2">
+							<a href="{{ path('app_legal') }}"><span class="footer-link">Mentions légales</span></a>
+							</div>
+							<div class="col-lg-2">
+							<a href="{{ path('review_client') }}"><span class="footer-link">Avis clients</span></a>
+							</div>
+							<div class="col-lg-2">
+							{# if is_granted('ROLE_ADMIN') #}
+							<a href="{{ path('help_author') }}"><span class="footer-link">Aide aux auteurs</span></a>
+							</div>
+							{# endif #}
+						</div>
+
+						
 						<!-- Copyright -->
 							<div id="copyright">
 								<ul class="menu">
 									<li>&copy; DYS-Tools. All rights reserved</li><li> WebItemMarket</a></li>
 								</ul>
 							</div>
+
 					</div>
 				</div>
 		</div>
