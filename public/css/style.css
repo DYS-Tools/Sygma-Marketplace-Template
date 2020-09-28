@@ -1185,4 +1185,5 @@ div.card-body.row{
 }
 .link-block{
     margin-left: 30%;
+    display: block;
 }
