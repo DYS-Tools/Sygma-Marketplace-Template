@@ -1161,6 +1161,7 @@ div.card-body.row{
     width: 100vw;
     overflow: visible;
     margin: 0;
+    padding:0;
 }
 .footer-section{
     background-color: #2c3c4b;
@@ -1177,11 +1178,12 @@ div.card-body.row{
     color: whitesmoke;
 }
 .footer-link{
-    color: whitesmoke;
-    margin-left: 10%;
+    color: #1E90FF;
+    /*margin-left: 10%;*/
+    font-weight: bold;
 }
 .footer-link:hover{
-    color:#1E90FF;
+    color:black;
 }
 .link-block{
     margin-left: 30%;
