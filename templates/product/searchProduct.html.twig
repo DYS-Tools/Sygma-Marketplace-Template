@@ -29,48 +29,52 @@
             <div class="row">
 
                 {% for product in pagination %}
-                    <div class="col-lg-3 d-flex justify-content-around">
-                        <!-- product card -->
-                        <div class="card" style="width: 26rem;">
-                            <img class="card-img-top" src="../product/img/{{ product.img1 }}"  alt="{{ product.name }}">
-                            <div class="card-body">
-                                <h5 class="card-title-product">{{ product.name }}</h5>
-                                <p class="card-text">{{ product.description }}</p>
+                    <div class="item-container">
+									<div class="col-lg-6">
+										<div class="card" style="width: 35rem;">
+											<img class="card-img-top" src="product/img/{{ product.img1 }}" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">{{ product.name }}</h5>
+												<p class="card-text"> {{ product.description }}</p>
 
-                                {% if product.price == 0 %}
-                                    <p class="yellowgreen price-card"> Produit gratuit </p>
-                                {% else %}
-                                    <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
-                                {% endif %}
+                                                {% if product.price == 0 %}
+                                                    <p class="yellowgreen price-card"> Produit gratuit </p>
+                                                {% else %}
+                                                    <p class="yellowgreen"> <strong> {{ product.price }} € </strong>  </p>
+                                                {% endif %}
 
-                                <div class="row">
-                                {% if product.price > 0 %}
-                                    <div class="col-lg-7">
-                                        <p class="card-text"> {{ product.numberSale}}  Vente </p>
-                                    </div>
-                                {% endif %}
-                                    {% if product.price > 0 %}
-                                    <div class="col-lg-4 d-flex justify-content-around">
-                                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
-                                    </div>
-                                    {% elseif product.price == 0 %}
-                                    <div class="col-lg-6">
-                                            <a href="{{ asset("product/" ~ product.file)  }}" 
-                                                download>
-                                                <button type="button" class="btn btn-success">Download product</button>
-                                            </a>
-                                    </div>
-                                    <div class="col-lg-1">
-                                        <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </div>
+													<div class="col-lg-4 d-flex justify-content-around box-button-index">
+														<a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info index-card-button">Voir</a>
+														<a href="{{ path('order', { 'product': product.id }  ) }}" class="btn btn-info index-card-button">Acheter  </a>
+													</div>
 
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end product card -->
-                    </div>
+                                            {% if product.price > 0 %}
+                                                <div class="col-lg-7">
+                                                    <p class="card-text"> {{ product.numberSale}}  Vente </p>
+                                                </div>
+                                            {% endif %}
+                                            {% if product.price > 0 %}
+                                            <div class="col-lg-4 d-flex justify-content-around">
+                                                <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                <a href="{{path('order', { 'product': product.id }  ) }}" class="btn btn-info"><i class="fa fa-shopping-cart" aria-hidden="true"></i>  </a>
+                                            </div>
+                                            {% elseif product.price == 0 %}
+                                            <div class="col-lg-6">
+                                                    <a href="{{ asset("product/" ~ product.file)  }}" 
+                                                        download>
+                                                        <button type="button" class="btn btn-success">Download product</button>
+                                                    </a>
+                                            </div>
+                                            <div class="col-lg-1">
+                                                <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            </div>
+
+                                            {% endif %}
+
+											</div>
+										</div>
+									</div>
+								</div>
                 {% endfor %}
             </div>
         </div>
